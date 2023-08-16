@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Bienvenida</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
@@ -48,7 +49,7 @@
                                             d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
                                             class="fill-current group-hover:text-sky-300"></path>
                                     </svg>
-                                    <span class="text-white px-2.5 text-lg">Dashboard</span>
+                                    <span id="TextDas" class="text-white px-2.5 text-lg">Dashboard</span>
                                 </div>
                             </a>
                         </li>
