@@ -25,9 +25,5 @@ jQuery(function($) {
         // Mostrar el mensaje de bienvenida
         $('#mensaje_bienvenida').text(mensaje);
     }
-
-    $(document).on("keypress", "#dniUsu", function (e) {
-        $(this).val($(this).val().toUpperCase());
-    });
     
 });

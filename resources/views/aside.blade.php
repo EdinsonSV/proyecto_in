@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
-    {{-- @vite('resources/css/app.css') --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Bienvenida</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -16,7 +15,7 @@
         <div class="h-full flex flex-col justify-between">
             <div>
                 <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center">
-                    <a href="" class="block w-max px-2.5">
+                    <a href="/home" class="block w-max px-2.5">
                         <svg class="h-10" viewBox="0 0 130 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M21.0906 4.26462L20.9421 4.17909C18.3863 2.70639 15.2373 2.70639 12.6814 4.17909L6.88388 7.51967C4.32802 8.99237 2.75355 11.714 2.75355 14.6594V21.3406C2.75355 24.286 4.32802 27.0077 6.88388 28.4803L12.6814 31.8208C15.2373 33.2935 18.3863 33.2935 20.9421 31.8208L26.7396 28.4803C29.2954 27.0077 30.8699 24.286 30.8699 21.3406V14.6594C30.8699 12.4919 30.0173 10.4455 28.5483 8.92892C29.2683 8.31513 29.7967 7.48406 30.0315 6.53741C32.2932 8.596 33.6235 11.5332 33.6235 14.6594V21.3406C33.6235 25.2677 31.5242 28.8966 28.1164 30.8602L22.3189 34.2008C18.911 36.1645 14.7125 36.1645 11.3046 34.2008L5.5071 30.8602C2.09929 28.8966 0 25.2677 0 21.3406V14.6594C0 10.7322 2.09929 7.10335 5.5071 5.13975L11.3046 1.79917C14.7125 -0.164422 18.911 -0.164422 22.3189 1.79917L22.5517 1.93334C21.8496 2.53491 21.3307 3.34367 21.0906 4.26462Z"
@@ -98,9 +97,8 @@
                             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                             alt="">
                         <div>
-                            <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}{{auth()->user()->apellidoPaternoUsu}}</h6>
-                            <span class="block -mt-0.5 text-xs text-gray-500">Backend Developer</span>
-                            <a href="/logout">Cerrar Sesion</a>
+                            <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}&nbsp;{{auth()->user()->apellidoPaternoUsu}}</h6>
+                            <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span><a href="/logout"><i class="fa-solid fa-door-open text-xs dark:text-gray-300"></i></a>
                         </div>
                     </div>
                 </a>
