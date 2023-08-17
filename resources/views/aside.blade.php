@@ -98,8 +98,9 @@
                             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                             alt="">
                         <div>
-                            <h6 class="text-gray-600 dark:text-gray-200 font-medium">Industrias Balinsa</h6>
+                            <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}{{auth()->user()->apellidoPaternoUsu}}</h6>
                             <span class="block -mt-0.5 text-xs text-gray-500">Backend Developer</span>
+                            <a href="/logout">Cerrar Sesion</a>
                         </div>
                     </div>
                 </a>

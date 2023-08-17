@@ -15,7 +15,7 @@ jQuery(function($) {
         if (horaActual >=0 && horaActual < 6) {
             mensaje = 'Has madrugado mucho hoy';
         } else if (horaActual >= 6 && horaActual < 12) {
-            mensaje = 'Buenas dias';
+            mensaje = 'Buenos dias';
         }else if (horaActual >= 12 && horaActual < 18) {
             mensaje = 'Buenas tardes';
         } else if (horaActual >=18 && horaActual < 24) {
@@ -25,7 +25,9 @@ jQuery(function($) {
         // Mostrar el mensaje de bienvenida
         $('#mensaje_bienvenida').text(mensaje);
     }
+
+    $(document).on("keypress", "#dniUsu", function (e) {
+        $(this).val($(this).val().toUpperCase());
+    });
     
-
-
 });
