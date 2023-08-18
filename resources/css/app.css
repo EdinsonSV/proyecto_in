@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .compact-nav{
-    transition: width .4s;
+    transition: all .4s;
 }

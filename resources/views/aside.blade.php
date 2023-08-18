@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
-<body class="bg-white dark:bg-gray-900">
-    <aside
-        class="compact-nav fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 hover:w-56 hover:shadow-2xl">
+<body class="bg-white dark:bg-gray-900 pt-16 md:pt-0">
+    <aside id="aside_bard" class="compact-nav fixed group overflow-hidden w-full -left-full md:left-0 top-0 z-10 h-screen md:w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 md:hover:w-56 hover:shadow-2xl block">
         <div class="h-full flex flex-col justify-between">
             <div>
-                <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center">
+                <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between">
                     <a href="/home" class="block w-max px-2.5">
                         <svg class="h-10" viewBox="0 0 130 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -31,23 +30,15 @@
                                 fill="#BBC5C9" />
                         </svg>
                     </a>
+                    <div class="block md:hidden">
+                        <i id="toogle_bard2" class="fa-solid fa-xmark mr-8 text-gray-700 uppercase dark:text-gray-300 cursor-pointer text-lg"></i>
+                    </div>
                 </div>
                 <div class="mt-6">
                     <ul class="px-1 -ml-px space-y-4 font-medium tracking-wide">
                         <li class="w-max space-y-4 group-hover:w-full">
                             <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full">
                                 <div class="w-max flex items-center px-3 gap-4">
-                                    <svg class="h-7 w-7" fill-white viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                                            class="fill-current text-cyan-400 dark:fill-slate-600"></path>
-                                        <path
-                                            d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                                            class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
-                                        <path
-                                            d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                                            class="fill-current group-hover:text-sky-300"></path>
-                                    </svg>
                                     <span id="TextDas" class="text-white px-2.5 text-lg">Dashboard</span>
                                 </div>
                             </a>
@@ -56,7 +47,7 @@
                             <a href="">
                                 <div class="flex items-center gap-4 px-4 py-3">
                                     <i
-                                        class="fa-regular fa-folder-open h-6 w-6 text-gray-700 dark:text-gray-300 text-2xl"></i>
+                                        class="fa-regular fa-folder-open h-6 w-6 text-gray-700 dark:text-gray-300 text-xl"></i>
                                     <span class="text-gray-600 dark:text-gray-300">Categories</span>
                                 </div>
                             </a>
@@ -82,7 +73,7 @@
                         <li class="w-max">
                             <a href="">
                                 <div class="flex items-center gap-4 px-4 py-3">
-                                    <i class="fa-regular fa-file h-6 w-6 text-gray-700 dark:text-gray-300 text-2xl"></i>
+                                    <i class="fa-regular fa-file h-6 w-6 text-gray-700 dark:text-gray-300 text-xl"></i>
                                     <span class="text-gray-600 dark:text-gray-300">Archives</span>
                                 </div>
                             </a>
@@ -94,7 +85,7 @@
                 <a href="">
                     <div class="w-max flex items-center gap-4">
                         <img class="w-10 h-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+                            src="{{ asset(auth()->user()->rutaPerfilUsu) }}"
                             alt="">
                         <div>
                             <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}&nbsp;{{auth()->user()->apellidoPaternoUsu}}</h6>
@@ -105,3 +96,5 @@
             </div>
         </div>
     </aside>
+</body>
+</html>

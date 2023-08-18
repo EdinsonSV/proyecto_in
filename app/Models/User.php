@@ -26,6 +26,7 @@ class User extends Authenticatable
         'nombresUsu',
         'tipoUsu',
         'sexoUsu',
+        'rutaPerfilUsu',
         'email',
         'username',
         'password',

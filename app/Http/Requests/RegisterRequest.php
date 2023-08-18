@@ -30,9 +30,23 @@ class RegisterRequest extends FormRequest
             'nombresUsu' => 'required|string',
             'tipoUsu' => 'required|string',
             'sexoUsu' => 'required|string',
+            'rutaPerfilUsu' => 'required|string',
             'email' => 'required|unique:users,email',
             'username' => 'required|unique:users,username',
             'password' => 'required|min:8',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'apellidoPaternoUsu' => strtoupper($this->input('apellidoPaternoUsu')),
+            'apellidoMaternoUsu' => strtoupper($this->input('apellidoMaternoUsu')),
+            'nombresUsu' => strtoupper($this->input('nombresUsu')),
+            'direccionUsu' => strtoupper($this->input('direccionUsu')),
+        ]);
     }
 }

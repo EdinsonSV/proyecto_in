@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('celularUsu')->nullable();
             $table->string('direccionUsu')->nullable();
             $table->string('tipoUsu');
+            $table->string('rutaPerfilUsu')->nullable();
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->timestamp('email_verified_at')->nullable();
