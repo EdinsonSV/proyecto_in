@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Bienvenida</title>
+    <title>Bienvenido</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
-<body class="bg-white dark:bg-gray-900 pt-16 md:pt-0">
-    <aside id="aside_bard" class="compact-nav fixed group overflow-hidden w-full -left-full md:left-0 top-0 z-10 h-screen md:w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 md:hover:w-56 hover:shadow-2xl block">
+<body class="bg-gray-50 dark:bg-gray-900 pt-16 md:pt-0">
+    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-gray-300 dark:bg-gray-900 overflow-hidden">
+        <div class="lds-ellipsis">
+            <div class="bg-gray-900 dark:bg-white"></div>
+            <div class="bg-gray-900 dark:bg-white"></div>
+            <div class="bg-gray-900 dark:bg-white"></div>
+            <div class="bg-gray-900 dark:bg-white"></div>
+        </div>
+    </div>
+    <aside id="aside_bard" class="compact-nav fixed group overflow-hidden w-full -left-full md:left-0 top-0 z-10 h-screen md:w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 md:hover:w-56 hover:shadow-xl block 2xl:w-56 2xl:shadow-xl">
         <div class="h-full flex flex-col justify-between">
             <div>
                 <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between">
@@ -31,13 +39,13 @@
                         </svg>
                     </a>
                     <div class="block md:hidden">
-                        <i id="toogle_bard2" class="fa-solid fa-xmark mr-8 text-gray-700 uppercase dark:text-gray-300 cursor-pointer text-lg"></i>
+                        <i id="toogle_bard2" class="fa-solid fa-xmark mr-8 text-gray-700 uppercase dark:text-gray-100 cursor-pointer text-lg"></i>
                     </div>
                 </div>
                 <div class="mt-6">
                     <ul class="px-1 -ml-px space-y-4 font-medium tracking-wide">
-                        <li class="w-max space-y-4 group-hover:w-full">
-                            <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full">
+                        <li class="w-max space-y-4 group-hover:w-full 2xl:w-full">
+                            <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full 2xl:w-full">
                                 <div class="w-max flex items-center px-3 gap-4">
                                     <span id="TextDas" class="text-white px-2.5 text-lg">Dashboard</span>
                                 </div>
@@ -47,13 +55,13 @@
                             <a href="">
                                 <div class="flex items-center gap-4 px-4 py-3">
                                     <i
-                                        class="fa-regular fa-folder-open h-6 w-6 text-gray-700 dark:text-gray-300 text-xl"></i>
-                                    <span class="text-gray-600 dark:text-gray-300">Categories</span>
+                                        class="fa-regular fa-folder-open h-6 w-6 text-gray-700 dark:text-gray-100 text-xl"></i>
+                                    <span class="text-gray-600 dark:text-gray-100">Categories</span>
                                 </div>
                             </a>
                         </li>
-                        <li class="w-max space-y-4 group-hover:w-full">
-                            <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full">
+                        <li class="w-max space-y-4 group-hover:w-full 2xl:w-full">
+                            <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full 2xl:w-full">
                                 <div class="w-max flex items-center px-3 gap-4">
                                     <svg class="h-7 w-7" fill-white viewBox="0 0 24 24" fill="none">
                                         <path
@@ -73,8 +81,8 @@
                         <li class="w-max">
                             <a href="">
                                 <div class="flex items-center gap-4 px-4 py-3">
-                                    <i class="fa-regular fa-file h-6 w-6 text-gray-700 dark:text-gray-300 text-xl"></i>
-                                    <span class="text-gray-600 dark:text-gray-300">Archives</span>
+                                    <i class="fa-regular fa-file h-6 w-6 text-gray-700 dark:text-gray-100 text-xl"></i>
+                                    <span class="text-gray-600 dark:text-gray-100">Archives</span>
                                 </div>
                             </a>
                         </li>
@@ -89,7 +97,7 @@
                             alt="">
                         <div>
                             <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}&nbsp;{{auth()->user()->apellidoPaternoUsu}}</h6>
-                            <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span><a href="/logout"><i class="fa-solid fa-door-open text-xs dark:text-gray-300"></i></a>
+                            <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span><a href="/logout"><i class="fa-solid fa-door-open text-xs dark:text-gray-100"></i></a>
                         </div>
                     </div>
                 </a>

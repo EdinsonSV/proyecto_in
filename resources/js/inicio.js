@@ -16,9 +16,9 @@ jQuery(function($) {
             mensaje = 'Has madrugado mucho hoy';
         } else if (horaActual >= 6 && horaActual < 12) {
             mensaje = 'Buenos dias';
-        }else if (horaActual >= 12 && horaActual < 18) {
+        }else if (horaActual >= 12 && horaActual < 19) {
             mensaje = 'Buenas tardes';
-        } else if (horaActual >=18 && horaActual < 24) {
+        } else if (horaActual >=19 && horaActual < 24) {
             mensaje = 'Buenas noches';
         }
     

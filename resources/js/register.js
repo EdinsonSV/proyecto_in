@@ -91,7 +91,7 @@ jQuery(function($) {
             } else {
                 // Si la validación falla, muestra un mensaje o realiza otra acción
                 toastr.error('¡Error de Credenciales!', {
-                    timeOut: 800, // Duración en milisegundos (800 milisegundos en este caso)
+                    timeOut: 500, // Duración en milisegundos (800 milisegundos en este caso)
                 });
             }
         });
