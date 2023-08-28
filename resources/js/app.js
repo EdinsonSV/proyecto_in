@@ -1,6 +1,7 @@
 import './bootstrap';
 import './inicio';
 import './register';
+import './registrar_clientes';
 import jQuery from 'jquery';
 window.$ = jQuery;
 import toastr from 'toastr';
