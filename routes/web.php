@@ -27,3 +27,5 @@ Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::post('/register',[RegisterController::class,'register']);
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
+
+Route::get('/consultar-datos', [InicioController::class, 'consultarDatos']);

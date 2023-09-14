@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 pt-16 md:pt-0">
-    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-gray-300 dark:bg-gray-900 overflow-hidden">
+<body class="bg-gray-50 dark:bg-[#0D161C] pt-16 md:pt-0">
+    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-gray-50 dark:bg-neutral-900 overflow-hidden">
         <div class="lds-ellipsis">
             <div class="bg-gray-900 dark:bg-white"></div>
             <div class="bg-gray-900 dark:bg-white"></div>
@@ -18,7 +18,7 @@
             <div class="bg-gray-900 dark:bg-white"></div>
         </div>
     </div>
-    <aside id="aside_bard" class="compact-nav fixed group overflow-hidden w-full -left-full md:left-0 top-0 z-10 h-screen md:w-[calc(3.73rem)] border-r border-gray-300/40 bg-white dark:bg-gray-900 dark:border-gray-700 md:hover:w-56 hover:shadow-xl block 2xl:w-56 2xl:shadow-xl">
+    <aside id="aside_bard" class="compact-nav fixed group overflow-hidden w-full -left-full md:left-0 top-0 z-10 h-screen md:w-[calc(3.73rem)] border-r border-gray-300/40 bg-gray-50 dark:bg-[#0D161C] dark:border-gray-700 md:hover:w-64 hover:shadow-xl block 2xl:w-64 2xl:shadow-xl">
         <div class="h-full flex flex-col justify-between">
             <div>
                 <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between">
@@ -39,7 +39,7 @@
                         </svg>
                     </a>
                     <div class="block md:hidden">
-                        <i id="toogle_bard2" class="fa-solid fa-xmark mr-8 text-gray-700 uppercase dark:text-gray-100 cursor-pointer text-lg"></i>
+                        <i id="toogle_bard2" class="fa-solid fa-xmark mr-8 text-gray-900 uppercase dark:text-gray-100 cursor-pointer text-lg"></i>
                     </div>
                 </div>
                 <div class="mt-6">
@@ -63,17 +63,6 @@
                         <li class="w-max space-y-4 group-hover:w-full 2xl:w-full">
                             <a href="" class="block py-3 w-[52px] rounded-full bg-sky-500 group-hover:w-full 2xl:w-full">
                                 <div class="w-max flex items-center px-3 gap-4">
-                                    <svg class="h-7 w-7" fill-white viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                                            class="fill-current text-cyan-400 dark:fill-slate-600"></path>
-                                        <path
-                                            d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                                            class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
-                                        <path
-                                            d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                                            class="fill-current group-hover:text-sky-300"></path>
-                                    </svg>
                                     <span class="text-white px-2.5 text-lg">Contabilidad</span>
                                 </div>
                             </a>
@@ -94,7 +83,7 @@
                     <div class="w-max flex items-center gap-4">
                         <img class="w-10 h-10 rounded-full"
                             src="{{ asset(auth()->user()->rutaPerfilUsu) }}"
-                            alt="">
+                            alt="" id="paraPrueba">
                         <div>
                             <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}&nbsp;{{auth()->user()->apellidoPaternoUsu}}</h6>
                             <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span><a href="/logout"><i class="fa-solid fa-door-open text-xs dark:text-gray-100"></i></a>

@@ -1,0 +1,34 @@
+<?php
+
+namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class SubmenusTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('tb_submenus')->insert([
+            ['idSubMenu' => 1, 'idMenu' => 0, 'nombreSubMenu' => 'Inicio', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 2, 'idMenu' => 1, 'nombreSubMenu' => 'Agregar Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 3, 'idMenu' => 1, 'nombreSubMenu' => 'Consultar Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 4, 'idMenu' => 1, 'nombreSubMenu' => 'Tipo Pollo', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 5, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte Acumulado', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 6, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte de Pagos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 7, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte Por Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 8, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte por Proveedor', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 9, 'idMenu' => 3, 'nombreSubMenu' => 'Precios', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 10, 'idMenu' => 3, 'nombreSubMenu' => 'Cambiar Pesadas', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 11, 'idMenu' => 3, 'nombreSubMenu' => 'Configurar conversion', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 12, 'idMenu' => 3, 'nombreSubMenu' => 'Saldos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 13, 'idMenu' => 4, 'nombreSubMenu' => 'Agregar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 14, 'idMenu' => 4, 'nombreSubMenu' => 'Consultar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 15, 'idMenu' => 4, 'nombreSubMenu' => 'Configuraciones', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-house', 'estadoSubMenu' => 1],
+        ]);
+    }
+}
