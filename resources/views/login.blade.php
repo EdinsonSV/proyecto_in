@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
-    <section class="bg-gray-100 dark:bg-neutral-900"> <!-- bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 -->
+    <section class="bg-gray-100 dark:bg-[#0D161C]"> <!-- bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 -->
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-            <div class="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 dark:bg-[#111B22] dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div class="h-32 w-32 mx-auto bg-blue-600 rounded-full flex items-center justify-center overflow-hidden">
                         <img class="h-28 w-28" src="{{ asset('img/logouser.png') }}" alt="">

@@ -1,4 +1,6 @@
+@vite(['resources/js/inicio.js'])
 @extends('aside')
+<link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
 <main class="w-full md:w-[calc(100%-3.73rem)] ml-auto min-h-[calc(100%-120px)] mb-12 2xl:w-[calc(100%-256px)]">
     <div class="2xl:container mx-auto">
         <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between fixed  md:relative  top-0 w-full dark:bg-[#0D161C]">
@@ -28,9 +30,9 @@
                                     <div class="text-gray-100 font-semibold text-xl md:text-2xl">PESO VIVO&nbsp;&nbsp;:</div>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0 Uds.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalUnidadesPrimerEspecie" >0 Uds.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgNetoPrimerEspecie" >0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgVivoPrimerEspecie" >0.0 Kg.</div>
                                 </div>
                             </div>
                             <div class="text-gray-100 w-full flex justify-center p-1">En linea
@@ -46,9 +48,9 @@
                                     <div class="text-gray-100 font-semibold text-xl md:text-2xl">PESO VIVO&nbsp;&nbsp;:</div>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0 Uds.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalUnidadesSegundaEspecie" >0 Uds.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgNetoSegundaEspecie" >0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgVivoSegundaEspecie" >0.0 Kg.</div>
                                 </div>
                             </div>
                             <div class="text-gray-100 w-full flex justify-center p-1">En linea
@@ -64,9 +66,9 @@
                                     <div class="text-gray-100 font-semibold text-xl md:text-2xl">PESO VIVO&nbsp;&nbsp;:</div>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0 Uds.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalUnidadesTerceraEspecie" >0 Uds.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgNetoTerceraEspecie" >0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgVivoTerceraEspecie" >0.0 Kg.</div>
                                 </div>
                             </div>
                             <div class="text-gray-100 w-full flex justify-center p-1">En linea
@@ -82,9 +84,9 @@
                                     <div class="text-gray-100 font-semibold text-xl md:text-2xl">PESO VIVO&nbsp;&nbsp;:</div>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0 Uds.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalUnidadesCuartaEspecie" >0 Uds.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgNetoCuartaEspecie" >0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgVivoCuartaEspecie" >0.0 Kg.</div>
                                 </div>
                             </div>
                             <div class="text-gray-100 w-full flex justify-center p-1">En linea
@@ -100,9 +102,9 @@
                                     <div class="text-gray-100 font-semibold text-xl md:text-2xl">PESO VIVO&nbsp;&nbsp;:</div>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0 Uds.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
-                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl">0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalUnidadesEspecies" >0 Uds.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgNetoEspecies" >0.0 Kg.</div>
+                                    <div class="text-gray-100 font-semibold text-xl md:text-2xl" id="totalKgVivoEspecies" >0.0 Kg.</div>
                                 </div>
                             </div>
                             <div class="text-gray-100 w-full flex justify-center p-1">En linea
@@ -164,3 +166,5 @@
     </div>
 </main>
 @extends('footer')
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('js/inicio.js') }}" type="module"></script> --}}

@@ -3,7 +3,7 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    $('#codigoUsuario').on('input', function () {
+    $('#codigoCli').on('input', function () {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
 

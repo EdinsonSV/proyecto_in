@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_menus', function (Blueprint $table) {
-            $table->id('idMenu');
-            $table->string('nombreMenu', 100);
-            $table->string('iconHtml', 100);
+        Schema::create('tb_grupos', function (Blueprint $table) {
+            $table->id('idGrupo');
+            $table->string('nombreGrupo', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_menus');
+        Schema::dropIfExists('tb_grupos');
     }
 };

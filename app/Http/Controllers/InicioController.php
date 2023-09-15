@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Home\DatosEspecie;
+use App\Models\Home\TraerDatosEnTiempoReal;
 
 class InicioController extends Controller
 {
@@ -16,11 +18,30 @@ class InicioController extends Controller
         return redirect('/login');
     }
 
-    public function consultarDatos(Request $request)
+    public function consultar_DatosEspecie(Request $request)
     {
         if (Auth::check()) {
-            // Realiza la consulta SQL directamente
-            $datos = DB::select("SELECT idEspecie, nombreEspecie FROM tb_especies_venta WHERE idEspecie <= 4");
+            // Realiza la consulta a la base de datos
+            $datos = DatosEspecie::select('idEspecie', 'nombreEspecie')
+                ->where('idEspecie', '<=', 4)
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consultar_TraerDatosEnTiempoReal(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion')
+                ->where('fechaRegistroPes', '=', now()->toDateString())
+                ->where('estadoPes', '=', 1)
+                ->get();
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

@@ -28,4 +28,5 @@ Route::post('/register',[RegisterController::class,'register']);
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 
-Route::get('/consultar-datos', [InicioController::class, 'consultarDatos']);
+Route::get('/fn_consultar_DatosEspecie', [InicioController::class, 'consultar_DatosEspecie']);
+Route::get('/fn_consultar_TraerDatosEnTiempoReal', [InicioController::class, 'consultar_TraerDatosEnTiempoReal']);

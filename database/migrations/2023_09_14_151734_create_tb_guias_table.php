@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_grupos');
+        Schema::dropIfExists('tb_guias');
     }
 };
