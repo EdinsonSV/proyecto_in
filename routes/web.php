@@ -30,3 +30,4 @@ Route::get('/logout',[LoginController::class,'logout']);
 
 Route::get('/fn_consultar_DatosEspecie', [InicioController::class, 'consultar_DatosEspecie']);
 Route::get('/fn_consultar_TraerDatosEnTiempoReal', [InicioController::class, 'consultar_TraerDatosEnTiempoReal']);
+Route::get('/fn_consultar_TraerGrupos', [RegistrarClientesController::class, 'consultar_TraerGrupos']);

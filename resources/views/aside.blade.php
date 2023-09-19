@@ -62,17 +62,20 @@
                 @endforeach
             </div>            
             <div class="py-4 px-2 border-t border-gray-300/40 dark:border-gray-700">
-                <a href="">
-                    <div class="w-max flex items-center gap-4">
+                <div class="w-max flex items-center gap-4 justify-between">
+                    <div class="flex gap-2">
                         <img class="w-10 h-10 rounded-full"
                             src="{{ asset(auth()->user()->rutaPerfilUsu) }}"
                             alt="" id="paraPrueba">
                         <div>
                             <h6 class="text-gray-600 dark:text-gray-200 font-medium">{{auth()->user()->nombresUsu}}&nbsp;{{auth()->user()->apellidoPaternoUsu}}</h6>
-                            <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span><a href="/logout"><i class="fa-solid fa-door-open text-xs dark:text-gray-100"></i></a>
+                            <span class="-mt-0.5 mr-2 text-xs text-gray-500">{{auth()->user()->tipoUsu}}</span>
                         </div>
                     </div>
-                </a>
+                    <div>
+                        <a class="w-full" href="/logout"><i class="bx bx-door-open text-3xl dark:text-gray-100"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </aside>
