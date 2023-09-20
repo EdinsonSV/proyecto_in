@@ -3,7 +3,8 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    traerGrupos()
+    fn_traerGrupos()
+    fn_TraerZonas()
 
     $('#codigoCli').on('input', function () {
         // Obtiene el valor actual del input
@@ -16,7 +17,7 @@ jQuery(function($) {
         $(this).val(inputValue);
     });
 
-    function traerGrupos(){
+    function fn_traerGrupos(){
         $.ajax({
             url: '/fn_consultar_TraerGrupos',
             method: 'GET',
@@ -45,6 +46,76 @@ jQuery(function($) {
                             text: obj.nombreGrupo
                         });
                         selectTipoPollo.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerZonas(){
+        $.ajax({
+            url: '/fn_consultar_TraerZonas',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectZona = $('#zonaPollo');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectZona.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectZona.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione zona',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idZona,
+                            text: obj.nombreZon
+                        });
+                        selectZona.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerCodigoCli(){
+        $.ajax({
+            url: '/fn_consultar_TraerCodigoCli',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectCodigoCli  = $('#codigoCli');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectCodigoCli.val('');
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+
                     });
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");

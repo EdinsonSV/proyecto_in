@@ -91,7 +91,7 @@ jQuery(function($) {
             } else {
                 // Si la validación falla, muestra un mensaje o realiza otra acción
                 toastr.error('¡Error de Credenciales!', {
-                    timeOut: 500, // Duración en milisegundos (800 milisegundos en este caso)
+                    timeOut: 500, // Duración en milisegundos (500 milisegundos en este caso)
                 });
             }
         });
@@ -105,7 +105,7 @@ jQuery(function($) {
         var apellidoMaterno = $('#apellidoMaternoUsu').val();
         var nombres = $('#nombresUsu').val();
         
-        // Realiza tus validaciones aquí y devuelve true o false-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        // Realiza tus validaciones aquí y devuelve true o false
         if (apellidoPaterno && apellidoMaterno && nombres) {
             return true;
         } else {

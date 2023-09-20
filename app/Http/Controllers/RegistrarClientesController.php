@@ -47,4 +47,26 @@ class RegistrarClientesController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consultar_TraerCodigoCli(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos para obtener el último código diferente de 99999
+            $ultimoCodigoCli = TraerCodigoCli::select('codigoCli')
+                ->where('codigoCli', '<>', 99999)
+                ->orderBy('idCliente', 'desc')
+                ->value('codigoCli');
+
+            if ($ultimoCodigoCli !== null) {
+                // Devuelve el código encontrado en formato JSON
+                return response()->json(['codigoCli' => $ultimoCodigoCli]);
+            } else {
+                // Si no se encontró ningún código diferente de 99999, devuelve 0
+                return response()->json(['codigoCli' => 0]);
+            }
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 }
