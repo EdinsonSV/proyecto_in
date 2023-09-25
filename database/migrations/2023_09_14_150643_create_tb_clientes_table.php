@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('fechaRegistroCli');
             $table->time('horaRegistroCli');
             $table->integer('usuarioRegistroCli');
-            $table->integer('codigoCli');
+            $table->integer('codigoCli')->unique();
             $table->integer('idGrupo');
             $table->string('comentarioCli', 300)->nullable();
             $table->integer('idZona');

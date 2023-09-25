@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             GruposSeeder::class,
             ZonasSeeder::class,
             EstadosSeeder::class,
+            TipoDocumentoSeeder::class,
             // Agrega aquí otros seeders si los tienes
         ]);
     }

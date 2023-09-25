@@ -90,9 +90,7 @@ jQuery(function($) {
                 this.submit(); // Envía el formulario
             } else {
                 // Si la validación falla, muestra un mensaje o realiza otra acción
-                toastr.error('¡Error de Credenciales!', {
-                    timeOut: 500, // Duración en milisegundos (500 milisegundos en este caso)
-                });
+                alertify.notify('Debe rellenar todos los campos', 'error', 3);
             }
         });
 

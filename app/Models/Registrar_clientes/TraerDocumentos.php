@@ -5,16 +5,16 @@ namespace App\Models\Registrar_clientes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TraerCodigoCli extends Model
+class TraerDocumentos extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_clientes'; // Nombre de la tabla
-    protected $primaryKey = 'idCliente'; // Clave primaria
+    protected $table = 'tb_tipo_documento'; // Nombre de la tabla
+    protected $primaryKey = 'idTipoDocumento'; // Clave primaria
     public $timestamps = false; // No se gestionarán marcas de tiempo
 
     protected $fillable = [
-        'idCliente',
-        'codigoCli',
+        'idTipoDocumento',
+        'nombreTipoDocumento',
     ];
 }

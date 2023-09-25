@@ -18,7 +18,7 @@ class InicioController extends Controller
         return redirect('/login');
     }
 
-    public function consultar_DatosEspecie(Request $request)
+    public function consulta_DatosEspecie(Request $request)
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -34,12 +34,13 @@ class InicioController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consultar_TraerDatosEnTiempoReal(Request $request)
+    public function consulta_TraerDatosEnTiempoReal(Request $request)
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion')
-                ->where('fechaRegistroPes', '=', now()->toDateString())
+                ->whereRaw('fechaRegistroPes = CURDATE()')
+                // ->where('fechaRegistroPes', '=', now()->toDateString())
                 ->where('estadoPes', '=', 1)
                 ->get();
 

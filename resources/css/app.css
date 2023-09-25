@@ -28,17 +28,16 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .aside_scrollED::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
   background: transparent;
 }
 
 .aside_scrollED::-webkit-scrollbar-track {
-  background: #323232;
   border-radius: 5px;
 }
 
 .aside_scrollED::-webkit-scrollbar-thumb {
-  background: #555;
+  background: #555555;
   border-radius: 5px;
 }
 
@@ -115,4 +114,8 @@ body::-webkit-scrollbar-thumb:hover {
   100% {
     transform: translate(24px, 0);
   }
+}
+
+.circulo_swith.prendido{
+  left: 18px;
 }

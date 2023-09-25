@@ -24,7 +24,7 @@ jQuery(function($) {
 
     function declarar_especies(){
         $.ajax({
-            url: '/fn_consultar_DatosEspecie',
+            url: '/fn_consulta_DatosEspecie',
             method: 'GET',
             success: function(response) {
                 // Verificar si la respuesta es un arreglo de objetos
@@ -51,7 +51,7 @@ jQuery(function($) {
 
     function fn_traerDatosEnTiempoReal(){
         $.ajax({
-            url: '/fn_consultar_TraerDatosEnTiempoReal',
+            url: '/fn_consulta_TraerDatosEnTiempoReal',
             method: 'GET',
             success: function(response) {
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\RegistrarClientesController;
+use App\Http\Controllers\ValorDeConversionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,16 +21,23 @@ Route::middleware(['guest'])->group(function () {
     Route::view('/login', 'login')->name('login');
 });
 
-Route::get('/home',[InicioController::class,'index']);
-
-Route::get('/register',[RegisterController::class,'show']);
-Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::post('/register',[RegisterController::class,'register']);
+
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 
-Route::get('/fn_consultar_DatosEspecie', [InicioController::class,'consultar_DatosEspecie']);
-Route::get('/fn_consultar_TraerDatosEnTiempoReal', [InicioController::class,'consultar_TraerDatosEnTiempoReal']);
-Route::get('/fn_consultar_TraerGrupos', [RegistrarClientesController::class,'consultar_TraerGrupos']);
-Route::get('/fn_consultar_TraerZonas', [RegistrarClientesController::class,'consultar_TraerZonas']);
-Route::get('/fn_consultar_TraerCodigoCli', [RegistrarClientesController::class,'consultar_TraerCodigoCli']);
+Route::get('/home',[InicioController::class,'index']);
+Route::get('/register',[RegisterController::class,'show']);
+Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
+Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
+
+Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
+Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
+
+Route::get('/fn_consulta_TraerGrupos', [RegistrarClientesController::class,'consulta_TraerGrupos']);
+Route::get('/fn_consulta_TraerZonas', [RegistrarClientesController::class,'consulta_TraerZonas']);
+Route::get('/fn_consulta_TraerDocumentos', [RegistrarClientesController::class,'consulta_TraerDocumentos']);
+Route::get('/fn_consulta_TraerCodigoCli', [RegistrarClientesController::class,'consulta_TraerCodigoCli']);
+Route::get('/fn_consulta_RegistrarCliente', [RegistrarClientesController::class,'consulta_RegistrarCliente']);
+
+Route::get('/fn_consulta_TraerValorConversion', [ValorDeConversionController::class,'consulta_TraerValorConversion']);

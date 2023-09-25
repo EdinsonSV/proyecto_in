@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Registrar_clientes\TraerGrupos;
 use App\Models\Registrar_clientes\TraerZonas;
+use App\Models\Registrar_clientes\TraerCodigoCli;
+use App\Models\Registrar_clientes\TraerDocumentos;
+use App\Models\Registrar_clientes\RegistrarCliente;
+use App\Models\Registrar_clientes\PrecioXPresentacion;
 
 class RegistrarClientesController extends Controller
 {
@@ -18,7 +22,7 @@ class RegistrarClientesController extends Controller
         return redirect('/login');
     }
 
-    public function consultar_TraerGrupos(Request $request)
+    public function consulta_TraerGrupos(Request $request)
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -33,7 +37,7 @@ class RegistrarClientesController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consultar_TraerZonas(Request $request)
+    public function consulta_TraerZonas(Request $request)
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -48,18 +52,34 @@ class RegistrarClientesController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consultar_TraerCodigoCli(Request $request)
+    public function consulta_TraerDocumentos(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = TraerDocumentos::select('idTipoDocumento', 'nombreTipoDocumento')
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerCodigoCli(Request $request)
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos para obtener el último código diferente de 99999
             $ultimoCodigoCli = TraerCodigoCli::select('codigoCli')
                 ->where('codigoCli', '<>', 99999)
                 ->orderBy('idCliente', 'desc')
-                ->value('codigoCli');
+                ->limit(1)
+                ->get();
 
-            if ($ultimoCodigoCli !== null) {
+            if (!$ultimoCodigoCli->isEmpty()) {
                 // Devuelve el código encontrado en formato JSON
-                return response()->json(['codigoCli' => $ultimoCodigoCli]);
+                return response()->json(['codigoCli' => $ultimoCodigoCli[0]->codigoCli]);
             } else {
                 // Si no se encontró ningún código diferente de 99999, devuelve 0
                 return response()->json(['codigoCli' => 0]);
@@ -69,4 +89,56 @@ class RegistrarClientesController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_RegistrarCliente(Request $request)
+    {
+        $apellidoPaternoCli = $request->input('apellidoPaternoCli');
+        $apellidoMaternoCli = $request->input('apellidoMaternoCli');
+        $nombresCli = $request->input('nombresCli');
+        $tipoDocumentoCli = $request->input('tipoDocumentoCli');
+        $documentoCli = $request->input('documentoCli');
+        $contactoCli = $request->input('contactoCli');
+        $direccionCli = $request->input('direccionCli');
+        $estadoCli = $request->input('estadoCli');
+        $usuarioRegistroCli = $request->input('usuarioRegistroCli');
+        $codigoCli = $request->input('codigoCli');
+        $idGrupo = $request->input('idGrupo');
+        $comentarioCli = $request->input('comentarioCli');
+        $zonaPollo = $request->input('zonaPollo');
+
+        if (Auth::check()) {
+            $registrarCliente = new RegistrarCliente;
+            $registrarCliente->apellidoPaternoCli = $apellidoPaternoCli;
+            $registrarCliente->apellidoMaternoCli = $apellidoMaternoCli;
+            $registrarCliente->nombresCli = $nombresCli;
+            $registrarCliente->tipoDocumentoCli = $tipoDocumentoCli;
+            $registrarCliente->numDocumentoCli = $documentoCli;
+            $registrarCliente->contactoCli = $contactoCli;
+            $registrarCliente->direccionCli = $direccionCli;
+            $registrarCliente->idEstadoCli = $estadoCli;
+            $registrarCliente->fechaRegistroCli = now()->toDateString();
+            $registrarCliente->horaRegistroCli = now()->toTimeString();
+            $registrarCliente->usuarioRegistroCli = $usuarioRegistroCli;
+            $registrarCliente->codigoCli = $codigoCli;
+            $registrarCliente->idGrupo = $idGrupo;
+            $registrarCliente->comentarioCli = $comentarioCli;
+            $registrarCliente->idZona = $zonaPollo;
+            $registrarCliente->estadoEliminadoCli = 1;
+            $registrarCliente->save();
+            
+            $registrarPreciosXPresentacion = new PrecioXPresentacion;
+            $registrarPreciosXPresentacion->codigoCli = $codigoCli;
+            $registrarPreciosXPresentacion->primerEspecie = 10.00;
+            $registrarPreciosXPresentacion->segundaEspecie = 10.00;
+            $registrarPreciosXPresentacion->terceraEspecie = 10.00;
+            $registrarPreciosXPresentacion->cuartaEspecie = 10.00;
+            $registrarPreciosXPresentacion->valorConversion = 1.000;
+            $registrarPreciosXPresentacion->save();
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

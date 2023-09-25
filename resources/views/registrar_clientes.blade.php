@@ -19,73 +19,58 @@
                     <h3 class="text-gray-900 font-bold text-xl dark:text-gray-300">Registrar Cliente</h3>
                 </div>
                 <div class="p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroClientes">
-                    <div class="flex flex-col md:flex-row md:items-center">
-                        <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
+                    <div class="flex md:flex-row items-center h-12">
+                        <div class="sm:text-sm flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Tipo :</h4>
                         </div>
-                        <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" name="tipoPollo" id="tipoPollo">
-                            {{-- <option value="0" disabled selected>Seleccione tipo</option>
-                            <option value="1">POLLO VIVO</option>
-                            <option value="2">POLLO BENEFICIADO</option> --}}
+                        <select class="validarCampo w-full h-12 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" name="tipoPollo" id="tipoPollo">
                         </select>
                     </div>
-                    <div class="flex flex-col md:flex-row md:items-center">
-                        <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
+                    <div class="flex md:flex-row md:items-center h-12">
+                        <div class="sm:text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Codigo :</h4>
                         </div>
-                        <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg h-full" type="text" name="codigoCli" autocomplete="off" id="codigoCli" value="">
+                        <input disabled class="validarCampo w-full h-12 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="codigoCli" autocomplete="off" id="codigoCli" value="">
                     </div>
-                    <div class="flex flex-col md:flex-row md:items-center">
-                        <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
+                    <div class="flex md:flex-row md:items-center h-12">
+                        <div class="sm:text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Zona :</h4>
                         </div>
-                        <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" name="zonaPollo" id="zonaPollo">
-                            {{-- <option value="0" disabled selected>Seleccione zona</option>
-                            <option value="1">CASS</option>
-                            <option value="2">MERCADO DE PIURA</option>
-                            <option value="3">MERCADO DE CASTILLA</option>
-                            <option value="4">MERCADO DE CAPULLANAS</option> --}}
+                        <select class="validarCampo w-full uppercase h-12 outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" name="zonaPollo" id="zonaPollo">
                         </select>
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="dniUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombres</label>
-                        <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombresCli" autocomplete="off" id="nombresCli">
+                        <label for="nombresCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombres</label>
+                        <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombresCli" autocomplete="off" id="nombresCli">
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="celularUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
+                        <label for="apellidoPaternoCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
                         <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoPaternoCli" autocomplete="off" id="apellidoPaternoCli">
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="direccionUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Materno</label>
+                        <label for="apellidoMaternoCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Materno</label>
                         <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoMaternoCli" autocomplete="off" id="apellidoMaternoCli">
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="tipoDocumentoCli" id="tipoDocumentoCli">
-                            {{-- <option value="0" disabled selected>Seleccione Tipo de Documento</option>
-                            <option value="1">DNI</option>
-                            <option value="2">PASAPORTE</option> --}}
+                        <select class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="tipoDocumentoCli" id="tipoDocumentoCli">
                         </select>                         
                     </div>
-                    <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="flex md:flex-row md:items-center">
                         <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">N° de Documento :</h4>
                         </div>
-                        <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg h-full" type="text" name="documentoCli" autocomplete="off" id="documentoCli" value="" >
+                        <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg h-full" type="text" name="documentoCli" autocomplete="off" id="documentoCli" value="" >
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="email" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Correo Electronico</label>
-                        <input class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="correoCli" autocomplete="off" id="correoCli">
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="email" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Numero Celular</label>
+                        <label for="contactoCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Numero Celular</label>
                         <input class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="contactoCli" autocomplete="off" id="contactoCli">
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="email" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Dirección</label>
+                        <label for="direccionCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Dirección</label>
                         <input class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="direccionCli" autocomplete="off" id="direccionCli">
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <label for="email" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario</label>
+                        <label for="comentarioCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario</label>
                         <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioCli" autocomplete="off" id="comentarioCli"></textarea>
                     </div>
                 </div>
