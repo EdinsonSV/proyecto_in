@@ -1,4 +1,6 @@
 import jQuery from 'jquery';
+import Swal from 'sweetalert';
+
 window.$ = jQuery;
 
 jQuery(function($) {
@@ -7,12 +9,12 @@ jQuery(function($) {
 
     /* ============ Eventos ============ */
 
-    $("#DivValoresDeConversion").on("click", function () {
+    $(document).on("dblclick", "#valoresDeConversiones .editValorConversion", function() {
         let fila = $(this).closest('tr');
         let idValorConversion = fila.find('td:eq(0)').text();
-
-        console.log(idValorConversion)
-
+        let valorConversion = fila.find('td:eq(2)').text();
+        //$("#defaultModal").modal("show");
+        // fn_ActualizarValorConversion(idValorConversion,valorConversion);
     });
 
     /* ============ Funciones ============ */
@@ -32,12 +34,12 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         // Crear una nueva fila
-                        let nuevaFila = $('<tr>');
+                        let nuevaFila = $('<tr class="editValorConversion">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
                         nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.nombreCompleto)); // Reemplaza 'propiedad1' por el nombre de tu propiedad
-                        nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer editValorConversion">').text(obj.valorConversion)); // Reemplaza 'propiedad2' por el nombre de tu propiedad
+                        nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer">').text(obj.valorConversion)); // Reemplaza 'propiedad2' por el nombre de tu propiedad
                         // ... Agrega más celdas según las propiedades
 
                         // Agregar la nueva fila al tbody
@@ -49,6 +51,37 @@ jQuery(function($) {
                 
             },
             error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_ActualizarValorConversion(idValorConversion,valorConversion){
+        $.ajax({
+            url: '/fn_consulta_ActualizarValorConversion',
+            method: 'GET',
+            data: {
+                idValorConversion: idValorConversion,
+                valorConversion: valorConversion,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro al cliente correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    fn_TraerValorConversion()
+                }
+            },
+            error: function(error) {
+                Swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
                 console.error("ERROR",error);
             }
         });

@@ -10,6 +10,58 @@ jQuery(function($) {
     fn_TraerCodigoCli()
     fn_TraerDocumentos()
 
+    /* ============ Eventos ============ */
+
+    $('#contactoCli').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+    
+        // Elimina los espacios en blanco y caracteres no numéricos excepto el +
+        inputValue = inputValue.replace(/[^0-9+]/g, '');
+    
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });
+
+    $('#registrar_usuario_submit').on('click', function () {
+        let todosCamposCompletos = true;
+
+        let tipoPollo = $('#tipoPollo').val();
+        let codigoCli = $('#codigoCli').val();
+        let zonaPollo = $('#zonaPollo').val();
+        let nombresCli = $('#nombresCli').val().toUpperCase();
+        let apellidoPaternoCli = $('#apellidoPaternoCli').val().toUpperCase();
+        let apellidoMaternoCli = $('#apellidoMaternoCli').val().toUpperCase();
+        let tipoDocumentoCli = $('#tipoDocumentoCli').val();
+        let documentoCli = $('#documentoCli').val().toUpperCase();
+        let contactoCli = $('#contactoCli').val();
+        let direccionCli = $('#direccionCli').val();
+        let comentarioCli = $('#comentarioCli').val();
+        let estadoCli = 1
+        let usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
+    
+        $('#registroClientes .validarCampo').each(function() {
+            let valorCampo = $(this).val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $(this).removeClass('border-red-500').addClass('border-green-500');
+            }
+        });
+    
+        if (todosCamposCompletos) {
+            // Llamar a tu función aquí
+            fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo);
+        } else {
+            // Mostrar una alerta de que debe completar los campos obligatorios
+            alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
+        }
+    });
+
+    /* ============ Funciones ============ */
+
     function fn_traerGrupos(){
         $.ajax({
             url: '/fn_consulta_TraerGrupos',
@@ -156,54 +208,6 @@ jQuery(function($) {
         });
     }    
 
-    $('#contactoCli').on('input', function () {
-        // Obtiene el valor actual del input
-        let inputValue = $(this).val();
-    
-        // Elimina los espacios en blanco y caracteres no numéricos excepto el +
-        inputValue = inputValue.replace(/[^0-9+]/g, '');
-    
-        // Establece el valor limpio en el input
-        $(this).val(inputValue);
-    });
-
-    $('#registrar_usuario_submit').on('click', function () {
-        let todosCamposCompletos = true;
-
-        let tipoPollo = $('#tipoPollo').val();
-        let codigoCli = $('#codigoCli').val();
-        let zonaPollo = $('#zonaPollo').val();
-        let nombresCli = $('#nombresCli').val().toUpperCase();
-        let apellidoPaternoCli = $('#apellidoPaternoCli').val().toUpperCase();
-        let apellidoMaternoCli = $('#apellidoMaternoCli').val().toUpperCase();
-        let tipoDocumentoCli = $('#tipoDocumentoCli').val();
-        let documentoCli = $('#documentoCli').val().toUpperCase();
-        let contactoCli = $('#contactoCli').val();
-        let direccionCli = $('#direccionCli').val();
-        let comentarioCli = $('#comentarioCli').val();
-        let estadoCli = 1
-        let usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
-    
-        $('#registroClientes .validarCampo').each(function() {
-            let valorCampo = $(this).val();
-    
-            if (valorCampo === null || valorCampo.trim() === '') {
-                $(this).removeClass('border-green-500 dark:border-gray-600').addClass('border-red-500');
-                todosCamposCompletos = false;
-            } else {
-                $(this).removeClass('border-red-500').addClass('border-green-500');
-            }
-        });
-    
-        if (todosCamposCompletos) {
-            // Llamar a tu función aquí
-            fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo);
-        } else {
-            // Mostrar una alerta de que debe completar los campos obligatorios
-            alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
-        }
-    });
-
     function fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo){
         $.ajax({
             url: '/fn_consulta_RegistrarCliente',
@@ -243,7 +247,7 @@ jQuery(function($) {
                 Swal({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Error:'+error.responseText,
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
                   })
                 console.error("ERROR",error);
             }

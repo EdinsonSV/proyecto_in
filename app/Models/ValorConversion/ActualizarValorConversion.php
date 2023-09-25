@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ActualizarValorConversion extends Model
 {
     use HasFactory;
+    protected $table = 'tb_precio_x_presentacion'; // Nombre de tu tabla
+    protected $primaryKey = 'idPrecio'; // Clave primaria
+    public $timestamps = true;
+
+    protected $fillable = [
+        'idPrecio',
+        'valorConversion',
+    ];
 }
