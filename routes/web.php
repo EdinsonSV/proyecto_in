@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\RegistrarClientesController;
 use App\Http\Controllers\ValorDeConversionController;
+use App\Http\Controllers\PreciosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/home',[InicioController::class,'index']);
 Route::get('/register',[RegisterController::class,'show']);
 Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
+Route::get('/precios',[PreciosController::class,'show']);
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
@@ -42,3 +44,5 @@ Route::get('/fn_consulta_RegistrarCliente', [RegistrarClientesController::class,
 
 Route::get('/fn_consulta_TraerValorConversion', [ValorDeConversionController::class,'consulta_TraerValorConversion']);
 Route::get('/fn_consulta_ActualizarValorConversion', [ValorDeConversionController::class,'consulta_ActualizarValorConversion']);
+
+Route::get('/fn_consulta_TraerPreciosXPresentacion', [PreciosController::class,'consulta_TraerPreciosXPresentacion']);

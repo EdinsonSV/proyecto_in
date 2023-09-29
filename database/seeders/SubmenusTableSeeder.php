@@ -22,7 +22,7 @@ class SubmenusTableSeeder extends Seeder
             ['idSubMenu' => 6, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte de Pagos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bxs-wallet', 'estadoSubMenu' => 1],
             ['idSubMenu' => 7, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte Por Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-file-find', 'estadoSubMenu' => 1],
             ['idSubMenu' => 8, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte por Proveedor', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'fa-solid fa-drumstick-bite', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 9, 'idMenu' => 3, 'nombreSubMenu' => 'Precios', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-dollar-circle', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 9, 'idMenu' => 3, 'nombreSubMenu' => 'Precios', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/precios', 'iconHtml' => 'bx bx-dollar-circle', 'estadoSubMenu' => 1],
             ['idSubMenu' => 10, 'idMenu' => 3, 'nombreSubMenu' => 'Cambiar Pesadas', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bxs-analyse', 'estadoSubMenu' => 1],
             ['idSubMenu' => 11, 'idMenu' => 3, 'nombreSubMenu' => 'Configurar conversion', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/valor_conversion', 'iconHtml' => 'bx bx-message-square-edit', 'estadoSubMenu' => 1],
             ['idSubMenu' => 12, 'idMenu' => 3, 'nombreSubMenu' => 'Saldos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-money-withdraw', 'estadoSubMenu' => 1],

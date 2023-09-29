@@ -4,6 +4,10 @@ import './register';
 import jQuery from 'jquery';
 window.$ = jQuery;
 
+import dt from 'datatables.net';
+window.dt = dt;
+window.$('#tablaValorConversion').DataTable();
+
 import toastr from 'toastr';
 import 'toastr/build/toastr.css';
 window.toastr = toastr;

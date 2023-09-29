@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('puerto_indicador2')->nullable();
             $table->integer('puerto_indicadorArduino')->nullable();
             $table->string('puerto_HostIP', 100)->nullable();
+            $table->string('puerto_ApiURL', 300)->nullable();
             $table->timestamps();
         });
     }

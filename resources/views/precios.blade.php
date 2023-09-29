@@ -1,6 +1,6 @@
-@vite(['resources/js/valor_conversion.js'])
+@vite(['resources/js/precios.js'])
 @extends('aside')
-<title>Registrar Clientes</title>
+<title>Precios</title>
 <link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
 <main class="w-full md:w-[calc(100%-3.73rem)] ml-auto min-h-[calc(100%-120px)] mb-12 2xl:w-[calc(100%-256px)]">
     <div class="2xl:container mx-auto">
@@ -23,16 +23,19 @@
                 <div class="flex items-center justify-items-start p-5">
                     <h3 class="text-gray-900 font-bold text-xl dark:text-gray-300">Configurar valor de conversión</h3>
                 </div>
-                <div class="p-5 pt-0" id="DivValoresDeConversion">
-                    <table class="text-gray-900 dark:text-gray-50 w-full select-none" id="tablaValorConversion">
-                        <thead>
+                <div class="p-5 pt-0" id="DivPreciosXPresentacion">
+                    <table class="text-gray-900 dark:text-gray-50 w-full select-none" id="tablaPreciosXPresentacion">
+                        <thead id="headerPreciosXPresentacion">
                             <tr class="h-10 bg-blue-500 text-gray-50">
                                 <th class="hidden">Id</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">Nombre de Cliente</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">Valor de Conversión</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">Cliente</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO YUGO</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO PERLA</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO CHIMU</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO XX</th>
                             </tr>
                         </thead>
-                        <tbody id="valoresDeConversiones">
+                        <tbody id="bodyPreciosXPresentacion">
 
                         </tbody>
                     </table>
@@ -43,7 +46,7 @@
 </main>
 @extends('footer')
 
-<div class="fixed hidden top-0 left-0 z-20 justify-center items-center w-screen h-screen bg-gray-800 bg-opacity-75 transition-opacity cerrarModalValorDeConversion" id="ModalValorDeConversion">
+<div class="fixed hidden top-0 left-0 z-20 justify-center items-center w-screen h-screen bg-gray-800 bg-opacity-75 transition-opacity cerrarPreciosXPresentacion" id="PreciosXPresentacion">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 shadow-xl transition-all">
             <div class=" p-4">
@@ -52,16 +55,16 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Valor de Conversión</h3>
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
-                        <label for="nuevoValorDeConversion" id="idClienteValorDeConversion" class="hidden"></label>
-                        <p class="text-sm text-gray-400">Nombre del cliente: <span id="nombreClienteValorDeConversion"></span></p>
-                        <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoValorDeConversion" autocomplete="off">
+                        <label for="nuevoValorDeConversion" id="idClientePrecioXPresentacion" class="hidden"></label>
+                        <p class="text-sm text-gray-400">Nombre del cliente: <span id="nombrePrecioXPresentacion"></span></p>
+                        <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoValorPrecioXPresentacion" autocomplete="off">
                     </div>
                 </div>
             </div>
             <div class="px-4 pb-4 sm:px-6">
                 <div class="border-t dark:border-gray-600 w-full sm:flex sm:flex-row-reverse pt-4">
                     <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto" id="btnActualizarValorDeConversion">Actualizar</button>
-                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalValorDeConversion" id="cerrarModalValorDeConversionbtn">Cancelar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPreciosXPresentacion" id="cerrarModalPreciosXPresentacionbtn">Cancelar</button>
                 </div>
             </div>
         </div>

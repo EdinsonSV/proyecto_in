@@ -7,15 +7,71 @@ jQuery(function($) {
 
     fn_TraerValorConversion()
 
+    // $('#tablaValorConversion').DataTable();
+
     /* ============ Eventos ============ */
 
     $(document).on("dblclick", "#valoresDeConversiones .editValorConversion", function() {
         let fila = $(this).closest('tr');
         let idValorConversion = fila.find('td:eq(0)').text();
+        let nombrevalorConversion = fila.find('td:eq(1)').text();
         let valorConversion = fila.find('td:eq(2)').text();
-        //$("#defaultModal").modal("show");
-        // fn_ActualizarValorConversion(idValorConversion,valorConversion);
+        
+        $('#ModalValorDeConversion').removeClass('hidden');
+        $('#ModalValorDeConversion').addClass('flex');
+        $('#nombreClienteValorDeConversion').html(nombrevalorConversion);
+        $('#idClienteValorDeConversion').val(idValorConversion);
+        $('#nuevoValorDeConversion').val(valorConversion);
+        $('#nuevoValorDeConversion').focus();
     });
+
+    $('.cerrarModalValorDeConversion, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalValorDeConversion').addClass('hidden');
+            $('#ModalValorDeConversion').removeClass('flex');
+        }
+    });
+
+    $('#btnActualizarValorDeConversion').on('click', function () {
+        let idClienteActualizarConversion = $('#idClienteValorDeConversion').val();
+        let valorActualizarConversion = $('#nuevoValorDeConversion').val();
+        fn_ActualizarValorConversion(idClienteActualizarConversion, valorActualizarConversion);
+        $('#ModalValorDeConversion').addClass('hidden');
+        $('#ModalValorDeConversion').removeClass('flex');
+    });
+
+    $('#nuevoValorDeConversion').on('input', function() {
+        let inputValue = $(this).val();
+    
+        // Remover caracteres que no sean números o puntos
+        inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+        // Asegurarse de que no haya más de un punto decimal
+        inputValue = inputValue.replace(/(\..*)\./g, '$1');
+    
+        // Separar parte entera y decimal
+        let parts = inputValue.split('.');
+    
+        // Si hay más de tres dígitos en la parte decimal, recortar a tres
+        if (parts[1] && parts[1].length > 3) {
+            parts[1] = parts[1].slice(0, 3);
+        }
+    
+        // Si hay más de un punto en la cadena, mantener solo el primero
+        if (parts.length > 2) {
+            parts = [parts[0], parts.slice(1).join('.')];
+        }
+    
+        // Si la parte decimal está vacía y hay más de un dígito en la parte entera, agregar punto decimal
+        if (!parts[1] && parts[0].length > 1) {
+            parts = [parts[0].slice(0, -1), parts[0].slice(-1)];
+        }
+    
+        // Actualizar el valor del input
+        inputValue = parts.join('.');
+        $(this).val(inputValue);
+    });
+    
 
     /* ============ Funciones ============ */
 
@@ -38,10 +94,8 @@ jQuery(function($) {
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.nombreCompleto)); // Reemplaza 'propiedad1' por el nombre de tu propiedad
-                        nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer">').text(obj.valorConversion)); // Reemplaza 'propiedad2' por el nombre de tu propiedad
-                        // ... Agrega más celdas según las propiedades
-
+                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer">').text(obj.valorConversion));
                         // Agregar la nueva fila al tbody
                         tbodyConversiones.append(nuevaFila);
                     });
@@ -66,14 +120,21 @@ jQuery(function($) {
             },
             success: function(response) {
                 if (response.success) {
+                    $('#valoresDeConversiones tr').each(function () {
+                        let idFila = $(this).find('td:eq(0)').text();
+                        if (idFila === idValorConversion) {
+                            $(this).find('td:eq(2)').text(parseFloat(valorConversion).toFixed(3));
+                            return false;
+                        }
+                    });                    
+                    
                     Swal({
                         position: 'center',
                         icon: 'success',
-                        title: 'Se registro al cliente correctamente',
+                        title: 'Se actualizo el valor de conversión correctamente',
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    fn_TraerValorConversion()
                 }
             },
             error: function(error) {
