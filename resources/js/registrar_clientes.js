@@ -98,14 +98,13 @@ jQuery(function($) {
         let dni = $('#documentoCli').val();
     
         $.ajax({
-            url: '/consultarDNI/',
+            url: '/consultarDNI',
             method: 'GET',
-            data: {
-                dni: dni,
-            },
+            data: { dni: dni },
             success: function (response) {
-                // Aquí puedes manejar la respuesta de la API de Reniec
-                console.log(response);
+                $('#nombresCli').val(response.nombres)
+                $('#apellidoPaternoCli').val(response.apellidoPaterno)
+                $('#apellidoMaternoCli').val(response.apellidoMaterno)
             },
             error: function (error) {
                 console.error("ERROR", error);
@@ -291,6 +290,10 @@ jQuery(function($) {
                     $('#registroClientes .validarCampo').each(function() {
                         $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
                     });
+                    $("#documentoCli").removeClass("especialDNI");
+                    $("#documentoCli").addClass("rounded-r-lg");
+                    $("#especialBuscarPorDNI").removeClass("flex");
+                    $("#especialBuscarPorDNI").addClass("hidden");
                     fn_traerGrupos();
                     fn_TraerZonas();
                     fn_TraerCodigoCli();

@@ -3,32 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class ReniecController extends Controller
 {
-    public function consultarDNI(Request $request)
+    public function consultarDni(Request $request)
     {
-        $dni = $request->input('idValorConversion');
+            // Obtener el número de DNI desde la solicitud POST
+        $dni = $request->input('dni');
 
-        $token = 'apis-token-5655.fxs5X4aCw3K1MfjGA8jDKpUeVs1WAbC-';
+        // Configuración de la solicitud cURL a la API de Reniec
+        $url = 'https://api.apis.net.pe/v2/reniec/dni?numero=' . $dni;
+        $token = 'apis-token-5655.fxs5X4aCw3K1MfjGA8jDKpUeVs1WAbC-'; // Reemplaza con tu token de autenticación
 
-        $response = Http::withHeaders([
-            'Referer' => 'https://apis.net.pe/consulta-dni-api',
-            'Authorization' => 'Bearer ' . $token
-        ])->get('https://api.apis.net.pe/v2/reniec/dni?numero=' . $dni);
+        $curl = curl_init();
 
-        if ($response->successful()) {
-            // La consulta fue exitosa
-            $persona = json_decode($response->body());
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_SSL_VERIFYPEER => true, // Habilitar verificación SSL (seguro en producción)
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 2,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Referer: https://apis.net.pe/consulta-dni-api',
+                'Authorization: Bearer ' . $token
+            ),
+        ));
 
-            // Retornar la persona
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        // Comprobar si la respuesta es un JSON válido
+        $persona = json_decode($response);
+
+        if ($persona) {
+            // Devolver la respuesta en formato JSON
             return response()->json($persona);
         } else {
-            // La consulta falló
-            return response()->json([
-                'error' => $response->getStatusCode()
-            ], $response->getStatusCode());
+            return response()->json(['error' => 'Error en la respuesta de la API de Reniec'], 500);
         }
     }
 }
