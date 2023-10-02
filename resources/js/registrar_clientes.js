@@ -1,5 +1,4 @@
 import jQuery from 'jquery';
-import Swal from 'sweetalert';
 
 window.$ = jQuery;
 
@@ -44,7 +43,7 @@ jQuery(function($) {
             let valorCampo = $(this).val();
     
             if (valorCampo === null || valorCampo.trim() === '') {
-                $(this).removeClass('border-green-500 dark:border-gray-600').addClass('border-red-500');
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
                 todosCamposCompletos = false;
             } else {
                 $(this).removeClass('border-red-500').addClass('border-green-500');
@@ -59,8 +58,60 @@ jQuery(function($) {
             alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
         }
     });
+      
+    // Asigna el evento "change" al select con id="tipoDocumentoCli"
+    $("#tipoDocumentoCli").on("change", function () {
+        // Obtén el valor seleccionado del select
+        var tipoDocumento = $(this).val();
+        // Llama a la función "validarDocumento()" con el valor seleccionado como parámetro
+        if (tipoDocumento != 0){
+            $("#documentoCli").removeAttr("disabled");
+        }
+        if (tipoDocumento == 1) {
+            $("#documentoCli").val("");
+            $("#documentoCli").addClass("especialDNI");
+            $("#documentoCli").removeClass("rounded-r-lg");
+            $("#especialBuscarPorDNI").removeClass("hidden");
+            $("#especialBuscarPorDNI").addClass("flex");
+        } else {
+            $("#documentoCli").removeClass("especialDNI");
+            $("#documentoCli").addClass("rounded-r-lg");
+            $("#especialBuscarPorDNI").removeClass("flex");
+            $("#especialBuscarPorDNI").addClass("hidden");
+        }
+    });
+
+    $(document).on('input', '.especialDNI', function () {
+        let inputValue = $(this).val();
+        inputValue = inputValue.replace(/[^0-9]/g, '');
+
+        if (inputValue.length > 8) {
+            inputValue = inputValue.substr(0, 8);
+        }
+
+        $(this).val(inputValue);
+    });  
 
     /* ============ Funciones ============ */
+
+    $('#especialBuscarPorDNI').on('click', function () {
+        let dni = $('#documentoCli').val();
+    
+        $.ajax({
+            url: '/consultarDNI/',
+            method: 'GET',
+            data: {
+                dni: dni,
+            },
+            success: function (response) {
+                // Aquí puedes manejar la respuesta de la API de Reniec
+                console.log(response);
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    });  
 
     function fn_traerGrupos(){
         $.ajax({
@@ -229,7 +280,7 @@ jQuery(function($) {
             },
             success: function(response) {
                 if (response.success) {
-                    Swal({
+                    Swal.fire({
                         position: 'center',
                         icon: 'success',
                         title: 'Se registro al cliente correctamente',
@@ -237,6 +288,9 @@ jQuery(function($) {
                         timer: 2000
                     });
                     $('#registroClientes input, #registroClientes select, #registroClientes textarea').val('');
+                    $('#registroClientes .validarCampo').each(function() {
+                        $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
+                    });
                     fn_traerGrupos();
                     fn_TraerZonas();
                     fn_TraerCodigoCli();
@@ -244,7 +298,7 @@ jQuery(function($) {
                 }
             },
             error: function(error) {
-                Swal({
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Error: Ocurrio un error inesperado durante la operacion',

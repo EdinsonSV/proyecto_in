@@ -7,6 +7,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\RegistrarClientesController;
 use App\Http\Controllers\ValorDeConversionController;
 use App\Http\Controllers\PreciosController;
+use App\Http\Controllers\ReniecController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ Route::post('/register',[RegisterController::class,'register']);
 
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
+Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 
 Route::get('/home',[InicioController::class,'index']);
 Route::get('/register',[RegisterController::class,'show']);

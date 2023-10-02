@@ -15,7 +15,7 @@
         <div class="mx-6 lg:mx-12 mt-[calc(1.865rem)] overflow-x-auto bg-white dark:bg-[#111B22]">
             <div class="flex-col rounded-lg border border-gray-300/40 dark:border-gray-700 shadow-lg shadow-slate-200 dark:shadow-slate-800 ">
                 <div class="flex items-center justify-items-start p-5">
-                    <h3 class="text-gray-900 font-bold text-xl dark:text-gray-300">Inicio</h3>
+                    <h3 class="text-gray-900 font-semibold text-xl dark:text-gray-300">Inicio</h3>
                 </div>
                 {{-- Inicia contenedor de Produccion Actual --}}
                 <div class="px-5 pb-5">

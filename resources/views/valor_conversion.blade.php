@@ -21,9 +21,9 @@
             <div
                 class="flex-col rounded-lg border border-gray-300/40 dark:border-gray-700 shadow-lg shadow-slate-200 dark:shadow-slate-800 ">
                 <div class="flex items-center justify-items-start p-5">
-                    <h3 class="text-gray-900 font-bold text-xl dark:text-gray-300">Configurar valor de conversión</h3>
+                    <h3 class="text-gray-900 font-semibold text-xl dark:text-gray-300">Configurar valor de conversión</h3>
                 </div>
-                <div class="p-5 pt-0" id="DivValoresDeConversion">
+                <div class="overflow-x-auto m-5 mt-0" id="DivValoresDeConversion">
                     <table class="text-gray-900 dark:text-gray-50 w-full select-none" id="tablaValorConversion">
                         <thead>
                             <tr class="h-10 bg-blue-500 text-gray-50">

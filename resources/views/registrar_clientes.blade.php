@@ -16,7 +16,7 @@
         <div class="mx-6 lg:mx-12 mt-[calc(1.865rem)] overflow-x-auto bg-white dark:bg-[#111B22]">
             <div class="flex-col rounded-lg border border-gray-300/40 dark:border-gray-700 shadow-lg shadow-slate-200 dark:shadow-slate-800 ">
                 <div class="flex items-center justify-items-start p-5">
-                    <h3 class="text-gray-900 font-bold text-xl dark:text-gray-300">Registrar Cliente</h3>
+                    <h3 class="text-gray-900 font-semibold text-xl dark:text-gray-300">Registrar Cliente</h3>
                 </div>
                 <div class="p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroClientes">
                     <div class="flex md:flex-row items-center h-12">
@@ -40,6 +40,17 @@
                         </select>
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
+                        <select class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="tipoDocumentoCli" id="tipoDocumentoCli">
+                        </select>                         
+                    </div>
+                    <div class="flex md:flex-row md:items-center">
+                        <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">N° de Documento :</h4>
+                        </div>
+                        <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg h-full" type="text" name="documentoCli" autocomplete="off" id="documentoCli" value="" disabled >
+                        <button class="hidden items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-r-lg w-20" id="especialBuscarPorDNI"><i class="bx bx-search-alt text-gray-900 dark:text-gray-300 font-medium text-xl" ></i></button>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                         <label for="nombresCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombres</label>
                         <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombresCli" autocomplete="off" id="nombresCli">
                     </div>
@@ -50,16 +61,6 @@
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                         <label for="apellidoMaternoCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Materno</label>
                         <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoMaternoCli" autocomplete="off" id="apellidoMaternoCli">
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                        <select class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="tipoDocumentoCli" id="tipoDocumentoCli">
-                        </select>                         
-                    </div>
-                    <div class="flex md:flex-row md:items-center">
-                        <div class="sm:text-sm md:h-[calc(47px)] flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] h-full rounded-l-lg">
-                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">N° de Documento :</h4>
-                        </div>
-                        <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg h-full" type="text" name="documentoCli" autocomplete="off" id="documentoCli" value="" >
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                         <label for="contactoCli" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Numero Celular</label>

@@ -1,13 +1,10 @@
 import jQuery from 'jquery';
-import Swal from 'sweetalert';
 
 window.$ = jQuery;
 
 jQuery(function($) {
 
     fn_TraerValorConversion()
-
-    // $('#tablaValorConversion').DataTable();
 
     /* ============ Eventos ============ */
 
@@ -128,7 +125,7 @@ jQuery(function($) {
                         }
                     });                    
                     
-                    Swal({
+                    Swal.fire({
                         position: 'center',
                         icon: 'success',
                         title: 'Se actualizo el valor de conversión correctamente',
@@ -138,7 +135,7 @@ jQuery(function($) {
                 }
             },
             error: function(error) {
-                Swal({
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Error: Ocurrio un error inesperado durante la operacion',
