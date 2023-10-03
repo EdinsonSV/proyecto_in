@@ -37,4 +37,41 @@ class PreciosController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_ActualizarPrecioXPresentacion(Request $request){
+
+        $idClienteActualizarPrecioXPresentacion = $request->input('idClienteActualizarPrecioXPresentacion');
+        $valorActualizarPrecioXPresentacion = $request->input('valorActualizarPrecioXPresentacion');
+        $numeroEspeciePrecioXPresentacion = $request->input('numeroEspeciePrecioXPresentacion');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            switch ($numeroEspeciePrecioXPresentacion) {
+                case 1:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['primerEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 2:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['segundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 3:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['terceraEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 4:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['cuartaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                default:
+                    return response()->json(['error' => 'Número de especie inválido'], 400);
+            }
+
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

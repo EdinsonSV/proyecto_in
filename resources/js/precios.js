@@ -11,18 +11,19 @@ jQuery(function($) {
     $(document).on("dblclick", "#tablaPreciosXPresentacion #bodyPreciosXPresentacion tr td.precioColumna", function() {
         let fila = $(this).closest('tr');
         let idPrecioXPresentacion = fila.find('td:eq(0)').text();
-        let nombrevalorConversion = fila.find('td:eq(1)').text();
+        let nombrePrecioXPresentacion = fila.find('td:eq(1)').text();
         let nuevoPrecioXPresentacion = $(this).text();
         let idPresentacion = $(this).data('columna');
         let nombreColumna = $(this).closest('table').find('th:eq(' + (parseInt(idPresentacion)+1) + ')').text();
         
         $('#ModalPreciosXPresentacion').removeClass('hidden');
         $('#ModalPreciosXPresentacion').addClass('flex');
-        $('#nombrePrecioXPresentacion').html(nombrevalorConversion);
-        $('#idClientePrecioXPresentacion').val(idPrecioXPresentacion);
-        $('#nuevoValorPrecioXPresentacion').val(nuevoPrecioXPresentacion);
-        $('#idEspeciePrecioXActualizar').val(idPresentacion);
+        $('#nombrePrecioXPresentacion').html(nombrePrecioXPresentacion);
         $('#nombrePresentacionModal').html(nombreColumna);
+
+        $('#nuevoValorPrecioXPresentacion').attr("value",nuevoPrecioXPresentacion);
+        $('#idClientePrecioXPresentacion').attr("value",idPrecioXPresentacion);
+        $('#idEspeciePrecioXActualizar').attr("value",idPresentacion);
         $('#nuevoValorPrecioXPresentacion').focus();
     });
 
@@ -31,6 +32,19 @@ jQuery(function($) {
             $('#ModalPreciosXPresentacion').addClass('hidden');
             $('#ModalPreciosXPresentacion').removeClass('flex');
         }
+    });
+
+    $('#btnActualizarPreciosXPresentacion').on('click', function () {
+
+        let idClienteActualizarPrecioXPresentacion = $('#idClientePrecioXPresentacion').attr("value");
+        let valorActualizarPrecioXPresentacion = $('#nuevoValorPrecioXPresentacion').val();
+        let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
+
+        console.log(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
+        
+        fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
+        $('#ModalPreciosXPresentacion').addClass('hidden');
+        $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
     /* ============ Funciones ============ */
@@ -73,4 +87,44 @@ jQuery(function($) {
             }
         });
     }
+
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPrecioXPresentacion',
+            method: 'GET',
+            data: {
+                idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
+                valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
+                numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#bodyPreciosXPresentacion tr').each(function () {
+                        let idFila = $(this).find('td:eq(0)').text();
+                        if (idFila == idClienteActualizarPrecioXPresentacion) {
+                            $(this).find('td:eq(' + (parseInt(numeroEspeciePrecioXPresentacion)+1) + ')').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            return false;
+                        }
+                    });                    
+                    
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el precio correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
 });
