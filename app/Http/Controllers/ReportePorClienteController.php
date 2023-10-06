@@ -39,4 +39,28 @@ class ReportePorClienteController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_TraerReportePorCliente(Request $request){
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('select tb_procesos.idProceso, 
+                        fechaRegistroPes, 
+                        nombreEspecie, pesoNetoPes, cantidadPes, 
+                        horaPes,(pesoNetoPes*precioPes/valorConversion) as ventaTotal, 
+                        valorConversion, tb_pesadas.idPesada
+                        from tb_procesos 
+                        inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
+                        inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie
+                        WHERE estadoPes = 1 and 
+                        fechaRegistroPes BETWEEN "2023-10-06" and "2023-10-06"
+                        ORDER BY fechaRegistroPes, horaPes DESC');
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 }
