@@ -21,7 +21,7 @@ jQuery(function($) {
         $('#nombrePrecioXPresentacion').html(nombrePrecioXPresentacion);
         $('#nombrePresentacionModal').html(nombreColumna);
 
-        $('#nuevoValorPrecioXPresentacion').attr("value",nuevoPrecioXPresentacion);
+        $('#nuevoValorPrecioXPresentacion').val(nuevoPrecioXPresentacion);
         $('#idClientePrecioXPresentacion').attr("value",idPrecioXPresentacion);
         $('#idEspeciePrecioXActualizar').attr("value",idPresentacion);
         $('#nuevoValorPrecioXPresentacion').focus();
@@ -68,7 +68,7 @@ jQuery(function($) {
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="text-center border border-gray-400">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer precioColumna" data-columna="1">').text(obj.primerEspecie));
                         nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer precioColumna" data-columna="2">').text(obj.segundaEspecie));
                         nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer precioColumna" data-columna="3">').text(obj.terceraEspecie));

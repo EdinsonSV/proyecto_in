@@ -28,11 +28,11 @@
                         <thead id="headerPreciosXPresentacion">
                             <tr class="h-10 bg-blue-500 text-gray-50">
                                 <th class="hidden">Id</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">Cliente</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO YUGO</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO PERLA</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO CHIMU</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">POLLO XX</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400">CLIENTE</th>
+                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO YUGO </h5></th>
+                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO PERLA </h5></th>
+                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO CHIMU </h5></th>
+                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO XX </h5></th>
                             </tr>
                         </thead>
                         <tbody id="bodyPreciosXPresentacion">

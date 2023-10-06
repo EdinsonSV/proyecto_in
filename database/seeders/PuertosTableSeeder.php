@@ -20,7 +20,8 @@ class PuertosTableSeeder extends Seeder
             'puerto_indicador2' => 4,
             'puerto_indicadorArduino' => 7,
             'puerto_HostIP' => '192.168.1.195',
-            'puerto_ApiURL' => 'https://balinsa.com/apiPython/ApiEdinson.php',
+            'puerto_ApiURLSERVIDOR' => 'https://balinsa.com/apiPython/ApiEdinsonServidor.php',
+            'puerto_ApiURLLOCAL' => 'https://balinsa.com/apiPython/ApiEdinsonLocal.php',
         ]);
     }
 }

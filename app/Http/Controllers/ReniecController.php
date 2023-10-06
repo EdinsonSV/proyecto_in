@@ -13,13 +13,13 @@ class ReniecController extends Controller
 
         // Configuración de la solicitud cURL a la API de Reniec
         $url = 'https://api.apis.net.pe/v2/reniec/dni?numero=' . $dni;
-        $token = 'apis-token-5655.fxs5X4aCw3K1MfjGA8jDKpUeVs1WAbC-'; // Reemplaza con tu token de autenticación
+        $token = 'apis-token-5684.1ig087GYUAG1GEXOEpFoZIn3Hs6XPBZM'; // Reemplaza con tu token de autenticación
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
-            CURLOPT_SSL_VERIFYPEER => true, // Habilitar verificación SSL (seguro en producción)
+            CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 2,

@@ -119,3 +119,7 @@ body::-webkit-scrollbar-thumb:hover {
 .circulo_swith.prendido{
   left: 18px;
 }
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

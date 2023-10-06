@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistrarClientesController;
 use App\Http\Controllers\ValorDeConversionController;
 use App\Http\Controllers\PreciosController;
 use App\Http\Controllers\ReniecController;
+use App\Http\Controllers\ReportePorClienteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,7 @@ Route::get('/register',[RegisterController::class,'show']);
 Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
+Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
@@ -49,3 +52,5 @@ Route::get('/fn_consulta_ActualizarValorConversion', [ValorDeConversionControlle
 
 Route::get('/fn_consulta_TraerPreciosXPresentacion', [PreciosController::class,'consulta_TraerPreciosXPresentacion']);
 Route::get('/fn_consulta_ActualizarPrecioXPresentacion', [PreciosController::class,'consulta_ActualizarPrecioXPresentacion']);
+
+Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteController::class,'consulta_TraerClientesReportePorCliente']);
