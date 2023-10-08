@@ -42,19 +42,22 @@ class ReportePorClienteController extends Controller
 
     public function consulta_TraerReportePorCliente(Request $request){
 
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+        $codigoCliente = $request->input('codigoCliente');
+
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('select tb_procesos.idProceso, 
-                        fechaRegistroPes, 
-                        nombreEspecie, pesoNetoPes, cantidadPes, 
-                        horaPes,(pesoNetoPes*precioPes/valorConversion) as ventaTotal, 
-                        valorConversion, tb_pesadas.idPesada
-                        from tb_procesos 
-                        inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
-                        inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie
-                        WHERE estadoPes = 1 and 
-                        fechaRegistroPes BETWEEN "2023-10-06" and "2023-10-06"
-                        ORDER BY fechaRegistroPes, horaPes DESC');
+                    fechaRegistroPes, 
+                    nombreEspecie, pesoNetoPes, cantidadPes, 
+                    horaPes,valorConversion, tb_pesadas.idPesada
+                    from tb_procesos 
+                    inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
+                    inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie
+                    WHERE estadoPes = 1 and 
+                    fechaRegistroPes BETWEEN ? and ? and tb_pesadas.codigoCli = ?
+                    ORDER BY fechaRegistroPes, idPesada ASC', [$fechaDesde, $fechaHasta, $codigoCliente]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

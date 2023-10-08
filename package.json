@@ -17,6 +17,7 @@
     "dependencies": {
         "firebase": "^10.4.0",
         "jquery": "^3.7.1",
+        "kutty": "^0.6.0",
         "sweetalert2": "^11.7.31",
         "toastr": "^2.1.4",
         "vite": "^4.4.9"

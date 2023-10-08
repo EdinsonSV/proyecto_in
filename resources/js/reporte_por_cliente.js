@@ -2,28 +2,74 @@ import jQuery from 'jquery';
 
 window.$ = jQuery;
 
-jQuery(function($) {
+jQuery(function ($) {
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const fechaHoy = new Date().toISOString().split('T')[0];
-        
+
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReportePorCliente').val(fechaHoy);
     $('#fechaHastaReportePorCliente').val(fechaHoy);
-    
+
+    declarar_especies();
+
+    var primerEspecieGlobal = 0
+    var segundaEspecieGlobal = 0
+    var terceraEspecieGlobal = 0
+    var cuartaEspecieGlobal = 0
+
+    var nombrePrimerEspecieGlobal = ""
+    var nombreSegundaEspecieGlobal = ""
+    var nombreTerceraEspecieGlobal = ""
+    var nombreCuartaEspecieGlobal = ""
+
+    function declarar_especies(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    primerEspecieGlobal = parseInt(response[0].idEspecie);
+                    segundaEspecieGlobal  = parseInt(response[1].idEspecie);
+                    terceraEspecieGlobal = parseInt(response[2].idEspecie);
+                    cuartaEspecieGlobal = parseInt(response[3].idEspecie);
+
+                    nombrePrimerEspecieGlobal = response[0].nombreEspecie;
+                    nombreSegundaEspecieGlobal = response[1].nombreEspecie;
+                    nombreTerceraEspecieGlobal = response[2].nombreEspecie;
+                    nombreCuartaEspecieGlobal = response[3].nombreEspecie;
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
     $('#idClientePorReporte').on('input', function () {
         let inputReportePorCliente = $(this).val();
         let contenedorClientes = $('#contenedorClientes');
         contenedorClientes.empty();
 
-        if (inputReportePorCliente.length > 1 || inputReportePorCliente != ""){
+        if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
             fn_TraerClientesReportePorCliente(inputReportePorCliente)
-        }else{
+        } else {
             contenedorClientes.empty();
             contenedorClientes.addClass('hidden');
         }
     });
+    
+    $('#btnBuscarReportePorCliente').on('click', function () {
+        let fechaDesde = $('#fechaDesdeReportePorCliente').val();
+        let fechaHasta = $('#fechaHastaReportePorCliente').val();
+        let codigoCliente = $('#selectedCodigoCli').attr("value");
+        fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente)
+    });
 
-    function fn_TraerClientesReportePorCliente(inputReportePorCliente){
+    function fn_TraerClientesReportePorCliente(inputReportePorCliente) {
 
         // Realiza la solicitud AJAX para obtener sugerencias
         $.ajax({
@@ -49,8 +95,8 @@ jQuery(function($) {
                             $('#idClientePorReporte').val(obj.nombreCompleto);
 
                             // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdCliente').attr("value",obj.idCliente);
-                            $('#selectedCodigoCli').attr("value",obj.codigoCli);
+                            $('#selectedIdCliente').attr("value", obj.idCliente);
+                            $('#selectedCodigoCli').attr("value", obj.codigoCli);
 
                             // Oculta las sugerencias
                             contenedorClientes.addClass('hidden');
@@ -71,57 +117,215 @@ jQuery(function($) {
             }
         });
     };
-    fn_TraerReportePorCliente()
-    function fn_TraerReportePorCliente(){
+
+    function fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente) {
         $.ajax({
             url: '/fn_consulta_TraerReportePorCliente',
             method: 'GET',
-            success: function(response) {
+            data: {
+                fechaDesde : fechaDesde,
+                fechaHasta : fechaHasta,
+                codigoCliente : codigoCliente,
+            },
+            success: function (response) {
 
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+
+                    let bodyReportePorCliente="";
 
                     // Obtener el select
                     let tbodyReportePorCliente = $('#bodyReportePorCliente');
                     tbodyReportePorCliente.empty();
 
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        // Crear una nueva fila
-                        console.log(obj);
-                        let nuevaFila = $('<tr>');
-
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.fechaRegistroPes));
-                        /* nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.segundaEspecie));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.terceraEspecie));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.cuartaEspecie)); */
-
-                        // Agregar la nueva fila al tbody
-                        tbodyReportePorCliente.append(nuevaFila);
+                    let fechasUnicas = new Set();
+                    let sinRepetidos = response.filter((valorActual) => {
+                        let fechaInicioString = JSON.stringify(valorActual.fechaRegistroPes);
+                        if (!fechasUnicas.has(fechaInicioString)) {
+                            fechasUnicas.add(fechaInicioString);
+                            return true;
+                        }
+                        return false;
                     });
+
+                    sinRepetidos.forEach(function (item) {
+                        let totalPesoPrimerEspecie = 0;
+                        let totalPesoSegundaEspecie = 0;
+                        let totalPesoTerceraEspecie = 0;
+                        let totalPesoCuartaEspecie = 0;
+
+                        let totalCantidadPrimerEspecie = 0;
+                        let totalCantidadSegundaEspecie = 0;
+                        let totalCantidadTerceraEspecie = 0;
+                        let totalCantidadCuartaEspecie = 0;
+
+                        let ventaTotalCantidadNeto = 0;
+                        let ventaTotalPesoNeto = 0;
+                        let ventaTotalPesoVivo = 0;
+                        bodyReportePorCliente += construirFilaFecha(item);
+
+                        response.forEach(function (subItem) {
+                            if (item.fechaRegistroPes === subItem.fechaRegistroPes) {
+                                bodyReportePorCliente += construirFilaDatos(subItem);
+
+                                let nombreEspecie = subItem.nombreEspecie;
+                                let cantidadPes = parseInt(subItem.cantidadPes);
+                                let pesoNetoPes = parseFloat(subItem.pesoNetoPes).toFixed(2);
+                                let valorConversion = parseFloat(subItem.valorConversion).toFixed(3);
+
+                                if (nombreEspecie == nombrePrimerEspecieGlobal) {
+                                    totalPesoPrimerEspecie += parseFloat(pesoNetoPes);
+                                    totalCantidadPrimerEspecie += cantidadPes;
+                                } else if (nombreEspecie == nombreSegundaEspecieGlobal) {
+                                    totalPesoSegundaEspecie += parseFloat(pesoNetoPes);
+                                    totalCantidadSegundaEspecie += cantidadPes;
+                                } else if (nombreEspecie == nombreTerceraEspecieGlobal) {
+                                    totalPesoTerceraEspecie += parseFloat(pesoNetoPes);
+                                    totalCantidadTerceraEspecie += cantidadPes;
+                                } else if (nombreEspecie == nombreCuartaEspecieGlobal) {
+                                    totalPesoCuartaEspecie += parseFloat(pesoNetoPes);
+                                    totalCantidadCuartaEspecie += cantidadPes;
+                                }
+
+                                ventaTotalCantidadNeto += cantidadPes;
+                                ventaTotalPesoNeto += parseFloat(pesoNetoPes);
+                                ventaTotalPesoVivo += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                            }
+                        });
+                        bodyReportePorCliente += `
+                            <tr class="bg-white dark:bg-gray-800 h-0.5">
+                                <td class="text-center" colspan="2"></td>
+                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+                            </tr>
+                        `
+                        bodyReportePorCliente += construirFilaTotales(
+                            totalPesoPrimerEspecie,
+                            totalPesoSegundaEspecie,
+                            totalPesoTerceraEspecie,
+                            totalPesoCuartaEspecie,
+                            totalCantidadPrimerEspecie,
+                            totalCantidadSegundaEspecie,
+                            totalCantidadTerceraEspecie,
+                            totalCantidadCuartaEspecie,
+                            ventaTotalCantidadNeto,
+                            ventaTotalPesoNeto,
+                            ventaTotalPesoVivo
+                        );
+                    });
+
+                    tbodyReportePorCliente.html(bodyReportePorCliente);
+
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
-                
+
             },
-            error: function(error) {
-                console.error("ERROR",error);
+            error: function (error) {
+                console.error("ERROR", error);
             }
         });
     }
 
+    function construirFilaFecha(item) {
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center ">${item.fechaRegistroPes}</td>
+                <td class="text-center "></td>
+                <td class="text-center "></td>
+                <td class="text-center "></td>
+                <td class="text-center "></td>
+                <td class="text-center "></td>
+            </tr>
+        `;
+    }
+
+    function construirFilaDatos(item) {
+        let horaPes = item.horaPes
+        let nombreEspecie = item.nombreEspecie
+        let cantidadPes = parseInt(item.cantidadPes)
+        let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
+
+        let promedio = (pesoNetoPes / cantidadPes).toFixed(2);
+
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center "></td>
+                <td class="text-center ">${horaPes}</td>
+                <td class="text-center ">${nombreEspecie}</td>
+                <td class="text-center ">${cantidadPes}</td>
+                <td class="text-center ">${pesoNetoPes}</td>
+                <td class="text-center ">${promedio}</td>
+            </tr>
+        `;
+    }
+
+    function construirFilaTotales(
+        totalPesoPrimerEspecie,
+        totalPesoSegundaEspecie,
+        totalPesoTerceraEspecie,
+        totalPesoCuartaEspecie,
+        totalCantidadPrimerEspecie,
+        totalCantidadSegundaEspecie,
+        totalCantidadTerceraEspecie,
+        totalCantidadCuartaEspecie,
+        ventaTotalCantidadNeto,
+        ventaTotalPesoNeto,
+        ventaTotalPesoVivo) 
+    {
+        let filas = [];
+    
+        function construirFila(nombreEspecie, totalCantidad, totalPeso) {
+            if (totalCantidad !== 0 || totalPeso !== 0) {
+                return `
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="text-center "></td>
+                        <td class="text-center "></td>
+                        <td class="text-center ">TOTAL ${nombreEspecie}:</td>
+                        <td class="text-center ">${totalCantidad}</td>
+                        <td class="text-center ">${totalPeso.toFixed(2)}</td>
+                        <td class="text-center "></td>
+                    </tr>
+                `;
+            } else {
+                return '';
+            }
+        }
+    
+        filas.push(construirFila(nombrePrimerEspecieGlobal, totalCantidadPrimerEspecie, totalPesoPrimerEspecie));
+        filas.push(construirFila(nombreSegundaEspecieGlobal, totalCantidadSegundaEspecie, totalPesoSegundaEspecie));
+        filas.push(construirFila(nombreTerceraEspecieGlobal, totalCantidadTerceraEspecie, totalPesoTerceraEspecie));
+        filas.push(construirFila(nombreCuartaEspecieGlobal, totalCantidadCuartaEspecie, totalPesoCuartaEspecie));
+        
+        filas.push(`
+            <tr class="bg-white dark:bg-gray-800 h-0.5">
+                <td class="text-center" colspan="2"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+            </tr>
+        `);
+
+        filas.push(`
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="text-center "></td>
+            <td class="text-center "></td>
+            <td class="text-center ">TOTAL NETO:</td>
+            <td class="text-center ">${ventaTotalCantidadNeto}</td>
+            <td class="text-center ">${ventaTotalPesoNeto.toFixed(2)}</td>
+            <td class="text-center "></td>
+        </tr>
+        `);
+
+        filas.push(`
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="text-center "></td>
+            <td class="text-center "></td>
+            <td class="text-center ">PESO VIVO:</td>
+            <td class="text-center "></td>
+            <td class="text-center ">${ventaTotalPesoVivo.toFixed(2)}</td>
+            <td class="text-center "></td>
+        </tr>
+        `);
+
+        return filas.join('');
+    }
+
 });
-
-/* let nuevaFila = $('<tr>');
-
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.primerEspecie));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.segundaEspecie));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.terceraEspecie));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.cuartaEspecie));
-
-                        // Agregar la nueva fila al tbody
-                        tbodyReportePorCliente.append(nuevaFila); */

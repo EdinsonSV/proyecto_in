@@ -1,0 +1,12 @@
+@vite(['resources/js/registrar_clientes.js'])
+@extends('aside')
+@section('titulo', 'Bienvenido')
+@section('contenido')
+<main class="p-6 min-h-[calc(100%-160px)]">
+    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+        {{-- Inicia contenedor Registrar Clientes --}}
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Producción Actual</h4>
+        {{-- Termina contenedor Registrar Clientes --}}
+    </div>
+</main>
+@endsection

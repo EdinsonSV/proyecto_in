@@ -1,50 +1,40 @@
 @vite(['resources/js/precios.js'])
 @extends('aside')
-<title>Precios</title>
-<link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
-<main class="w-full md:w-[calc(100%-3.73rem)] ml-auto min-h-[calc(100%-120px)] mb-12 2xl:w-[calc(100%-256px)]">
-    <div class="2xl:container mx-auto">
-        <div
-            class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between fixed  md:relative  top-0 w-full dark:bg-[#0D161C]">
-            <div class="flex items-center">
-                <h3 class="text-gray-900 uppercase dark:text-gray-300 font-semibold ml-7 lg:ml-12"
-                    id="mensaje_bienvenida">Buenos dias</h3>
-                <span
-                    class="text-gray-900 dark:text-gray-300 font-semibold">&nbsp;{{ auth()->user()->nombresUsu }}</span>
-            </div>
-            <div class="block md:hidden">
-                <i id="toogle_bard"
-                    class="fa-solid fa-bars mr-8 text-gray-900 uppercase dark:text-gray-300 cursor-pointer text-lg"></i>
-            </div>
-        </div>
-        <div class="mx-6 lg:mx-12 mt-[calc(1.865rem)] overflow-x-auto bg-white dark:bg-[#111B22]">
-            <div
-                class="flex-col rounded-lg border border-gray-300/40 dark:border-gray-700 shadow-lg shadow-slate-200 dark:shadow-slate-800 ">
-                <div class="flex items-center justify-items-start p-5">
-                    <h3 class="text-gray-900 font-semibold text-xl dark:text-gray-300">Configuración de precios por cliente</h3>
-                </div>
-                <div class="overflow-x-auto m-5 mt-0" id="DivPreciosXPresentacion">
-                    <table class="text-gray-900 dark:text-gray-50 w-full select-none" id="tablaPreciosXPresentacion">
-                        <thead id="headerPreciosXPresentacion">
-                            <tr class="h-10 bg-blue-500 text-gray-50">
-                                <th class="hidden">Id</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400">CLIENTE</th>
-                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO YUGO </h5></th>
-                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO PERLA </h5></th>
-                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO CHIMU </h5></th>
-                                <th class="px-4 font-medium text-sm border border-gray-400"><h5 class="min-w-max">POLLO XX </h5></th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyPreciosXPresentacion">
+@section('titulo', 'Precios por Presentación')
+@section('contenido')
+<main class="p-6 min-h-[calc(100%-160px)]">
+    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+        {{-- Inicia contenedor Precios por Presentación --}}
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Precios por Presentación</h4>
+        <div class="overflow-x-auto m-5 mt-0" id="DivPreciosXPresentacion">
+            <table class="text-gray-900 dark:text-gray-50 w-full select-none" id="tablaPreciosXPresentacion">
+                <thead id="headerPreciosXPresentacion">
+                    <tr class="h-10 bg-blue-500 text-gray-50">
+                        <th class="hidden">Id</th>
+                        <th class="px-4 font-medium text-sm border border-gray-400">CLIENTE</th>
+                        <th class="px-4 font-medium text-sm border border-gray-400">
+                            <h5 class="min-w-max">POLLO YUGO </h5>
+                        </th>
+                        <th class="px-4 font-medium text-sm border border-gray-400">
+                            <h5 class="min-w-max">POLLO PERLA </h5>
+                        </th>
+                        <th class="px-4 font-medium text-sm border border-gray-400">
+                            <h5 class="min-w-max">POLLO CHIMU </h5>
+                        </th>
+                        <th class="px-4 font-medium text-sm border border-gray-400">
+                            <h5 class="min-w-max">POLLO XX </h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="bodyPreciosXPresentacion">
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
+        {{-- Termina contenedor Precios por Presentación --}}
     </div>
 </main>
-@extends('footer')
+@endsection
 
 <div class="fixed hidden top-0 left-0 z-20 justify-center items-center w-screen h-screen bg-gray-800 bg-opacity-75 transition-opacity cerrarModalPreciosXPresentacion" id="ModalPreciosXPresentacion">
     <div class="modal-content max-w-lg w-full mx-4">

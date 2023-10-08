@@ -76,7 +76,6 @@ jQuery(function($) {
 
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
-                    console.log(response)
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
 

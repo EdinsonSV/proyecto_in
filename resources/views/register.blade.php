@@ -1,24 +1,12 @@
 @vite(['resources/js/register.js'])
 @extends('aside')
-<title>Registrar Usuario</title>
-
-<main class="w-full md:w-[calc(100%-3.73rem)] ml-auto min-h-[calc(100%-120px)] mb-12 2xl:w-[calc(100%-256px)]">
-    <div class="2xl:container mx-auto">
-        <div class="h-16 border-b border-gray-300/40 dark:border-gray-700 flex items-center justify-between fixed  md:relative  top-0 w-full dark:bg-[#0D161C]">
-            <div class="flex items-center">
-                <h3 class="text-gray-900 uppercase dark:text-gray-300 font-semibold ml-7 lg:ml-12" id="mensaje_bienvenida">Buenos dias</h3>
-                <span class="text-gray-900 dark:text-gray-300 font-semibold">&nbsp;{{auth()->user()->nombresUsu}}</span>
-            </div>
-            <div class="block md:hidden">
-                <i id="toogle_bard" class="fa-solid fa-bars mr-8 text-gray-900 uppercase dark:text-gray-300 cursor-pointer text-lg"></i>
-            </div>
-        </div>
-        <div class="mx-6 lg:mx-12 mt-[calc(1.865rem)] overflow-x-auto bg-white dark:bg-[#111B22]">
-            <div class="flex-col rounded-lg border border-gray-300/40 dark:border-gray-700 shadow-lg shadow-slate-200 dark:shadow-slate-800 ">
-                <div class="flex items-center justify-items-start p-5">
-                    <h3 class="text-gray-900 font-semibold text-xl dark:text-gray-300">Registrar Usuario</h3>
-                </div>
-                <form action="/register" method="POST" class="p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroForm">
+@section('titulo', 'Registrar Usuario')
+@section('contenido')
+<main class="p-6 min-h-[calc(100%-160px)]">
+    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+        {{-- Inicia contenedor Registrar Usuario --}}
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Registrar Usuario</h4>
+        <form action="/register" method="POST" class="p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroForm">
                     @csrf
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                         <label for="apellidoPaternoUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
@@ -82,8 +70,7 @@
                         <input class="cursor-pointer w-full uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="submit" value="Registrar" autocomplete="off">
                     </div>
                 </form>
-            </div>
-        </div>
+        {{-- Termina contenedor Registrar Usuario --}}
     </div>
 </main>
-@extends('footer')
+@endsection
