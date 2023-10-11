@@ -134,7 +134,6 @@ jQuery(function ($) {
 
                     let bodyReportePorCliente="";
 
-                    // Obtener el select
                     let tbodyReportePorCliente = $('#bodyReportePorCliente');
                     tbodyReportePorCliente.empty();
 

@@ -49,8 +49,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center h-10 w-full">
-                    <a href="/logout" class="flex items-center gap-2 px-4 py-2 w-full h-full">
+                <div class="flex items-center h-12 w-full">
+                    <a href="/logout" class="flex items-center gap-2 px-4 py-2 w-full h-full hover:bg-gray-200 dark:hover:bg-gray-800">
                         <i class='bx bx-door-open text-2xl text-gray-700 dark:text-gray-400'></i>
                         <span class="font-normal text-sm text-gray-600 dark:text-gray-400">Cerrar Sesión</span>
                     </a>

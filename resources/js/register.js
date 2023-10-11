@@ -72,15 +72,6 @@ jQuery(function($) {
         $('#passwordMosl').removeClass('hidden');
     })
 
-    $('#toogle_bard').on('click', function(){
-        $('#aside_bard').addClass('left-0');
-        $('#aside_bard').addClass('md:w-[calc(3.73rem)]')
-    })
-    
-    $('#toogle_bard2').on('click', function(){
-        $('#aside_bard').removeClass('left-0');
-    })
-
     $('#registroForm').on('submit', function (event) {
             event.preventDefault(); // Detiene el envío del formulario
             
@@ -99,12 +90,17 @@ jQuery(function($) {
         // Aquí puedes realizar tus propias validaciones personalizadas
         
         // Por ejemplo, verifica si los campos obligatorios están completos
-        var apellidoPaterno = $('#apellidoPaternoUsu').val();
-        var apellidoMaterno = $('#apellidoMaternoUsu').val();
-        var nombres = $('#nombresUsu').val();
+        let apellidoPaterno = $('#apellidoPaternoUsu').val();
+        let apellidoMaterno = $('#apellidoMaternoUsu').val();
+        let nombres = $('#nombresUsu').val();
+        let dni = $('#dniUsu').val();
+        let celular = $('#celularUsu').val();
+        let direccion = $('#direccionUsu').val();
+        let email = $('#email').val();
+        let username = $('#username').val();
+        let password = $('#password').val();
         
-        // Realiza tus validaciones aquí y devuelve true o false
-        if (apellidoPaterno && apellidoMaterno && nombres) {
+        if (apellidoPaterno && apellidoMaterno && nombres && dni && celular && direccion && email && username && password) {
             return true;
         } else {
             return false;
