@@ -105,40 +105,40 @@
 
             </div>
             {{-- Inicia contenedor de Tabla Grafica Actual --}}
-            <div class="overflow-x-auto div_table">
-                <table class="tabla_reporte_inicio table-auto text-gray-500 dark:text-gray-300 w-full rounded border-collapse border border-gray-900 dark:border-gray-300">
+            <div class="overflow-x-auto div_table rounded-lg">
+                <table class="tabla_reporte_inicio table-auto text-gray-500 dark:text-gray-300 w-full border-collapse">
                     <thead class="bg-blue-600">
                         <tr>
-                            <th class="text-gray-100 border border-gray-500 dark:border-gray-100 py-2 md:text-xl text-left px-2">#</th>
-                            <th class="text-gray-100 border border-gray-500 dark:border-gray-100 py-2 md:text-xl text-left px-2">Cantidad</th>
-                            <th class="text-gray-100 border border-gray-500 dark:border-gray-100 py-2 md:text-xl text-left px-2">Peso</th>
-                            <th class="text-gray-100 border border-gray-500 dark:border-gray-100 py-2 md:text-xl text-left px-2">Promedio</th>
+                            <th class="text-gray-100 border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">#</th>
+                            <th class="text-gray-100 border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-gray-100 border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-gray-100 py-2 md:text-md text-left px-2">Promedio</th>
                         </tr>
                     </thead>
                     <tbody class="">
                         <tr>
-                            <td class=" text-gray-100 border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium bg-red-600">Compra</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="text-gray-100 border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-red-600">Compra</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
                         </tr>
                         <tr>
-                            <td class=" text-gray-100 border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium bg-emerald-600">Venta</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="text-gray-100 border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-emerald-600">Venta</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
                         </tr>
                         <tr>
-                            <td class=" text-gray-100 border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium bg-orange-600">Merma</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="text-gray-100 border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-orange-600">Merma</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
                         </tr>
                         <tr>
-                            <td class=" text-gray-100 border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium bg-yellow-600">Merma %</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0 %</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0 %</td>
-                            <td class=" border border-gray-500 dark:border-gray-100 p-2 md:text-lg font-medium text-gray-900 dark:text-gray-100">0 %</td>
+                            <td class="text-gray-100 border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-600">Merma %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>
                         </tr>
                     </tbody>
                 </table>

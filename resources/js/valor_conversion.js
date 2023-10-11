@@ -87,12 +87,12 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         // Crear una nueva fila
-                        let nuevaFila = $('<tr class="editValorConversion">');
+                        let nuevaFila = $('<tr class="editValorConversion bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
-                        nuevaFila.append($('<td class="text-center border border-gray-400">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="text-center border border-gray-400 cursor-pointer">').text(obj.valorConversion));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center">').text(obj.valorConversion));
                         // Agregar la nueva fila al tbody
                         tbodyConversiones.append(nuevaFila);
                     });

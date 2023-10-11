@@ -62,22 +62,25 @@ jQuery(function($) {
     // Asigna el evento "change" al select con id="tipoDocumentoCli"
     $("#tipoDocumentoCli").on("change", function () {
         // Obtén el valor seleccionado del select
-        var tipoDocumento = $(this).val();
+        let tipoDocumento = $(this).val();
         // Llama a la función "validarDocumento()" con el valor seleccionado como parámetro
         if (tipoDocumento != 0){
             $("#documentoCli").removeAttr("disabled");
         }
         if (tipoDocumento == 1) {
             $("#documentoCli").val("");
-            $("#documentoCli").addClass("especialDNI");
-            $("#documentoCli").removeClass("rounded-r-lg");
+            $("#documentoCli").addClass("especialDNI rounded-bl-lg");
+            $("#documentoCli").removeClass("rounded-b-lg");
             $("#especialBuscarPorDNI").removeClass("hidden");
             $("#especialBuscarPorDNI").addClass("flex");
+            $("#documentoCli").removeClass("md:rounded-r-lg");
+            $("#documentoCli").addClass("md:rounded-none");
         } else {
-            $("#documentoCli").removeClass("especialDNI");
-            $("#documentoCli").addClass("rounded-r-lg");
+            $("#documentoCli").removeClass("especialDNI rounded-bl-lg");
+            $("#documentoCli").addClass("rounded-b-lg");
             $("#especialBuscarPorDNI").removeClass("flex");
             $("#especialBuscarPorDNI").addClass("hidden");
+            $("#documentoCli").addClass("md:rounded-r-lg");
         }
     });
 

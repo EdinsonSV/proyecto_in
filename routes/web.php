@@ -9,6 +9,7 @@ use App\Http\Controllers\ValorDeConversionController;
 use App\Http\Controllers\PreciosController;
 use App\Http\Controllers\ReniecController;
 use App\Http\Controllers\ReportePorClienteController;
+use App\Http\Controllers\ReporteDePagosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +21,21 @@ use App\Http\Controllers\ReportePorClienteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+/* ============================== Controladores para Login y Registro de Clientes ============================== */
+
 Route::middleware(['guest'])->group(function () {
     Route::view('/', 'login')->name('login');
     Route::view('/login', 'login')->name('login');
 });
-
-Route::post('/register',[RegisterController::class,'register']);
-
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
+Route::post('/register',[RegisterController::class,'register']);
 Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
+
+/* ============================== Termina Controladores para Login y Registro de Clientes ============================== */
+
+/* ============================== Controladores para Mostrar Vistas ============================== */
 
 Route::get('/home',[InicioController::class,'index']);
 Route::get('/register',[RegisterController::class,'show']);
@@ -37,6 +43,9 @@ Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
+Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
+
+/* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);

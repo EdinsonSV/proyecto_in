@@ -228,12 +228,12 @@ jQuery(function ($) {
     function construirFilaFecha(item) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center ">${item.fechaRegistroPes}</td>
-                <td class="text-center "></td>
-                <td class="text-center "></td>
-                <td class="text-center "></td>
-                <td class="text-center "></td>
-                <td class="text-center "></td>
+                <td class="text-center p-1">${item.fechaRegistroPes}</td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1"></td>
             </tr>
         `;
     }
@@ -248,12 +248,12 @@ jQuery(function ($) {
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center "></td>
-                <td class="text-center ">${horaPes}</td>
-                <td class="text-center ">${nombreEspecie}</td>
-                <td class="text-center ">${cantidadPes}</td>
-                <td class="text-center ">${pesoNetoPes}</td>
-                <td class="text-center ">${promedio}</td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1">${horaPes}</td>
+                <td class="text-center p-1">${nombreEspecie}</td>
+                <td class="text-center p-1">${cantidadPes}</td>
+                <td class="text-center p-1">${pesoNetoPes}</td>
+                <td class="text-center p-1">${promedio}</td>
             </tr>
         `;
     }
@@ -274,21 +274,21 @@ jQuery(function ($) {
         let filas = [];
     
         function construirFila(nombreEspecie, totalCantidad, totalPeso) {
-            if (totalCantidad !== 0 || totalPeso !== 0) {
+            if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="text-center "></td>
-                        <td class="text-center "></td>
-                        <td class="text-center ">TOTAL ${nombreEspecie}:</td>
-                        <td class="text-center ">${totalCantidad}</td>
-                        <td class="text-center ">${totalPeso.toFixed(2)}</td>
-                        <td class="text-center "></td>
+                        <td class="text-center p-1"></td>
+                        <td class="text-center p-1"></td>
+                        <td class="text-center p-1">TOTAL ${nombreEspecie}:</td>
+                        <td class="text-center p-1">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
+                        <td class="text-center p-1">${totalPeso.toFixed(2)} Kg.</td>
+                        <td class="text-center p-1"></td>
                     </tr>
                 `;
             } else {
                 return '';
             }
-        }
+        }        
     
         filas.push(construirFila(nombrePrimerEspecieGlobal, totalCantidadPrimerEspecie, totalPesoPrimerEspecie));
         filas.push(construirFila(nombreSegundaEspecieGlobal, totalCantidadSegundaEspecie, totalPesoSegundaEspecie));
@@ -303,24 +303,24 @@ jQuery(function ($) {
         `);
 
         filas.push(`
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center "></td>
-            <td class="text-center "></td>
-            <td class="text-center ">TOTAL NETO:</td>
-            <td class="text-center ">${ventaTotalCantidadNeto}</td>
-            <td class="text-center ">${ventaTotalPesoNeto.toFixed(2)}</td>
-            <td class="text-center "></td>
-        </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1"></td>
+                <td class="text-center p-1">TOTAL NETO:</td>
+                <td class="text-center p-1">${ventaTotalCantidadNeto === 1 ? `${ventaTotalCantidadNeto} Ud.` : `${ventaTotalCantidadNeto} Uds.`}</td>
+                <td class="text-center p-1">${ventaTotalPesoNeto.toFixed(2)} Kg.</td>
+                <td class="text-center p-1"></td>
+            </tr>
         `);
 
         filas.push(`
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center "></td>
-            <td class="text-center "></td>
-            <td class="text-center ">PESO VIVO:</td>
-            <td class="text-center "></td>
-            <td class="text-center ">${ventaTotalPesoVivo.toFixed(2)}</td>
-            <td class="text-center "></td>
+            <td class="text-center p-1"></td>
+            <td class="text-center p-1"></td>
+            <td class="text-center p-1">PESO VIVO:</td>
+            <td class="text-center p-1"></td>
+            <td class="text-center p-1">${ventaTotalPesoVivo.toFixed(2)} Kg.</td>
+            <td class="text-center p-1"></td>
         </tr>
         `);
 

@@ -1,5 +1,6 @@
 import jQuery from 'jquery';
 window.$ = jQuery;
+import 'flowbite';
 
 jQuery(function($) {
     declarar_mensaje_bienvenida();
