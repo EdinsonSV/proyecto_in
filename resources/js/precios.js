@@ -34,6 +34,23 @@ jQuery(function($) {
         }
     });
 
+    $('#nuevoValorPrecioXPresentacion').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+    
+        // Elimina todos los caracteres excepto un punto decimal
+        inputValue = inputValue.replace(/[^0-9.]/g, ''); 
+    
+        // Verifica si ya hay un punto decimal presente
+        if (inputValue.indexOf('.') !== -1) {
+            // Si ya hay un punto, elimina los puntos adicionales
+            inputValue = inputValue.replace(/(\..*)\./g, '$1');
+        }
+    
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });    
+
     $('#btnActualizarPreciosXPresentacion').on('click', function () {
 
         let idClienteActualizarPrecioXPresentacion = $('#idClientePrecioXPresentacion').attr("value");
@@ -107,13 +124,7 @@ jQuery(function($) {
                         }
                     });                    
                     
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Se actualizo el precio correctamente',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
+                    alertify.notify('Se actualizo el precio correctamente', 'success', 2);
                 }
             },
             error: function(error) {

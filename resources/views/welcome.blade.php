@@ -61,7 +61,7 @@
                     <span class="animacion_produccion_actual bg-gray-100"></span>
                 </div>
             </div>
-            <div class="bg-yellow-500 w-full rounded-lg py-5 flex flex-col items-center">
+            <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
                 <h5 class="text-gray-100 font-bold text-3xl md:text-4xl">POLLO XX</h5>
                 <div class="flex row gap-4">
                     <div class="flex flex-col items-start">
@@ -135,7 +135,7 @@
                             <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0</td>
                         </tr>
                         <tr>
-                            <td class="text-gray-100 border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-600">Merma %</td>
+                            <td class="text-gray-100 border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-400">Merma %</td>
                             <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>
                             <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>
                             <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-gray-100">0 %</td>

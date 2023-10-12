@@ -15,12 +15,12 @@ jQuery(function($) {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
     
-        // Elimina los espacios en blanco y caracteres no numéricos excepto el +
-        inputValue = inputValue.replace(/[^0-9+]/g, '');
+        // Elimina caracteres no numéricos, el signo más (+) y espacios en blanco
+        inputValue = inputValue.replace(/[^0-9+\s]/g, '');
     
         // Establece el valor limpio en el input
         $(this).val(inputValue);
-    });
+    });    
 
     $('#registrar_usuario_submit').on('click', function () {
         let todosCamposCompletos = true;
@@ -39,7 +39,7 @@ jQuery(function($) {
         let estadoCli = 1
         let usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
     
-        $('#registroClientes .validarCampo').each(function() {
+        $('#registroForm .validarCampo').each(function() {
             let valorCampo = $(this).val();
     
             if (valorCampo === null || valorCampo.trim() === '') {

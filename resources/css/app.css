@@ -29,6 +29,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .aside_scrollED::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   background: transparent;
 }
 

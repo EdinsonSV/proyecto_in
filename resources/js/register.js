@@ -59,6 +59,17 @@ jQuery(function($) {
         // Establece el valor limpio en el input
         $(this).val(inputValue);
     });
+
+    $('#registroForm .entradaEnMayusculas').on('input', function() {
+        // Obtiene el valor actual del campo
+        let valorCampo = $(this).val();
+    
+        // Convierte el valor a mayúsculas
+        valorCampo = valorCampo.toUpperCase();
+    
+        // Establece el valor modificado en el campo
+        $(this).val(valorCampo);
+    });    
     
     $('#passwordMos').on('click', function(){
         $('#password').attr('type', 'text');
@@ -73,38 +84,26 @@ jQuery(function($) {
     })
 
     $('#registroForm').on('submit', function (event) {
-            event.preventDefault(); // Detiene el envío del formulario
-            
-            // Llama a tu función de validación personalizada
-            if (validacionPersonalizada()) {
-                // Si la validación es exitosa, realiza la acción del formulario
-                this.submit(); // Envía el formulario
+        event.preventDefault(); // Detiene el envío del formulario
+        let todosCamposCompletos = true;
+
+        $('#registroForm .validarCampo').each(function() {
+            let valorCampo = $(this).val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
             } else {
-                // Si la validación falla, muestra un mensaje o realiza otra acción
-                alertify.notify('Debe rellenar todos los campos', 'error', 3);
+                $(this).removeClass('border-red-500').addClass('border-green-500');
             }
         });
-
-    // Función de validación personalizada
-    function validacionPersonalizada() {
-        // Aquí puedes realizar tus propias validaciones personalizadas
         
-        // Por ejemplo, verifica si los campos obligatorios están completos
-        let apellidoPaterno = $('#apellidoPaternoUsu').val();
-        let apellidoMaterno = $('#apellidoMaternoUsu').val();
-        let nombres = $('#nombresUsu').val();
-        let dni = $('#dniUsu').val();
-        let celular = $('#celularUsu').val();
-        let direccion = $('#direccionUsu').val();
-        let email = $('#email').val();
-        let username = $('#username').val();
-        let password = $('#password').val();
-        
-        if (apellidoPaterno && apellidoMaterno && nombres && dni && celular && direccion && email && username && password) {
-            return true;
+        // Llama a tu función de validación personalizada
+        if (todosCamposCompletos) {
+            this.submit(); // Envía el formulario
         } else {
-            return false;
+            // Si la validación falla, muestra un mensaje o realiza otra acción
+            alertify.notify('Debe rellenar todos los campos', 'error', 3);
         }
-    }
-
+    });
 });
