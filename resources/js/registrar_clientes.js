@@ -39,7 +39,7 @@ jQuery(function($) {
         let estadoCli = 1
         let usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
     
-        $('#registroForm .validarCampo').each(function() {
+        $('#registroClientes .validarCampo').each(function() {
             let valorCampo = $(this).val();
     
             if (valorCampo === null || valorCampo.trim() === '') {
@@ -51,6 +51,7 @@ jQuery(function($) {
         });
     
         if (todosCamposCompletos) {
+            console.log('noooooooooooo:',apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo)
             // Llamar a tu función aquí
             fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo);
         } else {

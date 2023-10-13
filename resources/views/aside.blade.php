@@ -18,6 +18,7 @@
             <a href="/" class="flex items-center justify-center p-4"> 
                 <img src="{{ asset('img/logoBalinsa.png') }}" alt="Kutty Logo" class="h-12" />
             </a>
+            <div class="hidden" id="usuarioRegistroCli" data-id="{{ auth()->user()->id }}"></div>
             <nav class="text-sm font-medium text-gray-500 border-t border-gray-300 dark:border-gray-700" aria-label="Main Navigation">
                 <div class="overflow-y-scroll h-[calc(75%)] aside_scrollED overflow-x-hidden">
                     @foreach ($menusAgrupados as $menu)

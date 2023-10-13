@@ -245,10 +245,13 @@ jQuery(function ($) {
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
 
         let promedio = (pesoNetoPes / cantidadPes).toFixed(2);
+        let observacionPes = item.observacionPes
+        observacionPes = ""
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center p-1"></td>
+                <td class="hidden">${item.idPesada}</td>
+                <td class="text-center p-1">${observacionPes}</td>
                 <td class="text-center p-1">${horaPes}</td>
                 <td class="text-center p-1">${nombreEspecie}</td>
                 <td class="text-center p-1">${cantidadPes}</td>

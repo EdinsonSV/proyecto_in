@@ -50,7 +50,7 @@ class ReportePorClienteController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DB::select('select tb_procesos.idProceso, 
                     fechaRegistroPes, 
-                    nombreEspecie, pesoNetoPes, cantidadPes, 
+                    nombreEspecie, pesoNetoPes, cantidadPes, observacionPes, 
                     horaPes,valorConversion, tb_pesadas.idPesada
                     from tb_procesos 
                     inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
