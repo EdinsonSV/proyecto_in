@@ -27,6 +27,13 @@ jQuery(function($) {
         $('#nuevoValorPrecioXPresentacion').focus();
     });
 
+    $('.cerrarModalPreciosXPresentacion').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalPreciosXPresentacion').addClass('hidden');
+            $('#ModalPreciosXPresentacion').removeClass('flex');
+        }
+    });
+
     $('.cerrarModalPreciosXPresentacion, .modal-content').on('click', function (e) {
         if (e.target === this) {
             $('#ModalPreciosXPresentacion').addClass('hidden');
