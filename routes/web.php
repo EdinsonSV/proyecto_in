@@ -10,6 +10,7 @@ use App\Http\Controllers\PreciosController;
 use App\Http\Controllers\ReniecController;
 use App\Http\Controllers\ReportePorClienteController;
 use App\Http\Controllers\ReporteDePagosController;
+use App\Http\Controllers\ConsultarClientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
+Route::get('/consultar_clientes',[ConsultarClientesController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -64,3 +66,5 @@ Route::get('/fn_consulta_ActualizarPrecioXPresentacion', [PreciosController::cla
 
 Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteController::class,'consulta_TraerClientesReportePorCliente']);
 Route::get('/fn_consulta_TraerReportePorCliente', [ReportePorClienteController::class,'consulta_TraerReportePorCliente']);
+
+Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class,'consulta_ConsultarClientes']);

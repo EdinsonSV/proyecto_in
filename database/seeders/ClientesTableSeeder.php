@@ -19,7 +19,7 @@ class ClientesTableSeeder extends Seeder
             'apellidoPaternoCli' => '',
             'apellidoMaternoCli' => '',
             'nombresCli' => 'GENERICO',
-            'tipoDocumentoCli' => 'DNI',
+            'tipoDocumentoCli' => '1',
             'numDocumentoCli' => '87654321',
             'contactoCli' => '987 654 321',
             'direccionCli' => 'DOS ALTOS',

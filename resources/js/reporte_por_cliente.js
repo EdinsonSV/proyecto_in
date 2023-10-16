@@ -63,10 +63,15 @@ jQuery(function ($) {
     });
     
     $('#btnBuscarReportePorCliente').on('click', function () {
-        let fechaDesde = $('#fechaDesdeReportePorCliente').val();
-        let fechaHasta = $('#fechaHastaReportePorCliente').val();
-        let codigoCliente = $('#selectedCodigoCli').attr("value");
-        fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente)
+        let inputReportePorCliente = $('#idClientePorReporte').val();
+        if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
+            let fechaDesde = $('#fechaDesdeReportePorCliente').val();
+            let fechaHasta = $('#fechaHastaReportePorCliente').val();
+            let codigoCliente = $('#selectedCodigoCli').attr("value");
+            fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente)
+        } else {
+            alertify.notify('Debe seleccionar un cliente.', 'error', 2);
+        }
     });
 
     function fn_TraerClientesReportePorCliente(inputReportePorCliente) {
@@ -212,7 +217,13 @@ jQuery(function ($) {
                         );
                     });
 
-                    tbodyReportePorCliente.html(bodyReportePorCliente);
+                    if (response.length > 0) {
+                        tbodyReportePorCliente.html(bodyReportePorCliente);
+                    }else {
+                        tbodyReportePorCliente.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`);
+                        alertify.notify('No se encontraron registros.', 'error', 2);
+                    }
+
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");

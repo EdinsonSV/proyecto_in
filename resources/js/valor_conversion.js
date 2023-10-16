@@ -130,7 +130,7 @@ jQuery(function($) {
                         icon: 'success',
                         title: 'Se actualizo el valor de conversión correctamente',
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     });
                 }
             },

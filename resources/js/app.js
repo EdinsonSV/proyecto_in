@@ -61,4 +61,17 @@ jQuery(function($) {
         $('html').toggleClass('dark');
         localStorage.setItem('modoOscuro', $('html').hasClass('dark'));
     });
+
+    $('#passwordMos').on('click', function(){
+        $('#password').attr('type', 'text');
+        $('#passwordMosl').addClass('hidden');
+        $('#passwordOcul').removeClass('hidden');
+    })
+
+    $('#passwordOcu').on('click', function(){
+        $('#password').attr('type', 'password');
+        $('#passwordOcul').addClass('hidden');
+        $('#passwordMosl').removeClass('hidden');
+    })
+    
 });

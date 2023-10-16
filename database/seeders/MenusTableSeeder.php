@@ -17,7 +17,7 @@ class MenusTableSeeder extends Seeder
             ['idMenu' => 1, 'nombreMenu' => 'CLIENTES', 'iconHtml' => 'fa-solid fa-users'],
             ['idMenu' => 2, 'nombreMenu' => 'REPORTES', 'iconHtml' => 'fa-solid fa-users'],
             ['idMenu' => 3, 'nombreMenu' => 'CONTABILIDAD', 'iconHtml' => 'fa-solid fa-users'],
-            ['idMenu' => 4, 'nombreMenu' => 'SISTEMA Y BALANZA', 'iconHtml' => 'fa-solid fa-users'],
+            ['idMenu' => 4, 'nombreMenu' => 'SISTEMA', 'iconHtml' => 'fa-solid fa-users'],
         ]);
     }
 }

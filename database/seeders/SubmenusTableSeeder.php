@@ -16,8 +16,8 @@ class SubmenusTableSeeder extends Seeder
         DB::table('tb_submenus')->insert([
             ['idSubMenu' => 1, 'idMenu' => 0, 'nombreSubMenu' => 'Inicio', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-home', 'estadoSubMenu' => 1],
             ['idSubMenu' => 2, 'idMenu' => 1, 'nombreSubMenu' => 'Agregar Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/registrar_clientes', 'iconHtml' => 'bx bx-user-plus', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 3, 'idMenu' => 1, 'nombreSubMenu' => 'Consultar Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bxs-group', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 4, 'idMenu' => 1, 'nombreSubMenu' => 'Tipo Pollo', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-buildings', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 3, 'idMenu' => 1, 'nombreSubMenu' => 'Consultar Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/consultar_clientes', 'iconHtml' => 'bx bxs-group', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 4, 'idMenu' => 1, 'nombreSubMenu' => 'Zonas', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bx-buildings', 'estadoSubMenu' => 1],
             ['idSubMenu' => 5, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte Acumulado', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/home', 'iconHtml' => 'bx bxs-report', 'estadoSubMenu' => 1],
             ['idSubMenu' => 6, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte de Pagos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/reporte_de_pagos', 'iconHtml' => 'bx bxs-wallet', 'estadoSubMenu' => 1],
             ['idSubMenu' => 7, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte Por Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/reporte_por_cliente', 'iconHtml' => 'bx bx-file-find', 'estadoSubMenu' => 1],
