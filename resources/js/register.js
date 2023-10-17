@@ -83,30 +83,6 @@ jQuery(function($) {
         $('#passwordMosl').removeClass('hidden');
     })
 
-    $('#registroForm').on('submit', function (event) {
-        event.preventDefault(); // Detiene el envío del formulario
-        let todosCamposCompletos = true;
-
-        $('#registroForm .validarCampo').each(function() {
-            let valorCampo = $(this).val();
-    
-            if (valorCampo === null || valorCampo.trim() === '') {
-                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
-                todosCamposCompletos = false;
-            } else {
-                $(this).removeClass('border-red-500').addClass('border-green-500');
-            }
-        });
-        
-        // Llama a tu función de validación personalizada
-        if (todosCamposCompletos) {
-            this.submit(); // Envía el formulario
-        } else {
-            // Si la validación falla, muestra un mensaje o realiza otra acción
-            alertify.notify('Debe rellenar todos los campos', 'error', 3);
-        }
-    });
-
     fn_RolesUsuario()
 
     function fn_RolesUsuario() {
@@ -127,13 +103,13 @@ jQuery(function($) {
                         // Crear una nueva fila
                         if (parseInt(obj.idSubMenu) == 1){
 
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-900 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-800 rounded-xl">
                             <input disabled checked id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
 
                         }else{
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-900 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-800 rounded-xl">
                             <input id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
@@ -151,5 +127,115 @@ jQuery(function($) {
             }
         });
     }
+
+    $('#registrarUsuarios').on('click', function () {
+        let todosCamposCompletos = true;
+
+        let apellidoPaternoUsu = $('#apellidoPaternoUsu').val();
+        let apellidoMaternoUsu = $('#apellidoMaternoUsu').val();
+        let nombresUsu = $('#nombresUsu').val();
+        let dniUsu = $('#dniUsu').val();
+        let celularUsu = $('#celularUsu').val();
+        let direccionUsu = $('#direccionUsu').val();
+        let tipoUsu = $('#tipoUsu').val();
+        let sexoUsu = $("input[name='sexoUsu']:checked").val();
+        let emailUsu = $('#emailUsu').val();
+        let usernameUsu = $('#usernameUsu').val();
+        let passwordUsu = $('#passwordUsu').val();
+        let rutaPerfilUsu = $('#rutaPerfilUsu').val();
+
+        $('#registroForm .validarCampo').each(function() {
+            let valorCampo = $(this).val();
     
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $(this).removeClass('border-red-500').addClass('border-green-500');
+            }
+        });
+        console.log(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
+        // Llama a tu función de validación personalizada
+        if (todosCamposCompletos) {
+            console.log(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
+            fn_RegistrarUsuario(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
+        } else {
+            // Si la validación falla, muestra un mensaje o realiza otra acción
+            alertify.notify('Debe rellenar todos los campos', 'error', 3);
+        }
+    });
+
+    function fn_RegistrarUsuario(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu){
+        $.ajax({
+            url: '/fn_consulta_RegistrarUsuario',
+            method: 'GET',
+            data: {
+                apellidoPaternoUsu: apellidoPaternoUsu,
+                apellidoMaternoUsu: apellidoMaternoUsu,
+                nombresUsu: nombresUsu,
+                dniUsu: dniUsu,
+                celularUsu: celularUsu,
+                direccionUsu: direccionUsu,
+                tipoUsu: tipoUsu,
+                sexoUsu: sexoUsu,
+                email: emailUsu,
+                username: usernameUsu,
+                password: passwordUsu,
+                rutaPerfilUsu: rutaPerfilUsu,
+            },
+            success: function(response) {
+                let IdUsuarioRetorno = response.idUsuario;
+                console.log("El id :",IdUsuarioRetorno);
+
+                $('#RolesUsuarios input[type="checkbox"]').each(function() {
+                    let idMenu = $(this).attr('data');
+                    let idSubMenu = $(this).attr('id');
+                    let estadoRol = $(this).is(':checked') ? 'si' : 'no';
+
+                    fn_RegistrarUsuarioRoles(IdUsuarioRetorno, idMenu, idSubMenu, estadoRol);
+                });
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_RegistrarUsuarioRoles(IdUsuarioRetorno, idMenu, idSubMenu, estadoRol){
+        $.ajax({
+            url: '/fn_consulta_RegistrarUsuarioRoles',
+            method: 'GET',
+            data: {
+                idUsuario: IdUsuarioRetorno,
+                idMenu: idMenu,
+                idSubMenu: idSubMenu,
+                estadoRol: estadoRol,
+            },
+            success: function(response) {
+                if (response.success) {          
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el usuario correctamente.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
 });

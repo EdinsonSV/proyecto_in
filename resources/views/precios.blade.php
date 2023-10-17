@@ -40,7 +40,7 @@
 </main>
 @endsection
 
-<div class="fixed hidden top-0 left-0 z-20 justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPreciosXPresentacion" id="ModalPreciosXPresentacion">
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPreciosXPresentacion" id="ModalPreciosXPresentacion">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class=" p-4">

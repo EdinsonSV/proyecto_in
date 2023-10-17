@@ -5,9 +5,9 @@
 <main class="p-6 min-h-[calc(100%-160px)]">
     <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
         {{-- Inicia contenedor Registrar Usuario --}}
-        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Registrar Usuario</h4>
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pt-5">Registrar Usuario</h4>
         <div id="registroForm">
-            <div class="p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div class="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                     <label for="apellidoPaternoUsu"
                         class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
@@ -80,46 +80,34 @@
                     <input class="hidden" type="text" value="img/hombre.png" name="rutaPerfilUsu" id="rutaPerfilUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="email" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Correo
+                    <label for="emailUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Correo
                         Electronico</label>
                     <input
                         class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="email" name="email" autocomplete="off" id="email">
+                        type="email" name="emailUsu" autocomplete="off" id="emailUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="username" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombre
-                        de Usuario</label>
-                    <input
-                        class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="username" autocomplete="new-username" id="username">
+                    <label for="usernameUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombre de Usuario</label>
+                    <input class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="usernameUsu" autocomplete="new-username" id="usernameUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center relative">
-                    <label for="password"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Contraseña</label>
+                    <label for="passwordUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Contraseña</label>
                     <div class="w-full relative">
-                        <input
-                            class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            type="password" name="password" autocomplete="new-password" id="password">
+                        <input class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="password" name="passwordUsu" autocomplete="new-password" id="passwordUsu">
                         <div class="flex items-center absolute right-2 top-0 bottom-0">
-                            <label class="" id="passwordMosl"><i
-                                    class="fa-regular fa-eye-slash text-gray-900 dark:text-white cursor-pointer"
-                                    id="passwordMos"></i></label>
-                            <label class="hidden" id="passwordOcul"><i
-                                    class="fa-regular fa-eye text-gray-900 dark:text-white cursor-pointer"
-                                    id="passwordOcu"></i></label>
+                            <label class="" id="passwordMosl"><i class="fa-regular fa-eye-slash text-gray-900 dark:text-white cursor-pointer" id="passwordMos"></i></label>
+                            <label class="hidden" id="passwordOcul"><i class="fa-regular fa-eye text-gray-900 dark:text-white cursor-pointer" id="passwordOcu"></i></label>
                         </div>
                     </div>
                 </div>
             </div>
             {{-- Inicia contenedor Añadir roles de Usuario --}}
-            <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl">
-                <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Añadir Roles de Usuario:</h4>
+            <div class="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl">
+                <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pb-4">Añadir Roles de Usuario:</h4>
                 <div id="RolesUsuarios" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
                 </div>
                 <div class="flex items-center justify-end w-full mt-5">
-                    <input
-                        class="cursor-pointer w-full md:w-64 uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                        type="submit" value="Registrar" autocomplete="off">
+                    <button class="cursor-pointer w-full md:w-64 uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="submit" autocomplete="off" id="registrarUsuarios">Registrar</button>
                 </div>
             </div>
             {{-- Termina contenedor Añadir roles de Usuario --}}

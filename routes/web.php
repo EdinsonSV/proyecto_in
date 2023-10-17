@@ -31,7 +31,6 @@ Route::middleware(['guest'])->group(function () {
 });
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
-Route::post('/register',[RegisterController::class,'register']);
 Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 
 /* ============================== Termina Controladores para Login y Registro de Clientes ============================== */
@@ -53,6 +52,8 @@ Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_Datos
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
 
 Route::get('/fn_consulta_RolesUsuario', [RegisterController::class,'consulta_RolesUsuario']);
+Route::get('/fn_consulta_RegistrarUsuario',[RegisterController::class,'consulta_RegistrarUsuario']);
+Route::get('/fn_consulta_RegistrarUsuarioRoles',[RegisterController::class,'consulta_RegistrarUsuarioRoles']);
 
 Route::get('/fn_consulta_TraerGrupos', [RegistrarClientesController::class,'consulta_TraerGrupos']);
 Route::get('/fn_consulta_TraerZonas', [RegistrarClientesController::class,'consulta_TraerZonas']);

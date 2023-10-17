@@ -53,7 +53,7 @@
 
 {{-- Modal Agregar Pago --}}
 
-<div class="fixed hidden top-0 left-0 z-50 justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalAgregarPagoCliente" id="ModalAgregarPagoCliente">
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalAgregarPagoCliente" id="ModalAgregarPagoCliente">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class="p-4">
@@ -123,7 +123,7 @@
 
 {{-- Modal Agregar Descuento --}}
 
-<div class="fixed flex top-0 left-0 z-50 justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalAgregarDescuentoCliente" id="ModalAgregarDescuentoCliente">
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalAgregarDescuentoCliente" id="ModalAgregarDescuentoCliente">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class="p-4">

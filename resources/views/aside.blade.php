@@ -23,7 +23,7 @@
     </div>
     <section class="min-h-screen bg-gray-50 dark:bg-gray-800" x-data="{ sideBar: false }">
         <div class="hidden" id="usuarioRegistroCli" data-id="{{ auth()->user()->id }}"></div>
-        <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-20 h-full overflow-hidden transition origin-left transform bg-gray-50 dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
+        <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-50 h-full overflow-hidden transition origin-left transform bg-gray-50 dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
             <a href="/home" class="flex items-center justify-center p-4"> 
                 <img src="{{ asset('img/logoBalinsa.png') }}" alt="Logo Balinsa" class="h-12" />
             </a>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="ml-0 transition md:ml-60">
-            <header class="flex items-center justify-between w-full px-4 h-20 border-b border-gray-300 dark:border-gray-700 sticky top-0 bg-gray-50 dark:bg-gray-800 md:relative"> 
+            <header class="z-20 flex items-center justify-between w-full px-4 h-20 border-b border-gray-300 dark:border-gray-700 sticky top-0 bg-gray-50 dark:bg-gray-800 md:relative"> 
                 <button class="block btn btn-light-secondary md:hidden" @click.stop="sideBar = true"> 
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
