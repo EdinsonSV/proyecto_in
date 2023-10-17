@@ -22,11 +22,11 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'apellidoPaternoUsu' => 'nullable',
-            'apellidoMaternoUsu' => 'nullable',
-            'dniUsu' => 'nullable',
-            'celularUsu' => 'nullable',
-            'direccionUsu' => 'nullable',
+            'apellidoPaternoUsu' => 'required',
+            'apellidoMaternoUsu' => 'required',
+            'dniUsu' => 'required',
+            'celularUsu' => 'required',
+            'direccionUsu' => 'required',
             'nombresUsu' => 'required|string',
             'tipoUsu' => 'required|string',
             'sexoUsu' => 'required|string',

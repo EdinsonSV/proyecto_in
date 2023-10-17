@@ -18,8 +18,11 @@ class RegisterController extends Controller
     }
 
     public function register(RegisterRequest $request){
-        $user = User::create($request->validated());
-
-        return redirect('/register')->with('success','Usuario creado correctamente');
+        try {
+            $user = User::create($request->validated());
+            return redirect('/register')->with('success', 'Se registró el usuario correctamente.');
+        } catch (\Exception $e) {
+            return redirect('/register')->withErrors(['error' => 'Hubo un error al registrar el usuario.']);
+        }
     }
 }
