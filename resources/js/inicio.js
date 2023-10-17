@@ -3,7 +3,7 @@ window.$ = jQuery;
 
 jQuery(function($) {
     
-    declarar_especies();
+    fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
     setInterval(fn_traerDatosEnTiempoReal, 2000);
 
@@ -22,7 +22,7 @@ jQuery(function($) {
 
     /* ============ Funciones ============ */
 
-    function declarar_especies(){
+    function fn_declarar_especies(){
         $.ajax({
             url: '/fn_consulta_DatosEspecie',
             method: 'GET',

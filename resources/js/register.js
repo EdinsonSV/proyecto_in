@@ -106,4 +106,50 @@ jQuery(function($) {
             alertify.notify('Debe rellenar todos los campos', 'error', 3);
         }
     });
+
+    fn_RolesUsuario()
+
+    function fn_RolesUsuario() {
+        $.ajax({
+            url: '/fn_consulta_RolesUsuario',
+            method: 'GET',
+            success: function (response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let rolesUsuario = $('#RolesUsuarios');
+                    rolesUsuario.empty();
+                    let nuevaFila = ""
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function (obj) {
+                        // Crear una nueva fila
+                        if (parseInt(obj.idSubMenu) == 1){
+
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-900 rounded-xl">
+                            <input disabled checked id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
+                            </div>`);
+
+                        }else{
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-900 rounded-xl">
+                            <input id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
+                            </div>`);
+                        }
+
+                        rolesUsuario.append(nuevaFila);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
+    
 });

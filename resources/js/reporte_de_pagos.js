@@ -152,4 +152,138 @@ jQuery(function ($) {
         });
     }
 
+    fn_declarar_especies()
+
+    function fn_declarar_especies(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectPresentacion = $('#presentacionAgregarDescuentoCliente');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idAgregarDescuentoCliente').on('input', function () {
+        let inputAgregarDescuentoCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
+        contenedorClientes.empty();
+
+        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
+            fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
+
+        // Realiza la solicitud AJAX para obtener sugerencias
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarDescuento',
+            method: 'GET',
+            data: {
+                idAgregarDescuento: inputAgregarDescuentoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idAgregarDescuentoCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedIdClienteAgregarDescuentoCliente').attr("value", obj.idCliente);
+                            $('#selectedCodigoCliAgregarDescuentoCliente').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $('#valorAgregarDescuentoCliente').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+    
+        // Elimina todos los caracteres excepto un punto decimal
+        inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+        // Verifica si ya hay un punto decimal presente
+        if (inputValue.indexOf('.') !== -1) {
+            // Si ya hay un punto, elimina los puntos adicionales
+            inputValue = inputValue.replace(/(\..*)\./g, '$1');
+        }
+    
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });
+
+    $('#registrar_agregarDescuento_submit').on('click', function (e) {
+        $('#ModalAgregarDescuentoCliente').addClass('flex');
+        $('#ModalAgregarDescuentoCliente').removeClass('hidden');
+        $('#idAgregarDescuentoCliente').focus();
+    });
+
+    $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalAgregarDescuentoCliente').addClass('hidden');
+            $('#ModalAgregarDescuentoCliente').removeClass('flex');
+        }
+    });
+
 })
