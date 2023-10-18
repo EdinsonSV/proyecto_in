@@ -7,12 +7,19 @@
         {{-- Inicia contenedor Precios por Presentación --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Precios por Presentación</h4>
         <div class="overflow-x-auto m-5 mt-0" id="DivPreciosXPresentacion">
-            <div class="flex justify-between items-center relative w-full mb-5">
-                <div class="flex max-w-xs w-full">
+            <div class="flex justify-between items-center relative flex-col gap-4 lg:flex-row mb-5">
+                <div class="flex w-full lg:max-w-xs">
                     <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         <i class='bx bxs-user-circle text-xl'></i>
                     </span>
-                    <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarClientePrecios" autocomplete="off" id="filtrarClientePrecios" placeholder="Ingrese Nombre de Cliente">
+                    <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarClientePrecios" autocomplete="off" id="filtrarClientePrecios" placeholder="Ingrese Nombre de Cliente">
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center w-full lg:max-w-xs lg:h-10">
+                    <div class="h-10 text-sm flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] rounded-t-lg md:rounded-none md:rounded-l-lg">
+                        <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Tipo :</h4>
+                    </div>
+                    <select class="w-full h-10 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg md:rounded-none md:rounded-r-lg" name="tipoPolloConsultarClientes" id="tipoPolloConsultarClientes">
+                    </select>
                 </div>
             </div>
             <div class="relative overflow-x-auto shadow-md rounded-lg">

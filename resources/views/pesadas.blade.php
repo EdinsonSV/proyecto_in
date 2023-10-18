@@ -52,6 +52,7 @@
                     <tr class="h-10">
                         <th class="px-4 hidden">ID</th>
                         <th class="px-4"><h5 class="min-w-max">Nombre de Cliente</h5></th>
+                        <th class="px-4"><h5 class="min-w-max">Especie</h5></th>
                         <th class="px-4"><h5 class="min-w-max">Cantidad</h5></th>
                         <th class="px-4"><h5 class="min-w-max">Peso</h5></th>
                         <th class="px-4"><h5 class="min-w-max">Hora</h5></th>

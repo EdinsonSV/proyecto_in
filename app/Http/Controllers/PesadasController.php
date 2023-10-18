@@ -23,6 +23,7 @@ class PesadasController extends Controller
                     SELECT tb_pesadas.idPesada,
                     tb_pesadas.idProceso,
                     tb_pesadas.idEspecie,
+                    tb_especies_venta.nombreEspecie,
                     tb_pesadas.pesoNetoPes,
                     tb_pesadas.horaPes,
                     tb_pesadas.codigoCli,
@@ -37,7 +38,9 @@ class PesadasController extends Controller
                     tb_pesadas.observacionPes,
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pesadas
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli WHERE tb_clientes.idEstadoCli != 3 
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
+            INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
+            WHERE tb_clientes.idEstadoCli != 3 
             and fechaRegistroPes = DATE(NOW()) ORDER BY fechaRegistroPes DESC, idPesada ASC');
 
             // Devuelve los datos en formato JSON
