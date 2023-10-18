@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Registrar_clientes\TraerGrupos;
-use App\Models\Registrar_clientes\TraerZonas;
-use App\Models\Registrar_clientes\TraerCodigoCli;
-use App\Models\Registrar_clientes\TraerDocumentos;
-use App\Models\Registrar_clientes\RegistrarCliente;
-use App\Models\Registrar_clientes\PrecioXPresentacion;
+use App\Models\RegistrarClientes\TraerGrupos;
+use App\Models\RegistrarClientes\TraerZonas;
+use App\Models\RegistrarClientes\TraerCodigoCli;
+use App\Models\RegistrarClientes\TraerDocumentos;
+use App\Models\RegistrarClientes\RegistrarCliente;
+use App\Models\RegistrarClientes\PrecioXPresentacion;
 
 class RegistrarClientesController extends Controller
 {

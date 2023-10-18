@@ -4,7 +4,7 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    fn_traerGrupos()
+    fn_TraerGrupos()
     fn_TraerZonas()
     fn_TraerCodigoCli()
     fn_TraerDocumentos()
@@ -116,7 +116,7 @@ jQuery(function($) {
         });
     });  
 
-    function fn_traerGrupos(){
+    function fn_TraerGrupos(){
         $.ajax({
             url: '/fn_consulta_TraerGrupos',
             method: 'GET',
@@ -298,7 +298,7 @@ jQuery(function($) {
                     $("#documentoCli").addClass("rounded-r-lg");
                     $("#especialBuscarPorDNI").removeClass("flex");
                     $("#especialBuscarPorDNI").addClass("hidden");
-                    fn_traerGrupos();
+                    fn_TraerGrupos();
                     fn_TraerZonas();
                     fn_TraerCodigoCli();
                     fn_TraerDocumentos();

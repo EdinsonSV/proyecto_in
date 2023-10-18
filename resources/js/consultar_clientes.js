@@ -38,6 +38,7 @@ jQuery(function ($) {
                         }else if(obj.estadoCliente == "INHABILITADO"){
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#B9B9C0] text-xs text-gray-900 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));
                         };
+                        nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
 
                         
                         // Agregar la nueva fila al tbody
@@ -53,4 +54,74 @@ jQuery(function ($) {
             }
         });
     }
+
+    $('#filtrarConsultarClientes, #tipoPolloConsultarClientes').on('input change', function() {
+        var nombreFiltrar = $('#filtrarConsultarClientes').val().toUpperCase(); // Obtiene el valor del campo de filtro de nombre
+        var tipoPolloFiltrar = $('#tipoPolloConsultarClientes').val(); // Obtiene el valor seleccionado del select
+    
+        // Mostrar todas las filas
+        $('#tablaConsultarClientes tbody tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaConsultarClientes tbody tr').each(function() {
+                var nombre = $(this).find('td:eq(2)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    
+        // Filtrar por tipo de pollo si se selecciona un valor en el select
+        if (tipoPolloFiltrar !== "0") {
+            $('#tablaConsultarClientes tbody tr').each(function() {
+                var columna10 = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
+                if (columna10 !== tipoPolloFiltrar) {
+                    $(this).hide();
+                }
+            });
+        }
+    });     
+
+    fn_TraerGruposConsultarClientes()
+
+    function fn_TraerGruposConsultarClientes(){
+        $.ajax({
+            url: '/fn_consulta_TraerGruposConsultarClientes',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectTipoPollo = $('#tipoPolloConsultarClientes');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectTipoPollo.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectTipoPollo.append($('<option>', {
+                        value: '0',
+                        text: 'Todos'
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idGrupo,
+                            text: obj.nombreGrupo
+                        });
+                        selectTipoPollo.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
 });

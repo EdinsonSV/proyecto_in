@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Registrar_clientes;
+namespace App\Models\RegistrarClientes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

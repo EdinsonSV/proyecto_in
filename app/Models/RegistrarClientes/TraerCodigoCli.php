@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Models\Registrar_clientes;
+namespace App\Models\RegistrarClientes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TraerGrupos extends Model
+class TraerCodigoCli extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_grupos'; // Nombre de la tabla
-    protected $primaryKey = 'idGrupo'; // Clave primaria
+    protected $table = 'tb_clientes'; // Nombre de la tabla
+    protected $primaryKey = 'idCliente'; // Clave primaria
     public $timestamps = false; // No se gestionarán marcas de tiempo
 
     protected $fillable = [
-        'idGrupo',
-        'nombreGrupo',
+        'idCliente',
+        'codigoCli',
     ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\ConsultarClientes\TraerGruposConsultarClientes;
 
 class ConsultarClientesController extends Controller
 {
@@ -37,4 +38,20 @@ class ConsultarClientesController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_TraerGruposConsultarClientes(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = TraerGruposConsultarClientes::select('idGrupo', 'nombreGrupo')
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

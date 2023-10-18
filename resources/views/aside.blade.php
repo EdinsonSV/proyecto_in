@@ -2,8 +2,7 @@
 <html lang="es" class="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logousers.ico') }}">
     <title>@yield('titulo')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,6 +22,7 @@
     </div>
     <section class="min-h-screen bg-gray-50 dark:bg-gray-800" x-data="{ sideBar: false }">
         <div class="hidden" id="usuarioRegistroCli" data-id="{{ auth()->user()->id }}"></div>
+        <div class="hidden" id="tipoUsuario" data-id="{{ auth()->user()->tipoUsu }}"></div>
         <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-50 h-full overflow-hidden transition origin-left transform bg-gray-50 dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
             <a href="/home" class="flex items-center justify-center p-4"> 
                 <img src="{{ asset('img/logoBalinsa.png') }}" alt="Logo Balinsa" class="h-12" />
@@ -75,11 +75,11 @@
                 </button>
                 <div class="flex text-sm md:text-base flex-col justify-center md:flex-row">
                     <h3 class="text-gray-900 uppercase dark:text-gray-300 font-semibold md:ml-4" id="mensaje_bienvenida">Buenos dias</h3>
-                    <span class="text-gray-900 dark:text-gray-300 font-semibold">&nbsp;{{auth()->user()->nombresUsu}}</span>
+                    <span class="text-gray-900 dark:text-gray-300 font-semibold text-center">&nbsp;{{auth()->user()->nombresUsu}}</span>
                 </div>
                 <div class="flex items-center">
                         <a href="#" class="ml-4 avatar avatar-sm"> 
-                            <img src="{{ asset(auth()->user()->rutaPerfilUsu) }}" alt="Photo of Praveen Juge" /> 
+                            <img src="{{ asset(auth()->user()->rutaPerfilUsu) }}" alt="Perfil de Usuario"/>
                         </a> 
                     </div>
             </header>

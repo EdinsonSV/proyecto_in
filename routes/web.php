@@ -12,6 +12,7 @@ use App\Http\Controllers\ReportePorClienteController;
 use App\Http\Controllers\ReporteDePagosController;
 use App\Http\Controllers\ConsultarClientesController;
 use App\Http\Controllers\PesadasController;
+use App\Http\Controllers\ZonasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
 Route::get('/consultar_clientes',[ConsultarClientesController::class,'show']);
 Route::get('/pesadas',[PesadasController::class,'show']);
+Route::get('/zonas',[ZonasController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -73,9 +75,13 @@ Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteCont
 Route::get('/fn_consulta_TraerReportePorCliente', [ReportePorClienteController::class,'consulta_TraerReportePorCliente']);
 
 Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class,'consulta_ConsultarClientes']);
+Route::get('/fn_consulta_TraerGruposConsultarClientes', [ConsultarClientesController::class,'consulta_TraerGruposConsultarClientes']);
 
 Route::get('/fn_consulta_TraerClientesAgregarPagoCliente', [ReporteDePagosController::class,'consulta_TraerClientesAgregarPagoCliente']);
 Route::get('/fn_consulta_TraerDeudaTotal', [ReporteDePagosController::class,'consulta_TraerDeudaTotal']);
 Route::get('/fn_consulta_TraerClientesAgregarDescuento', [ReporteDePagosController::class,'consulta_TraerClientesAgregarDescuento']);
 
 Route::get('/fn_consulta_ConsultarPesadas', [PesadasController::class,'consulta_ConsultarPesadas']);
+Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,'consulta_ConsultarPesadasDesdeHasta']);
+
+Route::get('/fn_consulta_ConsultarZonas', [ZonasController::class,'consulta_ConsultarZonas']);

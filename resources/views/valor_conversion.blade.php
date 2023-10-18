@@ -7,8 +7,16 @@
         {{-- Inicia contenedor Valor de Conversión --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Producción Actual</h4>
         <div class="overflow-x-auto m-5 mt-0" id="DivValoresDeConversion">
+            <div class="flex justify-between items-center relative w-full mb-5">
+                <div class="flex max-w-xs w-full">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        <i class='bx bxs-user-circle text-xl'></i>
+                    </span>
+                    <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarValorDeConversion" autocomplete="off" id="filtrarValorDeConversion" placeholder="Ingrese Nombre de Cliente">
+                </div>
+            </div>
             <div class="relative overflow-x-auto shadow-md rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaValorDeConversion">
                     <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                         <tr>
                             <th class="hidden">Id</th>
