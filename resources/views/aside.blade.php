@@ -73,8 +73,8 @@
                         <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <div class="flex">
-                    <h3 class="text-gray-900 uppercase dark:text-gray-300 font-semibold ml-4" id="mensaje_bienvenida">Buenos dias</h3>
+                <div class="flex text-sm md:text-base flex-col justify-center md:flex-row">
+                    <h3 class="text-gray-900 uppercase dark:text-gray-300 font-semibold md:ml-4" id="mensaje_bienvenida">Buenos dias</h3>
                     <span class="text-gray-900 dark:text-gray-300 font-semibold">&nbsp;{{auth()->user()->nombresUsu}}</span>
                 </div>
                 <div class="flex items-center">
@@ -97,7 +97,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- All components in one -->
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/kutty.min.js"></script>
-    <!-- Single component -->
     <!-- Include AlpineJS first -->
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/alpinejs.min.js"></script>
     <!-- And then the single component -->

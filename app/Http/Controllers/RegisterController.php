@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +50,7 @@ class RegisterController extends Controller
             $registrarUsuario->save();
             $idUsuario = $registrarUsuario->id;
     
-            return response()->json(['idUsuario' => $idUsuario], 200);
+            return response()->json(['success' => true, 'idUsuario' => $idUsuario], 200);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

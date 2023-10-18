@@ -7,55 +7,34 @@
         {{-- Inicia contenedor Registrar Usuario --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pt-5">Registrar Usuario</h4>
         <div id="registroForm">
-            <div class="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div class="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="divRegistroForm">
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="apellidoPaternoUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
-                    <input
-                        class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="apellidoPaternoUsu" autocomplete="off" id="apellidoPaternoUsu">
+                    <label for="apellidoPaternoUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
+                    <input class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoPaternoUsu" autocomplete="off" id="apellidoPaternoUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="apellidoMaternoUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Materno</label>
-                    <input
-                        class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="apellidoMaternoUsu" autocomplete="off" id="apellidoMaternoUsu">
+                    <label for="apellidoMaternoUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Materno</label>
+                    <input class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoMaternoUsu" autocomplete="off" id="apellidoMaternoUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="nombresUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombres</label>
-                    <input
-                        class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="nombresUsu" autocomplete="off" id="nombresUsu">
+                    <label for="nombresUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombres</label>
+                    <input class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombresUsu" autocomplete="off" id="nombresUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="dniUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">DNI</label>
-                    <input
-                        class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="dniUsu" autocomplete="off" id="dniUsu">
+                    <label for="dniUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">DNI</label>
+                    <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="dniUsu" autocomplete="off" id="dniUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="celularUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Celular</label>
-                    <input
-                        class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="celularUsu" autocomplete="off" id="celularUsu">
+                    <label for="celularUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Celular</label>
+                    <input class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="celularUsu" autocomplete="off" id="celularUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="direccionUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Direccion</label>
-                    <input
-                        class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text" name="direccionUsu" autocomplete="off" id="direccionUsu">
+                    <label for="direccionUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Direccion</label>
+                    <input class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="direccionUsu" autocomplete="off" id="direccionUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
-                    <label for="direccionUsu"
-                        class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Tipo de Usuario</label>
-                    <select
-                        class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        name="tipoUsu" id="tipoUsu">
+                    <label for="direccionUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Tipo de Usuario</label>
+                    <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipoUsu" id="tipoUsu">
                         <option value="Invitado">Invitado</option>
                         <option value="Administrador">Administrador</option>
                     </select>
@@ -63,28 +42,18 @@
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                     <label class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Sexo</label>
                     <div class="w-full flex gap-4 items-center justify-center flex-wrap md:flex-nowrap">
-                        <input
-                            class="uppercase hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            type="radio" name="sexoUsu" value="M" checked id="sexoUsuM">
-                        <label
-                            class="rounded-lg w-full text-center cursor-pointer uppercase p-2.5 text-gray-900 dark:text-gray-50 border bg-sky-600 font-semibold"
-                            for="sexoUsuM" id="sexoUsuMR">Masculino</label>
+                        <input class="uppercase hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="radio" name="sexoUsu" value="M" checked id="sexoUsuM">
+                        <label class="rounded-lg w-full text-center cursor-pointer uppercase p-2.5 text-gray-900 dark:text-gray-50 border bg-sky-600 font-semibold" for="sexoUsuM" id="sexoUsuMR">Masculino</label>
 
-                        <input
-                            class="uppercase hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            type="radio" name="sexoUsu" value="F" id="sexoUsuF">
-                        <label
-                            class="rounded-lg w-full text-center cursor-pointer uppercase p-2.5 text-gray-900 dark:text-gray-50 border font-semibold"
-                            for="sexoUsuF" id="sexoUsuFR">Femenino</label>
+                        <input class="uppercase hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="radio" name="sexoUsu" value="F" id="sexoUsuF">
+                        <label class="rounded-lg w-full text-center cursor-pointer uppercase p-2.5 text-gray-900 dark:text-gray-50 border font-semibold" for="sexoUsuF" id="sexoUsuFR">Femenino</label>
                     </div>
                     <input class="hidden" type="text" value="img/hombre.png" name="rutaPerfilUsu" id="rutaPerfilUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                     <label for="emailUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Correo
                         Electronico</label>
-                    <input
-                        class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="email" name="emailUsu" autocomplete="off" id="emailUsu">
+                    <input class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="email" name="emailUsu" autocomplete="off" id="emailUsu">
                 </div>
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                     <label for="usernameUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Nombre de Usuario</label>
@@ -102,7 +71,7 @@
                 </div>
             </div>
             {{-- Inicia contenedor Añadir roles de Usuario --}}
-            <div class="p-5 bg-gray-100 dark:bg-gray-800 rounded-xl">
+            <div class="p-5 bg-gray-200 dark:bg-gray-800 rounded-xl">
                 <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pb-4">Añadir Roles de Usuario:</h4>
                 <div id="RolesUsuarios" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
                 </div>

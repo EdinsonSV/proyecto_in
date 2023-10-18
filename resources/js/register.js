@@ -72,13 +72,13 @@ jQuery(function($) {
     });    
     
     $('#passwordMos').on('click', function(){
-        $('#password').attr('type', 'text');
+        $('#passwordUsu').attr('type', 'text');
         $('#passwordMosl').addClass('hidden');
         $('#passwordOcul').removeClass('hidden');
     })
 
     $('#passwordOcu').on('click', function(){
-        $('#password').attr('type', 'password');
+        $('#passwordUsu').attr('type', 'password');
         $('#passwordOcul').addClass('hidden');
         $('#passwordMosl').removeClass('hidden');
     })
@@ -103,13 +103,13 @@ jQuery(function($) {
                         // Crear una nueva fila
                         if (parseInt(obj.idSubMenu) == 1){
 
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-800 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 dark:bg-gray-800 rounded-xl">
                             <input disabled checked id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
 
                         }else{
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 bg-gray-800 dark:bg-gray-800 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 dark:bg-gray-800 rounded-xl">
                             <input id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
@@ -154,10 +154,8 @@ jQuery(function($) {
                 $(this).removeClass('border-red-500').addClass('border-green-500');
             }
         });
-        console.log(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
         // Llama a tu función de validación personalizada
         if (todosCamposCompletos) {
-            console.log(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
             fn_RegistrarUsuario(apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,sexoUsu,emailUsu,usernameUsu,passwordUsu,rutaPerfilUsu);
         } else {
             // Si la validación falla, muestra un mensaje o realiza otra acción
@@ -194,6 +192,25 @@ jQuery(function($) {
 
                     fn_RegistrarUsuarioRoles(IdUsuarioRetorno, idMenu, idSubMenu, estadoRol);
                 });
+
+                if (response.success) {          
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el usuario correctamente.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#divRegistroForm input:not(#rutaPerfilUsu, #sexoUsuM, #sexoUsuF)').val('');
+                    $('#tipoUsu').val($('#tipoUsu option:first').val());
+                    $('#sexoUsuM').prop('checked', true);
+                    $('#sexoUsuM').trigger('change');
+                    $('#RolesUsuarios input[type="checkbox"]').prop('checked', false);
+                    $('#RolesUsuarios input[data="0"]').prop('checked', true);
+                    $('#passwordUsu').attr('type', 'password');
+                    $('#passwordOcul').addClass('hidden');
+                    $('#passwordMosl').removeClass('hidden');
+                }
             },
             error: function(error) {
                 Swal.fire({
@@ -217,15 +234,7 @@ jQuery(function($) {
                 estadoRol: estadoRol,
             },
             success: function(response) {
-                if (response.success) {          
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Se registro el usuario correctamente.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
+                console.log(response);
             },
             error: function(error) {
                 Swal.fire({

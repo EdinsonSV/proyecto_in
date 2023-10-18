@@ -28,7 +28,7 @@ class PreciosController extends Controller
                    tb_precio_x_presentacion.cuartaEspecie,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
-            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli != 3');
+            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli != 3 and tb_clientes.estadoEliminadoCli != 0');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

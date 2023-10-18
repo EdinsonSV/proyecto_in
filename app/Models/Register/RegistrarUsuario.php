@@ -23,6 +23,6 @@ class RegistrarUsuario extends Model
         'rutaPerfilUsu',
         'email',
         'username',
-        'password'
+        'password',
     ];
 }

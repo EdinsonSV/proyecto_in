@@ -38,7 +38,7 @@ Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 /* ============================== Controladores para Mostrar Vistas ============================== */
 
 Route::get('/home',[InicioController::class,'index']);
-Route::get('/register',[RegisterController::class,'show']);
+Route::get('/registrar_usuarios',[RegisterController::class,'show']);
 Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
 Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
