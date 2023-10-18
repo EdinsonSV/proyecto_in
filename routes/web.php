@@ -11,6 +11,7 @@ use App\Http\Controllers\ReniecController;
 use App\Http\Controllers\ReportePorClienteController;
 use App\Http\Controllers\ReporteDePagosController;
 use App\Http\Controllers\ConsultarClientesController;
+use App\Http\Controllers\PesadasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::get('/precios',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
 Route::get('/consultar_clientes',[ConsultarClientesController::class,'show']);
+Route::get('/pesadas',[PesadasController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -75,3 +77,5 @@ Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class
 Route::get('/fn_consulta_TraerClientesAgregarPagoCliente', [ReporteDePagosController::class,'consulta_TraerClientesAgregarPagoCliente']);
 Route::get('/fn_consulta_TraerDeudaTotal', [ReporteDePagosController::class,'consulta_TraerDeudaTotal']);
 Route::get('/fn_consulta_TraerClientesAgregarDescuento', [ReporteDePagosController::class,'consulta_TraerClientesAgregarDescuento']);
+
+Route::get('/fn_consulta_ConsultarPesadas', [PesadasController::class,'consulta_ConsultarPesadas']);

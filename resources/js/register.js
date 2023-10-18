@@ -103,13 +103,13 @@ jQuery(function($) {
                         // Crear una nueva fila
                         if (parseInt(obj.idSubMenu) == 1){
 
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 dark:bg-gray-800 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
                             <input disabled checked id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
 
                         }else{
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 dark:bg-gray-800 rounded-xl">
+                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
                             <input id="${obj.idSubMenu}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
                             </div>`);
@@ -183,17 +183,17 @@ jQuery(function($) {
             },
             success: function(response) {
                 let IdUsuarioRetorno = response.idUsuario;
-                console.log("El id :",IdUsuarioRetorno);
 
-                $('#RolesUsuarios input[type="checkbox"]').each(function() {
-                    let idMenu = $(this).attr('data');
-                    let idSubMenu = $(this).attr('id');
-                    let estadoRol = $(this).is(':checked') ? 'si' : 'no';
+                if (response.success) {       
+                    
+                    $('#RolesUsuarios input[type="checkbox"]').each(function() {
+                        let idMenu = $(this).attr('data');
+                        let idSubMenu = $(this).attr('id');
+                        let estadoRol = $(this).is(':checked') ? 'si' : 'no';
+    
+                        fn_RegistrarUsuarioRoles(IdUsuarioRetorno, idMenu, idSubMenu, estadoRol);
+                    });
 
-                    fn_RegistrarUsuarioRoles(IdUsuarioRetorno, idMenu, idSubMenu, estadoRol);
-                });
-
-                if (response.success) {          
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
