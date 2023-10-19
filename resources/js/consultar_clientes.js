@@ -56,8 +56,8 @@ jQuery(function ($) {
     }
 
     $('#filtrarConsultarClientes, #tipoPolloConsultarClientes').on('input change', function() {
-        var nombreFiltrar = $('#filtrarConsultarClientes').val().toUpperCase(); // Obtiene el valor del campo de filtro de nombre
-        var tipoPolloFiltrar = $('#tipoPolloConsultarClientes').val(); // Obtiene el valor seleccionado del select
+        let nombreFiltrar = $('#filtrarConsultarClientes').val().toUpperCase(); // Obtiene el valor del campo de filtro de nombre
+        let tipoPolloFiltrar = $('#tipoPolloConsultarClientes').val(); // Obtiene el valor seleccionado del select
     
         // Mostrar todas las filas
         $('#tablaConsultarClientes tbody tr').show();
@@ -65,7 +65,7 @@ jQuery(function ($) {
         // Filtrar por nombre si se proporciona un valor
         if (nombreFiltrar) {
             $('#tablaConsultarClientes tbody tr').each(function() {
-                var nombre = $(this).find('td:eq(2)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(2)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
@@ -75,7 +75,7 @@ jQuery(function ($) {
         // Filtrar por tipo de pollo si se selecciona un valor en el select
         if (tipoPolloFiltrar !== "0") {
             $('#tablaConsultarClientes tbody tr').each(function() {
-                var columna10 = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
+                let columna10 = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
                 if (columna10 !== tipoPolloFiltrar) {
                     $(this).hide();
                 }

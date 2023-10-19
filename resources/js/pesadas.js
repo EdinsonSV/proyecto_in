@@ -99,37 +99,35 @@ jQuery(function($) {
     };
 
     $('#filtroNombrePesadas, #filtroCantidadPesadas, #filtrarPesadasEliminadas').on('input change', function() {
-        var nombreFiltrar = $('#filtroNombrePesadas').val().toUpperCase(); // Obtiene el valor del campo de filtro de nombre
-        var cantidadFiltrar = $('#filtroCantidadPesadas').val(); // Obtiene el valor del campo de filtro de cantidad
-        var filtrarEliminadas = $('#filtrarPesadasEliminadas').is(':checked'); // Verifica si el checkbox está marcado
-    
-        // Mostrar todas las filas
+        let nombreFiltrar = $('#filtroNombrePesadas').val().toUpperCase();
+        let cantidadFiltrar = $('#filtroCantidadPesadas').val().replace(/[^0-9]/g, '');
+        let filtrarEliminadas = $('#filtrarPesadasEliminadas').is(':checked');
+
+        $('#filtroCantidadPesadas').val(cantidadFiltrar); // Actualiza el campo de cantidad con el valor filtrado
+
         $('#tablaConsultarPesadas tbody tr').show();
-    
-        // Filtrar por nombre si se proporciona un valor
+
         if (nombreFiltrar) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                var nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
             });
         }
-    
-        // Filtrar por cantidad si se proporciona un valor
+
         if (cantidadFiltrar) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                var cantidad = $(this).find('td:eq(3)').text().trim();
+                let cantidad = $(this).find('td:eq(3)').text().trim();
                 if (cantidad !== cantidadFiltrar) {
                     $(this).hide();
                 }
             });
         }
-    
-        // Filtrar pesadas eliminadas si el checkbox está marcado
+
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                var columna9 = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 9 (índice 8)
+                let columna9 = $(this).find('td:eq(9)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }
@@ -220,6 +218,6 @@ jQuery(function($) {
             }
         });
 
-    };
+    }; 
 
 });

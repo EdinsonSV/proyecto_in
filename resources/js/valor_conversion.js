@@ -146,7 +146,7 @@ jQuery(function($) {
     }
 
     $('#filtrarValorDeConversion').on('input', function() {
-        var nombreFiltrar = $(this).val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+        let nombreFiltrar = $(this).val().toUpperCase(); ; // Obtiene el valor del campo de filtro
 
         // Mostrar todas las filas
         $('#tablaValorDeConversion tbody tr').show();
@@ -154,7 +154,7 @@ jQuery(function($) {
         // Filtrar por nombre si se proporciona un valor
         if (nombreFiltrar) {
             $('#tablaValorDeConversion tbody tr').each(function() {
-                var nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
