@@ -3,10 +3,10 @@
 @section('titulo', 'Reporte por Cliente')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte por Cliente --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte por Cliente</h4>
-        <div class="overflow-x-auto m-5 mt-0 relative" id="DivReportePorCliente">
+        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative" id="DivReportePorCliente">
             <div class="flex flex-col gap-5">
                 <div class="flex justify-center items-start flex-col relative">
                     <label for="idClientePorReporte" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
@@ -43,7 +43,7 @@
             </div>
         </div>
         {{-- Tabla --}}
-        <div class="relative overflow-auto rounded-lg mx-5 max-h-[500px] aside_scrollED">
+        <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-5 max-h-[500px] aside_scrollED">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReportePorCliente">
                 <thead id="headerReportePorCliente" class="bg-blue-600 text-gray-50 sticky top-0">
                     <tr class="h-10">

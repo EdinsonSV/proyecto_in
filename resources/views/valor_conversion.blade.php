@@ -3,10 +3,10 @@
 @section('titulo', 'Valor de Conversión')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Valor de Conversión --}}
-        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Producción Actual</h4>
-        <div class="overflow-x-auto m-5 mt-0" id="DivValoresDeConversion">
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Valor de Conversión</h4>
+        <div class="overflow-x-auto md:mx-5 mt-0 md:mb-5" id="DivValoresDeConversion">
             <div class="flex justify-between items-center relative w-full mb-5">
                 <div class="flex max-w-xs w-full">
                     <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">

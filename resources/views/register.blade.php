@@ -3,11 +3,11 @@
 @section('titulo', 'Registrar Usuario')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Registrar Usuario --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pt-5">Registrar Usuario</h4>
         <div id="registroForm">
-            <div class="p-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="divRegistroForm">
+            <div class="md:p-5 py-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="divRegistroForm">
                 <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                     <label for="apellidoPaternoUsu" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Apellido Paterno</label>
                     <input class="entradaEnMayusculas validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="apellidoPaternoUsu" autocomplete="off" id="apellidoPaternoUsu">
@@ -71,12 +71,12 @@
                 </div>
             </div>
             {{-- Inicia contenedor Añadir roles de Usuario --}}
-            <div class="p-5 bg-gray-200 dark:bg-gray-800 rounded-xl">
-                <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 pb-4">Añadir Roles de Usuario:</h4>
+            <div class="md:p-5 py-5 bg-gray-200 dark:bg-gray-800 rounded-xl">
+                <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 px-5 md:px-0 pb-4">Añadir Roles de Usuario:</h4>
                 <div id="RolesUsuarios" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
                 </div>
-                <div class="flex items-center justify-end w-full mt-5">
-                    <button class="cursor-pointer w-full md:w-64 uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="submit" autocomplete="off" id="registrarUsuarios">Registrar</button>
+                <div class="flex items-center justify-end w-full pt-5 px-5 md:px-0">
+                    <button class="cursor-pointer w-full md:w-64 uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center items-center gap-2" type="submit" autocomplete="off" id="registrarUsuarios"><i class='bx bxs-user-plus text-xl'></i> Registrar</button>
                 </div>
             </div>
             {{-- Termina contenedor Añadir roles de Usuario --}}

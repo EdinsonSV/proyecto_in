@@ -3,11 +3,11 @@
 @section('titulo', 'Consultar Clientes')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Registrar Clientes --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Consultar Clientes</h4>
         {{-- Tabla --}}
-        <div class="flex justify-between items-center relative m-5 mt-0 flex-col gap-4 lg:flex-row">
+        <div class="flex justify-between items-center relative mb-5 md:mx-5 mt-0 flex-col gap-4 lg:flex-row">
             <div class="flex w-full lg:max-w-xs">
                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     <i class='bx bxs-user-circle text-xl'></i>
@@ -22,7 +22,7 @@
                 </select>
             </div>
         </div>
-        <div id ="tblConsultarClientes" class="relative overflow-auto m-5 rounded-lg max-h-[600px] aside_scrollED"> 
+        <div id ="tblConsultarClientes" class="relative overflow-auto md:m-5 rounded-lg max-h-[600px] aside_scrollED"> 
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaConsultarClientes">
                 <thead id="headerConsultarClientes" class="bg-blue-600 text-gray-50 sticky top-0 text-sm">
                     <tr class="h-10">

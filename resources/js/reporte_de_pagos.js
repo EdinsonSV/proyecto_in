@@ -9,6 +9,47 @@ jQuery(function ($) {
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteDePagos').val(fechaHoy);
     $('#fechaHastaReporteDePagos').val(fechaHoy);
+    $('#fechaDesdeCuentaDelCliente').val(fechaHoy);
+    $('#fechaHastaCuentaDelCliente').val(fechaHoy);
+
+    declarar_especies();
+
+    var primerEspecieGlobal = 0
+    var segundaEspecieGlobal = 0
+    var terceraEspecieGlobal = 0
+    var cuartaEspecieGlobal = 0
+
+    var nombrePrimerEspecieGlobal = ""
+    var nombreSegundaEspecieGlobal = ""
+    var nombreTerceraEspecieGlobal = ""
+    var nombreCuartaEspecieGlobal = ""
+
+    function declarar_especies(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    primerEspecieGlobal = parseInt(response[0].idEspecie);
+                    segundaEspecieGlobal  = parseInt(response[1].idEspecie);
+                    terceraEspecieGlobal = parseInt(response[2].idEspecie);
+                    cuartaEspecieGlobal = parseInt(response[3].idEspecie);
+
+                    nombrePrimerEspecieGlobal = response[0].nombreEspecie;
+                    nombreSegundaEspecieGlobal = response[1].nombreEspecie;
+                    nombreTerceraEspecieGlobal = response[2].nombreEspecie;
+                    nombreCuartaEspecieGlobal = response[3].nombreEspecie;
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     $('#valorAgregarPagoCliente').on('input', function () {
         // Obtiene el valor actual del input
@@ -273,7 +314,7 @@ jQuery(function ($) {
         $(this).val(inputValue);
     });
 
-    $('#registrar_agregarDescuento_submit').on('click', function (e) {
+    $('#registrar_agregarDescuento_submit').on('click', function () {
         $('#ModalAgregarDescuentoCliente').addClass('flex');
         $('#ModalAgregarDescuentoCliente').removeClass('hidden');
         $('#idAgregarDescuentoCliente').focus();
@@ -285,5 +326,211 @@ jQuery(function ($) {
             $('#ModalAgregarDescuentoCliente').removeClass('flex');
         }
     });
+
+    $('#registrar_FiltrarPorCliente_submit').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
+    });
+
+    $('#btnRetrocesoCuentaDelCliente').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
+    });
+
+    $('#idCuentaDelCliente').on('input', function () {
+        let inputCuentaDelCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCuentaDelCliente');
+        contenedorClientes.empty();
+
+        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
+            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
+
+        // Realiza la solicitud AJAX para obtener sugerencias
+        $.ajax({
+            url: '/fn_consulta_TraerClientesCuentaDelCliente',
+            method: 'GET',
+            data: {
+                idCuentaDelCliente: inputCuentaDelCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesCuentaDelCliente')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idCuentaDelCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedIdClienteCuentaDelCliente').attr("value", obj.idCliente);
+                            $('#selectedCodigoCliCuentaDelCliente').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $('#btnBuscarCuentaDelCliente').on('click', function () {
+        let fechaDesde = $('#fechaDesdeCuentaDelCliente').val();
+        let fechaHasta = $('#fechaHastaCuentaDelCliente').val();
+        let codigoCliente = $('#selectedCodigoCliCuentaDelCliente').attr("value");
+        fn_TraerCuentaDelCliente(fechaDesde,fechaHasta,codigoCliente);
+    });
+
+    
+    function fn_TraerCuentaDelCliente(fechaDesde,fechaHasta,codigoCliente) {
+        $.ajax({
+            url: '/fn_consulta_TraerCuentaDelCliente',
+            method: 'GET',
+            data: {
+                fechaDesde : fechaDesde,
+                fechaHasta : fechaHasta,
+                codigoCliente : codigoCliente,
+            },
+            success: function (response) {
+                console.log(response);
+                let ventaAnterior = 0;
+                let pagoAnterior = 0;
+                // Verificar si ventaAnterior es null y reemplazarlo con 0
+                if (response.ventaAnterior === null) {
+                    response.ventaAnterior = 0;
+                    ventaAnterior = response.ventaAnterior;
+                }else{
+                    ventaAnterior = response.ventaAnterior
+                }
+
+                if (response.pagoAnterior === null) {
+                    response.pagoAnterior = 0;
+                    pagoAnterior = response.pagoAnterior;
+                }else{
+                    pagoAnterior = response.pagoAnterior
+                }
+    
+                // Crear un objeto para almacenar los datos combinados por fecha
+                var combinedData = {};
+    
+                // Combinar totalesPrimerEspecie
+                response.totalesPrimerEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].totalPesoPrimerEspecie = parseFloat(item.totalPesoPrimerEspecie);
+                    combinedData[fecha].totalDescuentoPrimerEspecie = parseFloat(item.totalDescuentoPrimerEspecie);
+                    combinedData[fecha].totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie);
+                    combinedData[fecha].totalCantidadPrimerEspecie = parseInt(item.totalCantidadPrimerEspecie);
+                });
+    
+                // Combinar totalesSegundaEspecie
+                response.totalesSegundaEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].totalPesoSegundaEspecie = parseFloat(item.totalPesoSegundaEspecie);
+                    combinedData[fecha].totalDescuentoSegundaEspecie = parseFloat(item.totalDescuentoSegundaEspecie);
+                    combinedData[fecha].totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie);
+                    combinedData[fecha].totalCantidadSegundaEspecie = parseInt(item.totalCantidadSegundaEspecie);
+                });
+
+                // Combinar totalesSegundaEspecie
+                response.totalesTerceraEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].totalPesoTerceraEspecie = parseFloat(item.totalPesoTerceraEspecie);
+                    combinedData[fecha].totalDescuentoTerceraEspecie = parseFloat(item.totalDescuentoTerceraEspecie);
+                    combinedData[fecha].totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie);
+                    combinedData[fecha].totalCantidadTerceraEspecie = parseInt(item.totalCantidadTerceraEspecie);
+                });
+
+                // Combinar totalesSegundaEspecie
+                response.totalesCuartaEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].totalPesoCuartaEspecie = parseFloat(item.totalPesoCuartaEspecie);
+                    combinedData[fecha].totalDescuentoCuartaEspecie = parseFloat(item.totalDescuentoCuartaEspecie);
+                    combinedData[fecha].totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie);
+                    combinedData[fecha].totalCantidadCuartaEspecie = parseInt(item.totalCantidadCuartaEspecie);
+                });
+    
+                // Combinar totalDescuentos
+                response.totalDescuentos.forEach(function (item) {
+                    var fecha = item.fechaRegistroDesc;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].totalDescuentoPrimerEspecie = parseFloat(item.totalDescuentoPrimerEspecie);
+                    combinedData[fecha].totalDescuentoSegundaEspecie = parseFloat(item.totalDescuentoSegundaEspecie);
+                    combinedData[fecha].totalDescuentoTerceraEspecie = parseFloat(item.totalDescuentoTerceraEspecie);
+                    combinedData[fecha].totalDescuentoCuartaEspecie = parseFloat(item.totalDescuentoCuartaEspecie);
+                    combinedData[fecha].totalPesoDescuento = parseFloat(item.totalPesoDescuento);
+                    combinedData[fecha].totalVentaDescuento = parseFloat(item.totalVentaDescuento);
+                });
+    
+                // Combinar totalPagos
+                response.totalPagos.forEach(function (item) {
+                    var fecha = item.fechaOperacionPag;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {};
+                    }
+                    combinedData[fecha].pagos = parseFloat(item.pagos);
+                });
+    
+                // Ahora combinedData contiene los datos combinados por fecha
+                fn_CrearTablaCuentaDelCliente(pagoAnterior,ventaAnterior,combinedData);
+    
+                // Puedes iterar sobre combinedData para hacer lo que necesites con los datos combinados.
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
+
+    function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,combinedData){
+        console.log("Llegaron : ",pagoAnterior,ventaAnterior,combinedData);
+
+        Object.keys(combinedData).forEach(function(fecha) {
+            console.log("Fecha:", fecha);
+            // Accede a los datos directamente
+            console.log(combinedData[fecha]);
+            // Y así sucesivamente para otras propiedades
+        });
+    }
 
 })

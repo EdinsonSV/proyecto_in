@@ -3,12 +3,12 @@
 @section('titulo', 'Consultar Zonas')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Consultar Zonas --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Consultar Zonas</h4>
         {{-- Tabla --}}
-        <div class="flex flex-col-reverse lg:flex-row m-5 mt-0">
-            <div id ="tblConsultarZonas" class="relative overflow-auto rounded-lg aside_scrollED w-full">
+        <div class="flex flex-col-reverse lg:flex-row md:mx-5 md:mb-5 mt-0 ">
+            <div id ="tblConsultarZonas" class="relative overflow-auto rounded-lg aside_scrollED max-h-[600px] w-full">
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaConsultarZonas">
                     <thead id="headerConsultarZonas" class="bg-blue-600 text-gray-50 sticky top-0">
                         <tr class="h-10">
@@ -24,16 +24,16 @@
             </div>
             
             <div class="flex flex-col lg:px-5 gap-4">
-                <div class="bg-gray-50 dark:bg-gray-800 w-full lg:w-60 rounded-lg flex flex-col p-5">
+                <div class="bg-gray-200 dark:bg-gray-800 w-full lg:w-60 rounded-lg flex flex-col p-5">
                     <h2 id="contadorZonas" class="text-gray-900 dark:text-gray-100 font-bold text-3xl md:text-4xl">0</h2>
                     <div class="flex row gap-4">
                         <div class="flex flex-col items-start">
-                            <div class="text-gray-500 font-semibold text-xl md:text-xl">Total de Zonas</div>
+                            <div class="text-gray-700 dark:text-gray-400 font-semibold text-xl md:text-xl">Total de Zonas</div>
                         </div>
                     </div>
                 </div>
                 <div class="flex gap-2 justify-between w-full flex-col md:flex-row-reverse mb-5">
-                    <button class="w-full text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg" id="registrar_agregarZona"><i class="fa-regular"></i> Agregar Zona</button>
+                    <button class="w-full text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="registrar_agregarZona"><i class='bx bxs-location-plus text-lg'></i> Agregar Zona</button>
                 </div>
             </div>
         </div>

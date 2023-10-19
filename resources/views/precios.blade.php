@@ -3,10 +3,10 @@
 @section('titulo', 'Precios por Presentación')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Precios por Presentación --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Precios por Presentación</h4>
-        <div class="overflow-x-auto m-5 mt-0" id="DivPreciosXPresentacion">
+        <div class="overflow-x-auto md:mx-5 mt-0 md:mb-5" id="DivPreciosXPresentacion">
             <div class="flex justify-between items-center relative flex-col gap-4 lg:flex-row mb-5">
                 <div class="flex w-full lg:max-w-xs">
                     <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -22,7 +22,7 @@
                     </select>
                 </div>
             </div>
-            <div class="relative overflow-x-auto shadow-md rounded-lg">
+            <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">
                     <thead class="text-xs text-gray-100 uppercase bg-blue-600" id="headerPreciosXPresentacion">
                         <tr>

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-gray-50 dark:bg-neutral-900 overflow-hidden">
+    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-[200] bg-gray-50 dark:bg-neutral-900 overflow-hidden">
         <div class="lds-ellipsis">
             <div class="bg-gray-900 dark:bg-white"></div>
             <div class="bg-gray-900 dark:bg-white"></div>
@@ -20,17 +20,17 @@
             <div class="bg-gray-900 dark:bg-white"></div>
         </div>
     </div>
-    <section class="min-h-screen bg-gray-50 dark:bg-gray-800" x-data="{ sideBar: false }">
+    <section class="min-h-screen bg-gray-100 dark:bg-gray-800" x-data="{ sideBar: false }">
         <div class="hidden" id="usuarioRegistroCli" data-id="{{ auth()->user()->id }}"></div>
         <div class="hidden" id="tipoUsuario" data-id="{{ auth()->user()->tipoUsu }}"></div>
-        <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-50 h-full overflow-hidden transition origin-left transform bg-gray-50 dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
+        <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-50 h-full overflow-hidden transition origin-left transform bg-white dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
             <a href="/home" class="flex items-center justify-center p-4"> 
                 <img src="{{ asset('img/logoBalinsa.png') }}" alt="Logo Balinsa" class="h-12" />
             </a>
             <nav class="overflow-y-scroll h-full aside_scrollED overflow-x-hidden text-sm font-medium text-gray-500 border-t border-gray-300 dark:border-gray-700" aria-label="Main Navigation">
                 @foreach ($menusAgrupados as $menu)
                 @if (!empty($menu['nombreMenu']))
-                    <h2 class="w-max min-w-max pl-4 text-gray-600 dark:text-gray-100 h-4 flex items-center text-xs font-semibold">{{ $menu['nombreMenu'] }}</h2>
+                    <h2 class="w-max min-w-max pl-4 text-gray-600 dark:text-white h-4 flex items-center text-xs font-semibold">{{ $menu['nombreMenu'] }}</h2>
                 @endif
                 <ul class="-ml-px space-y-4 font-medium tracking-wide border-1 border-slate-100 border-x-slate-700 py-8 px-1">
                     @foreach ($menu['submenus'] as $submenu)
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="ml-0 transition md:ml-60">
-            <header class="z-20 flex items-center justify-between w-full px-4 h-20 border-b border-gray-300 dark:border-gray-700 sticky top-0 bg-gray-50 dark:bg-gray-800 md:relative"> 
+            <header class="z-20 flex items-center justify-between w-full px-4 h-20 border-b border-gray-300 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 md:relative"> 
                 <button class="block btn btn-light-secondary md:hidden" @click.stop="sideBar = true"> 
                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -84,13 +84,13 @@
                     </div>
             </header>
             @yield('contenido')
-            <footer class="ml-auto bg-white dark:bg-gray-900">
+            <footer class="ml-auto bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700">
                 <div class="2xl:container mx-auto">
-                    <div class="h-20 border-t border-gray-300 dark:border-gray-700 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Industrias Balinsa.</b></h3></div>
+                    <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Industrias Balinsa.</b></h3></div>
                 </div>
             </footer>
         </div> <!-- Sidebar Backdrop -->
-        <div class="fixed inset-0 z-10 w-screen h-screen bg-black bg-opacity-25 md:hidden" x-show.transition="sideBar" x-cloak></div>
+        <div class="fixed inset-0 z-40 w-screen h-screen bg-black bg-opacity-25 md:hidden" x-show.transition="sideBar" x-cloak></div>
     </section>
 
     <script src="{{ asset('js/alertify.js') }}"></script>

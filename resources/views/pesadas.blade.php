@@ -3,11 +3,11 @@
 @section('titulo', 'Pesadas')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-160px)]">
-    <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-[0_0px_20px_0px_rgba(0,0,0,0.2)]">
+    <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Pesada --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Pesadas</h4>
         {{-- Tabla --}}
-        <div class="flex flex-col gap-4 m-5 my-0">
+        <div class="flex flex-col gap-4 md:mx-5 my-0">
             <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row flex-wrap">
                 <div class="flex flex-col justify-center">
                     <label for="fechaDesdePesadas" class="text-base text-gray-900 dark:text-gray-50">Desde :</label>
@@ -18,7 +18,7 @@
                     <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaHastaPesadas">
                 </div>
                 <div class="flex items-end md:justify-end">
-                    <button class="cursor-pointer w-full md:w-56 uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="submit" autocomplete="off" id="filtrarPesadasDesdeHasta">Buscar</button>
+                    <button class="cursor-pointer w-full uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center items-center gap-2" type="submit" autocomplete="off" id="filtrarPesadasDesdeHasta"><i class='bx bx-search-alt text-lg' ></i>Buscar</button>
                 </div>
             </div>
             <hr>
@@ -40,13 +40,13 @@
                 </div>
             </div>
             @if (auth()->user()->tipoUsu == 'Administrador')
-                <div class="flex items-center justify-end px-5 py-1 rounded-xl">
+                <div class="flex items-center justify-end py-1 rounded-xl">
                     <input id="filtrarPesadasEliminadas" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="filtrarPesadasEliminadas" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Eliminados</label>
                 </div>
             @endif
         </div>
-        <div id ="tblConsultarPesadas" class="relative overflow-auto rounded-lg max-h-[500px] aside_scrollED m-5">
+        <div id ="tblConsultarPesadas" class="relative rounded-lg overflow-auto max-h-[500px] aside_scrollED md:m-5 mt-5">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaConsultarPesadas">
                 <thead id="headerConsultarPesadas" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
                     <tr class="h-10">
