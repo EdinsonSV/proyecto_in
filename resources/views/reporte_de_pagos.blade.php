@@ -12,8 +12,10 @@
         <div id="primerContenedorReporteDePagos" class="">
             <div class="flex justify-between items-center gap-4 flex-col md:flex-row flex-wrap md:mx-5 mt-0 mb-5">
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600" type="submit" autocomplete="off" id="registrar_agregarPago_submit"><i class='bx bx-dollar-circle text-lg'></i><h5 class="min-w-max">Agregar Pago</h5></button>
+                @if (auth()->user()->tipoUsu == 'Administrador')
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600" type="submit" autocomplete="off" id="registrar_agregarDescuento_submit"><i class='bx bxs-discount text-lg'></i><h5 class="min-w-max">Agregar Descuento</h5></button>
-                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrar_FiltrarPorCliente_submit"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Filtrar por Cliente</h5></button>
+                @endif
+                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrar_FiltrarPorCliente_submit"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Estado de Cuenta</h5></button>
             </div>
             <div class="flex justify-start md:items-end gap-x-14 gap-y-4 flex-col md:flex-row flex-wrap md:m-5 mt-0 mb-5">
                 <div class="flex gap-x-14 gap-y-4 flex-col md:flex-row">
@@ -95,15 +97,12 @@
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaCuentaDelCliente">
                     <thead id="headerCuentaDelCliente" class="bg-blue-600 text-gray-50 sticky top-0">
                         <tr class="h-10">
-                            <th class="hidden">Id</th>
-                            <th class="px-4 font-medium">DIA</th>
+                            <th class="px-4 font-medium"><h5 class="min-w-max">DIA</h5></th>
                             <th class="px-4 font-medium"><h5 class="min-w-max">PRESENTACIÓN</h5></th>
                             <th class="px-4 font-medium"><h5 class="min-w-max">CANTIDAD</h5></th>
                             <th class="px-4 font-medium"><h5 class="min-w-max">PESO</h5></th>
                             <th class="px-4 font-medium"><h5 class="min-w-max">TOTAL</h5></th>
-                            @if (auth()->user()->tipoUsu == 'Administrador')
-                                <th class="px-4 font-medium"><h5 class="min-w-max">PRECIO</h5></th>
-                            @endif
+                            <th class="px-4 font-medium"><h5 class="min-w-max">PRECIO</h5></th>
                         </tr>
                     </thead>
                     <tbody id="bodyCuentaDelCliente">

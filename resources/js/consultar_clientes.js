@@ -30,7 +30,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.numDocumentoCli)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.contactoCli)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="max-w-[100px] m-auto px-2 overflow-hidden whitespace-nowrap text-ellipsis" x-data="tooltip()" x-spread="tooltip" x-position="top" title="${obj.direccionCli}">`).text(obj.direccionCli)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="max-w-[100px] m-auto px-2 overflow-hidden whitespace-nowrap text-ellipsis" x-data="tooltip()" x-spread="tooltip" x-position="top" title="${obj.nombreZon}">`).text(obj.nombreZon)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="m-auto px-2 overflow-hidden whitespace-nowrap">`).text(obj.nombreZon)));
                         if (obj.estadoCliente == "ACTIVO"){
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));
                         }else if(obj.estadoCliente == "SUSPENDIDO"){

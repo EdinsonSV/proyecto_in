@@ -168,12 +168,21 @@ jQuery(function($) {
                         // Crear una nueva fila
                         let nuevaFila = ""
                         if (obj.estadoPes == 1){
-                            nuevaFila = $('<tr class="Pesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
+                            if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
+                                nuevaFila = $('<tr class="Pesadas bg-[#2A80BF] border-b dark:border-gray-700 hover:bg-[#2877B0] cursor-pointer text-gray-50">');
+                            }else{
+                                nuevaFila = $('<tr class="Pesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
+                            }
                             // Agregar las celdas con la información
                             nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.cantidadPes)));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.precioPes)));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.nombreEspecie)));
+                            if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.numeroJabasPes+" T")));
+                            }else{
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.cantidadPes)));
+                            }
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.pesoNetoPes)));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.horaPes)));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.fechaRegistroPes)));
                             if (tipoUsuario == 'Administrador'){
@@ -188,8 +197,13 @@ jQuery(function($) {
                                 // Agregar las celdas con la información
                                 nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.cantidadPes)));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.precioPes)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.nombreEspecie)));
+                                if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.numeroJabasPes+" T")));
+                                }else{
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.cantidadPes)));
+                                }
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.pesoNetoPes)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.horaPes)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.fechaRegistroPes)));
                                 if (tipoUsuario == 'Administrador'){

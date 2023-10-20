@@ -688,6 +688,8 @@ jQuery(function ($) {
 
     function construirFilaDatos(item) {
 
+        let tipoUsuario = $('#tipoUsuario').data('id');
+
         let precioPrimerEspecie = 0;
         if (parseFloat(item.totalPesoPrimerEspecie) !== 0) {
             precioPrimerEspecie = (parseFloat(item.totalVentaPrimerEspecie) / parseFloat(item.totalPesoPrimerEspecie)).toFixed(2);
@@ -751,5 +753,15 @@ jQuery(function ($) {
             </tr>
         `;
     }
+
+    $('#minimizarPrecios').on('change',function(){
+        if(this.checked){
+            $('#tablaCuentaDelCliente th:nth-child(6)').hide();
+            $('#tablaCuentaDelCliente td:nth-child(6)').hide();
+        } else {
+            $('#tablaCuentaDelCliente th:nth-child(6)').show();
+            $('#tablaCuentaDelCliente td:nth-child(6)').show();
+        }
+    });
 
 })
