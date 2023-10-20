@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_descuentos', function (Blueprint $table) {
             $table->id('idDescuento');
-            $table->integer('idProceso');
+            $table->string('observacionDesc');
             $table->date('fechaRegistroDesc');
             $table->string('especieDesc', 50);
             $table->decimal('pesoDesc', 8, 3);

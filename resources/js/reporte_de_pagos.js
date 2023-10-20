@@ -409,128 +409,347 @@ jQuery(function ($) {
     });
 
     
-    function fn_TraerCuentaDelCliente(fechaDesde,fechaHasta,codigoCliente) {
+    function fn_TraerCuentaDelCliente(fechaDesde, fechaHasta, codigoCliente) {
         $.ajax({
             url: '/fn_consulta_TraerCuentaDelCliente',
             method: 'GET',
             data: {
-                fechaDesde : fechaDesde,
-                fechaHasta : fechaHasta,
-                codigoCliente : codigoCliente,
+                fechaDesde: fechaDesde,
+                fechaHasta: fechaHasta,
+                codigoCliente: codigoCliente,
             },
             success: function (response) {
                 console.log(response);
-                let ventaAnterior = 0;
-                let pagoAnterior = 0;
-                // Verificar si ventaAnterior es null y reemplazarlo con 0
-                if (response.ventaAnterior === null) {
-                    response.ventaAnterior = 0;
-                    ventaAnterior = response.ventaAnterior;
-                }else{
-                    ventaAnterior = response.ventaAnterior
-                }
-
-                if (response.pagoAnterior === null) {
-                    response.pagoAnterior = 0;
-                    pagoAnterior = response.pagoAnterior;
-                }else{
-                    pagoAnterior = response.pagoAnterior
-                }
+    
+                // Inicializar variables ventaAnterior y pagoAnterior con 0 si son null
+                let ventaAnterior = parseFloat(response.ventaAnterior || 0);
+                let pagoAnterior = parseFloat(response.pagoAnterior || 0);
     
                 // Crear un objeto para almacenar los datos combinados por fecha
                 var combinedData = {};
     
-                // Combinar totalesPrimerEspecie
+                // Inicializar propiedades con 0 en cada iteración
                 response.totalesPrimerEspecie.forEach(function (item) {
                     var fecha = item.fechaRegistroPes;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
+    
                     combinedData[fecha].totalPesoPrimerEspecie = parseFloat(item.totalPesoPrimerEspecie);
-                    combinedData[fecha].totalDescuentoPrimerEspecie = parseFloat(item.totalDescuentoPrimerEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspeciePrimerEspecie = parseFloat(item.totalPesoDescuentoCuartaEspeciePrimerEspecie);
+                    combinedData[fecha].totalCantidadDescuentoPrimerEspecie = parseInt(item.totalCantidadDescuentoPrimerEspecie);
                     combinedData[fecha].totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie);
                     combinedData[fecha].totalCantidadPrimerEspecie = parseInt(item.totalCantidadPrimerEspecie);
                 });
     
-                // Combinar totalesSegundaEspecie
                 response.totalesSegundaEspecie.forEach(function (item) {
                     var fecha = item.fechaRegistroPes;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
+    
                     combinedData[fecha].totalPesoSegundaEspecie = parseFloat(item.totalPesoSegundaEspecie);
-                    combinedData[fecha].totalDescuentoSegundaEspecie = parseFloat(item.totalDescuentoSegundaEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieSegundaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieSegundaEspecie);
+                    combinedData[fecha].totalCantidadDescuentoSegundaEspecie = parseInt(item.totalCantidadDescuentoSegundaEspecie);
                     combinedData[fecha].totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie);
                     combinedData[fecha].totalCantidadSegundaEspecie = parseInt(item.totalCantidadSegundaEspecie);
                 });
-
-                // Combinar totalesSegundaEspecie
+    
                 response.totalesTerceraEspecie.forEach(function (item) {
                     var fecha = item.fechaRegistroPes;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
+    
                     combinedData[fecha].totalPesoTerceraEspecie = parseFloat(item.totalPesoTerceraEspecie);
-                    combinedData[fecha].totalDescuentoTerceraEspecie = parseFloat(item.totalDescuentoTerceraEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieTerceraEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieTerceraEspecie);
+                    combinedData[fecha].totalCantidadDescuentoTerceraEspecie = parseInt(item.totalCantidadDescuentoTerceraEspecie);
                     combinedData[fecha].totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie);
                     combinedData[fecha].totalCantidadTerceraEspecie = parseInt(item.totalCantidadTerceraEspecie);
                 });
-
-                // Combinar totalesSegundaEspecie
+    
                 response.totalesCuartaEspecie.forEach(function (item) {
                     var fecha = item.fechaRegistroPes;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
+    
                     combinedData[fecha].totalPesoCuartaEspecie = parseFloat(item.totalPesoCuartaEspecie);
-                    combinedData[fecha].totalDescuentoCuartaEspecie = parseFloat(item.totalDescuentoCuartaEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieCuartaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieCuartaEspecie);
+                    combinedData[fecha].totalCantidadDescuentoCuartaEspecie = parseInt(item.totalCantidadDescuentoCuartaEspecie);
                     combinedData[fecha].totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie);
                     combinedData[fecha].totalCantidadCuartaEspecie = parseInt(item.totalCantidadCuartaEspecie);
                 });
     
-                // Combinar totalDescuentos
                 response.totalDescuentos.forEach(function (item) {
                     var fecha = item.fechaRegistroDesc;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
-                    combinedData[fecha].totalDescuentoPrimerEspecie = parseFloat(item.totalDescuentoPrimerEspecie);
-                    combinedData[fecha].totalDescuentoSegundaEspecie = parseFloat(item.totalDescuentoSegundaEspecie);
-                    combinedData[fecha].totalDescuentoTerceraEspecie = parseFloat(item.totalDescuentoTerceraEspecie);
-                    combinedData[fecha].totalDescuentoCuartaEspecie = parseFloat(item.totalDescuentoCuartaEspecie);
+    
+                    combinedData[fecha].totalPesoDescuentoCuartaEspeciePrimerEspecie = parseFloat(item.totalPesoDescuentoCuartaEspeciePrimerEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieSegundaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieSegundaEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieTerceraEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieTerceraEspecie);
+                    combinedData[fecha].totalPesoDescuentoCuartaEspecieCuartaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieCuartaEspecie);
                     combinedData[fecha].totalPesoDescuento = parseFloat(item.totalPesoDescuento);
                     combinedData[fecha].totalVentaDescuento = parseFloat(item.totalVentaDescuento);
                 });
     
-                // Combinar totalPagos
                 response.totalPagos.forEach(function (item) {
                     var fecha = item.fechaOperacionPag;
                     if (!combinedData[fecha]) {
-                        combinedData[fecha] = {};
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoCuartaEspeciePrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecieCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0
+                        };
                     }
+    
                     combinedData[fecha].pagos = parseFloat(item.pagos);
                 });
     
                 // Ahora combinedData contiene los datos combinados por fecha
-                fn_CrearTablaCuentaDelCliente(pagoAnterior,ventaAnterior,combinedData);
-    
-                // Puedes iterar sobre combinedData para hacer lo que necesites con los datos combinados.
+                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, combinedData);
             },
             error: function (error) {
                 console.error("ERROR", error);
             }
         });
-    }
+    }    
 
     function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,combinedData){
-        console.log("Llegaron : ",pagoAnterior,ventaAnterior,combinedData);
+        console.log(pagoAnterior, ventaAnterior, combinedData)
+
+        let bodyCuentaDelCliente="";
+        let tbodyCuentaDelCliente = $('#bodyCuentaDelCliente');
+        tbodyCuentaDelCliente.empty();
 
         Object.keys(combinedData).forEach(function(fecha) {
-            console.log("Fecha:", fecha);
-            // Accede a los datos directamente
-            console.log(combinedData[fecha]);
-            // Y así sucesivamente para otras propiedades
+            bodyCuentaDelCliente += construirFilaFecha(fecha);
+            let item = combinedData[fecha]
+            bodyCuentaDelCliente += construirFilaDatos(item);
         });
+
+        tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
+    }
+
+    function construirFilaFecha(fecha) {
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${fecha}</h5></td>
+                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2"></td>
+            </tr>
+        `;
+    }
+
+    function construirFilaDatos(item) {
+
+        let precioPrimerEspecie = 0;
+        if (parseFloat(item.totalPesoPrimerEspecie) !== 0) {
+            precioPrimerEspecie = (parseFloat(item.totalVentaPrimerEspecie) / parseFloat(item.totalPesoPrimerEspecie)).toFixed(2);
+        }
+
+        let precioSegundaEspecie = 0;
+        if (parseFloat(item.totalPesoSegundaEspecie) !== 0) {
+            precioSegundaEspecie = (parseFloat(item.totalVentaSegundaEspecie) / parseFloat(item.totalPesoSegundaEspecie)).toFixed(2);
+        }
+
+        let precioTerceraEspecie = 0;
+        if (parseFloat(item.totalPesoTerceraEspecie) !== 0) {
+            precioTerceraEspecie = (parseFloat(item.totalVentaTerceraEspecie) / parseFloat(item.totalPesoTerceraEspecie)).toFixed(2);
+        }
+
+        let precioCuartaEspecie = 0;
+        if (parseFloat(item.totalPesoCuartaEspecie) !== 0) {
+            precioCuartaEspecie = (parseFloat(item.totalVentaCuartaEspecie) / parseFloat(item.totalPesoCuartaEspecie)).toFixed(2);
+        }
+
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombrePrimerEspecieGlobal}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadPrimerEspecie === 1 ? item.totalCantidadPrimerEspecie + ' Ud.' : item.totalCantidadPrimerEspecie + ' Uds.'}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoPrimerEspecie).toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaPrimerEspecie).toFixed(2)}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioPrimerEspecie}/Kg.</h5></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreSegundaEspecieGlobal}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadSegundaEspecie === 1 ? item.totalCantidadSegundaEspecie + ' Ud.' : item.totalCantidadSegundaEspecie + ' Uds.'}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoSegundaEspecie).toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaSegundaEspecie).toFixed(2)}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioSegundaEspecie}/Kg.</h5></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreTerceraEspecieGlobal}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadTerceraEspecie === 1 ? item.totalCantidadTerceraEspecie + ' Ud.' : item.totalCantidadTerceraEspecie + ' Uds.'}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoTerceraEspecie).toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaTerceraEspecie).toFixed(2)}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioTerceraEspecie}/Kg.</h5></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreCuartaEspecieGlobal}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadCuartaEspecie === 1 ? item.totalCantidadCuartaEspecie + ' Ud.' : item.totalCantidadCuartaEspecie + ' Uds.'}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoCuartaEspecie).toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaCuartaEspecie).toFixed(2)}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioCuartaEspecie}/Kg.</h5></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">DESCUENTO</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadCuartaEspecie === 1 ? item.totalCantidadCuartaEspecie + ' Ud.' : item.totalCantidadCuartaEspecie + ' Uds.'}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoCuartaEspecie).toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaCuartaEspecie).toFixed(2)}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioCuartaEspecie}/Kg.</h5></td>
+            </tr>
+        `;
     }
 
 })
