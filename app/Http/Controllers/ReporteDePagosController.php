@@ -134,6 +134,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('SUM(IF(idEspecie = 1 AND pesoNetoPes < 0.0, pesoNetoPes / valorConversion, 0)) AS totalPesoDescuentoPrimerEspecie')
             ->selectRaw('SUM(IF(idEspecie = 1 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoPrimerEspecie')
             ->selectRaw('SUM(IF(idEspecie = 1 AND pesoNetoPes > 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaPrimerEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 1 AND pesoNetoPes < 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaDescuentoPrimerEspecie')
             ->selectRaw('SUM(IF(idEspecie = 1 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadPrimerEspecie')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)
@@ -151,6 +152,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('SUM(IF(idEspecie = 2 AND pesoNetoPes < 0.0, pesoNetoPes / valorConversion, 0)) AS totalPesoDescuentoSegundaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 2 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoSegundaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 2 AND pesoNetoPes > 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 2 AND pesoNetoPes < 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaDescuentoSegundaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 2 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadSegundaEspecie')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)
@@ -168,6 +170,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('SUM(IF(idEspecie = 3 AND pesoNetoPes < 0.0, pesoNetoPes / valorConversion, 0)) AS totalPesoDescuentoTerceraEspecie')
             ->selectRaw('SUM(IF(idEspecie = 3 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoTerceraEspecie')
             ->selectRaw('SUM(IF(idEspecie = 3 AND pesoNetoPes > 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 3 AND pesoNetoPes < 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaDescuentoTerceraEspecie')
             ->selectRaw('SUM(IF(idEspecie = 3 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadTerceraEspecie')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)
@@ -185,6 +188,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('SUM(IF(idEspecie = 4 AND pesoNetoPes < 0.0, pesoNetoPes / valorConversion, 0)) AS totalPesoDescuentoCuartaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 4 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoCuartaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 4 AND pesoNetoPes > 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaCuartaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 4 AND pesoNetoPes < 0.0, (pesoNetoPes / valorConversion) * precioPes, 0)) AS totalVentaDescuentoCuartaEspecie')
             ->selectRaw('SUM(IF(idEspecie = 4 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadCuartaEspecie')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)
@@ -208,6 +212,16 @@ class ReporteDePagosController extends Controller
             ->whereBetween('fechaRegistroDesc', [$fechaInicio, $fechaFin])
             ->groupBy('fechaRegistroDesc')
             ->get();
+    
+        return $consulta;
+    }
+    
+    public function consulta_DescuentosAnteriores($codigoCli, $fecha) {
+        $consulta = DB::table('tb_descuentos')
+            ->selectRaw('COALESCE(SUM(pesoDesc * precioDesc), 0) AS totalVentaDescuentoAnteriores')
+            ->where('codigoCli', $codigoCli)
+            ->where('fechaRegistroDesc', '<', $fecha)
+            ->value('totalVentaDescuentoAnteriores');
     
         return $consulta;
     }  
@@ -251,6 +265,7 @@ class ReporteDePagosController extends Controller
                 'totalPagos' => $this->consulta_Pagos($codigoCli, $fechaInicio, $fechaFin),
                 'ventaAnterior' => $this->consulta_VentaAnterior($codigoCli, $fechaInicio),
                 'pagoAnterior' => $this->consulta_PagoAnterior($codigoCli, $fechaInicio),
+                'totalVentaDescuentoAnterior' => $this->consulta_DescuentosAnteriores($codigoCli, $fechaInicio),
             ];
     
             // Devuelve los datos en formato JSON

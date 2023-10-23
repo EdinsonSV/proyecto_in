@@ -163,9 +163,15 @@ jQuery(function ($) {
                         let totalCantidadTerceraEspecie = 0;
                         let totalCantidadCuartaEspecie = 0;
 
-                        let ventaTotalCantidadNeto = 0;
-                        let ventaTotalPesoNeto = 0;
-                        let ventaTotalPesoVivo = 0;
+                        let ventaTotalPesoVivoPrimerEspecie = 0;
+                        let ventaTotalPesoVivoSegundaEspecie = 0;
+                        let ventaTotalPesoVivoTerceraEspecie = 0;
+                        let ventaTotalPesoVivoCuartaEspecie = 0;
+
+                        let ventaPesoTotalNeto = 0
+                        let ventaPesoTotalVivo = 0
+                        let ventaCantidadTotal = 0
+
                         bodyReportePorCliente += construirFilaFecha(item);
 
                         response.forEach(function (subItem) {
@@ -178,22 +184,25 @@ jQuery(function ($) {
                                 let valorConversion = parseFloat(subItem.valorConversion).toFixed(3);
 
                                 if (nombreEspecie == nombrePrimerEspecieGlobal) {
-                                    totalPesoPrimerEspecie += parseFloat(pesoNetoPes);
                                     totalCantidadPrimerEspecie += cantidadPes;
+                                    totalPesoPrimerEspecie += parseFloat(pesoNetoPes);
+                                    ventaTotalPesoVivoPrimerEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
                                 } else if (nombreEspecie == nombreSegundaEspecieGlobal) {
-                                    totalPesoSegundaEspecie += parseFloat(pesoNetoPes);
                                     totalCantidadSegundaEspecie += cantidadPes;
+                                    totalPesoSegundaEspecie += parseFloat(pesoNetoPes);
+                                    ventaTotalPesoVivoSegundaEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
                                 } else if (nombreEspecie == nombreTerceraEspecieGlobal) {
-                                    totalPesoTerceraEspecie += parseFloat(pesoNetoPes);
                                     totalCantidadTerceraEspecie += cantidadPes;
+                                    totalPesoTerceraEspecie += parseFloat(pesoNetoPes);
+                                    ventaTotalPesoVivoTerceraEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
                                 } else if (nombreEspecie == nombreCuartaEspecieGlobal) {
-                                    totalPesoCuartaEspecie += parseFloat(pesoNetoPes);
                                     totalCantidadCuartaEspecie += cantidadPes;
+                                    totalPesoCuartaEspecie += parseFloat(pesoNetoPes);
+                                    ventaTotalPesoVivoCuartaEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
                                 }
-
-                                ventaTotalCantidadNeto += cantidadPes;
-                                ventaTotalPesoNeto += parseFloat(pesoNetoPes);
-                                ventaTotalPesoVivo += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                ventaPesoTotalNeto += parseFloat(pesoNetoPes);
+                                ventaPesoTotalVivo += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                ventaCantidadTotal += cantidadPes;
                             }
                         });
                         bodyReportePorCliente += `
@@ -211,9 +220,13 @@ jQuery(function ($) {
                             totalCantidadSegundaEspecie,
                             totalCantidadTerceraEspecie,
                             totalCantidadCuartaEspecie,
-                            ventaTotalCantidadNeto,
-                            ventaTotalPesoNeto,
-                            ventaTotalPesoVivo
+                            ventaTotalPesoVivoPrimerEspecie,
+                            ventaTotalPesoVivoSegundaEspecie,
+                            ventaTotalPesoVivoTerceraEspecie,
+                            ventaTotalPesoVivoCuartaEspecie,
+                            ventaPesoTotalNeto,
+                            ventaPesoTotalVivo,
+                            ventaCantidadTotal
                         );
                     });
 
@@ -255,7 +268,10 @@ jQuery(function ($) {
         let cantidadPes = parseInt(item.cantidadPes)
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
 
-        let promedio = (pesoNetoPes / cantidadPes).toFixed(2);
+        let promedio = 0;
+        if (pesoNetoPes !== 0) {
+            promedio = (pesoNetoPes / cantidadPes).toFixed(2);
+        }
         let observacionPes = item.observacionPes
         observacionPes = ""
 
@@ -281,9 +297,13 @@ jQuery(function ($) {
         totalCantidadSegundaEspecie,
         totalCantidadTerceraEspecie,
         totalCantidadCuartaEspecie,
-        ventaTotalCantidadNeto,
-        ventaTotalPesoNeto,
-        ventaTotalPesoVivo) 
+        ventaTotalPesoVivoPrimerEspecie,
+        ventaTotalPesoVivoSegundaEspecie,
+        ventaTotalPesoVivoTerceraEspecie,
+        ventaTotalPesoVivoCuartaEspecie,
+        ventaPesoTotalNeto,
+        ventaPesoTotalVivo,
+        ventaCantidadTotal)
     {
         let filas = [];
     
@@ -293,7 +313,7 @@ jQuery(function ($) {
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="text-center py-1 px-2"></td>
                         <td class="text-center py-1 px-2"></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL ${nombreEspecie}:</h5></td>
+                        <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</h5></td>
                         <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</h5></td>
                         <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalPeso.toFixed(2)} Kg.</h5></td>
                         <td class="text-center py-1 px-2"></td>
@@ -316,13 +336,42 @@ jQuery(function ($) {
             </tr>
         `);
 
+        function construirFilaVivo(nombreEspecie, totalCantidad, totalPeso) {
+            if (totalCantidad !== 0 || totalPeso !== 0) {       
+                return `
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="text-center py-1 px-2"></td>
+                        <td class="text-center py-1 px-2"></td>
+                        <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</h5></td>
+                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</h5></td>
+                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalPeso.toFixed(2)} Kg.</h5></td>
+                        <td class="text-center py-1 px-2"></td>
+                    </tr>
+                `;
+            } else {
+                return '';
+            }
+        }
+        
+        filas.push(construirFilaVivo(nombrePrimerEspecieGlobal, totalCantidadPrimerEspecie, ventaTotalPesoVivoPrimerEspecie));
+        filas.push(construirFilaVivo(nombreSegundaEspecieGlobal, totalCantidadSegundaEspecie, ventaTotalPesoVivoSegundaEspecie));
+        filas.push(construirFilaVivo(nombreTerceraEspecieGlobal, totalCantidadTerceraEspecie, ventaTotalPesoVivoTerceraEspecie));
+        filas.push(construirFilaVivo(nombreCuartaEspecieGlobal, totalCantidadCuartaEspecie, ventaTotalPesoVivoCuartaEspecie));
+
+        filas.push(`
+            <tr class="bg-white dark:bg-gray-800 h-0.5">
+                <td class="text-center" colspan="2"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+            </tr>
+        `);
+
         filas.push(`
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2"></td>
                 <td class="text-center py-1 px-2"></td>
                 <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL NETO:</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaTotalCantidadNeto === 1 ? `${ventaTotalCantidadNeto} Ud.` : `${ventaTotalCantidadNeto} Uds.`}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaTotalPesoNeto.toFixed(2)} Kg.</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</h5></td>
+                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaPesoTotalNeto.toFixed(2)} Kg.</h5></td>
                 <td class="text-center py-1 px-2"></td>
             </tr>
         `);
@@ -331,9 +380,9 @@ jQuery(function ($) {
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="text-center py-1 px-2"></td>
             <td class="text-center py-1 px-2"></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">PESO VIVO:</h5></td>
-            <td class="text-center py-1 px-2"></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaTotalPesoVivo.toFixed(2)} Kg.</h5></td>
+            <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL VIVO:</h5></td>
+            <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</h5></td>
+            <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaPesoTotalVivo.toFixed(2)} Kg.</h5></td>
             <td class="text-center py-1 px-2"></td>
         </tr>
         `);

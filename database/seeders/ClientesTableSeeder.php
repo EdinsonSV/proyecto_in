@@ -28,7 +28,7 @@ class ClientesTableSeeder extends Seeder
             'horaRegistroCli' => '11:16:00',
             'usuarioRegistroCli' => 1,
             'codigoCli' => 99999,
-            'idGrupo' => 1,
+            'idGrupo' => 2,
             'comentarioCli' => 'Nada',
             'idZona' => 1,
             'estadoEliminadoCli' => '1',

@@ -17,5 +17,6 @@ class TraerDatosEnTiempoReal extends Model
         'pesoNetoPes',
         'cantidadPes',
         'valorConversion',
+        'idGrupo',
     ];
 }

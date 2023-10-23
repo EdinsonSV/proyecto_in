@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('precioDesc', 8, 3)->nullable();
             $table->integer('cantidadDesc')->default(0);
             $table->time('horaRegistroDesc');
+            $table->date('fechaRegistroDescuento');
             $table->timestamps(); // Opcional, agrega campos created_at y updated_at
         });
     }
