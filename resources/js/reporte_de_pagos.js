@@ -697,13 +697,15 @@ jQuery(function ($) {
         let totalSaldoAnterior = ventaAnterior + parseFloat(totalVentaDescuentoAnterior)
         let totalPagos = pagoAnterior
 
-        Object.keys(combinedData).forEach(function(fecha) {
+        Object.keys(combinedData).forEach(function(fecha) { 
             bodyCuentaDelCliente += construirFilaFecha(fecha);
             let item = combinedData[fecha]
+            console.log(totalSaldoAnterior,totalPagos);
             bodyCuentaDelCliente += construirFilaDatos(item);
             bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos);
-            totalPagos += parseFloat(item.pagos)
-            totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuento)
+            totalPagos += parseFloat(item.pagos);
+            let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)
+            totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
         });
 
         tbodyCuentaDelCliente.html(bodyCuentaDelCliente);

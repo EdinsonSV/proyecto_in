@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('codigoTransferenciaPag', 100)->nullable();
             $table->string('observacion', 200)->nullable();
             $table->date('fechaRegistroPag');
+            $table->integer('estadoPago')->default(1);
             $table->timestamps();
         });
     }
