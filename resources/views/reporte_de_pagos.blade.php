@@ -144,6 +144,10 @@
                             </div>
                         </div>
                         <h2 class="text-base font-medium text-gray-900 dark:text-white text-start w-full">Deuda Total : S/ <span id="deudaTotal">0</span></h2>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <h5 for="fechaDesdeCuentaDelCliente" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
+                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaDesdeCuentaDelCliente">
+                        </div>
                         <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">S/</h4>
