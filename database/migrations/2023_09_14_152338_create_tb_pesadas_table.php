@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('estadoPes')->default(1);
             $table->integer('estadoWebPes')->default(0);
             $table->string('observacionPes', 100)->nullable();
+            $table->integer('idGrupo');
             $table->timestamps();
         });
     }

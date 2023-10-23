@@ -18,7 +18,7 @@ class TipoDocumentoSeeder extends Seeder
             ['nombreTipoDocumento' => 'Pasaporte'],
             ['nombreTipoDocumento' => 'Libreta Electoral'],
             ['nombreTipoDocumento' => 'Carnet de Extranjeria'],
-            ['nombreTipoDocumento' => 'Reg. Unico de Contribuyentes'],
+            ['nombreTipoDocumento' => 'RUC'],
         ]);
     }
 }

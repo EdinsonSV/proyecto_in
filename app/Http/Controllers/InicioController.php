@@ -38,7 +38,7 @@ class InicioController extends Controller
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion')
+            $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion', 'idGrupo')
                 ->whereRaw('fechaRegistroPes = CURDATE()')
                 // ->where('fechaRegistroPes', '=', now()->toDateString())
                 ->where('estadoPes', '=', 1)

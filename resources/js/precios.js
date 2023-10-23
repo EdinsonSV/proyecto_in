@@ -56,8 +56,6 @@ jQuery(function($) {
         let idClienteActualizarPrecioXPresentacion = $('#idClientePrecioXPresentacion').attr("value");
         let valorActualizarPrecioXPresentacion = $('#nuevoValorPrecioXPresentacion').val();
         let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
-
-        console.log(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
         
         fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
         $('#ModalPreciosXPresentacion').addClass('hidden');
@@ -90,6 +88,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="2">').text(obj.segundaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="3">').text(obj.terceraEspecie));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="4">').text(obj.cuartaEspecie));
+                        nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
 
                         // Agregar la nueva fila al tbody
                         tbodyPrecios.append(nuevaFila);
@@ -138,8 +137,9 @@ jQuery(function($) {
         });
     }
 
-    $('#filtrarClientePrecios').on('input', function() {
-        let nombreFiltrar = $(this).val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+    $('#filtrarClientePrecios, #tipoPolloPrecios').on('input change', function() {
+        let nombreFiltrar = $('#filtrarClientePrecios').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+        let tipoPolloFiltrar = $('#tipoPolloPrecios').val(); // Obtiene el valor seleccionado del select
 
         // Mostrar todas las filas
         $('#tablaPreciosXPresentacion tbody tr').show();
@@ -153,6 +153,57 @@ jQuery(function($) {
                 }
             });
         }
+
+        // Filtrar por tipo de pollo si se selecciona un valor en el select
+        if (tipoPolloFiltrar !== "0") {
+            $('#tablaPreciosXPresentacion tbody tr').each(function() {
+                let columna = $(this).find('td:eq(6)').text().trim(); // Considerando que la columna es la 10 (índice 9)
+                if (columna !== tipoPolloFiltrar) {
+                    $(this).hide();
+                }
+            });
+        }
     });
+
+    fn_TraerGruposPrecios()
+
+    function fn_TraerGruposPrecios(){
+        $.ajax({
+            url: '/fn_consulta_TraerGruposPrecios',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectTipoPollo = $('#tipoPolloPrecios');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectTipoPollo.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectTipoPollo.append($('<option>', {
+                        value: '0',
+                        text: 'Todos'
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idGrupo,
+                            text: obj.nombreGrupo
+                        });
+                        selectTipoPollo.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 });

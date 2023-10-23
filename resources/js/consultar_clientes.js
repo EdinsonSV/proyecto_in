@@ -33,8 +33,6 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="m-auto px-2 overflow-hidden whitespace-nowrap">`).text(obj.nombreZon)));
                         if (obj.estadoCliente == "ACTIVO"){
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));
-                        }else if(obj.estadoCliente == "SUSPENDIDO"){
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#E8DF13] text-xs text-gray-900 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));
                         }else if(obj.estadoCliente == "INHABILITADO"){
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#B9B9C0] text-xs text-gray-900 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));
                         };
@@ -75,8 +73,8 @@ jQuery(function ($) {
         // Filtrar por tipo de pollo si se selecciona un valor en el select
         if (tipoPolloFiltrar !== "0") {
             $('#tablaConsultarClientes tbody tr').each(function() {
-                let columna10 = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
-                if (columna10 !== tipoPolloFiltrar) {
+                let columna = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
+                if (columna !== tipoPolloFiltrar) {
                     $(this).hide();
                 }
             });

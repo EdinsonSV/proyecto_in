@@ -15,8 +15,7 @@ class EstadosSeeder extends Seeder
     {
         DB::table('tb_estados')->insert([
             ['idEstadoCli' => 1, 'estadoCliente' => 'ACTIVO'],
-            ['idEstadoCli' => 2, 'estadoCliente' => 'SUSPENDIDO'],
-            ['idEstadoCli' => 3, 'estadoCliente' => 'INHABILITADO'],
+            ['idEstadoCli' => 2, 'estadoCliente' => 'INHABILITADO'],
         ]);
     }
 }

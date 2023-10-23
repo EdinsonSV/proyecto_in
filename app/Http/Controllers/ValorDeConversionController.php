@@ -22,10 +22,11 @@ class ValorDeConversionController extends Controller
             $datos = DB::select('
                     SELECT tb_precio_x_presentacion.idPrecio, 
                    tb_precio_x_presentacion.codigoCli, 
-                   tb_precio_x_presentacion.valorConversion,
+                   tb_precio_x_presentacion.valorConversionPrimerEspecie,valorConversionSegundaEspecie,
+                   valorConversionTerceraEspecie,valorConversionCuartaEspecie,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
-            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli != 3 and tb_clientes.idGrupo = 1');
+            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.idGrupo = 1');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -37,13 +38,32 @@ class ValorDeConversionController extends Controller
 
     public function consulta_ActualizarValorConversion(Request $request){
 
-        $idValorConversion = $request->input('idValorConversion');
-        $valorConversion = $request->input('valorConversion');
+        $idClienteActualizarConversion = $request->input('idClienteActualizarConversion');
+        $nuevoValorConversion = $request->input('nuevoValorConversion');
+        $numeroEspecieValorDeConversion = $request->input('numeroEspecieValorDeConversion');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            ActualizarValorConversion::where('idPrecio', $idValorConversion)
-                ->update(['valorConversion' => $valorConversion]);
+            switch ($numeroEspecieValorDeConversion) {
+                case 1:
+                    ActualizarValorConversion::where('idPrecio', $idClienteActualizarConversion)
+                        ->update(['valorConversionPrimerEspecie' => $nuevoValorConversion]);
+                    break;
+                case 2:
+                    ActualizarValorConversion::where('idPrecio', $idClienteActualizarConversion)
+                        ->update(['valorConversionSegundaEspecie' => $nuevoValorConversion]);
+                    break;
+                case 3:
+                    ActualizarValorConversion::where('idPrecio', $idClienteActualizarConversion)
+                        ->update(['valorConversionTerceraEspecie' => $nuevoValorConversion]);
+                    break;
+                case 4:
+                    ActualizarValorConversion::where('idPrecio', $idClienteActualizarConversion)
+                        ->update(['valorConversionCuartaEspecie' => $nuevoValorConversion]);
+                    break;
+                default:
+                    return response()->json(['error' => 'Número de especie inválido'], 400);
+            }
 
             return response()->json(['success' => true], 200);
         }

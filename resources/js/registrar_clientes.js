@@ -51,8 +51,6 @@ jQuery(function($) {
         });
     
         if (todosCamposCompletos) {
-            console.log('noooooooooooo:',apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo)
-            // Llamar a tu función aquí
             fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo);
         } else {
             // Mostrar una alerta de que debe completar los campos obligatorios
@@ -282,6 +280,7 @@ jQuery(function($) {
                 zonaPollo:zonaPollo
             },
             success: function(response) {
+                console.log(response);
                 if (response.success) {
                     Swal.fire({
                         position: 'center',

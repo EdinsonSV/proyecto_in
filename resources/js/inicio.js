@@ -4,8 +4,8 @@ window.$ = jQuery;
 jQuery(function($) {
     
     fn_declarar_especies();
-    fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 2000);
+    //fn_traerDatosEnTiempoReal();
+    //setInterval(fn_traerDatosEnTiempoReal, 2000);
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -60,15 +60,20 @@ jQuery(function($) {
                 let cantidadTerceraEspecie = 0
                 let cantidadCuartaEspecie = 0
 
-                let pesoNetoPrimerEspecie = 0.0
-                let pesoNetoSegundaEspecie = 0.0
-                let pesoNetoTerceraEspecie = 0.0
-                let pesoNetoCuartaEspecie = 0.0
+                let pesoBeneficiadoPrimerEspecie = 0.0
+                let pesoBeneficiadoSegundaEspecie = 0.0
+                let pesoBeneficiadoTerceraEspecie = 0.0
+                let pesoBeneficiadoCuartaEspecie = 0.0
 
-                let pesoVivoPrimerEspecie = 0.0
-                let pesoVivoSegundaEspecie = 0.0
-                let pesoVivoTerceraEspecie = 0.0
-                let pesoVivoCuartaEspecie = 0.0
+                let pesoPolloVivoPrimerEspecie = 0.0
+                let pesoPolloVivoSegundaEspecie = 0.0
+                let pesoPolloVivoTerceraEspecie = 0.0
+                let pesoPolloVivoCuartaEspecie = 0.0
+
+                let pesoTotalPrimerEspecie = 0.0
+                let pesoTotalSegundaEspecie = 0.0
+                let pesoTotalTerceraEspecie = 0.0
+                let pesoTotalCuartaEspecie = 0.0
 
                 let cantidadTotalesEspecie = 0
                 let pesoNetoTotalesEspecie = 0.0

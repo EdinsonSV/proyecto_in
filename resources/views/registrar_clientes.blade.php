@@ -5,7 +5,7 @@
 <main class="p-6 min-h-[calc(100%-160px)]">
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Registrar Clientes --}}
-        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Producción Actual</h4>
+        <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Agregar Cliente</h4>
         <div class="pb-5 md:p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroClientes">
                     <div class="flex flex-col md:flex-row md:items-center md:h-12">
                         <div class="text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] rounded-t-lg md:rounded-none md:rounded-l-lg">

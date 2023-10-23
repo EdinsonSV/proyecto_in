@@ -24,11 +24,20 @@
                                 Nombre de Cliente
                             </th>
                             <th class="p-4 text-center">
-                                Valor de Conversión
+                                POLLO YUGO
+                            </th>
+                            <th class="p-4 text-center">
+                                POLLO PERLA
+                            </th>
+                            <th class="p-4 text-center">
+                                POLLO CHIMU
+                            </th>
+                            <th class="p-4 text-center">
+                                POLLO XX
                             </th>
                         </tr>
                     </thead>
-                    <tbody id="valoresDeConversiones">
+                    <tbody id="bodyValoresDeConversion">
 
                     </tbody>
                 </table>
@@ -49,7 +58,9 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label for="nuevoValorDeConversion" id="idClienteValorDeConversion" class="hidden"></label>
+                        <label id="idEspecieValorDeConversionXActualizar" class="hidden"></label>
                         <p class="text-sm text-gray-300">Nombre del cliente: <span id="nombreClienteValorDeConversion"></span></p>
+                        <p class="text-sm text-gray-900 dark:text-gray-300">Presentación: <span id="nombrePresentacionModal"></span></p>
                         <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoValorDeConversion" autocomplete="off">
                     </div>
                 </div>

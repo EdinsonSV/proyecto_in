@@ -14,6 +14,9 @@ class ActualizarValorConversion extends Model
 
     protected $fillable = [
         'idPrecio',
-        'valorConversion',
+        'valorConversionPrimerEspecie',
+        'valorConversionSegundaEspecie',
+        'valorConversionTerceraEspecie',
+        'valorConversionCuartaEspecie',
     ];
 }

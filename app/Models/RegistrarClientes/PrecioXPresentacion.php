@@ -17,6 +17,9 @@ class PrecioXPresentacion extends Model
         'segundaEspecie',
         'terceraEspecie',
         'cuartaEspecie',
-        'valorConversion',
+        'valorConversionPrimerEspecie',
+        'valorConversionSegundaEspecie',
+        'valorConversionTerceraEspecie',
+        'valorConversionCuartaEspecie',
     ];
 }

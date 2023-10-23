@@ -8,17 +8,22 @@ jQuery(function($) {
 
     /* ============ Eventos ============ */
 
-    $(document).on("dblclick", "#valoresDeConversiones .editValorConversion", function() {
+    $(document).on("dblclick", "#tablaValorDeConversion #bodyValoresDeConversion tr td.valorDeConversionColumna", function() {
         let fila = $(this).closest('tr');
         let idValorConversion = fila.find('td:eq(0)').text();
         let nombrevalorConversion = fila.find('td:eq(1)').text();
-        let valorConversion = fila.find('td:eq(2)').text();
+        let nuevoValorConversion = $(this).text();
+        let idPresentacion = $(this).data('columna');
+        let nombreColumna = $(this).closest('table').find('th:eq(' + (parseInt(idPresentacion)+1) + ')').text();
         
         $('#ModalValorDeConversion').removeClass('hidden');
         $('#ModalValorDeConversion').addClass('flex');
         $('#nombreClienteValorDeConversion').html(nombrevalorConversion);
+        $('#nombrePresentacionModal').html(nombreColumna);
+
+        $('#nuevoValorDeConversion').val(nuevoValorConversion);
         $('#idClienteValorDeConversion').val(idValorConversion);
-        $('#nuevoValorDeConversion').val(valorConversion);
+        $('#idEspecieValorDeConversionXActualizar').attr("value",idPresentacion);
         $('#nuevoValorDeConversion').focus();
     });
 
@@ -32,7 +37,9 @@ jQuery(function($) {
     $('#btnActualizarValorDeConversion').on('click', function () {
         let idClienteActualizarConversion = $('#idClienteValorDeConversion').val();
         let valorActualizarConversion = $('#nuevoValorDeConversion').val();
-        fn_ActualizarValorConversion(idClienteActualizarConversion, valorActualizarConversion);
+        let numeroEspecieValorDeConversion = $('#idEspecieValorDeConversionXActualizar').attr("value");
+
+        fn_ActualizarValorConversion(idClienteActualizarConversion, valorActualizarConversion,numeroEspecieValorDeConversion);
         $('#ModalValorDeConversion').addClass('hidden');
         $('#ModalValorDeConversion').removeClass('flex');
     });
@@ -81,7 +88,7 @@ jQuery(function($) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
                     // Obtener el select
-                    let tbodyConversiones = $('#valoresDeConversiones');
+                    let tbodyConversiones = $('#bodyValoresDeConversion');
                     tbodyConversiones.empty();
 
                     // Iterar sobre los objetos y mostrar sus propiedades
@@ -92,7 +99,10 @@ jQuery(function($) {
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center">').text(obj.valorConversion));
+                        nuevaFila.append($('<td class="px-4 py-2 border-r dark:border-gray-700 text-center valorDeConversionColumna" data-columna="1">').text(obj.valorConversionPrimerEspecie));
+                        nuevaFila.append($('<td class="px-4 py-2 border-r dark:border-gray-700 text-center valorDeConversionColumna" data-columna="2">').text(obj.valorConversionSegundaEspecie));
+                        nuevaFila.append($('<td class="px-4 py-2 border-r dark:border-gray-700 text-center valorDeConversionColumna" data-columna="3">').text(obj.valorConversionTerceraEspecie));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center valorDeConversionColumna" data-columna="4">').text(obj.valorConversionCuartaEspecie));
                         // Agregar la nueva fila al tbody
                         tbodyConversiones.append(nuevaFila);
                     });
@@ -107,20 +117,21 @@ jQuery(function($) {
         });
     }
 
-    function fn_ActualizarValorConversion(idValorConversion,valorConversion){
+    function fn_ActualizarValorConversion(idClienteActualizarConversion,nuevoValorConversion,numeroEspecieValorDeConversion){
         $.ajax({
             url: '/fn_consulta_ActualizarValorConversion',
             method: 'GET',
             data: {
-                idValorConversion: idValorConversion,
-                valorConversion: valorConversion,
+                idClienteActualizarConversion: idClienteActualizarConversion,
+                nuevoValorConversion: nuevoValorConversion,
+                numeroEspecieValorDeConversion: numeroEspecieValorDeConversion,
             },
             success: function(response) {
                 if (response.success) {
-                    $('#valoresDeConversiones tr').each(function () {
+                    $('#bodyValoresDeConversion tr').each(function () {
                         let idFila = $(this).find('td:eq(0)').text();
-                        if (idFila === idValorConversion) {
-                            $(this).find('td:eq(2)').text(parseFloat(valorConversion).toFixed(3));
+                        if (idFila === idClienteActualizarConversion) {
+                            $(this).find('td:eq(' + (parseInt(numeroEspecieValorDeConversion)+1) + ')').text(parseFloat(nuevoValorConversion).toFixed(3));
                             return false;
                         }
                     });                    

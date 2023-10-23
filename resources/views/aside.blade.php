@@ -12,7 +12,7 @@
 </head>
 
 <body class="bg-white dark:bg-gray-800">
-    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-[200] bg-gray-50 dark:bg-neutral-900 overflow-hidden">
+    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-[200] bg-gray-50 dark:bg-gray-900 overflow-hidden">
         <div class="lds-ellipsis">
             <div class="bg-gray-900 dark:bg-white"></div>
             <div class="bg-gray-900 dark:bg-white"></div>

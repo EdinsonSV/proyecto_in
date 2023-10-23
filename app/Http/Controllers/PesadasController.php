@@ -40,7 +40,7 @@ class PesadasController extends Controller
             FROM tb_pesadas
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
             INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
-            WHERE tb_clientes.idEstadoCli != 3 
+            WHERE tb_clientes.idEstadoCli = 1 
             and fechaRegistroPes = DATE(NOW()) ORDER BY fechaRegistroPes DESC, idPesada ASC');
 
             // Devuelve los datos en formato JSON
