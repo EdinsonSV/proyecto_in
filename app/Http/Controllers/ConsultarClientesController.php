@@ -29,7 +29,7 @@ class ConsultarClientesController extends Controller
             FROM tb_clientes 
             INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona 
             INNER JOIN tb_estados on tb_estados.idEstadoCli = tb_clientes.idEstadoCli
-            INNER JOIN tb_tipo_documento on tb_tipo_documento.idTipoDocumento = tb_clientes.tipoDocumentoCli');
+            INNER JOIN tb_tipo_documento on tb_tipo_documento.idTipoDocumento = tb_clientes.tipoDocumentoCli ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

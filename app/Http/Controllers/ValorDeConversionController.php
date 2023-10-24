@@ -24,9 +24,12 @@ class ValorDeConversionController extends Controller
                    tb_precio_x_presentacion.codigoCli, 
                    tb_precio_x_presentacion.valorConversionPrimerEspecie,valorConversionSegundaEspecie,
                    valorConversionTerceraEspecie,valorConversionCuartaEspecie,
+                   tb_zonas.idZona,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
-            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.idGrupo = 2');
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli
+            INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona  
+            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.idGrupo = 2 ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

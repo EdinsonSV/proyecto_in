@@ -21,16 +21,19 @@ class PreciosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-                    SELECT tb_precio_x_presentacion.idPrecio, 
-                   tb_precio_x_presentacion.codigoCli, 
-                   tb_precio_x_presentacion.primerEspecie,
-                   tb_precio_x_presentacion.segundaEspecie,
-                   tb_precio_x_presentacion.terceraEspecie,
-                   tb_precio_x_presentacion.cuartaEspecie,
-                   tb_clientes.idGrupo,
-                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            SELECT tb_precio_x_presentacion.idPrecio, 
+            tb_precio_x_presentacion.codigoCli, 
+            tb_precio_x_presentacion.primerEspecie,
+            tb_precio_x_presentacion.segundaEspecie,
+            tb_precio_x_presentacion.terceraEspecie,
+            tb_precio_x_presentacion.cuartaEspecie,
+            tb_clientes.idGrupo,
+            tb_zonas.idZona,
+            IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
-            JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.estadoEliminadoCli != 0');
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli 
+            INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona 
+            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.estadoEliminadoCli != 0 ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
