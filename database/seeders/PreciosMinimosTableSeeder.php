@@ -14,14 +14,14 @@ class PreciosMinimosTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('tb_precios_minimos')->insert([
-            'primerEspecieVivo' => 5,
-            'segundaEspecieVivo' => 5,
-            'terceraEspecieVivo' => 5,
-            'cuartaEspecieVivo' => 5,
-            'primerEspecieBeneficiado' => 5,
-            'segundaEspecieBeneficiado' => 5,
-            'terceraEspecieBeneficiado' => 5,
-            'cuartaEspecieBeneficiado' => 5,
+            ['idPrecioMinimo' => 1, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO YUGO VIVO"],
+            ['idPrecioMinimo' => 2, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO PERLA VIVO"],
+            ['idPrecioMinimo' => 3, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO CHIMU VIVO"],
+            ['idPrecioMinimo' => 4, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX VIVO"],
+            ['idPrecioMinimo' => 5, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO YUGO BENEFICIADO"],
+            ['idPrecioMinimo' => 6, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO PERLA BENEFICIADO"],
+            ['idPrecioMinimo' => 7, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO CHIMU BENEFICIADO"],
+            ['idPrecioMinimo' => 8, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX BENEFICIADO"],
         ]);
     }
 }

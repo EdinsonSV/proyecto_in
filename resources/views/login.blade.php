@@ -18,12 +18,12 @@
         </div>
     </div>
     <section class="bg-gray-100 dark:bg-gray-900 w-full min-h-screen flex items-center justify-center">
-        <div class="w-[850px]">
-            <div class="flex rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-[850px] w-full">
+            <div class="flex rounded-lg drop-shadow-md overflow-hidden mx-auto max-w-sm lg:max-w-4xl bg-gray-100 dark:bg-gray-800">
                 <div class="hidden lg:block lg:w-1/2 bg-cover"
                     style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')">
                 </div>
-                <div class="w-full p-8 lg:w-1/2">
+                <div class="w-full p-8 lg:w-1/2 ">
                     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white text-center">Hola</h2>
                     <p class="text-xl text-gray-600 text-center">¡Bienvenido!</p>
                     <div class="mt-4 flex items-center justify-between">

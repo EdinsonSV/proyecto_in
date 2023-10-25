@@ -135,14 +135,8 @@ jQuery(function($) {
                             return false;
                         }
                     });                    
-                    
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Se actualizo el valor de conversión correctamente',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+
+                    alertify.notify('Se actualizo el valor de conversión correctamente', 'success', 2);
                 }
             },
             error: function(error) {

@@ -61,13 +61,11 @@ jQuery(function ($) {
                 codigoCliente: codigoCliente,
             },
             success: function (response) {
-                console.log(response);
     
                 // Inicializar variables ventaAnterior y pagoAnterior con 0 si son null
                 let ventaAnterior = parseFloat(response.ventaAnterior || 0);
                 let pagoAnterior = parseFloat(response.pagoAnterior || 0);
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);
-                console.log("Aquiiiiiiii:",totalVentaDescuentoAnterior)
     
                 // Crear un objeto para almacenar los datos combinados por fecha
                 var combinedData = {};
@@ -330,7 +328,6 @@ jQuery(function ($) {
     }    
 
     function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,totalVentaDescuentoAnterior,combinedData){
-        console.log(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData)
 
         let bodyCuentaDelCliente="";
         let tbodyCuentaDelCliente = $('#bodyCuentaDelCliente');
@@ -342,7 +339,6 @@ jQuery(function ($) {
         Object.keys(combinedData).forEach(function(fecha) { 
             bodyCuentaDelCliente += construirFilaFecha(fecha);
             let item = combinedData[fecha]
-            console.log(totalSaldoAnterior,totalPagos);
             bodyCuentaDelCliente += construirFilaDatos(item);
             bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos);
             totalPagos += parseFloat(item.pagos);

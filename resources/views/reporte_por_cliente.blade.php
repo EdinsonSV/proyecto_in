@@ -22,7 +22,7 @@
                     <label id="selectedCodigoCli" class="hidden" val=""></label>
 
                     <!-- Contenedor para las sugerencias -->
-                    <div id="contenedorClientes" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-50 top-full left-0 bg-gray-800 border rounded hidden outline-none">
+                    <div id="contenedorClientes" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
                         <!-- Aquí se mostrarán las sugerencias -->
                     </div>
                 </div>

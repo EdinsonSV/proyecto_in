@@ -280,7 +280,6 @@ jQuery(function($) {
                 zonaPollo:zonaPollo
             },
             success: function(response) {
-                console.log(response);
                 if (response.success) {
                     Swal.fire({
                         position: 'center',

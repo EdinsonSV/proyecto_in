@@ -3,6 +3,7 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 
 jQuery(function ($) {
+
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const fechaHoy = new Date().toISOString().split('T')[0];
 
@@ -15,6 +16,217 @@ jQuery(function ($) {
     $('#fechaAgregarDescuento').val(fechaHoy);
 
     declarar_especies();
+    fn_TraerPagosDelDia();
+
+    /* ============ Eventos ============ */
+
+    // Eventos para abrir y cerrar modal de Agregar Pago
+
+    $('#registrar_agregarPago_submit').on('click', function () {
+        $('#ModalAgregarPagoCliente').addClass('flex');
+        $('#ModalAgregarPagoCliente').removeClass('hidden');
+        $('#idAgregarPagoCliente').focus();
+    });
+
+    $('.cerrarModalAgregarPagoCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalAgregarPagoCliente').addClass('hidden');
+            $('#ModalAgregarPagoCliente').removeClass('flex');
+        }
+    });
+
+    // Eventos para abrir y cerrar modal de Agregar Descuento por Kilo
+
+    $('#registrar_agregarDescuento_submit').on('click', function () {
+        $('#ModalAgregarDescuentoCliente').addClass('flex');
+        $('#ModalAgregarDescuentoCliente').removeClass('hidden');
+        $('#idAgregarDescuentoCliente').focus();
+    });
+
+    $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalAgregarDescuentoCliente').addClass('hidden');
+            $('#ModalAgregarDescuentoCliente').removeClass('flex');
+        }
+    });
+
+    // Eventos para mostrar y ocultar interfaz de Cuenta del Cliente
+
+    $('#registrar_FiltrarPorCliente_submit').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
+    });
+
+    $('#btnRetrocesoCuentaDelCliente').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
+    });
+
+    // Evento para registrar Pagos de Clientes
+
+    $('#btnAgregarPagoCliente').on('click', function () {
+        let codigoCliente = $('#selectedCodigoCliAgregarPagoCliente').attr('value');
+        let montoAgregarPagoCliente = $('#valorAgregarPagoCliente').val();
+        let fechaAgregarPagoCliente = $('#fechaAgregarPago').val();
+        let formaDePago = $('#formaDePago').val();
+        let codAgregarPagoCliente = $('#codAgregarPagoCliente').val();
+        let comentarioAgregarPagoCliente = $('#comentarioAgregarPagoCliente').val();
+
+        let todosCamposCompletos = true
+
+        $('#divAgregarPagoCliente .validarCampo').each(function() {
+            let valorCampo = $(this).val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $(this).removeClass('border-red-500').addClass('border-green-500');
+            }
+        });
+    
+        if (todosCamposCompletos) {
+            let valorCampo = parseFloat($('#valorAgregarPagoCliente').val());
+            if (valorCampo > 0){
+                fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente);
+            }else{
+                alertify.notify('El monto no puede ser 0', 'error', 3);
+                $('#valorAgregarPagoCliente').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+            }
+        } else {
+            // Mostrar una alerta de que debe completar los campos obligatorios
+            alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
+        }
+    });
+
+    // Evento para registrar Descuento por Cliente
+
+    $('#btnAgregarDescuentoCliente').on('click', function () {
+        let todosCamposCompletos = true
+
+        let codigoCliente = $('#selectedCodigoCliAgregarDescuentoCliente').attr('value');
+        let pesoAgregarDescuentoCliente = parseFloat($('#valorAgregarDescuentoCliente').val())*-1;
+        let fechaAgregarDescuentoCliente = $('#fechaAgregarDescuento').val();
+        let especieAgregarDescuentoCliente = $('#presentacionAgregarDescuentoCliente').find("option:selected").val();
+        let precioPrimerEspecieDescuento = $('#precioPrimerEspecieDescuento').val();
+        let precioSegundaEspecieDescuento = $('#precioSegundaEspecieDescuento').val();
+        let precioTerceraEspecieDescuento = $('#precioTerceraEspecieDescuento').val();
+        let precioCuartaEspecieDescuento = $('#precioCuartaEspecieDescuento').val();
+
+        let precioAgregarDescuentoCliente = 0
+
+        if (especieAgregarDescuentoCliente == primerEspecieGlobal){
+            precioAgregarDescuentoCliente = precioPrimerEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == segundaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioSegundaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == terceraEspecieGlobal){
+            precioAgregarDescuentoCliente = precioTerceraEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == cuartaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioCuartaEspecieDescuento
+        }
+
+        $('#divAgregarDescuentoCliente .validarCampo').each(function() {
+            let valorCampo = $(this).val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $(this).removeClass('border-red-500').addClass('border-green-500');
+            }
+        });
+    
+        // Validar que especieAgregarDescuentoCliente no sea igual a 0
+        if (especieAgregarDescuentoCliente != "0") {
+            if (todosCamposCompletos) {
+                let valorCampo = parseFloat($('#valorAgregarDescuentoCliente').val());
+                if (valorCampo > 0) {
+                    fn_AgregarDescuentoCliente(codigoCliente, pesoAgregarDescuentoCliente, fechaAgregarDescuentoCliente, especieAgregarDescuentoCliente, precioAgregarDescuentoCliente);
+                } else {
+                    alertify.notify('El peso en Kg no puede ser 0', 'error', 3);
+                    $('#valorAgregarDescuentoCliente').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                }
+            } else {
+                // Mostrar una alerta de que debe completar los campos obligatorios
+                alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
+            }
+        } else {
+            // Mostrar una alerta de que especieAgregarDescuentoCliente no puede ser igual a 0
+            alertify.notify('Debe seleccionar una especie', 'error', 3);
+            $('#presentacionAgregarDescuentoCliente').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }
+    });
+
+    $('#filtrar_pagos_submit').on('click', function () {
+        let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+        let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+        fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+    });
+
+    // Hace aparecer o desaparecer el div para registrar codigo de tranferencia segun sea transferencia o efectivo
+
+    $('#formaDePago').on('change',function() {
+        var selectedOption = $(this).val();
+        if (selectedOption === 'Transferencia') {
+            // Si se selecciona "Transferencia", muestra el div con id "codTrans"
+            $('#DivCodTrans').removeClass('hidden').addClass('flex');
+        } else {
+            // Si se selecciona cualquier otra opción, oculta el div "codTrans"
+            $('#DivCodTrans').removeClass('flex').addClass('hidden');
+        }
+    });
+
+    // Llamar a la función para filtrar clientes en Agregar Pago
+
+    $('#idAgregarPagoCliente').on('input', function () {
+        let inputAgregarPagoCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesAgregarPagoCliente');
+        contenedorClientes.empty();
+
+        if (inputAgregarPagoCliente.length > 1 || inputAgregarPagoCliente != "") {
+            fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    // Llamar a la función para filtrar clientes en Agregar Descuento por Kg
+
+    $('#idAgregarDescuentoCliente').on('input', function () {
+        let inputAgregarDescuentoCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
+        contenedorClientes.empty();
+
+        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
+            fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    // Llamar a la función para filtrar clientes en Cuenta de Cliente
+
+    $('#idCuentaDelCliente').on('input', function () {
+        let inputCuentaDelCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCuentaDelCliente');
+        contenedorClientes.empty();
+
+        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
+            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    /* ============ Termina Eventos ============ */
+
+
+    /* ============ Funciones ============ */
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -43,167 +255,7 @@ jQuery(function ($) {
                     nombreSegundaEspecieGlobal = response[1].nombreEspecie;
                     nombreTerceraEspecieGlobal = response[2].nombreEspecie;
                     nombreCuartaEspecieGlobal = response[3].nombreEspecie;
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
 
-    $('#valorAgregarPagoCliente').on('input', function () {
-        // Obtiene el valor actual del input
-        let inputValue = $(this).val();
-    
-        // Elimina todos los caracteres excepto un punto decimal
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
-    
-        // Verifica si ya hay un punto decimal presente
-        if (inputValue.indexOf('.') !== -1) {
-            // Si ya hay un punto, elimina los puntos adicionales
-            inputValue = inputValue.replace(/(\..*)\./g, '$1');
-        }
-    
-        // Establece el valor limpio en el input
-        $(this).val(inputValue);
-    });
-
-    $('#formaDePago').on('change',function() {
-        var selectedOption = $(this).val();
-        if (selectedOption === 'Transferencia') {
-            // Si se selecciona "Transferencia", muestra el div con id "codTrans"
-            $('#DivCodTrans').removeClass('hidden').addClass('flex');
-        } else {
-            // Si se selecciona cualquier otra opción, oculta el div "codTrans"
-            $('#DivCodTrans').removeClass('flex').addClass('hidden');
-        }
-    });
-
-    $('#idAgregarPagoCliente').on('input', function () {
-        let inputAgregarPagoCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesAgregarPagoCliente');
-        contenedorClientes.empty();
-
-        if (inputAgregarPagoCliente.length > 1 || inputAgregarPagoCliente != "") {
-            fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente);
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    $('#registrar_agregarPago_submit').on('click', function (e) {
-        $('#ModalAgregarPagoCliente').addClass('flex');
-        $('#ModalAgregarPagoCliente').removeClass('hidden');
-        $('#idAgregarPagoCliente').focus();
-    });
-
-    $('.cerrarModalAgregarPagoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarPagoCliente').addClass('hidden');
-            $('#ModalAgregarPagoCliente').removeClass('flex');
-        }
-    });
-
-    function fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente) {
-
-        // Realiza la solicitud AJAX para obtener sugerencias
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
-            method: 'GET',
-            data: {
-                inputAgregarPagoCliente: inputAgregarPagoCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesAgregarPagoCliente')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idAgregarPagoCliente').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdClienteAgregarPagoCliente').attr("value", obj.idCliente);
-                            $('#selectedCodigoCliAgregarPagoCliente').attr("value", obj.codigoCli);
-                            fn_TraerDeudaTotal(obj.codigoCli)
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
-
-    function fn_TraerDeudaTotal(codigoCliente){
-        $.ajax({
-            url: '/fn_consulta_TraerDeudaTotal',
-            method: 'GET',
-            data:{
-                codigoCliente:codigoCliente,
-            },
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-
-                    // Obtener el select
-                    let inputDeudaTotal = $('#deudaTotal');
-                    inputDeudaTotal.empty();
-
-                    let deudaTotal = 0
-                    let cantidadPagos = 0
-
-                    deudaTotal = parseFloat(response[0].deudaTotal);
-                    cantidadPagos = parseFloat(response[0].cantidadPagos);
-
-                    let Total = deudaTotal - cantidadPagos
-
-                    // Actualizar los elementos en la página con los valores
-                    $('#deudaTotal').html(Total);
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    fn_declarar_especies()
-
-    function fn_declarar_especies(){
-        $.ajax({
-            url: '/fn_consulta_DatosEspecie',
-            method: 'GET',
-            success: function(response) {
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
                     // Obtener el select
                     let selectPresentacion = $('#presentacionAgregarDescuentoCliente');
                     
@@ -237,47 +289,33 @@ jQuery(function ($) {
         });
     }
 
-    $('#idAgregarDescuentoCliente').on('input', function () {
-        let inputAgregarDescuentoCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
-        contenedorClientes.empty();
+    function fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente) {
 
-        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
-            fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
-
-        // Realiza la solicitud AJAX para obtener sugerencias
         $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarDescuento',
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
             method: 'GET',
             data: {
-                idAgregarDescuento: inputAgregarDescuentoCliente,
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
             },
             success: function (response) {
                 // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente')
+                let contenedorClientes = $('#contenedorClientesAgregarPagoCliente')
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
 
                         // Maneja el clic en la sugerencia
                         suggestion.on("click", function () {
                             // Rellena el campo de entrada con el nombre completo
-                            $('#idAgregarDescuentoCliente').val(obj.nombreCompleto);
+                            $('#idAgregarPagoCliente').val(obj.nombreCompleto);
 
                             // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdClienteAgregarDescuentoCliente').attr("value", obj.idCliente);
-                            $('#selectedCodigoCliAgregarDescuentoCliente').attr("value", obj.codigoCli);
+                            $('#selectedCodigoCliAgregarPagoCliente').attr("value", obj.codigoCli);
+                            fn_TraerDeudaTotal(obj.codigoCli)
 
                             // Oculta las sugerencias
                             contenedorClientes.addClass('hidden');
@@ -299,64 +337,124 @@ jQuery(function ($) {
         });
     };
 
-    $('#valorAgregarDescuentoCliente').on('input', function () {
-        // Obtiene el valor actual del input
-        let inputValue = $(this).val();
+    function fn_TraerDeudaTotal(codigoCliente){
+        $.ajax({
+            url: '/fn_consulta_TraerDeudaTotal',
+            method: 'GET',
+            data:{
+                codigoCliente: codigoCliente,
+            },
+            success: function(response) {
     
-        // Elimina todos los caracteres excepto un punto decimal
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
     
-        // Verifica si ya hay un punto decimal presente
-        if (inputValue.indexOf('.') !== -1) {
-            // Si ya hay un punto, elimina los puntos adicionales
-            inputValue = inputValue.replace(/(\..*)\./g, '$1');
-        }
+                    // Obtener el select
+                    let inputDeudaTotal = $('#deudaTotal');
+                    inputDeudaTotal.empty();
     
-        // Establece el valor limpio en el input
-        $(this).val(inputValue);
-    });
+                    let deudaTotal = parseFloat(response[0].deudaTotal);
+                    let cantidadPagos = parseFloat(response[0].cantidadPagos);
+                    let ventaDescuentos = parseFloat(response[0].ventaDescuentos);
+    
+                    let total = deudaTotal - cantidadPagos + ventaDescuentos;
+    
+                    // Formatear el número con punto y dos decimales
+                    let formateoTotal = total.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    });
+    
+                    // Actualizar los elementos en la página con los valores
+                    $('#deudaTotal').html(formateoTotal);
+    
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }    
 
-    $('#registrar_agregarDescuento_submit').on('click', function () {
-        $('#ModalAgregarDescuentoCliente').addClass('flex');
-        $('#ModalAgregarDescuentoCliente').removeClass('hidden');
-        $('#idAgregarDescuentoCliente').focus();
-    });
+    function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
 
-    $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarDescuentoCliente').addClass('hidden');
-            $('#ModalAgregarDescuentoCliente').removeClass('flex');
-        }
-    });
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarDescuento',
+            method: 'GET',
+            data: {
+                idAgregarDescuento: inputAgregarDescuentoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente')
+                contenedorClientes.empty();
 
-    $('#registrar_FiltrarPorCliente_submit').on('click', function () {
-        $('#primerContenedorReporteDePagos').toggle('flex hidden');
-        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
-        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
-    });
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
 
-    $('#btnRetrocesoCuentaDelCliente').on('click', function () {
-        $('#primerContenedorReporteDePagos').toggle('flex hidden');
-        $('#segundoContenedorReporteDePagos').toggle('flex hidden');
-        $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
-    });
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idAgregarDescuentoCliente').val(obj.nombreCompleto);
 
-    $('#idCuentaDelCliente').on('input', function () {
-        let inputCuentaDelCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesCuentaDelCliente');
-        contenedorClientes.empty();
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoCliAgregarDescuentoCliente').attr("value", obj.codigoCli);
+                            fn_TraerPreciosClienteDescuento(obj.codigoCli)
 
-        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
-            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    function fn_TraerPreciosClienteDescuento(codigoCliente){
+        $.ajax({
+            url: '/fn_consulta_TraerPreciosClienteDescuento',
+            method: 'GET',
+            data:{
+                codigoCliente: codigoCliente,
+            },
+            success: function(response) {
+    
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+    
+                    $('#precioPrimerEspecieDescuento').val(response[0].primerEspecie)
+                    $('#precioSegundaEspecieDescuento').val(response[0].segundaEspecie)
+                    $('#precioTerceraEspecieDescuento').val(response[0].terceraEspecie)
+                    $('#precioCuartaEspecieDescuento').val(response[0].cuartaEspecie)
+    
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }    
 
     function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
 
-        // Realiza la solicitud AJAX para obtener sugerencias
         $.ajax({
             url: '/fn_consulta_TraerClientesCuentaDelCliente',
             method: 'GET',
@@ -372,7 +470,7 @@ jQuery(function ($) {
                 if (Array.isArray(response)) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
 
                         // Maneja el clic en la sugerencia
                         suggestion.on("click", function () {
@@ -380,7 +478,6 @@ jQuery(function ($) {
                             $('#idCuentaDelCliente').val(obj.nombreCompleto);
 
                             // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdClienteCuentaDelCliente').attr("value", obj.idCliente);
                             $('#selectedCodigoCliCuentaDelCliente').attr("value", obj.codigoCli);
 
                             // Oculta las sugerencias
@@ -402,4 +499,184 @@ jQuery(function ($) {
             }
         });
     };
+
+    function fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente){
+        $.ajax({
+            url: '/fn_consulta_AgregarPagoCliente',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                montoAgregarPagoCliente: montoAgregarPagoCliente,
+                fechaAgregarPagoCliente: fechaAgregarPagoCliente,
+                formaDePago:formaDePago,
+                codAgregarPagoCliente:codAgregarPagoCliente,
+                comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el pago correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#divAgregarPagoCliente .validarCampo').each(function() {
+                        $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
+                    });
+
+                    fn_TraerDeudaTotal(codigoCliente)
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_AgregarDescuentoCliente(codigoCliente,pesoAgregarDescuentoCliente,fechaAgregarDescuentoCliente,especieAgregarDescuentoCliente,precioAgregarDescuentoCliente) {
+        $.ajax({
+            url: '/fn_consulta_AgregarDescuentoCliente',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                pesoAgregarDescuentoCliente: pesoAgregarDescuentoCliente,
+                fechaAgregarDescuentoCliente: fechaAgregarDescuentoCliente,
+                especieAgregarDescuentoCliente:especieAgregarDescuentoCliente,
+                precioAgregarDescuentoCliente:precioAgregarDescuentoCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el descuento correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#divAgregarDescuentoCliente .validarCampo').each(function() {
+                        $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
+                    });
+
+                    $('#presentacionAgregarDescuentoCliente').removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
+                    
+                    fn_TraerDeudaTotal(codigoCliente)
+                    $('#ModalAgregarDescuentoCliente').addClass('hidden');
+                    $('#ModalAgregarDescuentoCliente').removeClass('flex');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerPagosDelDia(){
+        $.ajax({
+            url: '/fn_consulta_TraerPagosDelDia',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let tbodyReporteDePagos = $('#bodyReporteDePagos');
+                    tbodyReporteDePagos.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        // Crear una nueva fila
+                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
+                        // Agregar la nueva fila al tbody
+                        tbodyReporteDePagos.append(nuevaFila);
+                    });
+
+                    if (response.length == 0) {
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                    }
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
+        $.ajax({
+            url: '/fn_consulta_TraerPagosFechas',
+            method: 'GET',
+            data:{
+                fechaDesdeTraerPagos:fechaDesdeTraerPagos,
+                fechaHastaTraerPagos:fechaHastaTraerPagos,
+            },
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let tbodyReporteDePagos = $('#bodyReporteDePagos');
+                    tbodyReporteDePagos.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        // Crear una nueva fila
+                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
+                        // Agregar la nueva fila al tbody
+                        tbodyReporteDePagos.append(nuevaFila);
+                    });
+
+                    if (response.length == 0) {
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                    }
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    /* ============ Termina Funciones ============ */
+
 })

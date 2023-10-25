@@ -45,7 +45,7 @@
                                 <th class="p-4 text-center"><h5 class="min-w-max">Observaciones</h5></th>
                             </tr>
                         </thead>
-                        <tbody id="reporteDePagos">
+                        <tbody id="bodyReporteDePagos">
                             <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>
                         </tbody>
                     </table>
@@ -65,11 +65,10 @@
                         </div>
     
                         <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                        <label id="selectedIdClienteCuentaDelCliente" class="hidden" val=""></label>
                         <label id="selectedCodigoCliCuentaDelCliente" class="hidden" val=""></label>
     
                         <!-- Contenedor para las sugerencias -->
-                        <div id="contenedorClientesCuentaDelCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-50 top-full left-0 bg-gray-800 border rounded hidden outline-none">
+                        <div id="contenedorClientesCuentaDelCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
                             <!-- Aquí se mostrarán las sugerencias -->
                         </div>
                     </div>
@@ -125,26 +124,25 @@
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Agregar Pago</h3>
                     </div>
-                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarPagoCliente">
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <label for="idAgregarPagoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
                             <div class="flex max-w-xs w-full">
                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                     <i class='bx bxs-user-circle text-xl'></i>
                                 </span>
-                                <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoCliente" autocomplete="off" id="idAgregarPagoCliente" placeholder="Ingrese Nombre de Cliente">
+                                <input class="validarCampo max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoCliente" autocomplete="off" id="idAgregarPagoCliente" placeholder="Ingrese Nombre de Cliente">
                             </div>
         
                             <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                            <label id="selectedIdClienteAgregarPagoCliente" class="hidden" val=""></label>
                             <label id="selectedCodigoCliAgregarPagoCliente" class="hidden" val=""></label>
         
                             <!-- Contenedor para las sugerencias -->
-                            <div id="contenedorClientesAgregarPagoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-50 top-full left-0 bg-gray-800 border rounded hidden outline-none">
+                            <div id="contenedorClientesAgregarPagoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
                                 <!-- Aquí se mostrarán las sugerencias -->
                             </div>
                         </div>
-                        <h2 class="text-base font-medium text-gray-900 dark:text-white text-start w-full">Deuda Total : S/ <span id="deudaTotal">0</span></h2>
+                        <h2 class="text-base font-medium text-gray-900 dark:text-white text-start w-full">Deuda Total : S/ <span id="deudaTotal">0.00</span></h2>
                         <div class="flex w-full justify-start items-center gap-2">
                             <h5 for="fechaAgregarPago" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
                             <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarPago">
@@ -153,7 +151,7 @@
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">S/</h4>
                             </div>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarPagoCliente" autocomplete="off" id="valorAgregarPagoCliente" value="" placeholder="Ingrese Monto">
+                            <input class="validarCampo validarSoloNumerosTresDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarPagoCliente" autocomplete="off" id="valorAgregarPagoCliente" value="" placeholder="Ingrese Monto">
                         </div>
                         <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
@@ -199,22 +197,21 @@
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Agregar Descuento</h3>
                     </div>
-                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarDescuentoCliente">
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <label for="idAgregarDescuentoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
                             <div class="flex max-w-xs w-full">
                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                     <i class='bx bxs-user-circle text-xl'></i>
                                 </span>
-                                <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarDescuentoCliente" autocomplete="off" id="idAgregarDescuentoCliente" placeholder="Ingrese Nombre de Cliente">
+                                <input class="validarCampo max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarDescuentoCliente" autocomplete="off" id="idAgregarDescuentoCliente" placeholder="Ingrese Nombre de Cliente">
                             </div>
         
                             <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                            <label id="selectedIdClienteAgregarDescuentoCliente" class="hidden" val=""></label>
                             <label id="selectedCodigoCliAgregarDescuentoCliente" class="hidden" val=""></label>
         
                             <!-- Contenedor para las sugerencias -->
-                            <div id="contenedorClientesAgregarDescuentoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-50 top-full left-0 bg-gray-800 border rounded hidden outline-none">
+                            <div id="contenedorClientesAgregarDescuentoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
                                 <!-- Aquí se mostrarán las sugerencias -->
                             </div>
                         </div>
@@ -234,9 +231,13 @@
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Descuento Kg.</h4>
                             </div>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarDescuentoCliente" placeholder="0.0" autocomplete="off" id="valorAgregarDescuentoCliente" value="">
+                            <input class="validarCampo validarSoloNumerosTresDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarDescuentoCliente" placeholder="0.0" autocomplete="off" id="valorAgregarDescuentoCliente" value="">
                         </div>
                     </div>
+                    <input type="text" id="precioPrimerEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioSegundaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioTerceraEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioCuartaEspecieDescuento" class="hidden" value="0.00">
                 </div>
             </div>
             <div class="px-4 pb-4">

@@ -13,14 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_precios_minimos', function (Blueprint $table) {
             $table->id('idPrecioMinimo');
-            $table->integer('primerEspecieVivo');
-            $table->integer('segundaEspecieVivo');
-            $table->integer('terceraEspecieVivo');
-            $table->integer('cuartaEspecieVivo');
-            $table->integer('primerEspecieBeneficiado');
-            $table->integer('segundaEspecieBeneficiado');
-            $table->integer('terceraEspecieBeneficiado');
-            $table->integer('cuartaEspecieBeneficiado');
+            $table->integer('precioMinimo');
+            $table->string('nombreEspeciePrecioMinimo',150);
             $table->timestamps();
         });
     }
