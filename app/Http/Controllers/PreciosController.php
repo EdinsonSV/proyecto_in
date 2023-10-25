@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Precios\ActualizarPreciosXPresentacion;
 use App\Models\Precios\TraerGruposPrecios;
+use App\Models\Precios\ActualizarPreciosMinimos;
 
 class PreciosController extends Controller
 {
@@ -88,6 +89,38 @@ class PreciosController extends Controller
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerPreciosMinimos(Request $request){
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT idPrecioMinimo,
+                    precioMinimo,
+                    nombreEspeciePrecioMinimo
+                    FROM tb_precios_minimos ORDER BY idPrecioMinimo ASC');
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarPrecioMinimo(Request $request)
+    {
+        $idEspecie = $request->input('idEspecie');
+        $precio = $request->input('precio');
+
+        if (Auth::check()) {
+            ActualizarPreciosMinimos::where('idPrecioMinimo', $idEspecie)
+            ->update(['precioMinimo' => $precio]);
+            return response()->json(['success' => true], 200);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

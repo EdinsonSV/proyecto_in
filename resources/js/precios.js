@@ -5,6 +5,7 @@ window.$ = jQuery;
 jQuery(function($) {
 
     fn_TraerPreciosXPresentacion()
+    fn_TraerPreciosMinimos()
 
     /* ============ Eventos ============ */
 
@@ -27,10 +28,40 @@ jQuery(function($) {
         $('#nuevoValorPrecioXPresentacion').focus();
     });
 
+    /* ============ Evento para abrir modal y editar precios de pollos ============ */
+
+    $(document).on("dblclick", ".divPreciosMinimos .preciosMinimosEspecies", function() {
+        // Obtén el precio del input actual
+        let inputPrecioMinimo = $(this).val();
+        
+        // Obtén el valor del label dentro del contenedor actual
+        let idEspecie = $(this).siblings("label").attr("value");
+        
+        $('#ModalPrecios').removeClass('hidden');
+        $('#ModalPrecios').addClass('flex');
+        $('#agregarPrecios').val(inputPrecioMinimo);
+        $('#idEspeciePrecioMinimo').attr("value",idEspecie);
+    });
+
+    $('#btnGuardarPrecios').on('click', function () {
+        let idEspecie = $('#idEspeciePrecioMinimo').attr("value");
+        let precio = $('#agregarPrecios').val();
+        console.log(idEspecie)
+        console.log(precio)
+        fn_ActualizarPrecioMinimo(idEspecie, precio);
+    });    
+
     $('.cerrarModalPreciosXPresentacion, .modal-content').on('click', function (e) {
         if (e.target === this) {
             $('#ModalPreciosXPresentacion').addClass('hidden');
             $('#ModalPreciosXPresentacion').removeClass('flex');
+        }
+    });
+
+    $('.cerrarModalPrecios').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalPrecios').addClass('hidden');
+            $('#ModalPrecios').removeClass('flex');
         }
     });
 
@@ -62,7 +93,71 @@ jQuery(function($) {
         $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
+    $('.preciosMinimosPollosRegex').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+        
+        // Elimina todos los caracteres excepto un punto decimal
+        inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+        // Divide el valor en dos partes, antes y después del punto decimal
+        const parts = inputValue.split('.');
+        
+        // Si hay más de dos partes (más de un punto decimal), elimina los puntos adicionales
+        if (parts.length > 2) {
+            inputValue = parts[0] + '.' + parts.slice(1).join('');
+        }
+        
+        // Si hay dos partes (antes y después del punto decimal), asegúrate de que la parte después del punto tenga un máximo de dos dígitos
+        if (parts.length === 2) {
+            parts[1] = parts[1].substring(0, 2);
+            inputValue = parts.join('.');
+        }
+        
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });
+
     /* ============ Funciones ============ */
+
+    function fn_TraerPreciosMinimos(){
+        $.ajax({
+            url: '/fn_consulta_TraerPreciosMinimos',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response)) {
+                    // Obtener el select
+                    $('#valorPrecioPolloVivoYugo').val((response[0].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoPerla').val((response[1].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoChimu').val((response[2].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoxx').val((response[3].precioMinimo).toFixed(2));
+
+                    $('#valorPrecioPolloBeneficiadoPolloYugo').val((response[4].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloPerla').val((response[5].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloChimu').val((response[6].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloxx').val((response[7].precioMinimo).toFixed(2));
+
+                    $('#idPolloVivoYugo').attr('value', response[0].idPrecioMinimo);
+                    $('#idPolloVivoPerla').attr('value', response[1].idPrecioMinimo);
+                    $('#idPolloVivoChimu').attr('value', response[2].idPrecioMinimo);
+                    $('#idPolloVivoxx').attr('value', response[3].idPrecioMinimo);
+                    
+                    $('#idPolloBeneficiadoYugo').attr('value', response[4].idPrecioMinimo);
+                    $('#idPolloBeneficiadoPerla').attr('value', response[5].idPrecioMinimo);
+                    $('#idPolloBeneficiadoChimu').attr('value', response[6].idPrecioMinimo);
+                    $('#idPolloBeneficiadoxx').attr('value', response[7].idPrecioMinimo);
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     function fn_TraerPreciosXPresentacion(){
         $.ajax({
@@ -103,6 +198,54 @@ jQuery(function($) {
             }
         });
     }
+
+    /* ============ Funcion para aumentar y restar precios de pollos ============ */
+
+    function actualizarPrecio(elementId, operacion) {
+        let $element = $(elementId);
+        let valorPrecioActual = parseFloat($element.val());
+        let resultado;
+    
+        if (operacion === 'sumar') {
+            resultado = valorPrecioActual + 0.1;
+        } else if (operacion === 'restar') {
+            resultado = valorPrecioActual - 0.1;
+        }
+    
+        $element.val(resultado.toFixed(1));
+    }
+
+    $('#restar_precioPolloYugo').on('click', function() {
+        actualizarPrecio('#precioPolloYugo', 'restar');
+    });
+    
+    $('#restar_precioPolloPerla').on('click', function() {
+        actualizarPrecio('#precioPolloPerla', 'restar');
+    });
+
+    $('#restar_precioPolloChimu').on('click', function() {
+        actualizarPrecio('#precioPolloChimu', 'restar');
+    });
+
+    $('#restar_precioPolloxx').on('click', function() {
+        actualizarPrecio('#precioPolloxx', 'restar');
+    });
+    
+    $('#sumar_precioPolloYugo').on('click', function() {
+        actualizarPrecio('#precioPolloYugo', 'sumar');
+    });
+    
+    $('#sumar_precioPolloPerla').on('click', function() {
+        actualizarPrecio('#precioPolloPerla', 'sumar');
+    });
+
+    $('#sumar_precioPolloChimu').on('click', function() {
+        actualizarPrecio('#precioPolloChimu', 'sumar');
+    });
+
+    $('#sumar_precioPolloxx').on('click', function() {
+        actualizarPrecio('#precioPolloxx', 'sumar');
+    });
 
     function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
         $.ajax({
@@ -201,6 +344,41 @@ jQuery(function($) {
                 
             },
             error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_ActualizarPrecioMinimo(idEspecie, precio){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPrecioMinimo',
+            method: 'GET',
+            data: {
+                idEspecie: idEspecie,
+                precio: precio,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el precio minimo correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#ModalPrecios').addClass('hidden');
+                    $('#ModalPrecios').removeClass('flex');
+                    fn_TraerPreciosMinimos()
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
                 console.error("ERROR",error);
             }
         });
