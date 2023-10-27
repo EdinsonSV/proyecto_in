@@ -93,6 +93,43 @@ jQuery(function($) {
         $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
+    $('#btnGuardarNuevoPrecioPollo').on('click', function () {
+        let valorNuevoPrecioPolloYugo = parseFloat($('#precioPolloYugo').val());
+        let valorNuevoPrecioPolloPerla = parseFloat($('#precioPolloPerla').val());
+        let valorNuevoPrecioPolloChimu = parseFloat($('#precioPolloChimu').val());
+        let valorNuevoPrecioPolloxx = parseFloat($('#precioPolloxx').val());
+
+        $('#tablaPreciosXPresentacion tbody tr').each(function () {
+            // Obtener datos de las columnas 1, 2, 3, 4 y 5
+            let idCodigoCliente = parseFloat($(this).find('td:eq(0)').text());
+            let primerEspeciePolloYugo = parseFloat($(this).find('td:eq(2)').text());
+            let segundaEspeciePolloPerla = parseFloat($(this).find('td:eq(3)').text());
+            let terceraEspeciePolloChimu = parseFloat($(this).find('td:eq(4)').text());
+            let cuartaEspeciePolloxx = parseFloat($(this).find('td:eq(5)').text());
+
+            let resultadoEspecieUno = primerEspeciePolloYugo + valorNuevoPrecioPolloYugo;
+            let resultadoEspecieDos = segundaEspeciePolloPerla + valorNuevoPrecioPolloPerla;
+            let resultadoEspecieTres = terceraEspeciePolloChimu + valorNuevoPrecioPolloChimu;
+            let resultadoEspecieCuatro = cuartaEspeciePolloxx + valorNuevoPrecioPolloxx;
+
+
+            fn_AgregarNuevoPrecioPollo(idCodigoCliente,resultadoEspecieUno,resultadoEspecieDos,resultadoEspecieTres,resultadoEspecieCuatro);
+        });
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Se actualizaron los precios correctamente',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        fn_TraerPreciosXPresentacion()
+        $('#precioPolloYugo').val("0.0");
+        $('#precioPolloPerla').val("0.0");
+        $('#precioPolloChimu').val("0.0");
+        $('#precioPolloxx').val("0.0");
+    });
+
     $('.preciosMinimosPollosRegex').on('input', function () {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
@@ -371,6 +408,32 @@ jQuery(function($) {
                     $('#ModalPrecios').addClass('hidden');
                     $('#ModalPrecios').removeClass('flex');
                     fn_TraerPreciosMinimos()
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_AgregarNuevoPrecioPollo(idCodigoCliente,resultadoEspecieUno,resultadoEspecieDos,resultadoEspecieTres,resultadoEspecieCuatro){
+        $.ajax({
+            url: '/fn_consulta_AgregarNuevoPrecioPollo',
+            method: 'GET',
+            data: {
+                idCodigoCliente: idCodigoCliente,
+                resultadoEspecieUno: resultadoEspecieUno,
+                resultadoEspecieDos: resultadoEspecieDos,
+                resultadoEspecieTres: resultadoEspecieTres,
+                resultadoEspecieCuatro: resultadoEspecieCuatro,
+            },
+            success: function(response) {
+                if (response.success) {
                 }
             },
             error: function(error) {

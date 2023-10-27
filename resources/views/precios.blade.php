@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="flex justify-end w-full md:pr-5 px-4 flex-wrap">
-                        <button class="w-full md:w-auto text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="guardar_precioPollo"><i class='bx bx-save text-lg'></i>Guardar</button>
+                        <button class="w-full md:w-auto text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="btnGuardarNuevoPrecioPollo"><i class='bx bx-save text-lg'></i>Guardar</button>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label class="hidden" id="idEspeciePrecioMinimo"></label>
                     <p class="text-sm text-gray-900 dark:text-gray-300">Ingrese Precio:</p>
-                        <input class="p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPrecios" autocomplete="off" placeholder="0.0">
+                        <input class="preciosMinimosPollosRegex p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPrecios" autocomplete="off" placeholder="0.0">
                     </div>
                 </div>
             </div>

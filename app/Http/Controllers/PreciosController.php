@@ -127,4 +127,27 @@ class PreciosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_AgregarNuevoPrecioPollo(Request $request){
+
+        $idCodigoCliente = $request->input('idCodigoCliente');
+        $resultadoEspecieUno = $request->input('resultadoEspecieUno');
+        $resultadoEspecieDos = $request->input('resultadoEspecieDos');
+        $resultadoEspecieTres = $request->input('resultadoEspecieTres');
+        $resultadoEspecieCuatro = $request->input('resultadoEspecieCuatro');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            ActualizarPreciosXPresentacion::where('idPrecio', $idCodigoCliente)
+                ->update(['primerEspecie' => $resultadoEspecieUno,
+                'segundaEspecie' => $resultadoEspecieDos,
+                'terceraEspecie' => $resultadoEspecieTres,
+                'cuartaEspecie' => $resultadoEspecieCuatro]);
+                
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

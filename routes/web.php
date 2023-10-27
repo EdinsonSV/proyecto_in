@@ -77,6 +77,7 @@ Route::get('/fn_consulta_ActualizarPrecioXPresentacion', [PreciosController::cla
 Route::get('/fn_consulta_TraerGruposPrecios', [PreciosController::class,'consulta_TraerGruposPrecios']);
 Route::get('/fn_consulta_TraerPreciosMinimos', [PreciosController::class,'consulta_TraerPreciosMinimos']);
 Route::get('/fn_consulta_ActualizarPrecioMinimo', [PreciosController::class,'consulta_ActualizarPrecioMinimo']);
+Route::get('/fn_consulta_AgregarNuevoPrecioPollo', [PreciosController::class,'consulta_AgregarNuevoPrecioPollo']);
 
 Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteController::class,'consulta_TraerClientesReportePorCliente']);
 Route::get('/fn_consulta_TraerReportePorCliente', [ReportePorClienteController::class,'consulta_TraerReportePorCliente']);
