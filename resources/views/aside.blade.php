@@ -94,6 +94,7 @@
     </section>
 
     <script src="{{ asset('js/alertify.js') }}"></script>
+    <script src="{{ asset('js/DataTableED.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- All components in one -->
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/kutty.min.js"></script>
@@ -101,6 +102,23 @@
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/alpinejs.min.js"></script>
     <!-- And then the single component -->
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/dropdown.min.js"></script>
+    <?php
+    $hrefSubMenus = [];
+
+    foreach ($menusAgrupados as $menu) {
+        foreach ($menu['submenus'] as $submenu) {
+            $hrefSubMenus[] = $submenu['hrefSubMenu'];
+        }
+    }
+    ?>
+    <script>
+        let hrefSubMenus = <?php echo json_encode($hrefSubMenus); ?>;
+        let rutaActual = window.location.pathname;
+
+        if (hrefSubMenus.indexOf(rutaActual) === -1) {
+            window.location.href = '/home';
+        }
+    </script>
 </body>
 
 </html>

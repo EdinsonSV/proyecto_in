@@ -16,8 +16,6 @@ class TipoDocumentoSeeder extends Seeder
         DB::table('tb_tipo_documento')->insert([
             ['nombreTipoDocumento' => 'DNI'],
             ['nombreTipoDocumento' => 'Pasaporte'],
-            ['nombreTipoDocumento' => 'Libreta Electoral'],
-            ['nombreTipoDocumento' => 'Carnet de Extranjeria'],
             ['nombreTipoDocumento' => 'RUC'],
         ]);
     }

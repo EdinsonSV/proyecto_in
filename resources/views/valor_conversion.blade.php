@@ -17,7 +17,7 @@
             </div>
             <div class="relative overflow-x-auto shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaValorDeConversion">
-                    <thead class="text-xs text-gray-100 uppercase bg-blue-600">
+                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
                         <tr>
                             <th class="hidden">Id</th>
                             <th class="p-4">

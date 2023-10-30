@@ -5,6 +5,8 @@ jQuery(function ($) {
     
     fn_ConsultarClientes()
 
+    DataTableED('#tablaConsultarClientes');
+
     function fn_ConsultarClientes() {
         $.ajax({
             url: '/fn_consulta_ConsultarClientes',

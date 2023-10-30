@@ -13,22 +13,22 @@
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO YUGO:</span>
                         <label class="hidden" value="" id="idPolloVivoYugo"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoYugo" disabled="" autocomplete="off" id="valorPrecioPolloVivoYugo">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoYugo" disabled="" autocomplete="off" id="valorPrecioPolloVivoYugo">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO PERLA:</span>
                         <label class="hidden" value="" id="idPolloVivoPerla"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoPerla" disabled="" autocomplete="off" id="valorPrecioPolloVivoPerla">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoPerla" disabled="" autocomplete="off" id="valorPrecioPolloVivoPerla">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO CHIMU:</span>
                         <label class="hidden" value="" id="idPolloVivoChimu"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoChimu" disabled="" autocomplete="off" id="valorPrecioPolloVivoChimu">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoChimu" disabled="" autocomplete="off" id="valorPrecioPolloVivoChimu">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO XX:</span>
                         <label class="hidden" value="" id="idPolloVivoxx"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoxx" disabled="" autocomplete="off" id="valorPrecioPolloVivoxx">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoxx" disabled="" autocomplete="off" id="valorPrecioPolloVivoxx">
                     </div>
                 </div>
             </div>
@@ -38,22 +38,22 @@
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO YUGO:</span>
                         <label class="hidden" value="" id="idPolloBeneficiadoYugo"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloYugo" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloYugo">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloYugo" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloYugo">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO PERLA:</span>
                         <label class="hidden" value="" id="idPolloBeneficiadoPerla"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloPerla" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloPerla">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloPerla" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloPerla">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO CHIMU:</span>
                         <label class="hidden" value="" id="idPolloBeneficiadoChimu"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloChimu" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloChimu">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloChimu" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloChimu">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">POLLO XX:</span>
                         <label class="hidden" value="" id="idPolloBeneficiadoxx"></label>
-                        <input class="preciosMinimosEspecies preciosMinimosPollosRegex w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloxx" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloxx">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoPolloxx" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloxx">
                     </div>
                 </div>
             </div>
@@ -116,11 +116,13 @@
             </div>
             <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">
-                    <thead class="text-xs text-gray-100 uppercase bg-blue-600" id="headerPreciosXPresentacion">
+                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPreciosXPresentacion">
                         <tr>
                             <th class="hidden">Id</th>
-                            <th class="p-4">
-                                <h5 class="min-w-max">Nombre de Cliente</h5>
+                            <th class="p-4" data-column="nombres">
+                                <h5 class="min-w-max flex items-center">Nombre de Cliente<button><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+  </svg></button></h5>
                             </th>
                             <th class="p-4 text-center">
                                 <h5 class="min-w-max">POLLO YUGO</h5>
@@ -160,7 +162,7 @@
                         <label id="idEspeciePrecioXActualizar" class="hidden"></label>
                         <p class="text-sm text-gray-900 dark:text-gray-300">Nombre del cliente: <span id="nombrePrecioXPresentacion"></span></p>
                         <p class="text-sm text-gray-900 dark:text-gray-300">Presentación: <span id="nombrePresentacionModal"></span></p>
-                        <input class="p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="nuevoValorPrecioXPresentacion" autocomplete="off" placeholder="Ingrese precio">
+                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="nuevoValorPrecioXPresentacion" autocomplete="off" placeholder="Ingrese precio">
                     </div>
                 </div>
             </div>
@@ -187,7 +189,7 @@
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label class="hidden" id="idEspeciePrecioMinimo"></label>
                     <p class="text-sm text-gray-900 dark:text-gray-300">Ingrese Precio:</p>
-                        <input class="preciosMinimosPollosRegex p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPrecios" autocomplete="off" placeholder="0.0">
+                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPrecios" autocomplete="off" placeholder="0.0">
                     </div>
                 </div>
             </div>

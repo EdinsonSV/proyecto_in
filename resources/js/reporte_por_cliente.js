@@ -273,7 +273,19 @@ jQuery(function ($) {
             promedio = (pesoNetoPes / cantidadPes).toFixed(2);
         }
         let observacionPes = item.observacionPes
-        observacionPes = ""
+        if (observacionPes != ""){
+            observacionPes = `
+            <div class="observacionPesHover relative">       
+                <button type="button" class="text-gray-900 dark:text-gray-400"><i class='bx bx-info-circle'></i></button>
+                <div class="absolute z-[1000000] top-0 right-0 max-w-[256px] w-full text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                    <div class="px-3 py-2">
+                        <p>${observacionPes}</p>
+                    </div>
+                </div>
+            </div>`
+        }else{
+            observacionPes = "";
+        }
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

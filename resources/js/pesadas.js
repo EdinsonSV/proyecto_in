@@ -10,7 +10,8 @@ jQuery(function($) {
     $('#fechaDesdePesadas').val(fechaHoy);
     $('#fechaHastaPesadas').val(fechaHoy);
     
-    fn_ConsultarPesadas()
+    fn_ConsultarPesadas();
+    DataTableED('#tablaConsultarPesadas');
 
     function fn_ConsultarPesadas() {
 

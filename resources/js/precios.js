@@ -7,6 +7,8 @@ jQuery(function($) {
     fn_TraerPreciosXPresentacion()
     fn_TraerPreciosMinimos()
 
+    DataTableED('#tablaPreciosXPresentacion');
+
     /* ============ Eventos ============ */
 
     $(document).on("dblclick", "#tablaPreciosXPresentacion #bodyPreciosXPresentacion tr td.precioColumna", function() {
@@ -46,8 +48,6 @@ jQuery(function($) {
     $('#btnGuardarPrecios').on('click', function () {
         let idEspecie = $('#idEspeciePrecioMinimo').attr("value");
         let precio = $('#agregarPrecios').val();
-        console.log(idEspecie)
-        console.log(precio)
         fn_ActualizarPrecioMinimo(idEspecie, precio);
     });    
 
@@ -65,23 +65,6 @@ jQuery(function($) {
         }
     });
 
-    $('#nuevoValorPrecioXPresentacion').on('input', function () {
-        // Obtiene el valor actual del input
-        let inputValue = $(this).val();
-    
-        // Elimina todos los caracteres excepto un punto decimal
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
-    
-        // Verifica si ya hay un punto decimal presente
-        if (inputValue.indexOf('.') !== -1) {
-            // Si ya hay un punto, elimina los puntos adicionales
-            inputValue = inputValue.replace(/(\..*)\./g, '$1');
-        }
-    
-        // Establece el valor limpio en el input
-        $(this).val(inputValue);
-    });    
-
     $('#btnActualizarPreciosXPresentacion').on('click', function () {
 
         let idClienteActualizarPrecioXPresentacion = $('#idClientePrecioXPresentacion').attr("value");
@@ -98,62 +81,83 @@ jQuery(function($) {
         let valorNuevoPrecioPolloPerla = parseFloat($('#precioPolloPerla').val());
         let valorNuevoPrecioPolloChimu = parseFloat($('#precioPolloChimu').val());
         let valorNuevoPrecioPolloxx = parseFloat($('#precioPolloxx').val());
+    
+        let totalConsultas = $('#tablaPreciosXPresentacion tbody tr').length;
+        let consultasCompletadas = 0;
+        let timerInterval;
 
+        Swal.fire({
+            title: '¡Atención!',
+            html: 'Actualizando precios, no salga de la pagina.',
+            timer: 999999999, // Establece un valor grande para que parezca indefinido
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        })
+    
         $('#tablaPreciosXPresentacion tbody tr').each(function () {
-            // Obtener datos de las columnas 1, 2, 3, 4 y 5
+
             let idCodigoCliente = parseFloat($(this).find('td:eq(0)').text());
             let primerEspeciePolloYugo = parseFloat($(this).find('td:eq(2)').text());
             let segundaEspeciePolloPerla = parseFloat($(this).find('td:eq(3)').text());
             let terceraEspeciePolloChimu = parseFloat($(this).find('td:eq(4)').text());
             let cuartaEspeciePolloxx = parseFloat($(this).find('td:eq(5)').text());
-
+    
             let resultadoEspecieUno = primerEspeciePolloYugo + valorNuevoPrecioPolloYugo;
             let resultadoEspecieDos = segundaEspeciePolloPerla + valorNuevoPrecioPolloPerla;
             let resultadoEspecieTres = terceraEspeciePolloChimu + valorNuevoPrecioPolloChimu;
             let resultadoEspecieCuatro = cuartaEspeciePolloxx + valorNuevoPrecioPolloxx;
-
-
-            fn_AgregarNuevoPrecioPollo(idCodigoCliente,resultadoEspecieUno,resultadoEspecieDos,resultadoEspecieTres,resultadoEspecieCuatro);
-        });
-
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Se actualizaron los precios correctamente',
-            showConfirmButton: false,
-            timer: 1500
-        });
-        fn_TraerPreciosXPresentacion()
-        $('#precioPolloYugo').val("0.0");
-        $('#precioPolloPerla').val("0.0");
-        $('#precioPolloChimu').val("0.0");
-        $('#precioPolloxx').val("0.0");
-    });
-
-    $('.preciosMinimosPollosRegex').on('input', function () {
-        // Obtiene el valor actual del input
-        let inputValue = $(this).val();
-        
-        // Elimina todos los caracteres excepto un punto decimal
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
     
-        // Divide el valor en dos partes, antes y después del punto decimal
-        const parts = inputValue.split('.');
-        
-        // Si hay más de dos partes (más de un punto decimal), elimina los puntos adicionales
-        if (parts.length > 2) {
-            inputValue = parts[0] + '.' + parts.slice(1).join('');
+            fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas);
+        });
+    
+        function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas) {
+            $.ajax({
+                url: '/fn_consulta_AgregarNuevoPrecioPollo',
+                method: 'GET',
+                data: {
+                    idCodigoCliente: idCodigoCliente,
+                    resultadoEspecieUno: resultadoEspecieUno,
+                    resultadoEspecieDos: resultadoEspecieDos,
+                    resultadoEspecieTres: resultadoEspecieTres,
+                    resultadoEspecieCuatro: resultadoEspecieCuatro,
+                },
+                success: function (response) {
+                    if (response.success) {
+                        consultasCompletadas++;
+                        console.log(response);
+                        if (consultasCompletadas === totalConsultas) {
+                            clearInterval(timerInterval);
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Se actualizaron los precios correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            fn_TraerPreciosXPresentacion();
+                            $('#precioPolloYugo').val("0.0");
+                            $('#precioPolloPerla').val("0.0");
+                            $('#precioPolloChimu').val("0.0");
+                            $('#precioPolloxx').val("0.0");
+                        }
+                    }
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Error: Ocurrio un error inesperado durante la operacion',
+                    })
+                    console.error("ERROR", error);
+                }
+            });
         }
-        
-        // Si hay dos partes (antes y después del punto decimal), asegúrate de que la parte después del punto tenga un máximo de dos dígitos
-        if (parts.length === 2) {
-            parts[1] = parts[1].substring(0, 2);
-            inputValue = parts.join('.');
-        }
-        
-        // Establece el valor limpio en el input
-        $(this).val(inputValue);
-    });
+    });    
 
     /* ============ Funciones ============ */
 
@@ -166,15 +170,15 @@ jQuery(function($) {
                 // Verificar si la respuesta es un arreglo de objetos
                     if (Array.isArray(response)) {
                     // Obtener el select
-                    $('#valorPrecioPolloVivoYugo').val((response[0].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloVivoPerla').val((response[1].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloVivoChimu').val((response[2].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloVivoxx').val((response[3].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoYugo').val(parseFloat(response[0].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoPerla').val(parseFloat(response[1].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoChimu').val(parseFloat(response[2].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloVivoxx').val(parseFloat(response[3].precioMinimo).toFixed(2));
 
-                    $('#valorPrecioPolloBeneficiadoPolloYugo').val((response[4].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloPerla').val((response[5].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloChimu').val((response[6].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloxx').val((response[7].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloYugo').val(parseFloat(response[4].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloPerla').val(parseFloat(response[5].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloChimu').val(parseFloat(response[6].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoPolloxx').val(parseFloat(response[7].precioMinimo).toFixed(2));
 
                     $('#idPolloVivoYugo').attr('value', response[0].idPrecioMinimo);
                     $('#idPolloVivoPerla').attr('value', response[1].idPrecioMinimo);
@@ -408,32 +412,6 @@ jQuery(function($) {
                     $('#ModalPrecios').addClass('hidden');
                     $('#ModalPrecios').removeClass('flex');
                     fn_TraerPreciosMinimos()
-                }
-            },
-            error: function(error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error: Ocurrio un error inesperado durante la operacion',
-                  })
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    function fn_AgregarNuevoPrecioPollo(idCodigoCliente,resultadoEspecieUno,resultadoEspecieDos,resultadoEspecieTres,resultadoEspecieCuatro){
-        $.ajax({
-            url: '/fn_consulta_AgregarNuevoPrecioPollo',
-            method: 'GET',
-            data: {
-                idCodigoCliente: idCodigoCliente,
-                resultadoEspecieUno: resultadoEspecieUno,
-                resultadoEspecieDos: resultadoEspecieDos,
-                resultadoEspecieTres: resultadoEspecieTres,
-                resultadoEspecieCuatro: resultadoEspecieCuatro,
-            },
-            success: function(response) {
-                if (response.success) {
                 }
             },
             error: function(error) {

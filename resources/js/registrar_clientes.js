@@ -10,17 +10,40 @@ jQuery(function($) {
     fn_TraerDocumentos()
 
     /* ============ Eventos ============ */
-
     $('#contactoCli').on('input', function () {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
-    
-        // Elimina caracteres no numéricos, el signo más (+) y espacios en blanco
-        inputValue = inputValue.replace(/[^0-9+\s]/g, '');
-    
+
+        // Elimina los espacios en blanco y caracteres no numéricos
+        inputValue = inputValue.replace(/[^0-9]/g, '');
+        
+        // Divide el valor en grupos de tres caracteres
+        const groups = inputValue.match(/.{1,3}/g);
+        
+        // Si hay grupos, une con espacios y establece el valor en el input
+        if (groups) {
+            inputValue = groups.join(' ');
+        }
+        
+        // Limita la entrada a 11 caracteres (incluyendo espacios)
+        if (inputValue.length > 9) {
+            inputValue = inputValue.substr(0, 11);
+        }
+
         // Establece el valor limpio en el input
         $(this).val(inputValue);
-    });    
+    });
+    
+    $('#registroClientes .entradaEnMayusculas').on('input', function() {
+        // Obtiene el valor actual del campo
+        let valorCampo = $(this).val();
+    
+        // Convierte el valor a mayúsculas
+        valorCampo = valorCampo.toUpperCase();
+    
+        // Establece el valor modificado en el campo
+        $(this).val(valorCampo);
+    }); 
 
     $('#registrar_usuario_submit').on('click', function () {
         let todosCamposCompletos = true;
@@ -66,16 +89,28 @@ jQuery(function($) {
         if (tipoDocumento != 0){
             $("#documentoCli").removeAttr("disabled");
         }
+        $("#documentoCli").removeClass("especialDNI rounded-bl-lg especialRUC especialPasaporte especiallibretaElectoral");
+        $("#documentoCli").val("");
+        
         if (tipoDocumento == 1) {
-            $("#documentoCli").val("");
             $("#documentoCli").addClass("especialDNI rounded-bl-lg");
             $("#documentoCli").removeClass("rounded-b-lg");
             $("#especialBuscarPorDNI").removeClass("hidden");
             $("#especialBuscarPorDNI").addClass("flex");
             $("#documentoCli").removeClass("md:rounded-r-lg");
             $("#documentoCli").addClass("md:rounded-none");
-        } else {
-            $("#documentoCli").removeClass("especialDNI rounded-bl-lg");
+        }else if (tipoDocumento == 2) {
+            $("#documentoCli").addClass("rounded-b-lg especialPasaporte");
+            $("#especialBuscarPorDNI").removeClass("flex");
+            $("#especialBuscarPorDNI").addClass("hidden");
+            $("#documentoCli").addClass("md:rounded-r-lg");
+        }else if (tipoDocumento == 3) {
+            $("#documentoCli").addClass("rounded-b-lg especialRUC");
+            $("#especialBuscarPorDNI").removeClass("flex");
+            $("#especialBuscarPorDNI").addClass("hidden");
+            $("#documentoCli").addClass("md:rounded-r-lg");
+        }
+        else {
             $("#documentoCli").addClass("rounded-b-lg");
             $("#especialBuscarPorDNI").removeClass("flex");
             $("#especialBuscarPorDNI").addClass("hidden");
@@ -92,7 +127,29 @@ jQuery(function($) {
         }
 
         $(this).val(inputValue);
-    });  
+    });
+    
+    $(document).on('input', '.especialRUC', function () {
+        let inputValue = $(this).val();
+        inputValue = inputValue.replace(/[^0-9]/g, '');
+
+        if (inputValue.length > 11) {
+            inputValue = inputValue.substr(0, 11);
+        }
+
+        $(this).val(inputValue);
+    });
+    
+    $(document).on('input', '.especialPasaporte', function () {
+        let inputValue = $(this).val();
+        inputValue = inputValue.replace(/[^a-zA-Z0-9]/g, '');
+    
+        if (inputValue.length > 20) {
+            inputValue = inputValue.substr(0, 20);
+        }
+    
+        $(this).val(inputValue);
+    });     
 
     /* ============ Funciones ============ */
 

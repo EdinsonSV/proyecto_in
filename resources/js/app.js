@@ -1,5 +1,6 @@
 import jQuery from 'jquery';
 window.$ = jQuery;
+import 'flowbite';
 
 jQuery(function($) {
     declarar_mensaje_bienvenida();
@@ -73,9 +74,9 @@ jQuery(function($) {
         $('#passwordMosl').removeClass('hidden');
     })
 
-    /* ============ Eventos para validar campos entrada || Solo numeros, y tres decimales ============ */
+    /* ============ Eventos para validar campos entrada || Solo numeros, y 2 decimales ============ */
 
-    $('.validarSoloNumerosTresDecimales').on('input', function () {
+    $('.validarSoloNumerosDosDecimales').on('input', function () {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
         
@@ -89,8 +90,8 @@ jQuery(function($) {
             
             // Limita el número de decimales a tres
             let decimalPart = inputValue.split('.')[1];
-            if (decimalPart && decimalPart.length > 3) {
-                decimalPart = decimalPart.substring(0, 3);
+            if (decimalPart && decimalPart.length > 2) {
+                decimalPart = decimalPart.substring(0, 2);
                 inputValue = inputValue.split('.')[0] + '.' + decimalPart;
             }
         }
