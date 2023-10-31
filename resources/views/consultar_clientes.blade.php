@@ -65,3 +65,68 @@
     
 </main>
 @endsection
+
+{{-- Modal Opciones de Clientes --}}
+
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDatosdeCliente" id="ModalEditarDatosdeCliente">
+    <div class="modal-content max-w-[700px] w-full mx-4">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Cliente</h3>
+                    </div>
+                    <div class="md:p-5 py-5 grid grid-cols-1 lg:grid-cols-3 gap-4" id="DivEditarDatosClientes">
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <select class="w-full h-10 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="valorEditarTipoDePollo" id="valorEditarTipoDePollo">
+                            </select>
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarDatosdeCliente" autocomplete="off" id="valorEditarCodigoCliente" placeholder="Codigo">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <select class="validarCampo w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="valorEditarZonaCliente" id="valorEditarZonaCliente">
+                            </select>
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarNombresCliente" autocomplete="off" id="valorEditarNombresCliente" placeholder="Nombres">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarApellidoPaternoCliente" autocomplete="off" id="valorEditarApellidoPaternoCliente" placeholder="Apellido Paterno">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarApellidoMaternoCliente" autocomplete="off" id="valorEditarApellidoMaternoCliente" placeholder="Apellido Materno">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <select class="h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="valorEditarTipoDeDocumento" id="valorEditarTipoDeDocumento">
+                            </select>  
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarNumeroDeDocumento" autocomplete="off" id="valorEditarNumeroDeDocumento" placeholder="Nro de Documento">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarNumeroDeCelular" autocomplete="off" id="valorEditarNumeroDeCelular" placeholder="N° de Celular">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2 lg:col-start-1 lg:col-end-3">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" type="text" name="valorEditarDireccionCliente" autocomplete="off" id="valorEditarDireccionCliente" placeholder="Direccion">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2 lg:col-start-1 lg:col-end-4">
+                            <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md" name="valorEditarComentario" autocomplete="off" id="valorEditarComentario" placeholder="Comentario"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full justify-between sm:flex sm:flex-row-reverse pt-4">
+                    <div class="flex flex-col gap-2 sm:flex-row">
+                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnEditarDatosdeCliente">Actualizar</button>
+                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalEditarDatosdeCliente" id="btnCerrarModalEditarDatosdeCliente">Cancelar</button>
+                    </div>
+                    <button type="button" class="mt-2 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto" id="btnEliminarCliente">Eliminar Cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Termina Modal Opciones de Clientes --}}

@@ -5,6 +5,7 @@ window.$ = jQuery;
 jQuery(function($) {
 
     fn_TraerValorConversion()
+    DataTableED('#tablaValorDeConversion')
 
     /* ============ Eventos ============ */
 

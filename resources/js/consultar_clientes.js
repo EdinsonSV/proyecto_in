@@ -3,7 +3,11 @@ window.$ = jQuery;
 
 jQuery(function ($) {
     
-    fn_ConsultarClientes()
+    fn_ConsultarClientes();
+    fn_TraerDocumentosEditar();
+    fn_TraerZonasEditar();
+    fn_TraerGruposConsultarClientes();
+    fn_TraerGruposConsultarClientesEditar();
 
     DataTableED('#tablaConsultarClientes');
 
@@ -83,8 +87,6 @@ jQuery(function ($) {
         }
     });     
 
-    fn_TraerGruposConsultarClientes()
-
     function fn_TraerGruposConsultarClientes(){
         $.ajax({
             url: '/fn_consulta_TraerGruposConsultarClientes',
@@ -95,7 +97,6 @@ jQuery(function ($) {
                 if (Array.isArray(response)) {
                     // Obtener el select
                     let selectTipoPollo = $('#tipoPolloConsultarClientes');
-                    
                     // Vaciar el select actual, si es necesario
                     selectTipoPollo.empty();
 
@@ -123,5 +124,157 @@ jQuery(function ($) {
             }
         });
     }
+
+    function fn_TraerGruposConsultarClientesEditar(){
+        $.ajax({
+            url: '/fn_consulta_TraerGruposConsultarClientes',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectTipoPolloEditar = $('#valorEditarTipoDePollo');
+                    // Vaciar el select actual, si es necesario
+                    selectTipoPolloEditar.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idGrupo,
+                            text: obj.nombreGrupo
+                        });
+                        selectTipoPolloEditar.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerZonasEditar(){
+        $.ajax({
+            url: '/fn_consulta_TraerZonas',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectZona = $('#valorEditarZonaCliente');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectZona.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idZona,
+                            text: obj.nombreZon
+                        });
+                        selectZona.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_TraerDocumentosEditar(){
+        $.ajax({
+            url: '/fn_consulta_TraerDocumentos',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let selectDocumentos = $('#valorEditarTipoDeDocumento');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectDocumentos.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idTipoDocumento,
+                            text: obj.nombreTipoDocumento
+                        });
+                        selectDocumentos.append(option);
+                    });
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('.cerrarModalEditarDatosdeCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalEditarDatosdeCliente').addClass('hidden');
+            $('#ModalEditarDatosdeCliente').removeClass('flex');
+        }
+    });
+
+    $(document).on("dblclick", "#tablaConsultarClientes tbody tr ", function() {
+        let codigoCli = $(this).find('td:eq(1)').text();
+
+        fn_TraerConsultarClienteEditar(codigoCli)
+
+        function fn_TraerConsultarClienteEditar(codigoCli){
+            $.ajax({
+                url: '/fn_consulta_TraerConsultarClienteEditar',
+                method: 'GET',
+                data:{
+                    codigoCli:codigoCli,
+                },
+                success: function(response) {
+    
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response)) {
+    
+                        // Iterar sobre los objetos y mostrar sus propiedades
+                        response.forEach(function(obj) {
+
+                            $("#valorEditarCodigoCliente").val(obj.codigoCli);
+                            $("#valorEditarTipoDePollo").val(obj.idGrupo);
+                            $("#valorEditarNombresCliente").val(obj.nombresCli);
+                            $("#valorEditarTipoDeDocumento").val(obj.tipoDocumentoCli);
+                            $("#valorEditarNumeroDeDocumento").val(obj.numDocumentoCli);
+                            $("#valorEditarNumeroDeCelular").val(obj.contactoCli);
+                            $("#valorEditarDireccionCliente").val(obj.direccionCli);
+                            $("#valorEditarZonaCliente").val(obj.idZona);
+                            $("#valorEditarApellidoPaternoCliente").val(obj.apellidoPaternoCli);
+                            $("#valorEditarApellidoMaternoCliente").val(obj.apellidoMaternoCli);
+                            $("#valorEditarComentario").val(obj.comentarioCli);
+                            $('#ModalEditarDatosdeCliente').addClass('flex');
+                            $('#ModalEditarDatosdeCliente').removeClass('hidden');
+
+                        });
+                    } else {
+                        console.log("La respuesta no es un arreglo de objetos.");
+                    }
+                    
+                },
+                error: function(error) {
+                    console.error("ERROR",error);
+                }
+            });
+        }
+    });
 
 });
