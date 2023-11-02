@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody id="bodyReportePorProveedor">
-                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
                 </tbody>
             </table>
         </div>

@@ -129,7 +129,6 @@ jQuery(function($) {
                 success: function (response) {
                     if (response.success) {
                         consultasCompletadas++;
-                        console.log(response);
                         if (consultasCompletadas === totalConsultas) {
                             clearInterval(timerInterval);
                             Swal.fire({

@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             EstadosSeeder::class,
             TipoDocumentoSeeder::class,
             PreciosMinimosTableSeeder::class,
+            EspeciesCompraTableSeeder::class,
         ]);
     }
 }

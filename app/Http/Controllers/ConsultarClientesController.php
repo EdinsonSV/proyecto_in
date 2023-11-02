@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ConsultarClientes\TraerGruposConsultarClientes;
+use App\Models\ConsultarClientes\ActualizarCliente;
+use App\Models\ConsultarClientes\EliminarCliente;
 
 class ConsultarClientesController extends Controller
 {
@@ -65,7 +67,7 @@ class ConsultarClientesController extends Controller
                 contactoCli,direccionCli,estadoCliente,tipoDocumentoCli,
                 fechaRegistroCli,horaRegistroCli,usuarioRegistroCli,
                 codigoCli,idGrupo,comentarioCli,
-                estadoEliminadoCli,idZona,
+                estadoEliminadoCli,tb_clientes.idEstadoCli,idZona,
                 IFNULL(CONCAT_WS(" ", nombresUsu, apellidoPaternoUsu, apellidoMaternoUsu), "") AS nombreCompletoUsu,
                 nombresCli, apellidoPaternoCli, apellidoMaternoCli
             FROM tb_clientes
@@ -76,6 +78,63 @@ class ConsultarClientesController extends Controller
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarCliente(Request $request)
+    {
+        $apellidoPaternoCli = $request->input('apellidoPaternoCli');
+        $apellidoMaternoCli = $request->input('apellidoMaternoCli');
+        $nombresCli = $request->input('nombresCli');
+        $tipoDocumentoCli = $request->input('tipoDocumentoCli');
+        $documentoCli = $request->input('documentoCli');
+        $contactoCli = $request->input('contactoCli');
+        $direccionCli = $request->input('direccionCli');
+        $estadoCli = $request->input('estadoCli');
+        $codigoCli = $request->input('codigoCli');
+        $idGrupo = $request->input('idGrupo');
+        $comentarioCli = $request->input('comentarioCli');
+        $zonaPollo = $request->input('zonaPollo');
+
+        if (Auth::check()) {
+            $ActualizarCliente = new ActualizarCliente;
+            $ActualizarCliente->where('codigoCli', $codigoCli)
+                ->update([
+                    'apellidoPaternoCli' => $apellidoPaternoCli,
+                    'apellidoMaternoCli' => $apellidoMaternoCli,
+                    'nombresCli' => $nombresCli,
+                    'tipoDocumentoCli' => $tipoDocumentoCli,
+                    'numDocumentoCli' => $documentoCli,
+                    'contactoCli' => $contactoCli,
+                    'direccionCli' => $direccionCli,
+                    'idEstadoCli' => $estadoCli,
+                    'idGrupo' => $idGrupo,
+                    'comentarioCli' => $comentarioCli,
+                    'idZona' => $zonaPollo,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarCliente(Request $request)
+    {
+        $codigoCli = $request->input('codigoCli');
+
+        if (Auth::check()) {
+            $EliminarCliente = new EliminarCliente;
+            $EliminarCliente->where('codigoCli', $codigoCli)
+                ->update([
+                    'estadoEliminadoCli' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

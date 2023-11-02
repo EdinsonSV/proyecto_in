@@ -18,9 +18,9 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <div class="text-white font-semibold text-xl md:text-2xl" id="totalUnidadesPrimerEspecie">0 Uds.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoPrimerEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoPrimerEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPrimerEspecie">0.0 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoPrimerEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoPrimerEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPrimerEspecie">0.00 Kg.</div>
                     </div>
                 </div>
                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -38,9 +38,9 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <div class="text-white font-semibold text-xl md:text-2xl" id="totalUnidadesSegundaEspecie">0 Uds.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoSegundaEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoSegundaEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgSegundaEspecie">0.0 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoSegundaEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoSegundaEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgSegundaEspecie">0.00 Kg.</div>
                     </div>
                 </div>
                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -58,9 +58,9 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <div class="text-white font-semibold text-xl md:text-2xl" id="totalUnidadesTerceraEspecie">0 Uds.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoTerceraEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoTerceraEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgTerceraEspecie">0.0 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoTerceraEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoTerceraEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgTerceraEspecie">0.00 Kg.</div>
                     </div>
                 </div>
                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -78,9 +78,9 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <div class="text-white font-semibold text-xl md:text-2xl" id="totalUnidadesCuartaEspecie">0 Uds.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoCuartaEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoCuartaEspecie">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgCuartaEspecie">0.0 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoCuartaEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoCuartaEspecie">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgCuartaEspecie">0.00 Kg.</div>
                     </div>
                 </div>
                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -98,9 +98,9 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <div class="text-white font-semibold text-xl md:text-2xl" id="totalUnidadesEspecies">0 Uds.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoEspecies">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoEspecies">0.0 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgEspecies">0.0 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgBeneficiadoEspecies">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgPolloVivoEspecies">0.00 Kg.</div>
+                        <div class="text-white font-semibold text-xl md:text-2xl" id="totalKgEspecies">0.00 Kg.</div>
                     </div>
                 </div>
                 <div class="text-white w-full flex justify-center p-1">En linea
