@@ -16,7 +16,7 @@ jQuery(function ($) {
     $('#fechaAgregarDescuento').val(fechaHoy);
 
     declarar_especies();
-    fn_TraerPagosDelDia();
+    fn_TraerPagosFechas(fechaHoy,fechaHoy);
 
     /* ============ Eventos ============ */
 
@@ -578,51 +578,6 @@ jQuery(function ($) {
                     title: 'Oops...',
                     text: 'Error: Ocurrio un error inesperado durante la operacion',
                   })
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    function fn_TraerPagosDelDia(){
-        $.ajax({
-            url: '/fn_consulta_TraerPagosDelDia',
-            method: 'GET',
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-
-                    // Obtener el select
-                    let tbodyReporteDePagos = $('#bodyReporteDePagos');
-                    tbodyReporteDePagos.empty();
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        // Crear una nueva fila
-                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
-                        // Agregar la nueva fila al tbody
-                        tbodyReporteDePagos.append(nuevaFila);
-                    });
-
-                    if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
-                    }
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
                 console.error("ERROR",error);
             }
         });

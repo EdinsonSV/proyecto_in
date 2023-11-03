@@ -23,7 +23,6 @@ class InicioController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DatosEspecie::select('idEspecie', 'nombreEspecie')
-                ->where('idEspecie', '<=', 4)
                 ->orderBy('idEspecie', 'asc')
                 ->get();
 

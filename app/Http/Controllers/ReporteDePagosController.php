@@ -357,30 +357,6 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consulta_TraerPagosDelDia(Request $request){
-        if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = DB::select('
-                    SELECT tb_pagos.idPagos, 
-                    tb_pagos.cantidadAbonoPag,
-                    tb_pagos.tipoAbonoPag,
-                    tb_pagos.fechaOperacionPag,
-                    tb_pagos.codigoTransferenciaPag,
-                    tb_pagos.observacion,
-                    tb_pagos.fechaRegistroPag,
-                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
-            FROM tb_pagos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and fechaRegistroPag = DATE(NOW())');
-
-            // Devuelve los datos en formato JSON
-            return response()->json($datos);
-        }
-
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
-
     public function consulta_TraerPagosFechas(Request $request){
 
         $fechaDesde = $request->input('fechaDesdeTraerPagos');

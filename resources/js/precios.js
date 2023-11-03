@@ -39,16 +39,16 @@ jQuery(function($) {
         // Obtén el valor del label dentro del contenedor actual
         let idEspecie = $(this).siblings("label").attr("value");
         
-        $('#ModalPrecios').removeClass('hidden');
-        $('#ModalPrecios').addClass('flex');
-        $('#agregarPrecios').val(inputPrecioMinimo);
+        $('#ModalPreciosMinimos').removeClass('hidden');
+        $('#ModalPreciosMinimos').addClass('flex');
+        $('#agregarPreciosMinimos').val(inputPrecioMinimo);
         $('#idEspeciePrecioMinimo').attr("value",idEspecie);
-        $('#agregarPrecios').focus();
+        $('#agregarPreciosMinimos').focus();
     });
 
-    $('#btnGuardarPrecios').on('click', function () {
+    $('#btnGuardarPreciosMinimos').on('click', function () {
         let idEspecie = $('#idEspeciePrecioMinimo').attr("value");
-        let precio = $('#agregarPrecios').val();
+        let precio = $('#agregarPreciosMinimos').val();
         fn_ActualizarPrecioMinimo(idEspecie, precio);
     });    
 
@@ -59,10 +59,10 @@ jQuery(function($) {
         }
     });
 
-    $('.cerrarModalPrecios').on('click', function (e) {
+    $('.cerrarModalPreciosMinimos').on('click', function (e) {
         if (e.target === this) {
-            $('#ModalPrecios').addClass('hidden');
-            $('#ModalPrecios').removeClass('flex');
+            $('#ModalPreciosMinimos').addClass('hidden');
+            $('#ModalPreciosMinimos').removeClass('flex');
         }
     });
 
@@ -409,8 +409,8 @@ jQuery(function($) {
                         timer: 1500
                     });
 
-                    $('#ModalPrecios').addClass('hidden');
-                    $('#ModalPrecios').removeClass('flex');
+                    $('#ModalPreciosMinimos').addClass('hidden');
+                    $('#ModalPreciosMinimos').removeClass('flex');
                     fn_TraerPreciosMinimos()
                 }
             },

@@ -178,7 +178,7 @@
 
 {{-- Modal Agregar Precio --}}
 
-<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPrecios" id="ModalPrecios">
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPreciosMinimos" id="ModalPreciosMinimos">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class=" p-4">
@@ -188,15 +188,15 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label class="hidden" id="idEspeciePrecioMinimo"></label>
-                    <p class="text-sm text-gray-900 dark:text-gray-300">Ingrese Precio:</p>
-                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPrecios" autocomplete="off" placeholder="0.0">
+                        <p class="text-sm text-gray-900 dark:text-gray-300">Ingrese Precio:</p>
+                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="agregarPreciosMinimos" autocomplete="off" placeholder="0.0">
                     </div>
                 </div>
             </div>
             <div class="px-4 pb-4">
                 <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
-                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnGuardarPrecios">Guardar</button>
-                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPrecios" id="btncerrarModal">Cancelar</button>
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnGuardarPreciosMinimos">Guardar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPreciosMinimos" id="btncerrarModalPreciosMinimos">Cancelar</button>
                 </div>
             </div>
         </div>
