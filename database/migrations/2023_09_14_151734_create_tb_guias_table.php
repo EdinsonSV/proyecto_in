@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('fechaGuia')->default(now());
             $table->integer('idProveedor');
             $table->integer('idEspecie');
+            $table->integer('estadoGuia')->default(1);
             $table->timestamps();
         });
     }

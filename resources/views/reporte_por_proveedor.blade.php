@@ -33,10 +33,10 @@
                         <th class="px-4 font-medium">N° GUIA</th>
                         <th class="px-4 font-medium"><h5 class="min-w-max">ESPECIE</th>
                         <th class="px-4 font-medium"><h5 class="min-w-max">CANTIDAD</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PESO (Kg.)</h5></th>
+                        <th class="px-4 font-medium"><h5 class="min-w-max">PESO</h5></th>
                         <th class="px-4 font-medium"><h5 class="min-w-max">PROMEDIO</h5></th>
                         <th class="px-4 font-medium"><h5 class="min-w-max">PRECIO</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">TOTAL (S/.)</h5></th>
+                        <th class="px-4 font-medium"><h5 class="min-w-max">TOTAL</h5></th>
                         <th class="px-4 font-medium"><h5 class="min-w-max">OPCIONES</h5></th>
                     </tr>
                 </thead>

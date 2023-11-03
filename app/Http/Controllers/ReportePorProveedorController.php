@@ -19,17 +19,16 @@ class ReportePorProveedorController extends Controller
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = DB::select('select tb_guias.idGuia, 
-                    tb_guias.numGuia,
-                    tb_especies_venta.nombreEspecie,
-                    tb_guias.pesoGuia,
-                    tb_guias.cantidadGuia,
-                    tb_guias.precioGuia,
-                    tb_guias.fechaGuia,
-                    tb_guias.idProveedor,
-                    tb_guias.idEspecie
+            $datos = DB::select('select idGuia, 
+                    numGuia,
+                    nombreEspecie,
+                    pesoGuia,
+                    cantidadGuia,
+                    precioGuia,
+                    fechaGuia,
+                    idProveedor
                     from tb_guias
-                    JOIN tb_especies_venta ON tb_guias.idEspecie = tb_especies_venta.idEspecie');
+                    JOIN tb_especies_venta ON tb_guias.idEspecie = tb_especies_venta.idEspecie WHERE tb_guias.estadoGuia = 1');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

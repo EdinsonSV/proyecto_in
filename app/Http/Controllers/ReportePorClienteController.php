@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ReportePorCliente\TraerClientesReportePorCliente;
+use App\Models\ReportePorCliente\CantidadReportePorCliente;
+use App\Models\ReportePorCliente\PesoReportePorCliente;
 use Illuminate\Support\Facades\DB;
 
 class ReportePorClienteController extends Controller
@@ -61,6 +63,44 @@ class ReportePorClienteController extends Controller
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarCantidadReportePorCliente(Request $request)
+    {
+        $idCodigoPesada = $request->input('idCodigoPesada');
+        $nuevoCantidadReportePorCliente = $request->input('nuevoCantidadReportePorCliente');
+
+        if (Auth::check()) {
+            $CantidadReportePorCliente = new CantidadReportePorCliente;
+            $CantidadReportePorCliente->where('idPesada', $idCodigoPesada)
+                ->update([
+                    'cantidadPes' => $nuevoCantidadReportePorCliente,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarPesoReportePorCliente(Request $request)
+    {
+        $idCodigoPesada = $request->input('idCodigoPesada');
+        $nuevoPesoReportePorCliente = $request->input('nuevoPesoReportePorCliente');
+
+        if (Auth::check()) {
+            $CantidadReportePorCliente = new PesoReportePorCliente;
+            $CantidadReportePorCliente->where('idPesada', $idCodigoPesada)
+                ->update([
+                    'pesoNetoPes' => $nuevoPesoReportePorCliente,
+                ]);
+            
+            return response()->json(['success' => true], 200);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

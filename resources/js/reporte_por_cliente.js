@@ -293,8 +293,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2"><h5 class="min-w-max">${observacionPes}</h5></td>
                 <td class="text-center py-1 px-2"><h5 class="min-w-max">${horaPes}</h5></td>
                 <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreEspecie}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${cantidadPes}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${pesoNetoPes}</h5></td>
+                <td class="text-center py-1 px-2 cantidadReportePorCliente"><h5 class="min-w-max">${cantidadPes}</h5></td>
+                <td class="text-center py-1 px-2 pesoReportePorCliente"><h5 class="min-w-max">${pesoNetoPes}</h5></td>
                 <td class="text-center py-1 px-2"><h5 class="min-w-max">${promedio}</h5></td>
             </tr>
         `;
@@ -400,6 +400,135 @@ jQuery(function ($) {
         `);
 
         return filas.join('');
+    }
+
+    $('.cerrarModalCantidadReportePorCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalCantidadReportePorCliente').addClass('hidden');
+            $('#ModalCantidadReportePorCliente').removeClass('flex');
+        }
+    });
+
+    $('.cerrarModalPesoReportePorCliente, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalPesoReportePorCliente').addClass('hidden');
+            $('#ModalPesoReportePorCliente').removeClass('flex');
+        }
+    });
+
+    $(document).on('input', '#nuevoCantidadReportePorCliente', function () {
+        let inputValue = $(this).val();
+        inputValue = inputValue.replace(/[^0-9]/g, '');
+
+        $(this).val(inputValue);
+    });
+
+    $(document).on("dblclick", "#tablaReportePorCliente tr td.cantidadReportePorCliente", function() {
+        let fila = $(this).closest('tr');
+        let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
+        let cantidadReportePorCliente = fila.find('td:eq(4)').text();
+        
+        $('#ModalCantidadReportePorCliente').addClass('flex');
+        $('#ModalCantidadReportePorCliente').removeClass('hidden');
+
+        $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
+        $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
+        $('#nuevoCantidadReportePorCliente').focus();
+    });
+
+    $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoReportePorCliente", function() {
+        let fila = $(this).closest('tr');
+        let idPesoReportePorCliente = fila.find('td:eq(0)').text();
+        let pesoReportePorCliente = fila.find('td:eq(5)').text();
+        
+        $('#ModalPesoReportePorCliente').addClass('flex');
+        $('#ModalPesoReportePorCliente').removeClass('hidden');
+
+        $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
+        $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
+        $('#nuevoPesoReportePorCliente').focus();
+    });
+
+    $('#btnActualizarCantidadReportePorCliente').on('click', function () {
+        let idCodigoPesada = $('#idCantidadReportePorCliente').attr("value");
+        let nuevoCantidadReportePorCliente = $('#nuevoCantidadReportePorCliente').val();
+        fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente);
+    });
+
+    $('#btnActualizarPesoReportePorCliente').on('click', function () {
+        let idCodigoPesada = $('#idPesoReportePorCliente').attr("value");
+        let nuevoPesoReportePorCliente = $('#nuevoPesoReportePorCliente').val();
+        fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente);
+    });
+
+    function fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente){
+        $.ajax({
+            url: '/fn_consulta_ActualizarCantidadReportePorCliente',
+            method: 'GET',
+            data: {
+                idCodigoPesada: idCodigoPesada,
+                nuevoCantidadReportePorCliente: nuevoCantidadReportePorCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo la cantidad correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#ModalCantidadReportePorCliente').addClass('hidden');
+                    $('#ModalCantidadReportePorCliente').removeClass('flex');
+                    $('#btnBuscarReportePorCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPesoReportePorCliente',
+            method: 'GET',
+            data: {
+                idCodigoPesada: idCodigoPesada,
+                nuevoPesoReportePorCliente: nuevoPesoReportePorCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el peso correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#ModalPesoReportePorCliente').addClass('hidden');
+                    $('#ModalPesoReportePorCliente').removeClass('flex');
+                    $('#btnBuscarReportePorCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
     }
 
 });

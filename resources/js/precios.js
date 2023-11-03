@@ -43,6 +43,7 @@ jQuery(function($) {
         $('#ModalPrecios').addClass('flex');
         $('#agregarPrecios').val(inputPrecioMinimo);
         $('#idEspeciePrecioMinimo').attr("value",idEspecie);
+        $('#agregarPrecios').focus();
     });
 
     $('#btnGuardarPrecios').on('click', function () {

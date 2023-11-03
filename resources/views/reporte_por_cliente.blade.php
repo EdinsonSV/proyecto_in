@@ -65,3 +65,53 @@
     </div>
 </main>
 @endsection
+
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalCantidadReportePorCliente" id="ModalCantidadReportePorCliente">
+    <div class="modal-content max-w-lg w-full mx-4">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+            <div class=" p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Actualizar Cantidad</h3>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <label id="idCantidadReportePorCliente" class="hidden"></label>
+                        <p class="text-sm text-gray-300">Ingrese nueva cantidad.</p>
+                        <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoCantidadReportePorCliente" autocomplete="off" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnActualizarCantidadReportePorCliente">Actualizar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalCantidadReportePorCliente" id="cerrarModalCantidadReportePorClientebtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPesoReportePorCliente" id="ModalPesoReportePorCliente">
+    <div class="modal-content max-w-lg w-full mx-4">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+            <div class=" p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Actualizar Peso</h3>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <label id="idPesoReportePorCliente" class="hidden"></label>
+                        <p class="text-sm text-gray-300">Ingrese nuevo peso.</p>
+                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoPesoReportePorCliente" autocomplete="off" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnActualizarPesoReportePorCliente">Actualizar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPesoReportePorCliente" id="cerrarModalCantidadReportePorClientebtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
