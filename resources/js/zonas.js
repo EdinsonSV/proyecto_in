@@ -3,7 +3,7 @@ window.$ = jQuery;
 
 jQuery(function($) {
     
-    fn_ConsultarZonas()
+    fn_ConsultarZonas();
 
     function fn_ConsultarZonas() {
         $.ajax({
@@ -51,6 +51,55 @@ jQuery(function($) {
     $('#registrar_agregarZona').on('click', function (e) {
         $('#ModalZonas').addClass('flex');
         $('#ModalZonas').removeClass('hidden');
-        $('#agregarZona').focus();
+        $('#nombreAgregarZona').focus();
     });
+
+    $('#btnAgregarZonas').on('click', function (e) {
+        let nombreAgregarZona = $('#nombreAgregarZona').val();
+        fn_AgregarZona(nombreAgregarZona);
+    });
+
+    function fn_AgregarZona(nombreAgregarZona){
+        $.ajax({
+            url: '/fn_consulta_AgregarZona',
+            method: 'GET',
+            data: {
+                nombreAgregarZona: nombreAgregarZona,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se la zona correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#ModalZonas').addClass('hidden');
+                    $('#ModalZonas').removeClass('flex');
+                    fn_ConsultarZonas();
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#nombreAgregarZona').on('input', function() {
+        // Obtiene el valor actual del campo
+        let valorCampo = $(this).val();
+    
+        // Convierte el valor a mayúsculas
+        valorCampo = valorCampo.toUpperCase();
+    
+        // Establece el valor modificado en el campo
+        $(this).val(valorCampo);
+    });  
+
 });

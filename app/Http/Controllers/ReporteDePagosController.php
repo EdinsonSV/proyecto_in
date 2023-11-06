@@ -56,7 +56,7 @@ class ReporteDePagosController extends Controller
                             WHERE tp.estadoPes = 1 AND tp.codigoCli = ?), 0) as deudaTotal,
                 COALESCE((SELECT SUM(tpg.cantidadAbonoPag) 
                             FROM tb_pagos tpg 
-                            WHERE tpg.codigoCli = ?), 0) as cantidadPagos,
+                            WHERE tpg.codigoCli = ? AND estadoPago = 1), 0) as cantidadPagos,
                 COALESCE((SELECT SUM(td.pesoDesc * td.precioDesc) 
                             FROM tb_descuentos td 
                             WHERE td.codigoCli = ?), 0) as ventaDescuentos;
@@ -232,6 +232,7 @@ class ReporteDePagosController extends Controller
         $consulta = DB::table('tb_pagos')
             ->selectRaw('COALESCE(SUM(cantidadAbonoPag), 0) AS pagos')
             ->where('codigoCli', $codigoCli)
+            ->where('estadoPago', '=', 1)
             ->where('fechaOperacionPag', '<', $fecha)
             ->value('pagoAnterior');
     
@@ -243,6 +244,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('fechaOperacionPag')
             ->selectRaw('COALESCE(SUM(cantidadAbonoPag), 0) AS pagos')
             ->where('codigoCli', $codigoCli)
+            ->where('estadoPago', '=', 1)
             ->whereBetween('fechaOperacionPag', [$fechaInicio, $fechaFin])
             ->groupBy('fechaOperacionPag')
             ->get();

@@ -13,5 +13,6 @@ class PesoReportePorCliente extends Model
 
     protected $fillable = [
         'pesoNetoPes',
+        'estadoWebPes',
     ];
 }

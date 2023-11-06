@@ -19,7 +19,7 @@ class ReniecController extends Controller
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
-            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 2,

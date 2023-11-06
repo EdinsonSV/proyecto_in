@@ -6,7 +6,7 @@
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Precios por Presentación --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Precios por Presentación</h4>
-        <div class="overflow-x-auto md:mx-5 mt-0 md:mb-5" id="DivPreciosXPresentacion">
+        <div class="overflow-x-auto md:mx-5 mt-0 md:mb-5">
             <div class="text-gray-900 dark:text-gray-200 w-full relative pt-2 mb-5">
                 <h5 class="absolute -top-1 z-20 left-5 bg-white dark:bg-gray-900 px-2">Precios Mínimos Pollo Vivo</h5>
                 <div class="flex-wrap flex justify-evenly border border-gray-300 dark:border-gray-600 py-10 rounded-lg">
@@ -120,22 +120,14 @@
                         <tr>
                             <th class="hidden">Id</th>
                             <th class="p-4" data-column="nombres">
-                                <h5 class="min-w-max flex items-center">Nombre de Cliente<button><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <h5 class="whitespace-nowrap flex items-center">Nombre de Cliente<button><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
   </svg></button></h5>
                             </th>
-                            <th class="p-4 text-center">
-                                <h5 class="min-w-max">POLLO YUGO</h5>
-                            </th>
-                            <th class="p-4 text-center">
-                                <h5 class="min-w-max">POLLO PERLA</h5>
-                            </th>
-                            <th class="p-4 text-center">
-                                <h5 class="min-w-max">POLLO CHIMU</h5>
-                            </th>
-                            <th class="p-4 text-center">
-                                <h5 class="min-w-max">POLLO XX</h5>
-                            </th>
+                            <th class="p-4 text-center">POLLO YUGO</th>
+                            <th class="p-4 text-center">POLLO PERLA</th>
+                            <th class="p-4 text-center">POLLO CHIMU</th>
+                            <th class="p-4 text-center">POLLO XX</th>
                         </tr>
                     </thead>
                     <tbody id="bodyPreciosXPresentacion">
@@ -147,7 +139,6 @@
         {{-- Termina contenedor Precios por Presentación --}}
     </div>
 </main>
-@endsection
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalPreciosXPresentacion" id="ModalPreciosXPresentacion">
     <div class="modal-content max-w-lg w-full mx-4">
@@ -158,7 +149,7 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Precio por Presentación</h3>
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
-                        <label for="nuevoValorPrecioXPresentacion" id="idClientePrecioXPresentacion" class="hidden"></label>
+                        <label id="idClientePrecioXPresentacion" class="hidden"></label>
                         <label id="idEspeciePrecioXActualizar" class="hidden"></label>
                         <p class="text-sm text-gray-900 dark:text-gray-300">Nombre del cliente: <span id="nombrePrecioXPresentacion"></span></p>
                         <p class="text-sm text-gray-900 dark:text-gray-300">Presentación: <span id="nombrePresentacionModal"></span></p>
@@ -203,3 +194,4 @@
     </div>
 </div>
 {{-- Termina Modal Agregar Precio --}}
+@endsection

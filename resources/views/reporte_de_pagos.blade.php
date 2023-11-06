@@ -31,18 +31,18 @@
                 </div>
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrar_pagos_submit"><i class='bx bx-search-alt text-lg' ></i> Buscar</button>
             </div>
-            <div class="md:m-5 mt-0" id="DivReporteDePagos">
+            <div class="md:m-5 mt-0">
                 <div class="relative overflow-auto max-h-[500px] aside_scrollED rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                             <tr>
                                 <th class="hidden">Id</th>
-                                <th class="p-4"><h5 class="min-w-max">Nombre de Cliente</h5></th>
-                                <th class="p-4 text-center"><h5 class="min-w-max">Monto</h5></th>
-                                <th class="p-4 text-center"><h5 class="min-w-max">Forma Pago</h5></th>
-                                <th class="p-4 text-center"><h5 class="min-w-max">Codigo</h5></th>
-                                <th class="p-4 text-center"><h5 class="min-w-max">Fecha de Pago</h5></th>
-                                <th class="p-4 text-center"><h5 class="min-w-max">Observaciones</h5></th>
+                                <th class="p-4 whitespace-nowrap">Nombre de Cliente</th>
+                                <th class="p-4 text-center whitespace-nowrap">Monto</th>
+                                <th class="p-4 text-center whitespace-nowrap">Forma Pago</th>
+                                <th class="p-4 text-center whitespace-nowrap">Codigo</th>
+                                <th class="p-4 text-center whitespace-nowrap">Fecha de Pago</th>
+                                <th class="p-4 text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteDePagos">
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div id="segundoContenedorReporteDePagos" class="hidden">
-            <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative" id="DivCuentaDelCliente">
+            <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
                 <div class="flex flex-col gap-5">
                     <div class="flex justify-center items-start flex-col relative">
                         <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
@@ -95,12 +95,12 @@
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaCuentaDelCliente">
                     <thead id="headerCuentaDelCliente" class="bg-blue-600 text-gray-50 sticky top-0">
                         <tr class="h-10">
-                            <th class="px-4 font-medium"><h5 class="min-w-max">DIA</h5></th>
-                            <th class="px-4 font-medium"><h5 class="min-w-max">PRESENTACIÓN</h5></th>
-                            <th class="px-4 font-medium"><h5 class="min-w-max">CANTIDAD</h5></th>
-                            <th class="px-4 font-medium"><h5 class="min-w-max">PESO</h5></th>
-                            <th class="px-4 font-medium"><h5 class="min-w-max">TOTAL</h5></th>
-                            <th class="px-4 font-medium"><h5 class="min-w-max">PRECIO</h5></th>
+                            <th class="px-4 font-medium whitespace-nowrap">DIA</th>
+                            <th class="px-4 font-medium whitespace-nowrap">PRESENTACIÓN</th>
+                            <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
+                            <th class="px-4 font-medium whitespace-nowrap">PESO</th>
+                            <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
+                            <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
                         </tr>
                     </thead>
                     <tbody id="bodyCuentaDelCliente">
@@ -112,7 +112,6 @@
         {{-- Termina contenedor Reporte de Pagos --}}  
     </div>
 </main>
-@endsection
 
 {{-- Modal Agregar Pago --}}
 
@@ -162,7 +161,7 @@
                                 <option value="Transferencia">Transferencia</option>
                             </select>                          
                         </div>
-                        <div class="hidden w-full h-10" id="DivCodTrans">
+                        <div class="hidden w-full h-10" id="divCodTrans">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cod. Trans.</h4>
                             </div>
@@ -227,7 +226,7 @@
 
                             </select>                          
                         </div>
-                        <div class="flex w-full h-10" id="DivCodTrans">
+                        <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Descuento Kg.</h4>
                             </div>
@@ -251,3 +250,4 @@
 </div>
 
 {{-- Termina Modal Agregar Descuento --}}
+@endsection

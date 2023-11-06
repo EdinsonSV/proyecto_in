@@ -381,7 +381,7 @@ jQuery(function ($) {
         let zonaPolloTexto = $('#valorEditarZonaCliente option:selected').text();
         let tipoDocumentoCliTexto = $('#valorEditarTipoDeDocumento option:selected').text();
     
-        $('#DivEditarDatosClientes .validarCampo').each(function() {
+        $('#divEditarDatosClientes .validarCampo').each(function() {
             let valorCampo = $(this).val();
     
             if (valorCampo === null || valorCampo.trim() === '') {

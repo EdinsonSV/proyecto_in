@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ReportePorCliente\TraerClientesReportePorCliente;
 use App\Models\ReportePorCliente\CantidadReportePorCliente;
 use App\Models\ReportePorCliente\PesoReportePorCliente;
+use App\Models\ReportePorCliente\EliminarReportePorCliente;
 use Illuminate\Support\Facades\DB;
 
 class ReportePorClienteController extends Controller
@@ -79,6 +80,7 @@ class ReportePorClienteController extends Controller
             $CantidadReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'cantidadPes' => $nuevoCantidadReportePorCliente,
+                    'estadoWebPes' => 0,
                 ]);
             
             return response()->json(['success' => true], 200);
@@ -94,10 +96,11 @@ class ReportePorClienteController extends Controller
         $nuevoPesoReportePorCliente = $request->input('nuevoPesoReportePorCliente');
 
         if (Auth::check()) {
-            $CantidadReportePorCliente = new PesoReportePorCliente;
-            $CantidadReportePorCliente->where('idPesada', $idCodigoPesada)
+            $PesoReportePorCliente = new PesoReportePorCliente;
+            $PesoReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'pesoNetoPes' => $nuevoPesoReportePorCliente,
+                    'estadoWebPes' => 0,
                 ]);
             
             return response()->json(['success' => true], 200);
@@ -106,4 +109,24 @@ class ReportePorClienteController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_EliminarPesada(Request $request)
+    {
+        $codigoPesada = $request->input('codigoPesada');
+
+        if (Auth::check()) {
+            $EliminarReportePorCliente = new EliminarReportePorCliente;
+            $EliminarReportePorCliente->where('idPesada', $codigoPesada)
+                ->update([
+                    'estadoPes' => 0,
+                    'estadoWebPes' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

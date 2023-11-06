@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('valorConversion', 8, 3);
             $table->integer('estadoPes')->default(1);
             $table->integer('estadoWebPes')->default(0);
-            $table->string('observacionPes', 100)->nullable();
+            $table->string('observacionPes', 500)->nullable();
             $table->integer('idGrupo');
             $table->timestamps();
         });

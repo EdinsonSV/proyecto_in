@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_zonas', function (Blueprint $table) {
             $table->id('idZona');
-            $table->string('nombreZon', 100)->nullable();
-            $table->string('descripcionZon', 200)->nullable();
+            $table->string('nombreZon', 200)->nullable();
+            $table->integer('estadoZona');
             $table->timestamps();
         });
     }

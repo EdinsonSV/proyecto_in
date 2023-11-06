@@ -15,6 +15,8 @@ use App\Http\Controllers\PesadasController;
 use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ConsultarUsuariosController;
 use App\Http\Controllers\ReportePorProveedorController;
+use App\Http\Controllers\ReporteAcumuladoController;
+use App\Http\Controllers\AgregarSaldoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,8 @@ Route::get('/pesadas',[PesadasController::class,'show']);
 Route::get('/zonas',[ZonasController::class,'show']);
 Route::get('/consultar_usuarios',[ConsultarUsuariosController::class,'show']);
 Route::get('/reporte_por_proveedor',[ReportePorProveedorController::class,'show']);
+Route::get('/reporte_acumulado',[ReporteAcumuladoController::class,'show']);
+Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -83,6 +87,7 @@ Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteCont
 Route::get('/fn_consulta_TraerReportePorCliente', [ReportePorClienteController::class,'consulta_TraerReportePorCliente']);
 Route::get('/fn_consulta_ActualizarCantidadReportePorCliente', [ReportePorClienteController::class,'consulta_ActualizarCantidadReportePorCliente']);
 Route::get('/fn_consulta_ActualizarPesoReportePorCliente', [ReportePorClienteController::class,'consulta_ActualizarPesoReportePorCliente']);
+Route::get('/fn_consulta_EliminarPesada', [ReportePorClienteController::class,'consulta_EliminarPesada']);
 
 Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class,'consulta_ConsultarClientes']);
 Route::get('/fn_consulta_TraerGruposConsultarClientes', [ConsultarClientesController::class,'consulta_TraerGruposConsultarClientes']);
@@ -103,6 +108,7 @@ Route::get('/fn_consulta_TraerPagosFechas', [ReporteDePagosController::class,'co
 Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,'consulta_ConsultarPesadasDesdeHasta']);
 
 Route::get('/fn_consulta_ConsultarZonas', [ZonasController::class,'consulta_ConsultarZonas']);
+Route::get('/fn_consulta_AgregarZona', [ZonasController::class,'consulta_AgregarZona']);
 
 Route::get('/fn_consulta_ConsultarUsuarios', [ConsultarUsuariosController::class,'consulta_ConsultarUsuarios']);
 
@@ -112,3 +118,8 @@ Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'
 Route::get('/fn_consulta_EliminarGuia', [ReportePorProveedorController::class,'consulta_EliminarGuia']);
 Route::get('/fn_consulta_EditarGuia', [ReportePorProveedorController::class,'consulta_EditarGuia']);
 Route::get('/fn_consulta_RegistrarGuiaEditar', [ReportePorProveedorController::class,'consulta_RegistrarGuiaEditar']);
+
+Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
+
+Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
+Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);

@@ -252,12 +252,12 @@ jQuery(function ($) {
     function construirFilaFecha(item) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.fechaRegistroPes}</h5></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${item.fechaRegistroPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `;
     }
@@ -290,12 +290,12 @@ jQuery(function ($) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="hidden">${item.idPesada}</td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${observacionPes}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${horaPes}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreEspecie}</h5></td>
-                <td class="text-center py-1 px-2 cantidadReportePorCliente"><h5 class="min-w-max">${cantidadPes}</h5></td>
-                <td class="text-center py-1 px-2 pesoReportePorCliente"><h5 class="min-w-max">${pesoNetoPes}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${promedio}</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${observacionPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${horaPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreEspecie}</td>
+                <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap">${cantidadPes}</td>
+                <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
             </tr>
         `;
     }
@@ -323,12 +323,12 @@ jQuery(function ($) {
             if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="text-center py-1 px-2"></td>
-                        <td class="text-center py-1 px-2"></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</h5></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</h5></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalPeso.toFixed(2)} Kg.</h5></td>
-                        <td class="text-center py-1 px-2"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
             } else {
@@ -352,12 +352,12 @@ jQuery(function ($) {
             if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="text-center py-1 px-2"></td>
-                        <td class="text-center py-1 px-2"></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</h5></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</h5></td>
-                        <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalPeso.toFixed(2)} Kg.</h5></td>
-                        <td class="text-center py-1 px-2"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
             } else {
@@ -379,23 +379,23 @@ jQuery(function ($) {
 
         filas.push(`
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL NETO:</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaPesoTotalNeto.toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL NETO:</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNeto.toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `);
 
         filas.push(`
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"></td>
-            <td class="text-center py-1 px-2"></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL VIVO:</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">${ventaPesoTotalVivo.toFixed(2)} Kg.</h5></td>
-            <td class="text-center py-1 px-2"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO:</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalVivo.toFixed(2)} Kg.</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         `);
 
@@ -517,6 +517,55 @@ jQuery(function ($) {
 
                     $('#ModalPesoReportePorCliente').addClass('hidden');
                     $('#ModalPesoReportePorCliente').removeClass('flex');
+                    $('#btnBuscarReportePorCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
+        e.preventDefault();
+        let codigoPesada = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el registro!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fn_EliminarPesada(codigoPesada);
+            }
+          })
+    });
+
+    function fn_EliminarPesada(codigoPesada){
+        $.ajax({
+            url: '/fn_consulta_EliminarPesada',
+            method: 'GET',
+            data: {
+                codigoPesada: codigoPesada,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el registro correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                     $('#btnBuscarReportePorCliente').trigger('click');
                 }
             },

@@ -6,7 +6,7 @@
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte por Cliente --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte por Cliente</h4>
-        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative" id="DivReportePorCliente">
+        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 <div class="flex justify-center items-start flex-col relative">
                     <label for="idClientePorReporte" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
@@ -48,12 +48,12 @@
                 <thead id="headerReportePorCliente" class="bg-blue-600 text-gray-50 sticky top-0">
                     <tr class="h-10">
                         <th class="hidden">Id</th>
-                        <th class="px-4 font-medium">DIA</th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">HORA</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PRESENTACIÓN</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">CANTIDAD</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PESO REGISTRADO (Kg.)</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PROMEDIO</h5></th>
+                        <th class="px-4 font-medium whitespace-nowrap">DIA</th>
+                        <th class="px-4 font-medium whitespace-nowrap">HORA</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PRESENTACIÓN</th>
+                        <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PESO REGISTRADO (Kg.)</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
                     </tr>
                 </thead>
                 <tbody id="bodyReportePorCliente">
@@ -64,7 +64,6 @@
         {{-- Termina contenedor Reporte por Cliente --}}
     </div>
 </main>
-@endsection
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalCantidadReportePorCliente" id="ModalCantidadReportePorCliente">
     <div class="modal-content max-w-lg w-full mx-4">
@@ -115,3 +114,4 @@
         </div>
     </div>
 </div>
+@endsection

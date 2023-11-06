@@ -49,7 +49,7 @@
                             <input class="uppercase hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="radio" name="sexoUsu" value="F" id="sexoUsuF">
                             <label class="rounded-lg w-full text-center cursor-pointer uppercase p-2.5 text-gray-900 dark:text-gray-50 border font-semibold" for="sexoUsuF" id="sexoUsuFR">Femenino</label>
                         </div>
-                        {{-- <p class="mt-1 text-xs text-center text-gray-500">“Los géneros son para la música no para las personas”</p> --}}
+                        <!-- <p class="mt-1 text-xs text-center text-gray-500">“Los géneros son para la música no para las personas”</p> -->
                         <input class="hidden" type="text" value="img/hombre.png" name="rutaPerfilUsu" id="rutaPerfilUsu">
                     </div>
                 </div>

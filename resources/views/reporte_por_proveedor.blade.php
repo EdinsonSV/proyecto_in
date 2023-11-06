@@ -6,7 +6,7 @@
     <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte por Proveedor --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte por Proveedor</h4>
-        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative" id="DivReportePorProveedor">
+        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
                     <div class="flex flex-col justify-center">
@@ -30,14 +30,14 @@
                 <thead id="headerReportePorProveedor" class="bg-blue-600 text-gray-50 sticky top-0">
                     <tr class="h-10">
                         <th class="hidden">Id</th>
-                        <th class="px-4 font-medium">N° GUIA</th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">ESPECIE</th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">CANTIDAD</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PESO</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PROMEDIO</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">PRECIO</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">TOTAL</h5></th>
-                        <th class="px-4 font-medium"><h5 class="min-w-max">OPCIONES</h5></th>
+                        <th class="px-4 font-medium whitespace-nowrap">N° GUIA</th>
+                        <th class="px-4 font-medium whitespace-nowrap">ESPECIE</th>
+                        <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PESO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
+                        <th class="px-4 font-medium whitespace-nowrap">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody id="bodyReportePorProveedor">
@@ -48,7 +48,6 @@
         {{-- Termina contenedor Reporte por Proveedor --}}
     </div>
 </main>
-@endsection
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalRegistrarGuias" id="ModalRegistrarGuias">
     <div class="modal-content max-w-lg w-full mx-4">
@@ -166,3 +165,4 @@
         </div>
     </div>
 </div>
+@endsection

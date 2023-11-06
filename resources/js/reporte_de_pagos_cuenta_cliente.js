@@ -361,52 +361,52 @@ jQuery(function ($) {
 
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">TOTAL VENTA</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">SALDO ANTERIOR</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white dark:bg-gray-800 h-0.5">
             <td class="text-center" colspan="2"></td>
             <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">SALDO DEL DIA</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(totalVentaDelDiaSaldoAnterior).toFixed(2)}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDelDiaSaldoAnterior).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">PAGOS</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.pagos).toFixed(2)}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">PAGOS</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.pagos).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white dark:bg-gray-800 h-0.5">
             <td class="text-center" colspan="2"></td>
             <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">SALDO ACTUAL</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(saldoActual).toFixed(2)}</h5></td>
-            <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(saldoActual).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         `;
     }
@@ -414,12 +414,12 @@ jQuery(function ($) {
     function construirFilaFecha(fecha) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${fecha}</h5></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
-                <td class="text-center py-1 px-2"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${fecha}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `;
     }
@@ -457,44 +457,44 @@ jQuery(function ($) {
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombrePrimerEspecieGlobal}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadPrimerEspecie === 1 ? item.totalCantidadPrimerEspecie + ' Ud.' : item.totalCantidadPrimerEspecie + ' Uds.'}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoPrimerEspecie).toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaPrimerEspecie).toFixed(2)}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioPrimerEspecie}/Kg.</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombrePrimerEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadPrimerEspecie === 1 ? item.totalCantidadPrimerEspecie + ' Ud.' : item.totalCantidadPrimerEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaPrimerEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreSegundaEspecieGlobal}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadSegundaEspecie === 1 ? item.totalCantidadSegundaEspecie + ' Ud.' : item.totalCantidadSegundaEspecie + ' Uds.'}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoSegundaEspecie).toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaSegundaEspecie).toFixed(2)}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioSegundaEspecie}/Kg.</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadSegundaEspecie === 1 ? item.totalCantidadSegundaEspecie + ' Ud.' : item.totalCantidadSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreTerceraEspecieGlobal}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadTerceraEspecie === 1 ? item.totalCantidadTerceraEspecie + ' Ud.' : item.totalCantidadTerceraEspecie + ' Uds.'}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoTerceraEspecie).toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaTerceraEspecie).toFixed(2)}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioTerceraEspecie}/Kg.</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadTerceraEspecie === 1 ? item.totalCantidadTerceraEspecie + ' Ud.' : item.totalCantidadTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${nombreCuartaEspecieGlobal}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${item.totalCantidadCuartaEspecie === 1 ? item.totalCantidadCuartaEspecie + ' Ud.' : item.totalCantidadCuartaEspecie + ' Uds.'}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(item.totalPesoCuartaEspecie).toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(item.totalVentaCuartaEspecie).toFixed(2)}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioCuartaEspecie}/Kg.</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreCuartaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadCuartaEspecie === 1 ? item.totalCantidadCuartaEspecie + ' Ud.' : item.totalCantidadCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaCuartaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2"><h5 class="min-w-max"></h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">DESCUENTO</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</h5></td>
-                <td class="text-center py-1 px-2"><h5 class="min-w-max">S/. ${precioDescuentoEspecies}/Kg.</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">DESCUENTO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>

@@ -171,10 +171,10 @@ jQuery(function ($) {
         var selectedOption = $(this).val();
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
-            $('#DivCodTrans').removeClass('hidden').addClass('flex');
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
         } else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
-            $('#DivCodTrans').removeClass('flex').addClass('hidden');
+            $('#divCodTrans').removeClass('flex').addClass('hidden');
         }
     });
 

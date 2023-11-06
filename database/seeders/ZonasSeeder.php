@@ -14,10 +14,10 @@ class ZonasSeeder extends Seeder
     public function run(): void
     {
         DB::table('tb_zonas')->insert([
-            ['idZona' => 1, 'nombreZon' => 'CAAS', 'descripcionZon' => 'CASS'],
-            ['idZona' => 2, 'nombreZon' => 'MERCADO DE PIURA', 'descripcionZon' => 'MERCADO DE PIURA'],
-            ['idZona' => 3, 'nombreZon' => 'MERCADO DE CASTILLA', 'descripcionZon' => 'MARCADO DE CASTILLA'],
-            ['idZona' => 4, 'nombreZon' => 'MERCADO DE CAPULLANAS', 'descripcionZon' => 'MERCADO DE CAPULLANAS'],
+            ['idZona' => 1, 'nombreZon' => 'CAAS', 'estadoZona' => 1],
+            ['idZona' => 2, 'nombreZon' => 'MERCADO DE PIURA', 'estadoZona' => 1],
+            ['idZona' => 3, 'nombreZon' => 'MERCADO DE CASTILLA', 'estadoZona' => 1],
+            ['idZona' => 4, 'nombreZon' => 'MERCADO DE CAPULLANAS', 'estadoZona' => 1],
         ]);
     }
 }
