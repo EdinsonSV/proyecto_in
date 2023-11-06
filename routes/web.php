@@ -62,6 +62,7 @@ Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
+Route::get('/fn_consulta_TraerDatosEnTiempoRealCompra', [InicioController::class,'consulta_TraerDatosEnTiempoRealCompra']);
 
 Route::get('/fn_consulta_RolesUsuario', [RegisterController::class,'consulta_RolesUsuario']);
 Route::get('/fn_consulta_RegistrarUsuario',[RegisterController::class,'consulta_RegistrarUsuario']);
@@ -120,6 +121,7 @@ Route::get('/fn_consulta_EditarGuia', [ReportePorProveedorController::class,'con
 Route::get('/fn_consulta_RegistrarGuiaEditar', [ReportePorProveedorController::class,'consulta_RegistrarGuiaEditar']);
 
 Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
+Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);
 
 Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
 Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);

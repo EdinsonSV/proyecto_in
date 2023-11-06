@@ -50,6 +50,15 @@ jQuery(function($) {
     }
 
     function fn_traerDatosEnTiempoReal(){
+
+        var cantidadVentaTotal = 0;
+        var pesoVentaTotal = 0;
+        var promedioVentaTotal = 0;
+
+        var cantidadCompraTotal = 0;
+        var pesoCompraTotal = 0;
+        var promedioCompraTotal = 0;
+
         $.ajax({
             url: '/fn_consulta_TraerDatosEnTiempoReal',
             method: 'GET',
@@ -136,6 +145,9 @@ jQuery(function($) {
                     pesoPolloVivoTotalesEspecie = pesoPolloVivoPrimerEspecie+pesoPolloVivoSegundaEspecie+pesoPolloVivoTerceraEspecie+pesoPolloVivoCuartaEspecie
                     pesoTotalesEspecie = pesoTotalPrimerEspecie+pesoTotalSegundaEspecie+pesoTotalTerceraEspecie+pesoTotalCuartaEspecie
 
+                    cantidadVentaTotal = cantidadTotalesEspecie;
+                    pesoVentaTotal = pesoTotalesEspecie;
+                    promedioVentaTotal = pesoTotalesEspecie/cantidadTotalesEspecie;
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -164,6 +176,39 @@ jQuery(function($) {
                 $('#totalKgBeneficiadoEspecies').text(pesoBeneficiadoTotalesEspecie.toFixed(2) + " Kg");
                 $('#totalKgPolloVivoEspecies').text(pesoPolloVivoTotalesEspecie.toFixed(2) + " Kg");
                 $('#totalKgEspecies').text(pesoTotalesEspecie.toFixed(2) + " Kg");
+
+                $('#tblCantidadVenta').text(cantidadVentaTotal);
+                $('#tblPesoVenta').text(pesoVentaTotal.toFixed(2));
+                $('#tblPromedioVenta').text(promedioVentaTotal.toFixed(2));
+                
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+
+        $.ajax({
+            url: '/fn_consulta_TraerDatosEnTiempoRealCompra',
+            method: 'GET',
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    let totalCantidadGuia = parseInt(response[0].totalCantidadGuia);
+                    let totalPesoGuia = parseFloat(response[0].totalPesoGuia);
+                    /* cantidadCompraTotal = totalCantidadGuia.toFixed(2);
+                    pesoCompraTotal = totalPesoGuia.toFixed(2); */
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+
+                /* promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal; */
+
+                $('#tblCantidadCompra').text(cantidadCompraTotal);
+                $('#tblPesoCompra').text(pesoCompraTotal.toFixed(2));
+                $('#tblPromedioCompra').text(promedioCompraTotal.toFixed(2));
                 
             },
             error: function(error) {

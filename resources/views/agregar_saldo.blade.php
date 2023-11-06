@@ -41,7 +41,7 @@
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label id="idCodigoClienteAgregarSaldo" class="hidden"></label>
                         <p class="text-sm text-gray-900 dark:text-gray-300">Se agregará saldo a : <span id="nombreClienteAgregarSaldo"></span></p>
-                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="valorAgregarSaldo" autocomplete="off" placeholder="Ingrese saldo">
+                        <input class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid" type="text" id="valorAgregarSaldo" autocomplete="off" placeholder="0">
                     </div>
                 </div>
             </div>

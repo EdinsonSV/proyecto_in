@@ -40,7 +40,6 @@ class InicioController extends Controller
             // Realiza la consulta a la base de datos
             $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion', 'idGrupo')
                 ->whereRaw('fechaRegistroPes = CURDATE()')
-                // ->where('fechaRegistroPes', '=', now()->toDateString())
                 ->where('estadoPes', '=', 1)
                 ->get();
 
@@ -51,4 +50,22 @@ class InicioController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_TraerDatosEnTiempoRealCompra(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::table('tb_guias')
+                ->selectRaw('IFNULL(SUM(cantidadGuia), 0) as totalCantidadGuia, IFNULL(SUM(pesoGuia), 0) as totalPesoGuia')
+                ->whereDate('fechaGuia', now()->toDateString())
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }
