@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    //setInterval(fn_traerDatosEnTiempoReal, 2000);
+    setInterval(fn_traerDatosEnTiempoReal, 2000);
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -110,37 +110,37 @@ jQuery(function($) {
 
                         if (idEspecie == primerEspecieGlobal) {
                             cantidadPrimerEspecie += cantidadPes
-                            if (idGrupo == 1){
+                            if (idGrupo == 2){
                                 pesoBeneficiadoPrimerEspecie += pesoNetoPes
                                 pesoTotalPrimerEspecie += pesoNetoPes/0.88
-                            }else if (idGrupo == 2){
+                            }else if (idGrupo == 1){
                                 pesoPolloVivoPrimerEspecie += pesoNetoPes/valorConversion
                                 pesoTotalPrimerEspecie += pesoNetoPes/valorConversion
                             }
                         }else if (idEspecie == segundaEspecieGlobal) {
                             cantidadSegundaEspecie += cantidadPes
-                            if (idGrupo == 1){
+                            if (idGrupo == 2){
                                 pesoBeneficiadoSegundaEspecie += pesoNetoPes
                                 pesoTotalSegundaEspecie += pesoNetoPes/0.90
-                            }else if (idGrupo == 2){
+                            }else if (idGrupo == 1){
                                 pesoPolloVivoSegundaEspecie += pesoNetoPes/valorConversion
                                 pesoTotalSegundaEspecie += pesoNetoPes/valorConversion
                             }
                         }else if (idEspecie == terceraEspecieGlobal) {
                             cantidadTerceraEspecie += cantidadPes
-                            if (idGrupo == 1){
+                            if (idGrupo == 2){
                                 pesoBeneficiadoTerceraEspecie += pesoNetoPes
                                 pesoTotalTerceraEspecie += pesoNetoPes/0.90
-                            }else if (idGrupo == 2){
+                            }else if (idGrupo == 1){
                                 pesoPolloVivoTerceraEspecie += pesoNetoPes/valorConversion
                                 pesoTotalTerceraEspecie += pesoNetoPes/valorConversion
                             }
                         }else if (idEspecie == cuartaEspecieGlobal) {
                             cantidadCuartaEspecie += cantidadPes
-                            if (idGrupo == 1){
+                            if (idGrupo == 2){
                                 pesoBeneficiadoCuartaEspecie += pesoNetoPes
                                 pesoTotalCuartaEspecie += pesoNetoPes/0.88
-                            }else if (idGrupo == 2){
+                            }else if (idGrupo == 1){
                                 pesoPolloVivoCuartaEspecie += pesoNetoPes/valorConversion
                                 pesoTotalCuartaEspecie += pesoNetoPes/valorConversion
                             }
@@ -226,9 +226,17 @@ jQuery(function($) {
                 $('#tblPesoMerma').text(pesoMermaTotal.toFixed(2));
                 $('#tblPromedioMerma').text(promedioMermaTotal.toFixed(2));
 
-                cantidadMermaTotalPorcentual = ((cantidadVentaTotal-cantidadCompraTotal)/cantidadCompraTotal)*100;
-                pesoMermaTotalPorcentual = ((pesoVentaTotal-pesoCompraTotal)/pesoCompraTotal)*100;
-                promedioMermaTotalPorcentual = ((promedioVentaTotal-promedioCompraTotal)/promedioCompraTotal)*100;
+                if (cantidadVentaTotal != 0 && cantidadCompraTotal != 0) {
+                    cantidadMermaTotalPorcentual = ((cantidadVentaTotal-cantidadCompraTotal)/cantidadCompraTotal)*100;
+                }
+                
+                if (pesoVentaTotal != 0 && pesoCompraTotal != 0) {
+                    pesoMermaTotalPorcentual = ((pesoVentaTotal-pesoCompraTotal)/pesoCompraTotal)*100;
+                }
+
+                if (promedioVentaTotal != 0 && promedioCompraTotal != 0) {
+                    promedioMermaTotalPorcentual = ((promedioVentaTotal-promedioCompraTotal)/promedioCompraTotal)*100;
+                }
 
                 $('#tblCantidadMermaPor').text(cantidadMermaTotalPorcentual.toFixed(2) + " %");
                 $('#tblPesoMermaPor').text(pesoMermaTotalPorcentual.toFixed(2) + " %");

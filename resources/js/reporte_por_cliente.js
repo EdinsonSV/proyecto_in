@@ -9,6 +9,7 @@ jQuery(function ($) {
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReportePorCliente').val(fechaHoy);
     $('#fechaHastaReportePorCliente').val(fechaHoy);
+    var tipoUsuario = $('#tipoUsuario').data('id');
 
     declarar_especies();
 
@@ -424,29 +425,33 @@ jQuery(function ($) {
     });
 
     $(document).on("dblclick", "#tablaReportePorCliente tr td.cantidadReportePorCliente", function() {
-        let fila = $(this).closest('tr');
-        let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
-        let cantidadReportePorCliente = fila.find('td:eq(4)').text();
-        
-        $('#ModalCantidadReportePorCliente').addClass('flex');
-        $('#ModalCantidadReportePorCliente').removeClass('hidden');
-
-        $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
-        $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
-        $('#nuevoCantidadReportePorCliente').focus();
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
+            let cantidadReportePorCliente = fila.find('td:eq(4)').text();
+            
+            $('#ModalCantidadReportePorCliente').addClass('flex');
+            $('#ModalCantidadReportePorCliente').removeClass('hidden');
+    
+            $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
+            $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
+            $('#nuevoCantidadReportePorCliente').focus();
+        }
     });
 
     $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoReportePorCliente", function() {
-        let fila = $(this).closest('tr');
-        let idPesoReportePorCliente = fila.find('td:eq(0)').text();
-        let pesoReportePorCliente = fila.find('td:eq(5)').text();
-        
-        $('#ModalPesoReportePorCliente').addClass('flex');
-        $('#ModalPesoReportePorCliente').removeClass('hidden');
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let idPesoReportePorCliente = fila.find('td:eq(0)').text();
+            let pesoReportePorCliente = fila.find('td:eq(5)').text();
+            
+            $('#ModalPesoReportePorCliente').addClass('flex');
+            $('#ModalPesoReportePorCliente').removeClass('hidden');
 
-        $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
-        $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
-        $('#nuevoPesoReportePorCliente').focus();
+            $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
+            $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
+            $('#nuevoPesoReportePorCliente').focus();
+        }
     });
 
     $('#btnActualizarCantidadReportePorCliente').on('click', function () {
@@ -533,21 +538,23 @@ jQuery(function ($) {
 
     $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
         e.preventDefault();
-        let codigoPesada = $(this).closest("tr").find("td:first").text();
-        Swal.fire({
-            title: '¿Desea eliminar el Registro?',
-            text: "¡Estas seguro de eliminar el registro!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: '¡No, cancelar!',
-            confirmButtonText: '¡Si,eliminar!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              fn_EliminarPesada(codigoPesada);
-            }
-          })
+        if (tipoUsuario =='Administrador'){
+            let codigoPesada = $(this).closest("tr").find("td:first").text();
+            Swal.fire({
+                title: '¿Desea eliminar el Registro?',
+                text: "¡Estas seguro de eliminar el registro!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si,eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                fn_EliminarPesada(codigoPesada);
+                }
+            })
+        }
     });
 
     function fn_EliminarPesada(codigoPesada){

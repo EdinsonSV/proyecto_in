@@ -113,34 +113,34 @@ jQuery(function($) {
                                 let idGrupo = parseInt(obj.idGrupo)
 
                                 if (idEspecie == 1) {
-                                    if (idGrupo == 1){
+                                    if (idGrupo == 2){
                                         diaPesoPrimerEspecie += pesoNetoPes
                                         totalPesoPrimerEspecie += pesoNetoPes
-                                    }else if (idGrupo == 2){
+                                    }else if (idGrupo == 1){
                                         diaPesoPrimerEspecie += pesoNetoPes/valorConversion
                                         totalPesoPrimerEspecie += pesoNetoPes/valorConversion
                                     }
                                 }else if (idEspecie == 2) {
-                                    if (idGrupo == 1){
+                                    if (idGrupo == 2){
                                         diaPesoSegundaEspecie += pesoNetoPes
                                         totalPesoSegundaEspecie += pesoNetoPes
-                                    }else if (idGrupo == 2){
+                                    }else if (idGrupo == 1){
                                         diaPesoSegundaEspecie += pesoNetoPes/valorConversion
                                         totalPesoSegundaEspecie += pesoNetoPes/valorConversion
                                     }
                                 }else if (idEspecie == 3) {
-                                    if (idGrupo == 1){
+                                    if (idGrupo == 2){
                                         diaPesoTerceraEspecie += pesoNetoPes
                                         totalPesoTerceraEspecie += pesoNetoPes
-                                    }else if (idGrupo == 2){
+                                    }else if (idGrupo == 1){
                                         diaPesoTerceraEspecie += pesoNetoPes/valorConversion
                                         totalPesoTerceraEspecie += pesoNetoPes/valorConversion
                                     }
                                 }else if (idEspecie == 4) {
-                                    if (idGrupo == 1){
+                                    if (idGrupo == 2){
                                         diaPesoCuartaEspecie += pesoNetoPes
                                         totalPesoCuartaEspecie += pesoNetoPes
-                                    }else if (idGrupo == 2){
+                                    }else if (idGrupo == 1){
                                         diaPesoCuartaEspecie += pesoNetoPes/valorConversion
                                         totalPesoCuartaEspecie += pesoNetoPes/valorConversion
                                     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('numGuia', 100)->nullable();
             $table->decimal('pesoGuia', 8, 2);
             $table->integer('cantidadGuia');
-            $table->decimal('precioGuia', 8, 2)->default(0.00);
+            $table->decimal('precioGuia', 8, 2)->nullable();
             $table->date('fechaGuia')->default(now());
             $table->integer('idProveedor');
             $table->integer('idEspecie');
