@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 2000);
+    //setInterval(fn_traerDatosEnTiempoReal, 2000);
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -58,6 +58,14 @@ jQuery(function($) {
         var cantidadCompraTotal = 0;
         var pesoCompraTotal = 0;
         var promedioCompraTotal = 0;
+
+        var cantidadMermaTotal = 0;
+        var pesoMermaTotal = 0;
+        var promedioMermaTotal = 0;
+
+        var cantidadMermaTotalPorcentual = 0;
+        var pesoMermaTotalPorcentual = 0;
+        var promedioMermaTotalPorcentual = 0;
 
         $.ajax({
             url: '/fn_consulta_TraerDatosEnTiempoReal',
@@ -197,24 +205,41 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     let totalCantidadGuia = parseInt(response[0].totalCantidadGuia);
                     let totalPesoGuia = parseFloat(response[0].totalPesoGuia);
-                    /* cantidadCompraTotal = totalCantidadGuia.toFixed(2);
-                    pesoCompraTotal = totalPesoGuia.toFixed(2); */
+                    cantidadCompraTotal = totalCantidadGuia.toFixed(2);
+                    pesoCompraTotal = totalPesoGuia.toFixed(2);
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
 
-                /* promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal; */
+                promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal;
 
-                $('#tblCantidadCompra').text(cantidadCompraTotal);
-                $('#tblPesoCompra').text(pesoCompraTotal.toFixed(2));
-                $('#tblPromedioCompra').text(promedioCompraTotal.toFixed(2));
+                $('#tblCantidadCompra').text(parseInt(cantidadCompraTotal));
+                $('#tblPesoCompra').text(pesoCompraTotal);
+                $('#tblPromedioCompra').text((promedioCompraTotal).toFixed(2));
+
+                cantidadMermaTotal = cantidadCompraTotal-cantidadVentaTotal;
+                pesoMermaTotal = pesoCompraTotal-pesoVentaTotal;
+                promedioMermaTotal = promedioCompraTotal-promedioVentaTotal;
+
+                $('#tblCantidadMerma').text(cantidadMermaTotal);
+                $('#tblPesoMerma').text(pesoMermaTotal.toFixed(2));
+                $('#tblPromedioMerma').text(promedioMermaTotal.toFixed(2));
+
+                cantidadMermaTotalPorcentual = ((cantidadVentaTotal-cantidadCompraTotal)/cantidadCompraTotal)*100;
+                pesoMermaTotalPorcentual = ((pesoVentaTotal-pesoCompraTotal)/pesoCompraTotal)*100;
+                promedioMermaTotalPorcentual = ((promedioVentaTotal-promedioCompraTotal)/promedioCompraTotal)*100;
+
+                $('#tblCantidadMermaPor').text(cantidadMermaTotalPorcentual.toFixed(2) + " %");
+                $('#tblPesoMermaPor').text(pesoMermaTotalPorcentual.toFixed(2) + " %");
+                $('#tblPromedioMermaPor').text(promedioMermaTotalPorcentual.toFixed(2) + " %");
                 
             },
             error: function(error) {
                 console.error("ERROR",error);
             }
         });
+
     }
     
 });

@@ -13,6 +13,8 @@ jQuery(function($) {
     fn_ConsultarProveedor(fechaHoy,fechaHoy);
     fn_declararEspecies();
     fn_declararProveedor();
+    fn_declararProveedorEditar();
+    fn_declararEspeciesEditar();
 
     $('#btnBuscarReportePorProveedor').on('click', function () {
         let fechaDesde = $('#fechaDesdeReportePorProveedor').val();
@@ -79,7 +81,7 @@ jQuery(function($) {
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoGuia+" Kg."));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.precioGuia));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+totalAPagar));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+(totalAPagar).toFixed(2)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center gap-2">').append($('<button class="bg-yellow-400 hover:bg-yellow-500 p-2 rounded-lg btnEditarReportePorProveedor">').html("<i class='bx bxs-edit text-base'></i>")).append($('<button class="bg-red-600 hover:bg-red-700 p-2 rounded-lg btnEliminarReportePorProveedor">').html("<i class='bx bxs-trash text-base' ></i>"))
                                 );
                                 
@@ -129,7 +131,6 @@ jQuery(function($) {
 
                     // Obtener el select
                     let selectPresentacion = $('#idEspecieAgregarGuia');
-                    let selectPresentacionEditar = $('#idEspecieAgregarGuiaEditar');
                     
                     // Vaciar el select actual, si es necesario
                     selectPresentacion.empty();
@@ -149,6 +150,38 @@ jQuery(function($) {
                             text: obj.nombreEspecie
                         });
                         selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_declararEspeciesEditar(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacionEditar = $('#idEspecieAgregarGuiaEditar');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacionEditar.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
                         selectPresentacionEditar.append(option);
                     });
 
@@ -172,11 +205,9 @@ jQuery(function($) {
 
                     // Obtener el select
                     let selectPresentacion = $('#idProveedorAgregarGuia');
-                    let selectPresentacionEditar = $('#idProveedorAgregarGuiaEditar');
                     
                     // Vaciar el select actual, si es necesario
                     selectPresentacion.empty();
-                    selectPresentacionEditar.empty();
 
                     // Agregar la opción inicial "Seleccione tipo"
                     selectPresentacion.append($('<option>', {
@@ -188,11 +219,45 @@ jQuery(function($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
+                        console.log(obj);
                         let option = $('<option>', {
                             value: obj.idEspecie,
                             text: obj.nombreEspecie
                         });
                         selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_declararProveedorEditar(){
+        $.ajax({
+            url: '/fn_consulta_DatosProveedor',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacionEditar = $('#idProveedorAgregarGuiaEditar');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacionEditar.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        console.log(obj);
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
                         selectPresentacionEditar.append(option);
                     });
 
