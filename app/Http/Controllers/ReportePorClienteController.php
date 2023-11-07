@@ -27,7 +27,7 @@ class ReportePorClienteController extends Controller
             // Realiza la consulta a la base de datos
             $datos = TraerClientesReportePorCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
                 ->where('estadoEliminadoCli','=','1')
-                ->where('idEstadoCli','!=','3')
+                ->where('idEstadoCli','=','1')
                 ->where(function($query) use ($nombreReportePorCliente) {
                     $query->where('nombresCli', 'LIKE', "%$nombreReportePorCliente%")
                         ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreReportePorCliente%")

@@ -129,6 +129,7 @@ class ReporteAcumuladoController extends Controller
             ->selectRaw('SUM(pesoDesc) AS totalPesoDescuento')
             ->selectRaw('SUM(pesoDesc * precioDesc) AS totalVentaDescuento')
             ->where('fechaRegistroDesc','=', $fecha)
+            ->where('estadoDescuento', '=',1)
             ->where('codigoCli', $clienteCodigo)
             ->groupBy('fechaRegistroDesc')
             ->get();
@@ -140,6 +141,7 @@ class ReporteAcumuladoController extends Controller
         $consulta = DB::table('tb_descuentos')
             ->selectRaw('COALESCE(SUM(pesoDesc * precioDesc), 0) AS totalVentaDescuentoAnteriores')
             ->where('fechaRegistroDesc', '<', $fecha)
+            ->where('estadoDescuento', '=',1)
             ->where('codigoCli', $clienteCodigo)
             ->value('totalVentaDescuentoAnteriores');
     

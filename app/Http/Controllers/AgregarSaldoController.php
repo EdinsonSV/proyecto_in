@@ -26,7 +26,7 @@ class AgregarSaldoController extends Controller
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(tp.pesoNetoPes * tp.precioPes / tp.valorConversion), 0) as deudaTotal, 
                 COALESCE(tpg.sumaPagos, 0) as cantidadPagos, 
-                COALESCE(SUM(td.pesoDesc * td.precioDesc), 0) as ventaDescuentos 
+                COALESCE(td.ventaDescuentos, 0) as ventaDescuentos 
             FROM tb_clientes tc
             LEFT JOIN tb_pesadas tp ON tc.codigoCli = tp.codigoCli AND tp.estadoPes = 1
             LEFT JOIN (
@@ -35,10 +35,15 @@ class AgregarSaldoController extends Controller
                 WHERE estadoPago = 1
                 GROUP BY codigoCli
             ) tpg ON tc.codigoCli = tpg.codigoCli
-            LEFT JOIN tb_descuentos td ON tc.codigoCli = td.codigoCli
+            LEFT JOIN (
+                SELECT codigoCli, SUM(pesoDesc * precioDesc) as ventaDescuentos
+                FROM tb_descuentos
+                WHERE estadoDescuento = 1
+                GROUP BY codigoCli
+            ) td ON tc.codigoCli = td.codigoCli
             INNER JOIN tb_zonas ON tb_zonas.idZona = tc.idZona
             WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0
-            GROUP BY tc.codigoCli, tpg.sumaPagos
+            GROUP BY tc.codigoCli, tpg.sumaPagos, td.ventaDescuentos
             ORDER BY FIELD(tb_zonas.idZona, 4, 2, 3, 1), nombreCompleto ASC;
             ');
 

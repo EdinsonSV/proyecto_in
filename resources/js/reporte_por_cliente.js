@@ -419,8 +419,32 @@ jQuery(function ($) {
 
     $(document).on('input', '#nuevoCantidadReportePorCliente', function () {
         let inputValue = $(this).val();
-        inputValue = inputValue.replace(/[^0-9]/g, '');
+        inputValue = inputValue.replace(/[^0-9-]/g, '');
 
+        $(this).val(inputValue);
+    });
+
+    $(document).on('input', '#nuevoPesoReportePorCliente', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+        
+        // Elimina todos los caracteres excepto los dígitos y un punto decimal
+        inputValue = inputValue.replace(/[^0-9-.]/g, '');
+    
+        // Verifica si ya hay un punto decimal presente
+        if (inputValue.indexOf('.') !== -1) {
+            // Si ya hay un punto, elimina los puntos adicionales
+            inputValue = inputValue.replace(/(\..*)\./g, '$1');
+            
+            // Limita el número de decimales a tres
+            let decimalPart = inputValue.split('.')[1];
+            if (decimalPart && decimalPart.length > 2) {
+                decimalPart = decimalPart.substring(0, 2);
+                inputValue = inputValue.split('.')[0] + '.' + decimalPart;
+            }
+        }
+        
+        // Establece el valor limpio en el input
         $(this).val(inputValue);
     });
 

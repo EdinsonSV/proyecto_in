@@ -28,7 +28,7 @@ class ReporteDePagosController extends Controller
             // Realiza la consulta a la base de datos
             $datos = TraerClientesAgregarPagoCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
                 ->where('estadoEliminadoCli','=','1')
-                ->where('idEstadoCli','!=','3')
+                ->where('idEstadoCli','=','1')
                 ->where(function($query) use ($nombreAgregarPagoCliente) {
                     $query->where('nombresCli', 'LIKE', "%$nombreAgregarPagoCliente%")
                         ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreAgregarPagoCliente%")
@@ -59,7 +59,7 @@ class ReporteDePagosController extends Controller
                             WHERE tpg.codigoCli = ? AND estadoPago = 1), 0) as cantidadPagos,
                 COALESCE((SELECT SUM(td.pesoDesc * td.precioDesc) 
                             FROM tb_descuentos td 
-                            WHERE td.codigoCli = ?), 0) as ventaDescuentos;
+                            WHERE td.codigoCli = ? AND estadoDescuento = 1), 0) as ventaDescuentos;
             ', [$codigoCliente,$codigoCliente,$codigoCliente]);
 
         // Devuelve los datos en formato JSON
@@ -77,8 +77,8 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = TraerClientesAgregarDescuentoCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
-                ->where('estadoEliminadoCli','=','1')
-                ->where('idEstadoCli','!=','3')
+                ->where('estadoEliminadoCli','=',1)
+                ->where('idEstadoCli','=',1)
                 ->where(function($query) use ($nombreReportePorCliente) {
                     $query->where('nombresCli', 'LIKE', "%$nombreReportePorCliente%")
                         ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreReportePorCliente%")
@@ -101,8 +101,8 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = TraerClientesCuentaDelCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
-                ->where('estadoEliminadoCli','=','1')
-                ->where('idEstadoCli','!=','3')
+                ->where('estadoEliminadoCli','=',1)
+                ->where('idEstadoCli','=',1)
                 ->where(function($query) use ($nombreCuentaDelCliente) {
                     $query->where('nombresCli', 'LIKE', "%$nombreCuentaDelCliente%")
                         ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreCuentaDelCliente%")
@@ -211,6 +211,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('SUM(pesoDesc) AS totalPesoDescuento')
             ->selectRaw('SUM(pesoDesc * precioDesc) AS totalVentaDescuento')
             ->where('codigoCli', $codigoCli)
+            ->where('estadoDescuento', '=',1)
             ->whereBetween('fechaRegistroDesc', [$fechaInicio, $fechaFin])
             ->groupBy('fechaRegistroDesc')
             ->get();
@@ -222,6 +223,7 @@ class ReporteDePagosController extends Controller
         $consulta = DB::table('tb_descuentos')
             ->selectRaw('COALESCE(SUM(pesoDesc * precioDesc), 0) AS totalVentaDescuentoAnteriores')
             ->where('codigoCli', $codigoCli)
+            ->where('estadoDescuento', '=',1)
             ->where('fechaRegistroDesc', '<', $fecha)
             ->value('totalVentaDescuentoAnteriores');
     

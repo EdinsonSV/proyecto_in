@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ConsultarClientes\TraerGruposConsultarClientes;
 use App\Models\ConsultarClientes\ActualizarCliente;
 use App\Models\ConsultarClientes\EliminarCliente;
+use App\Models\ConsultarClientes\ValorDeConversion;
 
 class ConsultarClientesController extends Controller
 {
@@ -115,6 +116,17 @@ class ConsultarClientesController extends Controller
                     'comentarioCli' => $comentarioCli,
                     'idZona' => $zonaPollo,
                 ]);
+
+            if ($idGrupo == 2){
+                $ValorDeConversion = new ValorDeConversion;
+                $ValorDeConversion->where('codigoCli', $codigoCli)
+                ->update([
+                    'valorConversionPrimerEspecie' => 1.000,
+                    'valorConversionSegundaEspecie' => 1.000,
+                    'valorConversionTerceraEspecie' => 1.000,
+                    'valorConversionCuartaEspecie' => 1.000,
+                ]);
+            }
             
             return response()->json(['success' => true], 200);
         }

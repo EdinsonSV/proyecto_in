@@ -26,12 +26,12 @@
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesPrimerEspecie">0 Uds.</div>
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoPrimerEspecie">0.00 Kg.</div>
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoPrimerEspecie">0.00 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full">
+                        <div class="text-white font-semibold text-xl md:text-2xl flex justify-between gap-0 w-full pr-2">
                             <div class="grid grid-rows-2 grid-cols-2">
                                 <div></div>
                                 <div>&nbsp;</div>
                             </div>
-                            <div class="h-full flex justify-center items-center" id="totalKgPrimerEspecie">0.00 Kg.</div>
+                            <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgPrimerEspecie">0.00 Kg.</div>
                         </div>
                     </div>
                 </div>
@@ -58,12 +58,12 @@
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesSegundaEspecie">0 Uds.</div>
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoSegundaEspecie">0.00 Kg.</div>
                         <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoSegundaEspecie">0.00 Kg.</div>
-                        <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full pr-2">
+                        <div class="text-white font-semibold text-xl md:text-2xl flex justify-between gap-0 w-full pr-2">
                             <div class="grid grid-rows-2 grid-cols-2">
                                 <div></div>
                                 <div>&nbsp;</div>
                             </div>
-                            <div class="h-full flex justify-center items-center" id="totalKgSegundaEspecie">0.00 Kg.</div>
+                            <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgSegundaEspecie">0.00 Kg.</div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                                 <div></div>
                                 <div>&nbsp;</div>
                             </div>
-                            <div class="h-full flex justify-center items-center" id="totalKgTerceraEspecie">0.00 Kg.</div>
+                            <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgTerceraEspecie">0.00 Kg.</div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                                 <div></div>
                                 <div>&nbsp;</div>
                             </div>
-                            <div class="h-full flex justify-center items-center" id="totalKgCuartaEspecie">0.00 Kg.</div>
+                            <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgCuartaEspecie">0.00 Kg.</div>
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                                 <div></div>
                                 <div>&nbsp;</div>
                             </div>
-                            <div class="h-full flex justify-center items-center" id="totalKgEspecies">0.00 Kg.</div>
+                            <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgEspecies">0.00 Kg.</div>
                         </div>
                     </div>
                 </div>
