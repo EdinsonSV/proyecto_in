@@ -29,7 +29,7 @@ class ValorDeConversionController extends Controller
             FROM tb_precio_x_presentacion
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli
             INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona  
-            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.idGrupo = 1 ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
+            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.idGrupo = 1 and estadoEliminadoCli = 1 ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

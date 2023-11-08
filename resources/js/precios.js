@@ -4,8 +4,8 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    fn_TraerPreciosXPresentacion()
-    fn_TraerPreciosMinimos()
+    fn_TraerPreciosXPresentacion();
+    fn_TraerPreciosMinimos();
 
     DataTableED('#tablaPreciosXPresentacion');
 
@@ -190,6 +190,8 @@ jQuery(function($) {
                     $('#idPolloBeneficiadoChimu').attr('value', response[6].idPrecioMinimo);
                     $('#idPolloBeneficiadoxx').attr('value', response[7].idPrecioMinimo);
 
+                    fn_pintarPreciosMinimos();
+
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -308,6 +310,7 @@ jQuery(function($) {
                     });                    
                     
                     alertify.notify('Se actualizo el precio correctamente', 'success', 2);
+                    fn_pintarPreciosMinimos();
                 }
             },
             error: function(error) {
@@ -349,7 +352,7 @@ jQuery(function($) {
         }
     });
 
-    fn_TraerGruposPrecios()
+    fn_TraerGruposPrecios();
 
     function fn_TraerGruposPrecios(){
         $.ajax({
@@ -411,7 +414,7 @@ jQuery(function($) {
 
                     $('#ModalPreciosMinimos').addClass('hidden');
                     $('#ModalPreciosMinimos').removeClass('flex');
-                    fn_TraerPreciosMinimos()
+                    fn_TraerPreciosMinimos();
                 }
             },
             error: function(error) {
@@ -422,6 +425,79 @@ jQuery(function($) {
                   })
                 console.error("ERROR",error);
             }
+        });
+    }
+    
+    function fn_pintarPreciosMinimos() {
+
+        let valorPrecioPolloVivoYugo = $('#valorPrecioPolloVivoYugo').val();
+        let valorPrecioPolloVivoPerla = $('#valorPrecioPolloVivoPerla').val();
+        let valorPrecioPolloVivoChimu = $('#valorPrecioPolloVivoChimu').val();
+        let valorPrecioPolloVivoxx = $('#valorPrecioPolloVivoxx').val();
+
+        let valorPrecioPolloBeneficiadoPolloYugo = $('#valorPrecioPolloBeneficiadoPolloYugo').val();
+        let valorPrecioPolloBeneficiadoPolloPerla = $('#valorPrecioPolloBeneficiadoPolloPerla').val();
+        let valorPrecioPolloBeneficiadoPolloChimu = $('#valorPrecioPolloBeneficiadoPolloChimu').val();
+        let valorPrecioPolloBeneficiadoPolloxx = $('#valorPrecioPolloBeneficiadoPolloxx').val();
+
+        console.log("valorPrecioPolloVivoYugo", valorPrecioPolloVivoYugo);
+
+        $('#bodyPreciosXPresentacion tr').each(function() {
+            // Encontrar la columna con el atributo data-columna
+            $(this).find('td[data-columna]').each(function() {
+                // Obtener el valor del atributo data-columna
+                let columna = $(this).data('columna');
+                // Obtener el valor dentro de la celda
+                let valor = parseFloat($(this).text());
+                // Obtener el valor de la columna 6
+                let idGrupo = $(this).closest('tr').find('td:eq(6)').text();
+
+                if (columna == 1){
+                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoYugo) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloYugo) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else{
+                        $(this).removeClass("text-white bg-red-600");
+                        $(this).addClass("text-gray-900 dark:text-white");
+                    }
+                }else if (columna == 2){
+                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoPerla) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloPerla) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else{
+                        $(this).removeClass("text-white bg-red-600");
+                        $(this).addClass("text-gray-900 dark:text-white");
+                    }
+                }else if (columna == 3){
+                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoChimu) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloChimu) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else{
+                        $(this).removeClass("text-white bg-red-600");
+                        $(this).addClass("text-gray-900 dark:text-white");
+                    }
+                }else if (columna == 4){
+                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoxx) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloxx) ){
+                        $(this).removeClass("text-gray-900 dark:text-white");
+                        $(this).addClass("text-white bg-red-600");
+                    }else{
+                        $(this).removeClass("text-white bg-red-600");
+                        $(this).addClass("text-gray-900 dark:text-white");
+                    }
+                }
+            });
         });
     }
 

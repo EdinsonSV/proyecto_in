@@ -57,7 +57,7 @@ class InicioController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DB::table('tb_guias')
                 ->selectRaw('IFNULL(SUM(cantidadGuia), 0) as totalCantidadGuia, IFNULL(SUM(pesoGuia), 0) as totalPesoGuia')
-                ->whereDate('fechaGuia', now()->toDateString())
+                ->whereRaw('fechaGuia = CURDATE()')
                 ->get();
 
             // Devuelve los datos en formato JSON

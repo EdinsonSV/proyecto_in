@@ -120,7 +120,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDatosdeCliente p-4" 
     id="ModalEditarDatosdeCliente">
-    <div class="modal-content max-w-[700px] w-full h-full md:h-auto overflow-auto">
+    <div class="modal-content max-w-[700px] w-full h-full md:h-auto overflow-auto aside_scrollED">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class="px-4 pt-4">
                 <div class="flex flex-col">

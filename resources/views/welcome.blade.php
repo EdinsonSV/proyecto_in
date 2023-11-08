@@ -175,7 +175,7 @@
 
             </div>
             {{-- Inicia contenedor de Tabla Grafica Actual --}}
-            <div class="overflow-x-auto div_table rounded-lg">
+            <div class="overflow-x-auto aside_scrollED rounded-lg">
                 <table class="tabla_reporte_inicio table-auto text-gray-500 dark:text-gray-300 w-full border-collapse">
                     <thead class="bg-blue-600">
                         <tr>
@@ -188,27 +188,27 @@
                     <tbody class="">
                         <tr>
                             <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-red-600 whitespace-nowrap">Compra</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblCantidadCompra">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPesoCompra">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPromedioCompra">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadCompra">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoCompra">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioCompra">0</td>
                         </tr>
                         <tr>
                             <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-emerald-600 whitespace-nowrap">Venta</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblCantidadVenta">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPesoVenta">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPromedioVenta">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadVenta">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoVenta">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioVenta">0</td>
                         </tr>
                         <tr>
                             <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-orange-600 whitespace-nowrap">Merma</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblCantidadMerma">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPesoMerma">0</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPromedioMerma">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadMerma">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoMerma">0</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMerma">0</td>
                         </tr>
                         <tr>
                             <td class="text-white border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-400 whitespace-nowrap">Merma %</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblCantidadMermaPor">0 %</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPesoMermaPor">0 %</td>
-                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white" id="tblPromedioMermaPor">0 %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadMermaPor">0 %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoMermaPor">0 %</td>
+                            <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMermaPor">0 %</td>
                         </tr>
                     </tbody>
                 </table>
