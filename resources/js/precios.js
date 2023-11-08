@@ -440,8 +440,6 @@ jQuery(function($) {
         let valorPrecioPolloBeneficiadoPolloChimu = $('#valorPrecioPolloBeneficiadoPolloChimu').val();
         let valorPrecioPolloBeneficiadoPolloxx = $('#valorPrecioPolloBeneficiadoPolloxx').val();
 
-        console.log("valorPrecioPolloVivoYugo", valorPrecioPolloVivoYugo);
-
         $('#bodyPreciosXPresentacion tr').each(function() {
             // Encontrar la columna con el atributo data-columna
             $(this).find('td[data-columna]').each(function() {
