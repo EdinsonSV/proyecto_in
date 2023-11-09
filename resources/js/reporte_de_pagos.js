@@ -527,7 +527,8 @@ jQuery(function ($) {
                         $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
                     });
 
-                    fn_TraerDeudaTotal(codigoCliente)
+                    fn_TraerDeudaTotal(codigoCliente);
+                    $('#filtrar_pagos_submit').trigger('click');
                 }
             },
             error: function(error) {

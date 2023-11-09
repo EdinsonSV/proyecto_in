@@ -299,7 +299,7 @@ class ReporteDePagosController extends Controller
             $agregarPagoCliente->fechaOperacionPag = $fechaAgregarPagoCliente;
             $agregarPagoCliente->codigoTransferenciaPag = $codAgregarPagoCliente;
             $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
-            $agregarPagoCliente->fechaRegistroPag = now()->toDateString();
+            $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
             $agregarPagoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -325,8 +325,8 @@ class ReporteDePagosController extends Controller
             $agregarDescuentoCliente->pesoDesc = $pesoAgregarDescuentoCliente;
             $agregarDescuentoCliente->precioDesc = $precioAgregarDescuentoCliente;
             $agregarDescuentoCliente->cantidadDesc = 0;
-            $agregarDescuentoCliente->fechaRegistroDescuento = now()->toDateString();
-            $agregarDescuentoCliente->horaRegistroDesc = now()->toTimeString();
+            $agregarDescuentoCliente->fechaRegistroDescuento = now()->setTimezone('America/New_York')->toDateString();
+            $agregarDescuentoCliente->horaRegistroDesc = now()->setTimezone('America/New_York')->toTimeString();
             $agregarDescuentoCliente->estadoDescuento = 1;
             $agregarDescuentoCliente->save();
     

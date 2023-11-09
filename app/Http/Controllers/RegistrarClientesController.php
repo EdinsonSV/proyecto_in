@@ -116,8 +116,8 @@ class RegistrarClientesController extends Controller
             $registrarCliente->contactoCli = $contactoCli;
             $registrarCliente->direccionCli = $direccionCli;
             $registrarCliente->idEstadoCli = $estadoCli;
-            $registrarCliente->fechaRegistroCli = now()->toDateString();
-            $registrarCliente->horaRegistroCli = now()->toTimeString();
+            $registrarCliente->fechaRegistroCli = now()->setTimezone('America/New_York')->toDateString();
+            $registrarCliente->horaRegistroCli = now()->setTimezone('America/New_York')->toTimeString();
             $registrarCliente->usuarioRegistroCli = $usuarioRegistroCli;
             $registrarCliente->codigoCli = $codigoCli;
             $registrarCliente->idGrupo = $idGrupo;
