@@ -17,6 +17,7 @@ use App\Http\Controllers\ConsultarUsuariosController;
 use App\Http\Controllers\ReportePorProveedorController;
 use App\Http\Controllers\ReporteAcumuladoController;
 use App\Http\Controllers\AgregarSaldoController;
+use App\Http\Controllers\ConfiguracionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,7 @@ Route::get('/consultar_usuarios',[ConsultarUsuariosController::class,'show']);
 Route::get('/reporte_por_proveedor',[ReportePorProveedorController::class,'show']);
 Route::get('/reporte_acumulado',[ReporteAcumuladoController::class,'show']);
 Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
+Route::get('/configuraciones',[ConfiguracionesController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 

@@ -68,7 +68,7 @@ class ConsultarUsuariosController extends Controller
             SELECT idRol, idUsuario, tb_roles_de_usuario.idMenu, tb_roles_de_usuario.idSubMenu, estadoRol, nombreSubMenu
             FROM tb_roles_de_usuario
             INNER JOIN tb_submenus ON tb_submenus.idSubMenu = tb_roles_de_usuario.idSubMenu
-            WHERE idUsuario = ?',[$codigoUsu]);
+            WHERE idUsuario = ? AND tb_submenus.estadoSubMenu = 1',[$codigoUsu]);
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);

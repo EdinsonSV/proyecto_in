@@ -282,8 +282,6 @@ jQuery(function ($) {
         let tipoDocumento = $(this).val();
         $("#valorEditarNumeroDeDocumento").removeClass("especialDNI rounded-bl-lg especialRUC especialPasaporte");
         $("#valorEditarNumeroDeDocumento").val("");
-
-        console.log(tipoDocumento);
         
         if (tipoDocumento == 1) {
             $("#valorEditarNumeroDeDocumento").addClass("especialDNI");

@@ -329,7 +329,7 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
@@ -571,26 +571,49 @@ jQuery(function ($) {
         });
     }
 
-    $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
+    $(document).on('contextmenu click', '#tablaReportePorCliente tbody tr', function (e) {
         e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            let codigoPesada = $(this).closest("tr").find("td:first").text();
+    
+        const tipoUsuario = 'Administrador';
+        const codigoPesada = $(this).closest("tr").find("td:first").text();
+    
+        // Verificar si el dispositivo es iOS
+        const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+        if (isiOS && tipoUsuario == 'Administrador' && e.type === 'click') {
+            // Manejar evento de clic en dispositivos iOS
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
-                text: "¡Estas seguro de eliminar el registro!",
+                text: '¡Estás seguro de eliminar el registro!',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si,eliminar!'
+                confirmButtonText: '¡Sí, eliminar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                fn_EliminarPesada(codigoPesada);
+                    fn_EliminarPesada(codigoPesada);
                 }
-            })
+            });
+        } else if (!isiOS && tipoUsuario == 'Administrador' && e.type === 'contextmenu') {
+            // Manejar evento de contextmenu en dispositivos no iOS
+            Swal.fire({
+                title: '¿Desea eliminar el Registro?',
+                text: '¡Estás seguro de eliminar el registro!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Sí, eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_EliminarPesada(codigoPesada);
+                }
+            });
         }
-    });
+    });      
 
     function fn_EliminarPesada(codigoPesada){
         $.ajax({

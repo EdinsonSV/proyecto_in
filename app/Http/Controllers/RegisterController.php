@@ -82,7 +82,7 @@ class RegisterController extends Controller
     public function consulta_RolesUsuario(Request $request){
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = DB::select('select idSubMenu,idMenu,nombreSubMenu,idNombreSubMenu,hrefSubMenu,iconHtml,estadoSubMenu FROM tb_submenus');
+            $datos = DB::select('select idSubMenu,idMenu,nombreSubMenu,idNombreSubMenu,hrefSubMenu,iconHtml,estadoSubMenu FROM tb_submenus WHERE estadoSubMenu = 1');
             // Devuelve los datos en formato JSON
             return response()->json($datos);
         }

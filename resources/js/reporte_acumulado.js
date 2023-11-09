@@ -518,7 +518,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(ventaTotal).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(ventaTotal).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -528,7 +528,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalVentaAnterior).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalVentaAnterior).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -543,7 +543,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(saldoDelDia).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(saldoDelDia).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -553,7 +553,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">PAGOS</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(item.pagos).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(item.pagos).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -568,7 +568,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(saldoActual).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(saldoActual).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `;

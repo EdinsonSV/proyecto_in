@@ -4,6 +4,7 @@ window.$ = jQuery;
 jQuery(function($) {
     
     fn_ConsultarZonas();
+    var tipoUsuario = $('#tipoUsuario').data('id');
 
     function fn_ConsultarZonas() {
         $.ajax({
@@ -105,6 +106,44 @@ jQuery(function($) {
     
         // Establece el valor modificado en el campo
         $(this).val(valorCampo);
-    });  
+    });
+    
+    /* $(document).on("dblclick", "#tablaConsultarZonas tbody tr", function() {
+        let codigoZona = $(this).closest("tr").find('td:eq(0)').text();
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let nombreZona = fila.find('td:eq(2)').text();
+            
+            $('#ModalPesoReportePorCliente').addClass('flex');
+            $('#ModalPesoReportePorCliente').removeClass('hidden');
+
+            $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
+            $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
+            $('#nuevoPesoReportePorCliente').focus();
+        }
+    }); */
+
+    /* $(document).on('contextmenu', '#tablaConsultarZonas tbody tr', function (e) {
+        e.preventDefault();
+    
+        let codigoZona = $(this).closest("tr").find('td:eq(0)').text();
+        if (tipoUsuario == 'Administrador') {
+            Swal.fire({
+                title: '¿Desea eliminar el Registro?',
+                text: '¡Estás seguro de eliminar la zona!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Sí, eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_EliminarZona(codigoZona);
+                }
+            });
+        }
+    });    */
+
 
 });
