@@ -222,4 +222,29 @@ jQuery(function($) {
         });
     }
 
+    $('#nombresUsu, #apellidoPaternoUsu, #apellidoMaternoUsu').on('input', function() {
+        var nombre = $('#nombresUsu').val().trim().charAt(0).toLowerCase();
+        var apellidoPaterno = $('#apellidoPaternoUsu').val().trim().toLowerCase();
+        var apellidoMaternoInicial = $('#apellidoMaternoUsu').val().trim().charAt(0).toLowerCase();
+
+        var username = nombre + apellidoPaterno + apellidoMaternoInicial;
+        $('#usernameUsu').val(username);
+    });
+
+    function generarContrasenaSegura() {
+        var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+        var contrasena = "";
+        for (var i = 0; i < 12; i++) {
+            var indice = Math.floor(Math.random() * caracteres.length);
+            contrasena += caracteres.charAt(indice);
+        }
+        return contrasena;
+    }
+
+    $('#generarContrasenaSegura').on('click',function(event) {
+        event.preventDefault();
+        var nuevaContrasena = generarContrasenaSegura();
+        $('#passwordUsu').val(nuevaContrasena);
+    });
+
 });
