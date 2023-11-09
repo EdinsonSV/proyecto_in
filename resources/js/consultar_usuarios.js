@@ -82,7 +82,7 @@ jQuery(function($) {
                         $("#valorEditarTipoDeUsuario").val((obj.tipoUsu));
                         $("#valorEditarCorreoElectronicoUsuario").val(obj.email);
                         $("#valorEditarNombreDeUsuario").val(obj.username);
-                        $("#valorEditarContraseñaUsuario").val("");
+                        $("#valorEditarContrasenaUsuario").val("");
 
                         $("#valorEditarSexoUsuario").val(obj.sexoUsu);
                         if (obj.sexoUsu == "M"){
@@ -116,8 +116,7 @@ jQuery(function($) {
                     
                     let rolesUsuario = $('#EditarRolesUsuarios');
                     rolesUsuario.empty();
-                    let nuevaFila = ""
-                    console.log(response);
+                    let nuevaFila = "";
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
@@ -159,6 +158,8 @@ jQuery(function($) {
     });
 
     $('#btnEditarDatosdeUsuario').on('click', function () {
+        let todosCamposCompletos = true;
+        let passwordActualizar = false; 
 
         let codigoUsu = $("#valorEditarCodigoUsuario").val();
         let apellidoPaternoUsu = $('#valorEditarApellidoPaternoUsuario').val();
@@ -171,14 +172,107 @@ jQuery(function($) {
         let email = $('#valorEditarCorreoElectronicoUsuario').val();
         let username = $('#valorEditarNombreDeUsuario').val();
         let sexoUsu  = $("input[name='opcionSexo']:checked").val();
-        let password = $("#valorEditarContraseñaUsuario").val();
+        let password = $("#valorEditarContrasenaUsuario").val();
 
-        fn_ActualizarUsuario(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu,password)
+        $('#ModalEditarDatosdeUsuario .validarCampo').each(function() {
+            let valorCampo = $(this).val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $(this).removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $(this).removeClass('border-red-500').addClass('border-green-500');
+            }
+        });
+
+        if($('#opcionActualizarConstrasena').is(':checked')){
+            passwordActualizar = true;
+            let valorCampo = $("#valorEditarContrasenaUsuario").val();
+    
+            if (valorCampo === null || valorCampo.trim() === '') {
+                $("#valorEditarContrasenaUsuario").removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                todosCamposCompletos = false;
+            } else {
+                $("#valorEditarContrasenaUsuario").removeClass('border-red-500').addClass('border-green-500');
+            }
+        }
+
+        // Llama a tu función de validación personalizada
+        if (todosCamposCompletos) {
+            if (passwordActualizar == true){
+                fn_ActualizarUsuarioExtra(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu,password);
+            }else if (passwordActualizar == false){
+                fn_ActualizarUsuario(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu)
+            }
+        } else {
+            // Si la validación falla, muestra un mensaje o realiza otra acción
+            alertify.notify('Debe rellenar todos los campos', 'error', 3);
+        }
     });
 
-    function fn_ActualizarUsuario(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu,password){
+    $('#opcionActualizarConstrasena').on('change',function() {
+        if ($(this).is(':checked')) {
+            $('#valorEditarContrasenaUsuario').removeClass('hidden');
+        } else {
+            $('#valorEditarContrasenaUsuario').addClass('hidden');
+        }
+    });
+
+    function fn_ActualizarUsuario(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu){
         $.ajax({
             url: '/fn_consulta_ActualizarUsuario',
+            method: 'GET',
+            data: {
+                codigoUsu: codigoUsu,
+                apellidoPaternoUsu: apellidoPaternoUsu,
+                apellidoMaternoUsu: apellidoMaternoUsu,
+                nombresUsu:nombresUsu,
+                dniUsu:dniUsu,
+                celularUsu:celularUsu,
+                direccionUsu:direccionUsu,
+                tipoUsu:tipoUsu,
+                email:email,
+                username:username,
+                sexoUsu:sexoUsu,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el usuario correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+
+                    $('#EditarRolesUsuarios input[type="checkbox"]').each(function() {
+                        let idRol = $(this).attr('data-idRol');
+                        let idMenu = $(this).attr('data');
+                        let idSubMenu = $(this).attr('id');
+                        let estadoRol = $(this).is(':checked') ? 'si' : 'no';
+    
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol);
+                    });
+                    
+                    fn_ConsultarUsuarios();
+                    $('#ModalEditarDatosdeUsuario').addClass('hidden');
+                    $('#ModalEditarDatosdeUsuario').removeClass('flex');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_ActualizarUsuarioExtra(codigoUsu, apellidoPaternoUsu,apellidoMaternoUsu,nombresUsu,dniUsu,celularUsu,direccionUsu,tipoUsu,email,username,sexoUsu,password){
+        $.ajax({
+            url: '/fn_consulta_ActualizarUsuarioExtra',
             method: 'GET',
             data: {
                 codigoUsu: codigoUsu,

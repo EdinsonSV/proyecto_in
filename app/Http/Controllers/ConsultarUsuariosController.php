@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ConsultarUsuarios\ActualizarUsuario;
+use App\Models\ConsultarUsuarios\ActualizarUsuarioExtra;
 use App\Models\ConsultarUsuarios\ActualizarRolesUsuario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -89,10 +90,47 @@ class ConsultarUsuariosController extends Controller
         $codigoUsu = $request->input('codigoUsu');
         $username = $request->input('username');
         $sexoUsu = $request->input('sexoUsu');
-        $password = Hash::make($request->input('password'));
 
         if (Auth::check()) {
             $ActualizarUsuario = new ActualizarUsuario;
+            $ActualizarUsuario->where('id', $codigoUsu)
+                ->update([
+                    'apellidoPaternoUsu' => $apellidoPaternoUsu,
+                    'apellidoMaternoUsu' => $apellidoMaternoUsu,
+                    'nombresUsu' => $nombresUsu,
+                    'dniUsu' => $dniUsu,
+                    'celularUsu' => $celularUsu,
+                    'direccionUsu' => $direccionUsu,
+                    'tipoUsu' => $tipoUsu,
+                    'email' => $email,
+                    'username' => $username,
+                    'sexoUsu' => $sexoUsu,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarUsuarioExtra(Request $request)
+    {
+        $apellidoPaternoUsu = $request->input('apellidoPaternoUsu');
+        $apellidoMaternoUsu = $request->input('apellidoMaternoUsu');
+        $nombresUsu = $request->input('nombresUsu');
+        $dniUsu = $request->input('dniUsu');
+        $celularUsu = $request->input('celularUsu');
+        $direccionUsu = $request->input('direccionUsu');
+        $tipoUsu = $request->input('tipoUsu');
+        $email = $request->input('email');
+        $codigoUsu = $request->input('codigoUsu');
+        $username = $request->input('username');
+        $sexoUsu = $request->input('sexoUsu');
+        $password = Hash::make($request->input('password'));
+
+        if (Auth::check()) {
+            $ActualizarUsuario = new ActualizarUsuarioExtra;
             $ActualizarUsuario->where('id', $codigoUsu)
                 ->update([
                     'apellidoPaternoUsu' => $apellidoPaternoUsu,

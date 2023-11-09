@@ -114,6 +114,7 @@ Route::get('/fn_consulta_AgregarZona', [ZonasController::class,'consulta_Agregar
 Route::get('/fn_consulta_ConsultarUsuarios', [ConsultarUsuariosController::class,'consulta_ConsultarUsuarios']);
 Route::get('/fn_consulta_ConsultarUsuariosEditar', [ConsultarUsuariosController::class,'consulta_ConsultarUsuariosEditar']);
 Route::get('/fn_consulta_ActualizarUsuario', [ConsultarUsuariosController::class,'consulta_ActualizarUsuario']);
+Route::get('/fn_consulta_ActualizarUsuarioExtra', [ConsultarUsuariosController::class,'consulta_ActualizarUsuarioExtra']);
 Route::get('/fn_consulta_ConsultarRolesUsuariosEditar', [ConsultarUsuariosController::class,'consulta_ConsultarRolesUsuariosEditar']);
 Route::get('/fn_consulta_RegistrarUsuarioRolesEditar', [ConsultarUsuariosController::class,'consulta_RegistrarUsuarioRolesEditar']);
 

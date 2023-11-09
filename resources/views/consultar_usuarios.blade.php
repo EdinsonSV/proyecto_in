@@ -14,7 +14,7 @@
                     <tr class="h-10">
                         <th class="px-4 hidden">ID</th>
                         <th class="px-4 whitespace-nowrap">Nombres</th>
-                        <th class="px-4 whitespace-nowrap">Cel/Telf</th>
+                        <th class="px-4 whitespace-nowrap">Celular</th>
                         <th class="px-4 whitespace-nowrap">Correo Electronico</th>
                         <th class="px-4 whitespace-nowrap">Tipo de Usuario</th>
                     </tr>
@@ -33,7 +33,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDatosdeUsuario p-4" 
     id="ModalEditarDatosdeUsuario">
-    <div class="modal-content max-w-[700px] w-full h-full md:h-auto overflow-auto">
+    <div class="modal-content max-w-[700px] w-full max-h-[95%] overflow-auto aside_scrollED rounded-lg">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class="px-4 pt-4">
                 <div class="flex flex-col">
@@ -52,57 +52,61 @@
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarApellidoPaternoUsuario" autocomplete="off"
                                 id="valorEditarApellidoPaternoUsuario" placeholder="Apellido Paterno">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarApellidoMaternoUsuario" autocomplete="off"
                                 id="valorEditarApellidoMaternoUsuario" placeholder="Apellido Materno">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarNombresUsuario" autocomplete="off"
                                 id="valorEditarNombresUsuario" placeholder="Nombres">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarDniUsuario" autocomplete="off"
                                 id="valorEditarDniUsuario" placeholder="DNI">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full validarEntradasDeCelular outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full validarEntradasDeCelular outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarNumeroDeCelularUsuario" autocomplete="off"
                                 id="valorEditarNumeroDeCelularUsuario" placeholder="Celular">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full entradaEnMayusculas outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarDireccionUsuario" autocomplete="off"
                                 id="valorEditarDireccionUsuario" placeholder="Direccion">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
-                                type="text" name="valorEditarCorreoElectronicoUsuario" autocomplete="off"
+                                class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                type="email" name="valorEditarCorreoElectronicoUsuario" autocomplete="off"
                                 id="valorEditarCorreoElectronicoUsuario" placeholder="Correo Electronico">
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <input
-                                class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
                                 type="text" name="valorEditarNombreDeUsuario" autocomplete="off"
                                 id="valorEditarNombreDeUsuario" placeholder="Nombre de Usuario">
                         </div>
-                        <div class="flex w-full justify-start items-center gap-2">
+                        <div class="flex w-full flex-col justify-center items-start gap-2">
+                            <div class="flex items-center gap-2">
+                                <input id="opcionActualizarConstrasena" type="checkbox" value="si" name="opcionActualizarConstrasena" class="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-700 rounded-full">
+                                <label for="opcionActualizarConstrasena" class="w-full text-sm font-medium text-gray-900 dark:text-gray-300">Actualizar Contraseña</label>
+                            </div>
                             <input
-                                class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
-                                type="text" name="valorEditarContraseñaUsuario" autocomplete="off"
-                                id="valorEditarContraseñaUsuario" placeholder="Contraseña">
+                                class="w-full hidden outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-md"
+                                type="text" name="valorEditarContrasenaUsuario" autocomplete="off"
+                                id="valorEditarContrasenaUsuario" placeholder="Contraseña">
                         </div>
                         <div class="flex w-full justify-start items-center gap-4 lg:col-start-1 lg:col-end-3">                            
                             <div class="flex items-center gap-2">

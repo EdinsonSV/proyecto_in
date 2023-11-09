@@ -48,15 +48,20 @@ jQuery(function($) {
         }
     });
 
-    $('#registrar_agregarZona').on('click', function (e) {
+    $('#registrar_agregarZona').on('click', function () {
         $('#ModalZonas').addClass('flex');
         $('#ModalZonas').removeClass('hidden');
         $('#nombreAgregarZona').focus();
     });
 
-    $('#btnAgregarZonas').on('click', function (e) {
+    $('#btnAgregarZonas').on('click', function () {
         let nombreAgregarZona = $('#nombreAgregarZona').val();
-        fn_AgregarZona(nombreAgregarZona);
+    
+        if (nombreAgregarZona === null || nombreAgregarZona.trim() === '') {
+            alertify.notify('Debe escribir el nombre de la zona', 'error', 3);
+        } else {
+            fn_AgregarZona(nombreAgregarZona);
+        }
     });
 
     function fn_AgregarZona(nombreAgregarZona){

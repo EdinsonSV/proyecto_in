@@ -155,7 +155,11 @@ jQuery(function($) {
 
                     cantidadVentaTotal = cantidadTotalesEspecie;
                     pesoVentaTotal = pesoTotalesEspecie;
-                    promedioVentaTotal = pesoTotalesEspecie/cantidadTotalesEspecie;
+                    if (pesoTotalesEspecie != 0 && cantidadTotalesEspecie != 0) {
+                        promedioVentaTotal = pesoTotalesEspecie/cantidadTotalesEspecie;
+                    }else{
+                        promedioVentaTotal = 0; 
+                    }
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -176,8 +180,13 @@ jQuery(function($) {
                         } else {
                             console.log("La respuesta no es un arreglo de objetos.");
                         }
+
+                        if (pesoCompraTotal != 0 && cantidadCompraTotal != 0){
+                            promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal;
+                        }else{
+                            promedioCompraTotal = 0
+                        }
         
-                        promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal;
         
                         $('#tblCantidadCompra').text(parseInt(cantidadCompraTotal));
                         $('#tblPesoCompra').text(pesoCompraTotal);

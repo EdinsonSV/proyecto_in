@@ -5,7 +5,7 @@ namespace App\Models\ConsultarUsuarios;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ActualizarUsuario extends Model
+class ActualizarUsuarioExtra extends Model
 {
     protected $table = 'users'; // Nombre de tu tabla
     protected $primaryKey = 'id'; // Clave primaria
@@ -23,5 +23,6 @@ class ActualizarUsuario extends Model
         'rutaPerfilUsu',
         'email',
         'username',
+        'password',
     ];
 }

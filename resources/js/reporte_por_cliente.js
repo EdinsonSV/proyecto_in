@@ -482,13 +482,23 @@ jQuery(function ($) {
     $('#btnActualizarCantidadReportePorCliente').on('click', function () {
         let idCodigoPesada = $('#idCantidadReportePorCliente').attr("value");
         let nuevoCantidadReportePorCliente = $('#nuevoCantidadReportePorCliente').val();
-        fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente);
+    
+        if (nuevoCantidadReportePorCliente === null || nuevoCantidadReportePorCliente.trim() === '') {
+            alertify.notify('La cantidad no puede ser vacia', 'error', 3);
+        } else {
+            fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente);
+        }
     });
 
     $('#btnActualizarPesoReportePorCliente').on('click', function () {
         let idCodigoPesada = $('#idPesoReportePorCliente').attr("value");
         let nuevoPesoReportePorCliente = $('#nuevoPesoReportePorCliente').val();
-        fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente);
+
+        if (nuevoPesoReportePorCliente === null || nuevoPesoReportePorCliente.trim() === '') {
+            alertify.notify('El peso no debe ser vacio', 'error', 3);
+        } else {
+            fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente);
+        }
     });
 
     function fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente){
