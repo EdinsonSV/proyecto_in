@@ -44,7 +44,7 @@
         </div>
         {{-- Tabla --}}
         <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-5 max-h-[500px] aside_scrollED">
-            <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReportePorCliente">
+            <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReportePorCliente" style="-webkit-user-select: none">
                 <thead id="headerReportePorCliente" class="bg-blue-600 text-gray-50 sticky top-0">
                     <tr class="h-10">
                         <th class="hidden">Id</th>

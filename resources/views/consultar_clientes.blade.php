@@ -36,7 +36,7 @@
                     <tr class="h-10">
                         <th class="px-4 hidden">ID</th>
                         <th class="px-4" data-column="codigo">
-                            <h5 class="min-w-max flex justify-center items-center">Codigo<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Codigo<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -44,7 +44,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="nombres">
-                            <h5 class="min-w-max flex justify-center items-center">Nombres y Apellidos<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Nombres y Apellidos<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -52,7 +52,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="documento">
-                            <h5 class="min-w-max flex justify-center items-center">Documento<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Documento<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -60,7 +60,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="numdocumento">
-                            <h5 class="min-w-max flex justify-center items-center">Nro Doc.<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Nro Doc.<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -68,7 +68,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="telefono">
-                            <h5 class="min-w-max flex justify-center items-center">Telefono<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Telefono<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -76,7 +76,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="direccion">
-                            <h5 class="min-w-max flex justify-center items-center">Direccion<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Direccion<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -84,7 +84,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="zona">
-                            <h5 class="min-w-max flex justify-center items-center">Zona<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Zona<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path
@@ -92,7 +92,7 @@
                                     </svg></button></h5>
                         </th>
                         <th class="px-4" data-column="estado">
-                            <h5 class="min-w-max flex justify-center items-center">Estado<button><svg
+                            <h5 class="whitespace-nowrap flex justify-center items-center">Estado<button><svg
                                         class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 24 24">
                                         <path

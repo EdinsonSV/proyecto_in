@@ -571,49 +571,26 @@ jQuery(function ($) {
         });
     }
 
-    $(document).on('contextmenu click', '#tablaReportePorCliente tbody tr', function (e) {
+    $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
         e.preventDefault();
-    
-        const tipoUsuario = 'Administrador';
-        const codigoPesada = $(this).closest("tr").find("td:first").text();
-    
-        // Verificar si el dispositivo es iOS
-        const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    
-        if (isiOS && tipoUsuario == 'Administrador' && e.type === 'click') {
-            // Manejar evento de clic en dispositivos iOS
+        if (tipoUsuario =='Administrador'){
+            let codigoPesada = $(this).closest("tr").find("td:first").text();
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
-                text: '¡Estás seguro de eliminar el registro!',
+                text: "¡Estas seguro de eliminar el registro!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Sí, eliminar!'
+                confirmButtonText: '¡Si,eliminar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fn_EliminarPesada(codigoPesada);
+                fn_EliminarPesada(codigoPesada);
                 }
-            });
-        } else if (!isiOS && tipoUsuario == 'Administrador' && e.type === 'contextmenu') {
-            // Manejar evento de contextmenu en dispositivos no iOS
-            Swal.fire({
-                title: '¿Desea eliminar el Registro?',
-                text: '¡Estás seguro de eliminar el registro!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Sí, eliminar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fn_EliminarPesada(codigoPesada);
-                }
-            });
+            })
         }
-    });      
+    });
 
     function fn_EliminarPesada(codigoPesada){
         $.ajax({
