@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('comentarioCli', 300)->nullable();
             $table->integer('idZona');
             $table->integer('estadoEliminadoCli')->default(1);
-            $table->timestamps(); // Opcional, agrega campos created_at y updated_at
+            $table->timestamps();
         });
     }
 

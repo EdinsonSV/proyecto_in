@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_estados', function (Blueprint $table) {
             $table->id('idEstadoCli');
-            $table->char('estadoCliente', 50)->nullable();
+            $table->string('estadoCliente', 50)->nullable();
             $table->timestamps();
         });
     }

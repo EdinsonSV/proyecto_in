@@ -44,7 +44,7 @@ class PesadasController extends Controller
             FROM tb_pesadas
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
             INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
-            AND fechaRegistroPes BETWEEN ? AND ? ORDER BY fechaRegistroPes DESC, idPesada ASC', [$fechaDesde, $fechaHasta]);
+            WHERE fechaRegistroPes BETWEEN ? AND ? ORDER BY fechaRegistroPes DESC, idPesada ASC', [$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

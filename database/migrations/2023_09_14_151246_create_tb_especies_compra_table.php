@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_especies_compra', function (Blueprint $table) {
             $table->id('idEspecie');
             $table->string('nombreEspecie', 100);
-            $table->timestamps(); // Opcional, agrega campos created_at y updated_at
+            $table->timestamps();
         });
     }
 
