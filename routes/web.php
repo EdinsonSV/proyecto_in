@@ -111,6 +111,9 @@ Route::get('/fn_consulta_TraerPreciosClienteDescuento', [ReporteDePagosControlle
 Route::get('/fn_consulta_TraerPagosFechas', [ReporteDePagosController::class,'consulta_TraerPagosFechas']);
 
 Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,'consulta_ConsultarPesadasDesdeHasta']);
+Route::get('/fn_consulta_TraerClientesCambiarPesadaCliente', [PesadasController::class,'consulta_TraerClientesCambiarPesadaCliente']);
+Route::get('/fn_consulta_DatosParaCambioPesada', [PesadasController::class,'consulta_DatosParaCambioPesada']);
+Route::get('/fn_consulta_CambiarPesadaCliente', [PesadasController::class,'consulta_CambiarPesadaCliente']);
 
 Route::get('/fn_consulta_ConsultarZonas', [ZonasController::class,'consulta_ConsultarZonas']);
 Route::get('/fn_consulta_AgregarZona', [ZonasController::class,'consulta_AgregarZona']);

@@ -318,7 +318,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -351,7 +351,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -384,7 +384,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -417,7 +417,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -470,7 +470,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
