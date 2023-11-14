@@ -24,6 +24,66 @@ jQuery(function ($) {
     var nombreTerceraEspecieGlobal = ""
     var nombreCuartaEspecieGlobal = ""
 
+    $('#btnExportarExcelReportePorCliente').on('click', function () {
+        // Obtener los valores de los inputs
+        var cliente = $('#idClientePorReporte').val();
+        var fechaDesde = $('#fechaDesdeReportePorCliente').val();
+        var fechaHasta = $('#fechaHastaReportePorCliente').val();
+    
+        // Obtener la tabla
+        var tabla = document.getElementById("tablaReportePorCliente");
+
+        // Obtener la primera celda
+        var celda = tabla.rows[0].cells[0];
+
+        // Cambiar el color de la celda
+        celda.style.backgroundColor = "red";
+    
+        // Crear un nuevo libro de Excel
+        var workbook = XLSX.utils.book_new();
+    
+        // Construir matriz de datos
+        var dataMatrix = [
+            [''],
+            ['', 'Cliente:', cliente],
+            ['', 'Fecha Desde:', fechaDesde, 'Fecha Hasta:', fechaHasta],
+            ['']
+        ];
+    
+        // Obtener las filas de la tabla
+        var filas = tabla.rows;
+    
+        // Recorrer las filas de la tabla y agregar a la matriz de datos
+        for (var i = 0; i < filas.length; i++) {
+            var celdas = filas[i].cells;
+            var row = [];
+            for (var j = 1; j < celdas.length; j++) {
+                var cellText = celdas[j].textContent;
+                row.push(cellText);
+            }
+            dataMatrix.push(['', ...row]);
+        }              
+    
+        // Crear la hoja de cálculo
+        var sheet = XLSX.utils.aoa_to_sheet(dataMatrix);
+    
+        // Ajustar el ancho de las columnas al contenido
+        var range = XLSX.utils.decode_range(sheet["!ref"]);
+        for (var col = 1; col <= range.e.c; col++) {
+            sheet["!cols"] = sheet["!cols"] || [];
+            sheet["!cols"][col] = { wch: 15 }; // Ajusta el ancho a un valor fijo, puedes ajustar según tus necesidades
+            if (sheet["!cols"][col].wch < 20) {
+                sheet["!cols"][col].wch = 20; // Establecer el ancho mínimo
+            }
+        }
+    
+        // Agregar la hoja al libro
+        XLSX.utils.book_append_sheet(workbook, sheet, "ReportePorCliente");
+    
+        // Generar un archivo Excel y descargarlo
+        XLSX.writeFile(workbook, "Reporte_de_cliente_"+cliente+".xlsx");
+    });              
+    
     function declarar_especies(){
         $.ajax({
             url: '/fn_consulta_DatosEspecie',
@@ -254,6 +314,7 @@ jQuery(function ($) {
     function construirFilaFecha(item) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 hidden"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${item.fechaRegistroPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -325,6 +386,7 @@ jQuery(function ($) {
             if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="text-center py-1 px-2 hidden"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</td>
@@ -354,6 +416,7 @@ jQuery(function ($) {
             if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="text-center py-1 px-2 hidden"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</td>
@@ -381,6 +444,7 @@ jQuery(function ($) {
 
         filas.push(`
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 hidden"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL NETO:</td>
@@ -392,6 +456,7 @@ jQuery(function ($) {
 
         filas.push(`
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="text-center py-1 px-2 hidden"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO:</td>
