@@ -434,7 +434,7 @@ jQuery(function ($) {
                             $(this).find('td:eq(5)').text(contactoCli);
                             $(this).find('td:eq(6)').text(direccionCli);
                             $(this).find('td:eq(7)').text(zonaPolloTexto);
-                            $(this).find('td:eq(8)').empty(); // Limpia el contenido de la celda
+                            $(this).find('td:eq(8)').empty();
                             if (estadoCli == "1") {
                                 $(this).find('td:eq(8)').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">ACTIVO</p>'));
                             } else if (estadoCli == "2") {

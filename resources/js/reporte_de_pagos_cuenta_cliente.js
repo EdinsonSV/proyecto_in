@@ -446,46 +446,62 @@ jQuery(function ($) {
             precioCuartaEspecie = (parseFloat(item.totalVentaCuartaEspecie) / parseFloat(item.totalPesoCuartaEspecie)).toFixed(2);
         }
 
-        let totalCantidadDescuento = parseFloat(item.totalCantidadDescuentoPrimerEspecie)+parseFloat(item.totalCantidadDescuentoSegundaEspecie)+parseFloat(item.totalCantidadDescuentoTerceraEspecie)+parseFloat(item.totalCantidadDescuentoCuartaEspecie)
-        let totalPesoDescuento = parseFloat(item.totalPesoDescuentoPrimerEspecie)+parseFloat(item.totalPesoDescuentoSegundaEspecie)+parseFloat(item.totalPesoDescuentoTerceraEspecie)+parseFloat(item.totalPesoDescuentoCuartaEspecie)+parseFloat(item.totalPesoDescuento)
-        let totalVentaDescuento = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuento)
+        let totalCantidadDescuento = 0
+        let totalPesoDescuento = parseFloat(item.totalPesoDescuento)
+        let totalVentaDescuento = parseFloat(item.totalVentaDescuento)
 
         let precioDescuentoEspecies = 0;
         if (totalPesoDescuento !== 0) {
             precioDescuentoEspecies = (totalVentaDescuento / totalPesoDescuento).toFixed(2);
         }
 
+        let totalCantidadPrimerEspecie = parseFloat(item.totalCantidadPrimerEspecie)+parseFloat(item.totalCantidadDescuentoPrimerEspecie);
+        let totalCantidadSegundaEspecie = parseFloat(item.totalCantidadSegundaEspecie)+parseFloat(item.totalCantidadDescuentoSegundaEspecie);
+        let totalCantidadTerceraEspecie = parseFloat(item.totalCantidadTerceraEspecie)+parseFloat(item.totalCantidadDescuentoTerceraEspecie);
+        let totalCantidadCuartaEspecie = parseFloat(item.totalCantidadCuartaEspecie)+parseFloat(item.totalCantidadDescuentoCuartaEspecie);
+
+        let totalPesoPrimerEspecie = parseFloat(item.totalPesoPrimerEspecie)+parseFloat(item.totalPesoDescuentoPrimerEspecie);
+        let totalPesoSegundaEspecie = parseFloat(item.totalPesoSegundaEspecie)+parseFloat(item.totalPesoDescuentoSegundaEspecie);
+        let totalPesoTerceraEspecie = parseFloat(item.totalPesoTerceraEspecie)+parseFloat(item.totalPesoDescuentoTerceraEspecie);
+        let totalPesoCuartaEspecie = parseFloat(item.totalPesoCuartaEspecie)+parseFloat(item.totalPesoDescuentoCuartaEspecie);
+
+        let totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaDescuentoPrimerEspecie);
+        let totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie);
+        let totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie);
+        let totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie);
+
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombrePrimerEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadPrimerEspecie === 1 ? item.totalCantidadPrimerEspecie + ' Ud.' : item.totalCantidadPrimerEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaPrimerEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSegundaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadSegundaEspecie === 1 ? item.totalCantidadSegundaEspecie + ' Ud.' : item.totalCantidadSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreTerceraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadTerceraEspecie === 1 ? item.totalCantidadTerceraEspecie + ' Ud.' : item.totalCantidadTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreCuartaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${item.totalCantidadCuartaEspecie === 1 ? item.totalCantidadCuartaEspecie + ' Ud.' : item.totalCantidadCuartaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(item.totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.totalVentaCuartaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

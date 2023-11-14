@@ -295,6 +295,13 @@ jQuery(function($) {
         let totalPeso = parseFloat(item.totalPesoPrimerEspecie);
         let totalCantidad = parseInt(item.totalCantidadPrimerEspecie);
         let totalVenta = parseFloat(item.totalVentaPrimerEspecie);
+        let totalPesoDescuentoPrimerEspecie = parseFloat(item.totalPesoDescuentoPrimerEspecie);
+        let totalCantidadDescuentoPrimerEspecie = parseInt(item.totalCantidadDescuentoPrimerEspecie);
+        let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoPrimerEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoPrimerEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoPrimerEspecie;
 
         let promedio = 0;
         if (totalPeso != 0){
@@ -328,6 +335,13 @@ jQuery(function($) {
         let totalPeso = parseFloat(item.totalPesoSegundaEspecie);
         let totalCantidad = parseInt(item.totalCantidadSegundaEspecie);
         let totalVenta = parseFloat(item.totalVentaSegundaEspecie);
+        let totalPesoDescuentoSegundaEspecie = parseFloat(item.totalPesoDescuentoSegundaEspecie);
+        let totalCantidadDescuentoSegundaEspecie = parseInt(item.totalCantidadDescuentoSegundaEspecie);
+        let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoSegundaEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoSegundaEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoSegundaEspecie;
 
         let promedio = 0;
         if (totalPeso != 0){
@@ -361,6 +375,13 @@ jQuery(function($) {
         let totalPeso = parseFloat(item.totalPesoTerceraEspecie);
         let totalCantidad = parseInt(item.totalCantidadTerceraEspecie);
         let totalVenta = parseFloat(item.totalVentaTerceraEspecie);
+        let totalPesoDescuentoTerceraEspecie = parseFloat(item.totalPesoDescuentoTerceraEspecie);
+        let totalCantidadDescuentoTerceraEspecie = parseInt(item.totalCantidadDescuentoTerceraEspecie);
+        let totalVentaDescuentoTerceraEspecie = parseFloat(item.totalVentaDescuentoTerceraEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoTerceraEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoTerceraEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoTerceraEspecie;
 
         let promedio = 0;
         if (totalPeso != 0){
@@ -394,6 +415,13 @@ jQuery(function($) {
         let totalPeso = parseFloat(item.totalPesoCuartaEspecie);
         let totalCantidad = parseInt(item.totalCantidadCuartaEspecie);
         let totalVenta = parseFloat(item.totalVentaCuartaEspecie);
+        let totalPesoDescuentoCuartaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecie);
+        let totalCantidadDescuentoCuartaEspecie = parseInt(item.totalCantidadDescuentoCuartaEspecie);
+        let totalVentaDescuentoCuartaEspecie = parseFloat(item.totalVentaDescuentoCuartaEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoCuartaEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoCuartaEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoCuartaEspecie;
 
         let promedio = 0;
         if (totalPeso != 0){
@@ -425,28 +453,11 @@ jQuery(function($) {
 
     function construirDescuentoFila(item) {
 
-        let totalPesoDescuentoPrimerEspecie = parseFloat(item.totalPesoDescuentoPrimerEspecie);
-        let totalPesoDescuentoSegundaEspecie = parseFloat(item.totalPesoDescuentoSegundaEspecie);
-        let totalPesoDescuentoTerceraEspecie = parseFloat(item.totalPesoDescuentoTerceraEspecie);
-        let totalPesoDescuentoCuartaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecie);
-        let totalPesoDescuento = parseFloat(item.totalPesoDescuento);
+        let totalPeso = parseFloat(item.totalPesoDescuento);
 
-        let totalPeso = totalPesoDescuento+totalPesoDescuentoPrimerEspecie+totalPesoDescuentoSegundaEspecie+totalPesoDescuentoTerceraEspecie+totalPesoDescuentoCuartaEspecie;
+        let totalCantidad = 0;
 
-        let totalCantidadDescuentoPrimerEspecie = parseInt(item.totalCantidadDescuentoPrimerEspecie);
-        let totalCantidadDescuentoSegundaEspecie = parseInt(item.totalCantidadDescuentoSegundaEspecie);
-        let totalCantidadDescuentoTerceraEspecie = parseInt(item.totalCantidadDescuentoTerceraEspecie);
-        let totalCantidadDescuentoCuartaEspecie = parseInt(item.totalCantidadDescuentoCuartaEspecie);
-
-        let totalCantidad = totalCantidadDescuentoPrimerEspecie+totalCantidadDescuentoSegundaEspecie+totalCantidadDescuentoTerceraEspecie+totalCantidadDescuentoCuartaEspecie;
-
-        let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
-        let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
-        let totalVentaDescuentoTerceraEspecie = parseFloat(item.totalVentaDescuentoTerceraEspecie);
-        let totalVentaDescuentoCuartaEspecie = parseFloat(item.totalVentaDescuentoCuartaEspecie);
-        let totalVentaDescuento = parseFloat(item.totalVentaDescuento);
-
-        let totalVenta = totalVentaDescuentoPrimerEspecie+totalVentaDescuentoSegundaEspecie+totalVentaDescuentoTerceraEspecie+totalVentaDescuentoCuartaEspecie+totalVentaDescuento;
+        let totalVenta = parseFloat(item.totalVentaDescuento);
 
         let promedio = 0;
         if (totalPeso != 0 && totalCantidad != 0){
