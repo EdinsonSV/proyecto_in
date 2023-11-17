@@ -109,6 +109,9 @@ Route::get('/fn_consulta_AgregarPagoCliente', [ReporteDePagosController::class,'
 Route::get('/fn_consulta_AgregarDescuentoCliente', [ReporteDePagosController::class,'consulta_AgregarDescuentoCliente']);
 Route::get('/fn_consulta_TraerPreciosClienteDescuento', [ReporteDePagosController::class,'consulta_TraerPreciosClienteDescuento']);
 Route::get('/fn_consulta_TraerPagosFechas', [ReporteDePagosController::class,'consulta_TraerPagosFechas']);
+Route::get('/fn_consulta_EditarPago', [ReporteDePagosController::class,'consulta_EditarPago']);
+Route::get('/fn_consulta_ActualizarPagoCliente', [ReporteDePagosController::class,'consulta_ActualizarPagoCliente']);
+Route::get('/fn_consulta_EliminarPago', [ReporteDePagosController::class,'consulta_EliminarPago']);
 
 Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,'consulta_ConsultarPesadasDesdeHasta']);
 Route::get('/fn_consulta_TraerClientesCambiarPesadaCliente', [PesadasController::class,'consulta_TraerClientesCambiarPesadaCliente']);

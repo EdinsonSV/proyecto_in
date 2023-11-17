@@ -9,6 +9,8 @@ use App\Models\AgregarPagoCliente\TraerClientesAgregarPagoCliente;
 use App\Models\AgregarPagoCliente\TraerClientesAgregarDescuentoCliente;
 use App\Models\AgregarPagoCliente\TraerClientesCuentaDelCliente;
 use App\Models\AgregarPagoCliente\AgregarPagoCliente;
+use App\Models\AgregarPagoCliente\EliminarPagoCliente;
+use App\Models\AgregarPagoCliente\ActualizarPagoCliente;
 use App\Models\AgregarPagoCliente\AgregarDescuentoCliente;
 
 class ReporteDePagosController extends Controller
@@ -300,6 +302,7 @@ class ReporteDePagosController extends Controller
             $agregarPagoCliente->codigoTransferenciaPag = $codAgregarPagoCliente;
             $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
             $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarPagoCliente->estadoPago = 1;
             $agregarPagoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -383,6 +386,81 @@ class ReporteDePagosController extends Controller
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EditarPago(Request $request){
+
+        $idReporteDePago = $request->input('idReporteDePago');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_clientes.codigoCli,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+            WHERE tb_pagos.idPagos = ?', [$idReporteDePago]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarPagoCliente(Request $request){
+
+        $idReporteDePago = $request->input('idReporteDePago');
+        $codigoCliente = $request->input('codigoCliente');
+        $montoAgregarPagoCliente = $request->input('montoAgregarPagoCliente');
+        $fechaAgregarPagoCliente = $request->input('fechaAgregarPagoCliente');
+        $formaDePago = $request->input('formaDePago');
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+        $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
+
+        if (Auth::check()) {
+            $actualizarPagoCliente = new ActualizarPagoCliente;
+            $actualizarPagoCliente->where('idPagos', $idReporteDePago)
+                ->update([
+                    'codigoCli' => $codigoCliente,
+                    'tipoAbonoPag' => $formaDePago,
+                    'cantidadAbonoPag' => $montoAgregarPagoCliente,
+                    'fechaOperacionPag' => $fechaAgregarPagoCliente,
+                    'codigoTransferenciaPag' => $codAgregarPagoCliente,
+                    'observacion' => $comentarioAgregarPagoCliente,
+                ]);
+    
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarPago(Request $request)
+    {
+        $codigoPago = $request->input('codigoPago');
+
+        if (Auth::check()) {
+            $EliminarPagoCliente = new EliminarPagoCliente;
+            $EliminarPagoCliente->where('idPagos', $codigoPago)
+                ->update([
+                    'estadoPago' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

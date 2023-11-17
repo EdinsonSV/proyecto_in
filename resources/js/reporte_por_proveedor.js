@@ -308,6 +308,14 @@ jQuery(function($) {
         $('#ModalRegistrarGuias').addClass('flex');
         $('#ModalRegistrarGuias').removeClass('hidden');
         $('#valorNumeroGuiaAgregarGuia').focus();
+
+        $('#valorNumeroGuiaAgregarGuia').val('');
+        $('#fechaRegistrarGuia').val(fechaHoy);
+        $('#idProveedorAgregarGuia').val($('#idProveedorAgregarGuia option:first').val());
+        $('#idEspecieAgregarGuia').val($('#idEspecieAgregarGuia option:first').val());
+        $('#valorCantidadAgregarGuia').val('');
+        $('#valorPesoAgregarGuia').val('');
+        $('#valorPrecioAgregarGuia').val('');
     });
 
     $('#btnGuardarRegistrarGuias').on('click', function () {
