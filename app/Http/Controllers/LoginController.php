@@ -20,16 +20,17 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request){
         $credentials = $request->getCredentials();
-
+    
         if(!Auth::validate($credentials)){
-            return redirect()->to('/login')->withErrors('Credenciales no Validas');
+            return redirect('/login')->withErrors('Credenciales no válidas')->withInput();
         }
+    
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
         Auth::login($user);
-
+    
         return $this->authenticated($request, $user);
     }
+    
 
     public function authenticated(Request $request, $user){
         return redirect()->to('/home');

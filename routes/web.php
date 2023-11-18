@@ -120,6 +120,8 @@ Route::get('/fn_consulta_CambiarPesadaCliente', [PesadasController::class,'consu
 
 Route::get('/fn_consulta_ConsultarZonas', [ZonasController::class,'consulta_ConsultarZonas']);
 Route::get('/fn_consulta_AgregarZona', [ZonasController::class,'consulta_AgregarZona']);
+Route::get('/fn_consulta_EditarZona', [ZonasController::class,'consulta_EditarZona']);
+Route::get('/fn_consulta_EliminarZona', [ZonasController::class,'consulta_EliminarZona']);
 
 Route::get('/fn_consulta_ConsultarUsuarios', [ConsultarUsuariosController::class,'consulta_ConsultarUsuarios']);
 Route::get('/fn_consulta_ConsultarUsuariosEditar', [ConsultarUsuariosController::class,'consulta_ConsultarUsuariosEditar']);
@@ -127,6 +129,7 @@ Route::get('/fn_consulta_ActualizarUsuario', [ConsultarUsuariosController::class
 Route::get('/fn_consulta_ActualizarUsuarioExtra', [ConsultarUsuariosController::class,'consulta_ActualizarUsuarioExtra']);
 Route::get('/fn_consulta_ConsultarRolesUsuariosEditar', [ConsultarUsuariosController::class,'consulta_ConsultarRolesUsuariosEditar']);
 Route::get('/fn_consulta_RegistrarUsuarioRolesEditar', [ConsultarUsuariosController::class,'consulta_RegistrarUsuarioRolesEditar']);
+Route::get('/fn_consulta_EliminarUsuario', [ConsultarUsuariosController::class,'consulta_EliminarUsuario']);
 
 Route::get('/fn_consulta_ConsultarProveedor', [ReportePorProveedorController::class,'consulta_ConsultarProveedor']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);

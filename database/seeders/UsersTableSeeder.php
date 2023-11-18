@@ -29,6 +29,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'esanvil',
             'email_verified_at' => null,
             'password' => Hash::make('Edinson110404#.'),
+            'estadoUser' => '1',
             'remember_token' => null,
             'created_at' => '2023-08-18 22:05:51',
             'updated_at' => '2023-08-18 22:05:51',

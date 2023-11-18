@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
@@ -23,7 +24,12 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required',
+            'username' => [
+                'required',
+                Rule::exists('users', 'username')->where(function ($query) {
+                    $query->where('estadoUser', 1);
+                }),
+            ],
             'password' => 'required',
         ];
     }
@@ -44,5 +50,12 @@ class LoginRequest extends FormRequest
         $factory = $this->container->make(Factory::class);
 
         return !$factory->make(['username' => $value],['username' => 'email'])->fails();
+    }
+
+    public function messages(): array
+    {
+        return [
+            'username.exists' => 'Credenciales no válidas',
+        ];
     }
 }

@@ -33,10 +33,14 @@
                         <th class="px-4 font-medium whitespace-nowrap">N° GUIA</th>
                         <th class="px-4 font-medium whitespace-nowrap">ESPECIE</th>
                         <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
-                        <th class="px-4 font-medium whitespace-nowrap">PESO</th>
-                        <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
-                        <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
-                        <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
+                        @if (auth()->user()->tipoUsu == 'Administrador')
+                            <th class="px-4 font-medium whitespace-nowrap">PESO</th>
+                        @endif
+                            <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
+                        @if (auth()->user()->tipoUsu == 'Administrador')
+                            <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
+                        @endif
                         <th class="px-4 font-medium whitespace-nowrap">OPCIONES</th>
                     </tr>
                 </thead>
@@ -89,12 +93,14 @@
                         </div>
                         <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPesoAgregarGuia" placeholder="0.00" autocomplete="off" id="valorPesoAgregarGuia" value="">
                     </div>
-                    <div class="mt-4 flex justify-center items-center h-10">
-                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
-                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                    @if (auth()->user()->tipoUsu == 'Administrador')
+                        <div class="mt-4 flex justify-center items-center h-10">
+                            <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                            </div>
+                            <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPrecioAgregarGuia" placeholder="0.00" autocomplete="off" id="valorPrecioAgregarGuia" value="">
                         </div>
-                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPrecioAgregarGuia" placeholder="0.00" autocomplete="off" id="valorPrecioAgregarGuia" value="">
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="px-4 pb-4">
@@ -148,12 +154,14 @@
                         </div>
                         <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPesoAgregarGuiaEditar" placeholder="0.00" autocomplete="off" id="valorPesoAgregarGuiaEditar" value="">
                     </div>
-                    <div class="mt-4 flex justify-center items-center h-10">
-                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
-                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                    @if (auth()->user()->tipoUsu == 'Administrador')
+                        <div class="mt-4 flex justify-center items-center h-10">
+                            <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                            </div>
+                            <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPrecioAgregarGuiaEditar" placeholder="0.00" autocomplete="off" id="valorPrecioAgregarGuiaEditar" value="">
                         </div>
-                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPrecioAgregarGuiaEditar" placeholder="0.00" autocomplete="off" id="valorPrecioAgregarGuiaEditar" value="">
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="px-4 pb-4">

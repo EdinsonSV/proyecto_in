@@ -77,7 +77,7 @@ jQuery(function($) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Se la zona correctamente',
+                        title: 'Se registro la zona correctamente',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -97,7 +97,7 @@ jQuery(function($) {
         });
     }
 
-    $('#nombreAgregarZona').on('input', function() {
+    $('.campoNombreZona').on('input', function() {
         // Obtiene el valor actual del campo
         let valorCampo = $(this).val();
     
@@ -107,23 +107,74 @@ jQuery(function($) {
         // Establece el valor modificado en el campo
         $(this).val(valorCampo);
     });
+
+    $('.cerrarModalZonasEditar').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalZonasEditar').addClass('hidden');
+            $('#ModalZonasEditar').removeClass('flex');
+        }
+    });
     
-    /* $(document).on("dblclick", "#tablaConsultarZonas tbody tr", function() {
+    $(document).on("dblclick", "#tablaConsultarZonas tbody tr", function() {
         let codigoZona = $(this).closest("tr").find('td:eq(0)').text();
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
-            let nombreZona = fila.find('td:eq(2)').text();
+            let nombreZona = fila.find('td:eq(1)').text();
             
-            $('#ModalPesoReportePorCliente').addClass('flex');
-            $('#ModalPesoReportePorCliente').removeClass('hidden');
+            $('#ModalZonasEditar').addClass('flex');
+            $('#ModalZonasEditar').removeClass('hidden');
 
-            $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
-            $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
-            $('#nuevoPesoReportePorCliente').focus();
+            $('#idZonaEditar').attr("value",codigoZona);
+            $('#nombreAgregarZonaEditar').val(nombreZona);
+            $('#nombreAgregarZonaEditar').focus();
         }
-    }); */
+    });
 
-    /* $(document).on('contextmenu', '#tablaConsultarZonas tbody tr', function (e) {
+    $('#btnAgregarZonasEditar').on('click', function () {
+        let nombreEditarZona = $('#nombreAgregarZonaEditar').val();
+        let idZonaEditar = $('#idZonaEditar').attr("value");
+    
+        if (nombreEditarZona === null || nombreEditarZona.trim() === '') {
+            alertify.notify('Debe escribir el nombre de la zona', 'error', 3);
+        } else {
+            fn_EditarZona(idZonaEditar,nombreEditarZona);
+        }
+    });
+
+    function fn_EditarZona(idZonaEditar,nombreEditarZona){
+        $.ajax({
+            url: '/fn_consulta_EditarZona',
+            method: 'GET',
+            data: {
+                idZonaEditar:idZonaEditar,
+                nombreEditarZona: nombreEditarZona,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo la zona correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#ModalZonasEditar').addClass('hidden');
+                    $('#ModalZonasEditar').removeClass('flex');
+                    fn_ConsultarZonas();
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '#tablaConsultarZonas tbody tr', function (e) {
         e.preventDefault();
     
         let codigoZona = $(this).closest("tr").find('td:eq(0)').text();
@@ -143,7 +194,36 @@ jQuery(function($) {
                 }
             });
         }
-    });    */
+    });   
 
+    function fn_EliminarZona(codigoZona){
+        $.ajax({
+            url: '/fn_consulta_EliminarZona',
+            method: 'GET',
+            data: {
+                codigoZona:codigoZona,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino la zona correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    fn_ConsultarZonas();
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 });

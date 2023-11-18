@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ConsultarUsuarios\ActualizarUsuario;
 use App\Models\ConsultarUsuarios\ActualizarUsuarioExtra;
 use App\Models\ConsultarUsuarios\ActualizarRolesUsuario;
+use App\Models\ConsultarUsuarios\EliminarUsuario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,7 +29,7 @@ class ConsultarUsuariosController extends Controller
                 rutaPerfilUsu,email,username,
                 email_verified_at,password,remember_token,
                 IFNULL(CONCAT_WS(" ", nombresUsu, apellidoPaternoUsu, apellidoMaternoUsu), "") AS nombreCompleto
-            FROM users WHERE id != 1 and id != 2');
+            FROM users WHERE id != 1 and id != 2 and estadoUser = 1');
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -167,6 +168,24 @@ class ConsultarUsuariosController extends Controller
                     'idMenu' => $idMenu,
                     'idSubMenu' => $idSubMenu,
                     'estadoRol' => $estadoRol,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarUsuario(Request $request)
+    {
+        $codigoUsuario = $request->input('codigoUsuario');
+
+        if (Auth::check()) {
+            $EliminarUsuario = new EliminarUsuario;
+            $EliminarUsuario->where('id', $codigoUsuario)
+                ->update([
+                    'estadoUser' => 0,
                 ]);
             
             return response()->json(['success' => true], 200);

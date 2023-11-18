@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Zonas\AgregarZona;
+use App\Models\Zonas\EditarZona;
+use App\Models\Zonas\EliminarZona;
 
 class ZonasController extends Controller
 {
@@ -49,6 +51,41 @@ class ZonasController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_EditarZona(Request $request)
+    {   
+        $idZonaEditar = $request->input('idZonaEditar');
+        $nombreEditarZona = $request->input('nombreEditarZona');
 
+        if (Auth::check()) {
+            $EditarZona = new EditarZona;
+            $EditarZona->where('idZona', $idZonaEditar)
+                ->update([
+                    'nombreZon' => $nombreEditarZona,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarZona(Request $request)
+    {   
+        $idZonaEliminar = $request->input('codigoZona');
+
+        if (Auth::check()) {
+            $EliminarZona = new EliminarZona;
+            $EliminarZona->where('idZona', $idZonaEliminar)
+                ->update([
+                    'estadoZona' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 
 }

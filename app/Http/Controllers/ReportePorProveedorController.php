@@ -38,7 +38,7 @@ class ReportePorProveedorController extends Controller
                     from tb_guias
                     INNER JOIN tb_especies_venta ON tb_guias.idEspecie = tb_especies_venta.idEspecie
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
-                    WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? order by idGuia desc',[$fechaDesde,$fechaHasta]);
+                    WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? order by idGuia asc',[$fechaDesde,$fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

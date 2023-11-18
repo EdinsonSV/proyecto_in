@@ -4,6 +4,7 @@ window.$ = jQuery;
 jQuery(function($) {
 
     fn_ConsultarUsuarios();
+    var tipoUsuario = $('#tipoUsuario').data('id');
 
     function fn_ConsultarUsuarios() {
         $.ajax({
@@ -375,6 +376,57 @@ jQuery(function($) {
                 estadoRol: estadoRol,
             },
             success: function(response) {
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '#bodyConsultarUsuarios tr', function (e) {
+        e.preventDefault();
+        if (tipoUsuario =='Administrador'){
+            let codigoUsuario = $(this).closest("tr").find("td:first").text();
+            Swal.fire({
+                title: '¿Desea eliminar el Usuario?',
+                text: "¡Estas seguro de eliminar el usuario!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si,eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_EliminarUsuario(codigoUsuario);
+                }
+            })
+        }
+    });
+
+    function fn_EliminarUsuario(codigoUsuario){
+        $.ajax({
+            url: '/fn_consulta_EliminarUsuario',
+            method: 'GET',
+            data: {
+                codigoUsuario: codigoUsuario,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino al usuario correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    fn_ConsultarUsuarios();
+                }
             },
             error: function(error) {
                 Swal.fire({
