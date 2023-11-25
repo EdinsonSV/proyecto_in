@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
-<body>
-    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-gray-50 dark:bg-neutral-900 overflow-hidden">
+<body class="bg-white dark:bg-gray-800">
+    <div id="preloader_sistema" class="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-[200] bg-gray-50 dark:bg-gray-900 overflow-hidden">
         <div class="lds-ellipsis">
             <div class="bg-gray-900 dark:bg-white"></div>
             <div class="bg-gray-900 dark:bg-white"></div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <section class="bg-gray-100 dark:bg-gray-900 w-full min-h-screen flex items-center justify-center">
-        <div class="max-w-[850px] w-full">
+        <div class="max-w-[850px] w-full mx-4">
             <div class="flex rounded-lg drop-shadow-md overflow-hidden mx-auto max-w-sm lg:max-w-4xl bg-gray-100 dark:bg-gray-800">
                 <div class="hidden lg:block lg:w-1/2 bg-cover"
                     style="background-image:url('{{ asset('img/logoLogin.svg') }}')">

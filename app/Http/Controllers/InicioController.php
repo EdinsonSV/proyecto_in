@@ -58,6 +58,7 @@ class InicioController extends Controller
             $datos = DB::table('tb_guias')
                 ->selectRaw('IFNULL(SUM(cantidadGuia), 0) as totalCantidadGuia, IFNULL(SUM(pesoGuia), 0) as totalPesoGuia')
                 ->whereRaw('fechaGuia = CURDATE()')
+                ->where('estadoGuia', '=', 1)
                 ->get();
 
             // Devuelve los datos en formato JSON
@@ -94,6 +95,7 @@ class InicioController extends Controller
             $datos = DB::table('tb_guias')
                 ->selectRaw('IFNULL(SUM(cantidadGuia), 0) as totalCantidadGuia, IFNULL(SUM(pesoGuia), 0) as totalPesoGuia')
                 ->whereRaw('fechaGuia = ?', [$fecha])
+                ->where('estadoGuia', '=', 1)
                 ->get();
 
             // Devuelve los datos en formato JSON

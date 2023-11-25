@@ -3,6 +3,7 @@ window.$ = jQuery;
 import 'flowbite';
 
 jQuery(function($) {
+    
     declarar_mensaje_bienvenida();
 
     function declarar_mensaje_bienvenida(){
@@ -28,38 +29,37 @@ jQuery(function($) {
 
     $('#preloader_sistema').fadeOut('slow');
 
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // El navegador está en modo oscuro
-        $('.base_swith').addClass('bg-green-500');
-        $('.base_swith').removeClass('bg-slate-700');
-        $('.circulo_swith').addClass('prendido');
-        $('html').addClass('dark');
-    } else {
-        // El navegador no está en modo oscuro
-        $('.base_swith').removeClass('bg-green-500');
-        $('.base_swith').addClass('bg-slate-700');
-        $('.circulo_swith').removeClass('prendido');
-        $('html').removeClass('dark');
-    }
-
-    if(localStorage.getItem('modoOscuro') === 'true') {
+    if (!localStorage.getItem('modoOscuro') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         // Aplicar el modo oscuro
         $('html').addClass('dark');
-        $('.base_swith').addClass('bg-green-500');
-        $('.base_swith').removeClass('bg-slate-700');
+        $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
         $('.circulo_swith').addClass('prendido');
-    }else{
+    } else if (localStorage.getItem('modoOscuro') === 'true') {
+        // Si localStorage tiene el modo oscuro
+        $('html').addClass('dark');
+        $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
+        $('.circulo_swith').addClass('prendido');
+    } else {
+        // Si no se cumple ninguna de las condiciones anteriores, aplicar el modo claro
         $('html').removeClass('dark');
-        $('.base_swith').removeClass('bg-green-500');
-        $('.base_swith').addClass('bg-slate-700');
+        $('.base_swith').removeClass('bg-green-500').addClass('bg-slate-700');
         $('.circulo_swith').removeClass('prendido');
     }
 
-    $('#swith_modo_oscuro').on('click', function(){
-        $('.base_swith').toggleClass('bg-green-500 bg-slate-700');
-        $('.circulo_swith').toggleClass('prendido');
-        $('html').toggleClass('dark');
-        localStorage.setItem('modoOscuro', $('html').hasClass('dark'));
+    // Manejar el evento de clic en el interruptor
+    $('#swith_modo_oscuro').on('click', function () {
+        // Alternar entre el modo oscuro y claro
+        if ($('html').hasClass('dark')) {
+            $('html').removeClass('dark');
+            $('.base_swith').removeClass('bg-green-500').addClass('bg-slate-700');
+            $('.circulo_swith').removeClass('prendido');
+            localStorage.setItem('modoOscuro', 'false');
+        } else {
+            $('html').addClass('dark');
+            $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
+            $('.circulo_swith').addClass('prendido');
+            localStorage.setItem('modoOscuro', 'true');
+        }
     });
 
     $('#passwordMos').on('click', function(){
