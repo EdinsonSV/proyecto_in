@@ -32,16 +32,23 @@
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrar_pagos_submit"><i class='bx bx-search-alt text-lg' ></i> Buscar</button>
             </div>
             <div class="md:m-5 mt-0">
+                <div class="flex w-full justify-end">
+                    <select class="mb-5 w-full md:w-56 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="filtroFormaDePago" id="filtroFormaDePago">
+                        <option value="Todos">Todos</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                    </select>  
+                </div>
                 <div class="relative overflow-auto max-h-[500px] aside_scrollED rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-100 uppercase bg-blue-600">
+                        <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
                             <tr>
                                 <th class="hidden">Id</th>
                                 <th class="p-4 whitespace-nowrap">Nombre de Cliente</th>
                                 <th class="p-4 text-center whitespace-nowrap">Monto</th>
                                 <th class="p-4 text-center whitespace-nowrap">Forma Pago</th>
                                 <th class="p-4 text-center whitespace-nowrap">Codigo</th>
-                                <th class="p-4 text-center whitespace-nowrap">Fecha de Pago</th>
+                                <th class="p-4 text-center whitespace-nowrap">Pago a cuenta de fecha</th>
                                 <th class="p-4 text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>

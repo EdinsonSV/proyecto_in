@@ -635,7 +635,7 @@ jQuery(function ($) {
                         totalPago += parseFloat(obj.cantidadAbonoPag);
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
@@ -654,8 +654,8 @@ jQuery(function ($) {
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text("S/. "+totalPago.toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("TOTAL:"));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -980,6 +980,41 @@ jQuery(function ($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    // Manejar cambios en el select
+    $('#filtroFormaDePago').on('change', function () {
+        var selectedValue = $(this).val();
+
+        // Ocultar todas las filas
+        $('#bodyReporteDePagos tr').hide();
+
+        // Mostrar filas según el filtro seleccionado
+        if (selectedValue === 'Todos') {
+            $('#bodyReporteDePagos tr').show();
+        } else {
+            $('#bodyReporteDePagos tr:has(td:eq(3):contains("' + selectedValue + '"))').show();
+        }
+
+        // Mostrar la última fila independientemente del filtro
+        $('#bodyReporteDePagos tr:last').show();
+
+        // Actualizar la fila "TOTAL" según los resultados filtrados
+        updateTotal();
+    });
+
+    // Función para actualizar la fila "TOTAL"
+    function updateTotal() {
+        var total = 0;
+
+        // Sumar los montos de las filas visibles
+        $('#bodyReporteDePagos tr:visible').each(function () {
+            var monto = parseFloat($(this).find('td:eq(2)').text());
+            total += isNaN(monto) ? 0 : monto;
+        });
+
+        // Actualizar el valor en la fila "TOTAL"
+        $('#bodyReporteDePagos tr:last td:eq(1)').text('S/. ' + total.toFixed(2));
     }
 
 })
