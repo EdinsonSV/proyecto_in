@@ -33,10 +33,8 @@
                         <th class="px-4 font-medium whitespace-nowrap">N° GUIA</th>
                         <th class="px-4 font-medium whitespace-nowrap">ESPECIE</th>
                         <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
-                        @if (auth()->user()->tipoUsu == 'Administrador')
-                            <th class="px-4 font-medium whitespace-nowrap">PESO</th>
-                        @endif
-                            <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PESO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
                         @if (auth()->user()->tipoUsu == 'Administrador')
                             <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
                             <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
