@@ -332,7 +332,7 @@ jQuery(function ($) {
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
 
         let promedio = 0;
-        if (pesoNetoPes !== 0) {
+        if (pesoNetoPes !== 0 && cantidadPes !== 0) {
             promedio = (pesoNetoPes / cantidadPes).toFixed(2);
         }
         let observacionPes = item.observacionPes
