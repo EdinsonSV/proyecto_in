@@ -106,7 +106,7 @@ jQuery(function($) {
 
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let columna9 = $(this).find('td:eq(9)').text().trim();
+                let columna9 = $(this).find('td:eq(10)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }
@@ -146,6 +146,10 @@ jQuery(function($) {
                     response.forEach(function (obj) {
                         // Crear una nueva fila
                         let nuevaFila = ""
+                        let promedio = 0
+                        if (parseFloat(obj.cantidadPes) != 0 && parseFloat(obj.pesoNetoPes) != 0){
+                            promedio = parseFloat(obj.pesoNetoPes) / parseFloat(obj.cantidadPes);
+                        }
                         if (obj.estadoPes == 1){
                             if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
                                 nuevaFila = $('<tr class="Pesadas bg-[#2A80BF] border-b dark:border-gray-700 hover:bg-[#2877B0] cursor-pointer text-gray-50">');
@@ -162,6 +166,7 @@ jQuery(function($) {
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
                             }
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoPes));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(promedio.toFixed(2)));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                             nuevaFila.append($('<td class="hidden">').text(obj.idEspecie));
@@ -184,6 +189,7 @@ jQuery(function($) {
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
                                 }
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoPes));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(promedio.toFixed(2)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                                 if (tipoUsuario == 'Administrador'){
