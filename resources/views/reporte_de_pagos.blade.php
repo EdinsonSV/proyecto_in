@@ -37,6 +37,7 @@
                         <option value="Todos">Todos</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Transferencia">Transferencia</option>
+                        <option value="Saldo">Saldo</option>
                     </select>  
                 </div>
                 <div class="relative overflow-auto max-h-[500px] aside_scrollED rounded-lg">

@@ -44,6 +44,8 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalAgregarPagoCliente').addClass('hidden');
             $('#ModalAgregarPagoCliente').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
         }
     });
 
@@ -65,6 +67,8 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalAgregarDescuentoCliente').addClass('hidden');
             $('#ModalAgregarDescuentoCliente').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
         }
     });
 
@@ -628,21 +632,43 @@ jQuery(function ($) {
                     let totalPago = 0;
                     let nuevaFila = "";
 
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                        totalPago += parseFloat(obj.cantidadAbonoPag);
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
-                        // Agregar la nueva fila al tbody
-                        tbodyReporteDePagos.append(nuevaFila);
+                    let fechasUnicas = new Set();
+                    let sinRepetidos = response.filter((valorActual) => {
+                        let fechaInicioString = JSON.stringify(valorActual.fechaRegistroPag);
+                        if (!fechasUnicas.has(fechaInicioString)) {
+                            fechasUnicas.add(fechaInicioString);
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    sinRepetidos.forEach(function(item) {
+
+                        if (sinRepetidos.length > 1) {
+                            nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                            nuevaFila.append($('<td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center hidden">').text('Fecha'));
+                            nuevaFila.append($('<td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(item.fechaRegistroPag));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" colspan="5">').text(""));
+                            tbodyReporteDePagos.append(nuevaFila);
+                        }
+                        // Iterar sobre los objetos y mostrar sus propiedades
+                        response.forEach(function(obj) {
+                            if (item.fechaRegistroPag === obj.fechaRegistroPag) {
+                                // Crear una nueva fila
+                                nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer pagoEditarOEliminar">');
+                                totalPago += parseFloat(obj.cantidadAbonoPag);
+                                // Agregar las celdas con la información
+                                nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                                nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
+                                // Agregar la nueva fila al tbody
+                                tbodyReporteDePagos.append(nuevaFila);
+                            };
+                        });
                     });
 
                     if (response.length == 0) {
@@ -692,12 +718,15 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalAgregarPagoClienteEditar').addClass('hidden');
             $('#ModalAgregarPagoClienteEditar').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
         }
     });
 
-    $(document).on("dblclick", "#bodyReporteDePagos tr", function() {
+    $(document).on("dblclick", "#bodyReporteDePagos tr.pagoEditarOEliminar", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
+            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             let idReporteDePago= fila.find('td:eq(0)').text();
             console.log('Report', idReporteDePago);
 
@@ -931,10 +960,12 @@ jQuery(function ($) {
         });
     };
 
-    $(document).on('contextmenu', '#bodyReporteDePagos tr', function (e) {
+    $(document).on('contextmenu', '#bodyReporteDePagos tr.pagoEditarOEliminar', function (e) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPago = $(this).closest("tr").find("td:first").text();
+            let fila = $(this).closest("tr");
+            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
                 text: "¡Estas seguro de eliminar el pago!",
@@ -947,6 +978,9 @@ jQuery(function ($) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     fn_EliminarPago(codigoPago);
+                }else{
+                    $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+                    $('table tbody tr').addClass('bg-white dark:bg-gray-800');
                 }
             })
         }
@@ -986,8 +1020,8 @@ jQuery(function ($) {
     $('#filtroFormaDePago').on('change', function () {
         var selectedValue = $(this).val();
 
-        // Ocultar todas las filas
-        $('#bodyReporteDePagos tr').hide();
+        // Ocultar todas las filas excepto las de Fecha y las filas con colspan="6"
+        $('#bodyReporteDePagos tr:not(:contains("Fecha"))').hide();
 
         // Mostrar filas según el filtro seleccionado
         if (selectedValue === 'Todos') {
@@ -998,6 +1032,8 @@ jQuery(function ($) {
 
         // Mostrar la última fila independientemente del filtro
         $('#bodyReporteDePagos tr:last').show();
+            // Mostrar la penúltima fila independientemente del filtro
+        $('#bodyReporteDePagos tr:eq(-2)').show();
 
         // Actualizar la fila "TOTAL" según los resultados filtrados
         updateTotal();

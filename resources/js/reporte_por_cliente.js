@@ -491,6 +491,8 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalCantidadReportePorCliente').addClass('hidden');
             $('#ModalCantidadReportePorCliente').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
         }
     });
 
@@ -498,6 +500,8 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalPesoReportePorCliente').addClass('hidden');
             $('#ModalPesoReportePorCliente').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
         }
     });
 
@@ -535,6 +539,7 @@ jQuery(function ($) {
     $(document).on("dblclick", "#tablaReportePorCliente tr td.cantidadReportePorCliente", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
+            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
             let cantidadReportePorCliente = fila.find('td:eq(4)').text();
             
@@ -550,6 +555,7 @@ jQuery(function ($) {
     $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoReportePorCliente", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
+            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             let idPesoReportePorCliente = fila.find('td:eq(0)').text();
             let pesoReportePorCliente = fila.find('td:eq(5)').text();
             
@@ -658,6 +664,8 @@ jQuery(function ($) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPesada = $(this).closest("tr").find("td:first").text();
+            let fila = $(this).closest("tr")
+            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
                 text: "¡Estas seguro de eliminar el registro!",
@@ -670,6 +678,9 @@ jQuery(function ($) {
             }).then((result) => {
                 if (result.isConfirmed) {
                 fn_EliminarPesada(codigoPesada);
+                }else{
+                    $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+                    $('table tbody tr').addClass('bg-white dark:bg-gray-800');
                 }
             })
         }
