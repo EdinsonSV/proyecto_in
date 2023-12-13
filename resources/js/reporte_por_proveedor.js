@@ -88,9 +88,7 @@ jQuery(function($) {
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.numGuia));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(nombreEspecie));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.cantidadGuia == 1 ? `${obj.cantidadGuia} Ud.` : `${obj.cantidadGuia} Uds.`));
-                                if (tipoUsuario =='Administrador'){
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoGuia+" Kg."));
-                                }
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoGuia+" Kg."));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
                                 if (tipoUsuario =='Administrador'){
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(precioGuia.toFixed(2)));
@@ -443,6 +441,8 @@ jQuery(function($) {
 
     $(document).on('click', '.btnEliminarReportePorProveedor', function () {
         let codigoGuia = $(this).closest("tr").find("td:first").text();
+        let fila = $(this).closest("tr");
+        fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
         Swal.fire({
             title: '¿Desea eliminar la guia?',
             text: "¡Estas seguro de eliminar la guia!",
@@ -455,6 +455,9 @@ jQuery(function($) {
           }).then((result) => {
             if (result.isConfirmed) {
                 fn_EliminarGuia(codigoGuia);
+            }else{
+                $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+                $('table tbody tr').addClass('bg-white dark:bg-gray-800');
             }
           })
     });
@@ -491,6 +494,8 @@ jQuery(function($) {
 
     $(document).on('click', '.btnEditarReportePorProveedor', function () {
         let codigoGuia = $(this).closest("tr").find("td:first").text();
+        let fila = $(this).closest("tr");
+        fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
         fn_EditarGuia(codigoGuia);
     });
 
@@ -498,6 +503,8 @@ jQuery(function($) {
         if (e.target === this) {
             $('#ModalRegistrarGuiasEditar').addClass('hidden');
             $('#ModalRegistrarGuiasEditar').removeClass('flex');
+            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
         }
     });
 
