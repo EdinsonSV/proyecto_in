@@ -332,7 +332,7 @@ jQuery(function ($) {
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
 
         let promedio = 0;
-        if (pesoNetoPes !== 0 && cantidadPes !== 0) {
+        if (pesoNetoPes !== 0) {
             promedio = (pesoNetoPes / cantidadPes).toFixed(2);
         }
         let observacionPes = item.observacionPes
@@ -383,11 +383,7 @@ jQuery(function ($) {
         let filas = [];
     
         function construirFila(nombreEspecie, totalCantidad, totalPeso) {
-            if (totalCantidad !== 0 || totalPeso !== 0) {    
-                let promedio = 0
-                if (totalPeso !== 0 && totalCantidad !== 0) {
-                    promedio = (totalPeso / totalCantidad).toFixed(2);
-                }   
+            if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="text-center py-1 px-2 hidden"></td>
@@ -396,7 +392,7 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
             } else {
@@ -417,11 +413,7 @@ jQuery(function ($) {
         `);
 
         function construirFilaVivo(nombreEspecie, totalCantidad, totalPeso) {
-            if (totalCantidad !== 0 || totalPeso !== 0) {      
-                let promedio = 0
-                if (totalPeso !== 0 && totalCantidad !== 0) {
-                    promedio = (totalPeso / totalCantidad).toFixed(2);
-                }    
+            if (totalCantidad !== 0 || totalPeso !== 0) {       
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="text-center py-1 px-2 hidden"></td>
@@ -430,7 +422,7 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
             } else {
@@ -450,11 +442,6 @@ jQuery(function ($) {
             </tr>
         `);
 
-        let promedioNeto = 0
-        if (ventaPesoTotalNeto !== 0 && ventaCantidadTotal !== 0) {
-            promedioNeto = (ventaPesoTotalNeto / ventaCantidadTotal).toFixed(2);
-        }   
-
         filas.push(`
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 hidden"></td>
@@ -463,14 +450,9 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL NETO:</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNeto.toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${promedioNeto}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `);
-
-        let promedioVivo = 0
-        if (ventaPesoTotalVivo !== 0 && ventaCantidadTotal !== 0) {
-            promedioVivo = (ventaPesoTotalVivo / ventaCantidadTotal).toFixed(2);
-        }   
 
         filas.push(`
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -480,7 +462,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO:</td>
             <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalVivo.toFixed(2)} Kg.</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">${promedioVivo}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         `);
 
@@ -491,8 +473,6 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalCantidadReportePorCliente').addClass('hidden');
             $('#ModalCantidadReportePorCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
         }
     });
 
@@ -500,8 +480,6 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalPesoReportePorCliente').addClass('hidden');
             $('#ModalPesoReportePorCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
         }
     });
 
@@ -539,7 +517,6 @@ jQuery(function ($) {
     $(document).on("dblclick", "#tablaReportePorCliente tr td.cantidadReportePorCliente", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
-            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
             let cantidadReportePorCliente = fila.find('td:eq(4)').text();
             
@@ -555,7 +532,6 @@ jQuery(function ($) {
     $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoReportePorCliente", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
-            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             let idPesoReportePorCliente = fila.find('td:eq(0)').text();
             let pesoReportePorCliente = fila.find('td:eq(5)').text();
             
@@ -664,8 +640,6 @@ jQuery(function ($) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPesada = $(this).closest("tr").find("td:first").text();
-            let fila = $(this).closest("tr")
-            fila.toggleClass('bg-gray-300 dark:bg-gray-600 bg-white dark:bg-gray-800');
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
                 text: "¡Estas seguro de eliminar el registro!",
@@ -678,9 +652,6 @@ jQuery(function ($) {
             }).then((result) => {
                 if (result.isConfirmed) {
                 fn_EliminarPesada(codigoPesada);
-                }else{
-                    $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-                    $('table tbody tr').addClass('bg-white dark:bg-gray-800');
                 }
             })
         }
