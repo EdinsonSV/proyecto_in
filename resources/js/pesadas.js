@@ -244,8 +244,8 @@ jQuery(function($) {
     $(document).on("dblclick", "#tablaConsultarPesadas tbody tr", function() {
         let fila = $(this).closest('tr');
         let codPesadaActual = fila.find('td:eq(0)').text();
-        let fechaCambioDePesadaActual = fila.find('td:eq(6)').text();
-        let especiePesadaActual = fila.find('td:eq(7)').text();
+        let fechaCambioDePesadaActual = fila.find('td:eq(7)').text();
+        let especiePesadaActual = fila.find('td:eq(8)').text();
 
         let nombreClienteCambiarPesada = fila.find('td:eq(1)').text();
         let especieCambiarPesada = fila.find('td:eq(2)').text();
