@@ -48,6 +48,29 @@
             </table>
         </div>
         {{-- Termina contenedor Reporte por Proveedor --}}
+        @if (auth()->user()->tipoUsu == 'Administrador')
+        <div class="overflow-x-auto md:mx-5 mt-5 md:mb-5 relative">
+            <div class="flex flex-col gap-5">
+                <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
+                    <div class="flex flex-col justify-center">
+                        <label for="fechaDesdeReporteVentaDia" class="text-base text-gray-900 dark:text-gray-50">Fecha :</label>
+                        <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaDesdeReporteVentaDia">
+                    </div>
+                </div>
+                <div class="flex w-full text-gray-900 dark:text-gray-50 justify-between flex-wrap gap-4">
+                    <div class="flex gap-2 w-full md:w-auto justify-center">
+                        <h2 class="font-bold">TOTAL COMPRA &nbsp : &nbsp S/.&nbsp <span id="compraTotalFecha">0</span></h2>
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto justify-center">
+                        <h2 class="font-bold">TOTAL VENTA &nbsp : &nbsp S/.&nbsp <span id="ventaTotalFecha">0</span></h2>
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto justify-center">
+                        <h2 class="font-bold">DIFERENCIA &nbsp : &nbsp S/.&nbsp <span id="diferenciaTotalFecha">0</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </main>
 
