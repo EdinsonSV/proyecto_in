@@ -167,4 +167,28 @@ class ReportePorProveedorController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_traerTotalesFechas(Request $request){
+        $fechaTotales = $request->input('fechaTotales');
+    
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT
+                    COALESCE(SUM(DISTINCT COALESCE(pesoGuia, 0) * COALESCE(precioGuia, 0)), 0) AS sumaGuias,
+                    COALESCE(SUM(DISTINCT (COALESCE(pesoNetoPes, 0) * COALESCE(precioPes, 0)) / COALESCE(valorConversion, 0)), 0) AS sumaVentaDelDia,
+                    COALESCE(SUM(DISTINCT COALESCE(pesoDesc, 0) * COALESCE(precioDesc, 0)), 0) AS descuentos
+                FROM tb_pesadas
+                LEFT JOIN tb_guias ON tb_guias.fechaGuia = tb_pesadas.fechaRegistroPes
+                LEFT JOIN tb_descuentos ON tb_pesadas.fechaRegistroPes = tb_descuentos.fechaRegistroDesc
+                WHERE estadoGuia = 1 AND fechaGuia = ?
+            ', [$fechaTotales]);
+    
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }    
+
 }
