@@ -110,7 +110,7 @@ jQuery(function ($) {
                     combinedData[fecha].totalCantidadDescuentoPrimerEspecie = parseInt(item.totalCantidadDescuentoPrimerEspecie);
                     combinedData[fecha].totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie);
                     combinedData[fecha].totalCantidadPrimerEspecie = parseInt(item.totalCantidadPrimerEspecie);
-                    combinedData[fecha].totalVentaDescuentoPrimerEspecie = parseInt(item.totalVentaDescuentoPrimerEspecie);
+                    combinedData[fecha].totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
                 });
     
                 response.totalesSegundaEspecie.forEach(function (item) {
@@ -152,7 +152,7 @@ jQuery(function ($) {
                     combinedData[fecha].totalCantidadDescuentoSegundaEspecie = parseInt(item.totalCantidadDescuentoSegundaEspecie);
                     combinedData[fecha].totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie);
                     combinedData[fecha].totalCantidadSegundaEspecie = parseInt(item.totalCantidadSegundaEspecie);
-                    combinedData[fecha].totalVentaDescuentoSegundaEspecie = parseInt(item.totalVentaDescuentoSegundaEspecie);
+                    combinedData[fecha].totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
                 });
     
                 response.totalesTerceraEspecie.forEach(function (item) {
@@ -194,7 +194,7 @@ jQuery(function ($) {
                     combinedData[fecha].totalCantidadDescuentoTerceraEspecie = parseInt(item.totalCantidadDescuentoTerceraEspecie);
                     combinedData[fecha].totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie);
                     combinedData[fecha].totalCantidadTerceraEspecie = parseInt(item.totalCantidadTerceraEspecie);
-                    combinedData[fecha].totalVentaDescuentoTerceraEspecie = parseInt(item.totalVentaDescuentoTerceraEspecie);
+                    combinedData[fecha].totalVentaDescuentoTerceraEspecie = parseFloat(item.totalVentaDescuentoTerceraEspecie);
                 });
     
                 response.totalesCuartaEspecie.forEach(function (item) {
@@ -236,7 +236,7 @@ jQuery(function ($) {
                     combinedData[fecha].totalCantidadDescuentoCuartaEspecie = parseInt(item.totalCantidadDescuentoCuartaEspecie);
                     combinedData[fecha].totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie);
                     combinedData[fecha].totalCantidadCuartaEspecie = parseInt(item.totalCantidadCuartaEspecie);
-                    combinedData[fecha].totalVentaDescuentoCuartaEspecie = parseInt(item.totalVentaDescuentoCuartaEspecie);
+                    combinedData[fecha].totalVentaDescuentoCuartaEspecie = parseFloat(item.totalVentaDescuentoCuartaEspecie);
                 });
     
                 response.totalDescuentos.forEach(function (item) {
