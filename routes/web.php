@@ -137,6 +137,7 @@ Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'
 Route::get('/fn_consulta_EliminarGuia', [ReportePorProveedorController::class,'consulta_EliminarGuia']);
 Route::get('/fn_consulta_EditarGuia', [ReportePorProveedorController::class,'consulta_EditarGuia']);
 Route::get('/fn_consulta_RegistrarGuiaEditar', [ReportePorProveedorController::class,'consulta_RegistrarGuiaEditar']);
+Route::get('/fn_consulta_traerTotalesFechas', [ReportePorProveedorController::class,'consulta_traerTotalesFechas']);
 
 Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
 Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);
