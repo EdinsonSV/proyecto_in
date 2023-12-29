@@ -11,12 +11,14 @@ jQuery(function($) {
     $('#fechaDesdeReportePorProveedor').val(fechaHoy);
     $('#fechaHastaReportePorProveedor').val(fechaHoy);
     $('#fechaRegistrarGuia').val(fechaHoy);
+    $('#fechaDesdeReporteVentaDia').val(fechaHoy);
 
     fn_ConsultarProveedor(fechaHoy,fechaHoy);
     fn_declararEspecies();
     fn_declararProveedor();
     fn_declararProveedorEditar();
     fn_declararEspeciesEditar();
+    fn_traerTotalesFechas(fechaHoy);
 
     $('#btnBuscarReportePorProveedor').on('click', function () {
         let fechaDesde = $('#fechaDesdeReportePorProveedor').val();
@@ -237,7 +239,6 @@ jQuery(function($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
-                        console.log(obj);
                         let option = $('<option>', {
                             value: obj.idEspecie,
                             text: obj.nombreEspecie
@@ -544,5 +545,58 @@ jQuery(function($) {
             }
         });
     }
+
+    function fn_traerTotalesFechas(fechaTotales) {
+        $.ajax({
+            url: '/fn_consulta_traerTotalesFechas',
+            method: 'GET',
+            data: {
+                fechaTotales: fechaTotales,
+            },
+            success: function (response) {
+                response.forEach(function (obj) {
+    
+                    // Formatear números con separador de miles y dos decimales
+                    const compraTotalFormatted = parseFloat(obj.sumaGuias).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+    
+                    const ventaTotalFormatted = (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos)).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+    
+                    const diferenciaTotalFormatted = (
+                        parseFloat(obj.sumaGuias) - (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos))
+                    ).toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+    
+                    $('#compraTotalFecha').text(compraTotalFormatted);
+                    $('#ventaTotalFecha').text(ventaTotalFormatted);
+                    $('#diferenciaTotalFecha').text(diferenciaTotalFormatted);
+                });
+            },
+            error: function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                })
+                console.error("ERROR", error);
+            }
+        });
+    }
+    
+    // Agrega un evento onchange al input de fecha
+    $('#fechaDesdeReporteVentaDia').on('change', function () {
+        // Obtiene el valor seleccionado en el input de fecha
+        var fechaSeleccionada = $(this).val();
+
+        // Llama a la función fn_traerTotalesFechas con la fecha seleccionada
+        fn_traerTotalesFechas(fechaSeleccionada);
+    });
 
 });
