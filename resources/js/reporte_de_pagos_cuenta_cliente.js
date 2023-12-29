@@ -273,10 +273,6 @@ jQuery(function ($) {
                         };
                     }
     
-                    combinedData[fecha].totalPesoDescuentoCuartaEspeciePrimerEspecie = parseFloat(item.totalPesoDescuentoCuartaEspeciePrimerEspecie);
-                    combinedData[fecha].totalPesoDescuentoCuartaEspecieSegundaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieSegundaEspecie);
-                    combinedData[fecha].totalPesoDescuentoCuartaEspecieTerceraEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieTerceraEspecie);
-                    combinedData[fecha].totalPesoDescuentoCuartaEspecieCuartaEspecie = parseFloat(item.totalPesoDescuentoCuartaEspecieCuartaEspecie);
                     combinedData[fecha].totalPesoDescuento = parseFloat(item.totalPesoDescuento);
                     combinedData[fecha].totalVentaDescuento = parseFloat(item.totalVentaDescuento);
                 });
