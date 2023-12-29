@@ -122,10 +122,6 @@ class ReporteAcumuladoController extends Controller
     public function consulta_Descuentos($fecha,$clienteCodigo) {
         $consulta = DB::table('tb_descuentos')
             ->selectRaw('fechaRegistroDesc')
-            ->selectRaw('SUM(IF(especieDesc = 1 AND pesoDesc < 0.0, pesoDesc, 0)) AS totalPesoDescuentoCuartaEspeciePrimerEspecie')
-            ->selectRaw('SUM(IF(especieDesc = 2 AND pesoDesc < 0.0, pesoDesc, 0)) AS totalPesoDescuentoCuartaEspecieSegundaEspecie')
-            ->selectRaw('SUM(IF(especieDesc = 3 AND pesoDesc < 0.0, pesoDesc, 0)) AS totalPesoDescuentoCuartaEspecieTerceraEspecie')
-            ->selectRaw('SUM(IF(especieDesc = 4 AND pesoDesc < 0.0, pesoDesc, 0)) AS totalPesoDescuentoCuartaEspecieCuartaEspecie')
             ->selectRaw('SUM(pesoDesc) AS totalPesoDescuento')
             ->selectRaw('SUM(pesoDesc * precioDesc) AS totalVentaDescuento')
             ->where('fechaRegistroDesc','=', $fecha)
