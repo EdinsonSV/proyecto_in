@@ -51,12 +51,11 @@ class ReportePorClienteController extends Controller
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = DB::select('select tb_procesos.idProceso, 
+            $datos = DB::select('select 
                     fechaRegistroPes, 
                     nombreEspecie, pesoNetoPes, cantidadPes, observacionPes, 
                     horaPes,valorConversion, tb_pesadas.idPesada
-                    from tb_procesos 
-                    inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
+                    from tb_pesadas
                     inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie
                     WHERE estadoPes = 1 and 
                     fechaRegistroPes BETWEEN ? and ? and tb_pesadas.codigoCli = ?

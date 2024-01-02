@@ -317,13 +317,12 @@ jQuery(function($) {
         });
     };
 
-    function fn_DatosParaCambioPesada(codigoCliente,fechaCambioDePesada){
+    function fn_DatosParaCambioPesada(codigoCliente){
         $.ajax({
             url: '/fn_consulta_DatosParaCambioPesada',
             method: 'GET',
             data:{
                 codigoCliente: codigoCliente,
-                fechaCambioDePesada:fechaCambioDePesada,
             },
             success: function(response) {
     
@@ -340,8 +339,6 @@ jQuery(function($) {
                         $('#valorConversionSegundaEspecieCambiarPesada').attr('value',obj.valorConversionSegundaEspecie);
                         $('#valorConversionTerceraEspecieCambiarPesada').attr('value',obj.valorConversionTerceraEspecie);
                         $('#valorConversionCuartaEspecieCambiarPesada').attr('value',obj.valorConversionCuartaEspecie);
-
-                        $('#idProcesoCambiarPesada').attr('value',obj.idProceso);
                     });
     
                 } else {
@@ -366,7 +363,6 @@ jQuery(function($) {
         let valorConversionTerceraEspecieCambiarPesada = $('#valorConversionTerceraEspecieCambiarPesada').attr('value');
         let valorConversionCuartaEspecieCambiarPesada = $('#valorConversionCuartaEspecieCambiarPesada').attr('value');
 
-        let idProcesoCambiarPesada = $('#idProcesoCambiarPesada').attr('value');
         let codigoCliCambiarPesada = $('#selectedCodigoCliCambiarPesada').attr('value');
 
         let codPesadaActual = $('#codPesadaActual').attr('value');
@@ -390,19 +386,18 @@ jQuery(function($) {
                 valorConversionCambiarPesada = valorConversionCuartaEspecieCambiarPesada;
             }
 
-            fn_CambiarPesadaCliente(codPesadaActual,codigoCliCambiarPesada,idProcesoCambiarPesada,precioCambiarPesada,valorConversionCambiarPesada)
+            fn_CambiarPesadaCliente(codPesadaActual,codigoCliCambiarPesada,precioCambiarPesada,valorConversionCambiarPesada)
         }
 
     });
 
-    function fn_CambiarPesadaCliente(codPesadaActual,codigoCliCambiarPesada,idProcesoCambiarPesada,precioCambiarPesada,valorConversionCambiarPesada){
+    function fn_CambiarPesadaCliente(codPesadaActual,codigoCliCambiarPesada,precioCambiarPesada,valorConversionCambiarPesada){
         $.ajax({
             url: '/fn_consulta_CambiarPesadaCliente',
             method: 'GET',
             data: {
                 codPesadaActual: codPesadaActual,
                 codigoCliCambiarPesada: codigoCliCambiarPesada,
-                idProcesoCambiarPesada:idProcesoCambiarPesada,
                 precioCambiarPesada:precioCambiarPesada,
                 valorConversionCambiarPesada:valorConversionCambiarPesada,
             },

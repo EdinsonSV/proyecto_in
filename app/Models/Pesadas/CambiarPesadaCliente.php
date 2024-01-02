@@ -13,7 +13,6 @@ class CambiarPesadaCliente extends Model
 
     protected $fillable = [
         'idPesada',
-        'idProceso',
         'codigoCli',
         'precioPes',
         'valorConversion',

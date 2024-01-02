@@ -27,7 +27,6 @@ class PesadasController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DB::select('
                     SELECT tb_pesadas.idPesada,
-                    tb_pesadas.idProceso,
                     tb_pesadas.idEspecie,
                     tb_especies_venta.nombreEspecie,
                     tb_pesadas.pesoNetoPes,
@@ -64,7 +63,6 @@ class PesadasController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = TraerClientesCambiarPesadaCliente::select('tb_clientes.idCliente', 'tb_clientes.codigoCli', DB::raw('CONCAT_WS(" ", tb_clientes.nombresCli, tb_clientes.apellidoPaternoCli, tb_clientes.apellidoMaternoCli) AS nombreCompleto'))
-                ->join('tb_procesos', 'tb_clientes.codigoCli', '=', 'tb_procesos.codigoCli')
                 ->where('tb_clientes.estadoEliminadoCli','=','1')
                 ->where('tb_clientes.idEstadoCli','=','1')
                 ->where(function($query) use ($nombreCambiarPesadaCliente) {
@@ -72,7 +70,6 @@ class PesadasController extends Controller
                         ->orWhere('tb_clientes.apellidoPaternoCli', 'LIKE', "%$nombreCambiarPesadaCliente%")
                         ->orWhere('tb_clientes.apellidoMaternoCli', 'LIKE', "%$nombreCambiarPesadaCliente%");
                 })
-                ->where('tb_procesos.fechaInicioPro', '=', $fechaCambioDePesada)
                 ->get();
     
             // Devuelve los datos en formato JSON
@@ -86,7 +83,6 @@ class PesadasController extends Controller
     public function consulta_DatosParaCambioPesada(Request $request){
 
         $codigoCliente = $request->input('codigoCliente');
-        $fechaCambioDePesada = $request->input('fechaCambioDePesada');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -94,10 +90,9 @@ class PesadasController extends Controller
                     SELECT tb_precio_x_presentacion.codigoCli,
                    primerEspecie, segundaEspecie, terceraEspecie, cuartaEspecie,
                    valorConversionPrimerEspecie,valorConversionSegundaEspecie,
-                   valorConversionTerceraEspecie,valorConversionCuartaEspecie,tb_procesos.idProceso
+                   valorConversionTerceraEspecie,valorConversionCuartaEspecie
             FROM tb_precio_x_presentacion
-            INNER JOIN tb_procesos ON tb_precio_x_presentacion.codigoCli= tb_procesos.codigoCli
-            WHERE tb_procesos.fechaInicioPro = ? AND tb_precio_x_presentacion.codigoCli = ?',[$fechaCambioDePesada,$codigoCliente]);
+            WHERE tb_precio_x_presentacion.codigoCli = ?',[$codigoCliente]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -111,7 +106,6 @@ class PesadasController extends Controller
     {
         $codPesadaActual = $request->input('codPesadaActual');
         $codigoCliCambiarPesada = $request->input('codigoCliCambiarPesada');
-        $idProcesoCambiarPesada = $request->input('idProcesoCambiarPesada');
         $precioCambiarPesada = $request->input('precioCambiarPesada');
         $valorConversionCambiarPesada = $request->input('valorConversionCambiarPesada');
 
@@ -119,7 +113,6 @@ class PesadasController extends Controller
             $CambiarPesadaCliente = new CambiarPesadaCliente;
             $CambiarPesadaCliente->where('idPesada', $codPesadaActual)
                 ->update([
-                    'idProceso' => $idProcesoCambiarPesada,
                     'codigoCli' => $codigoCliCambiarPesada,
                     'precioPes' => $precioCambiarPesada,
                     'valorConversion' => $valorConversionCambiarPesada,
