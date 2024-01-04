@@ -510,7 +510,7 @@ jQuery(function($) {
         let pagoAnterior = parseFloat(item.pagoAnterior);
         let descuentoAnterior = parseFloat(item.totalVentaDescuentoAnterior);
 
-        let totalVentaAnterior = ventaAnterior - pagoAnterior - descuentoAnterior;
+        let totalVentaAnterior = ventaAnterior - pagoAnterior + descuentoAnterior;
 
         let saldoDelDia = totalVentaAnterior + ventaTotal;
 
