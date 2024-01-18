@@ -99,7 +99,7 @@
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Cambiar Pesada</h3>
                     </div>
-                    <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarDescuentoCliente">
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <div class="flex justify-center items-center flex-col relative w-full h-full">
                             <p class="text-sm text-gray-900 dark:text-gray-300">Nombre del cliente: <span id="nombreClienteCambiarPesada"></span></p>
                             <p class="text-sm text-gray-900 dark:text-gray-300">Especie: <span id="especieCambiarPesada"></span></p>
