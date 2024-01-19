@@ -351,7 +351,7 @@ jQuery(function ($) {
         }
 
         return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 filaEditable">
                 <td class="hidden">${item.idPesada}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${observacionPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${horaPes}</td>
@@ -660,7 +660,7 @@ jQuery(function ($) {
         });
     }
 
-    $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
+    $(document).on('contextmenu', '#tablaReportePorCliente tbody tr.filaEditable', function (e) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPesada = $(this).closest("tr").find("td:first").text();
