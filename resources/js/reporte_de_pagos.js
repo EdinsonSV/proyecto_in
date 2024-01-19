@@ -16,8 +16,13 @@ jQuery(function ($) {
     $('#fechaHastaCuentaDelCliente').val(fechaHoy);
     $('#fechaAgregarPago').val(fechaHoy);
     $('#fechaAgregarDescuento').val(fechaHoy);
+    $('#fechaDesdeCuentaDelClienteDescuentos').val(fechaHoy);
+    $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
+    $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
     declarar_especies();
+    declarar_especies_descuentos();
+    fn_declararEspeciesCambiarPrecios();
     fn_TraerPagosFechas(fechaHoy,fechaHoy);
 
     /* ============ Eventos ============ */
@@ -1051,6 +1056,471 @@ jQuery(function ($) {
 
         // Actualizar el valor en la fila "TOTAL"
         $('#bodyReporteDePagos tr:last td:eq(1)').text('S/. ' + total.toFixed(2));
+    }
+
+    $('#btnRetrocesoCuentaDelClienteDescuento').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#tercerContenedorReporteDeDescuentos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
+    });
+
+    $('#btnBuscarCuentaDelClienteDescuentos').on('click', function () {
+        let fechaDesdeTraerDescuentos = $('#fechaDesdeCuentaDelClienteDescuentos').val();
+        let fechaHastaTraerDescuentos = $('#fechaHastaCuentaDelClienteDescuentos').val();
+        fn_RegistroDescuentos(fechaDesdeTraerDescuentos, fechaHastaTraerDescuentos);
+    });
+
+    $('#descuento_FiltrarPorCliente_submit').on('click', function () {
+        $('#selectedCodigoCliCuentaDelClienteDescuentos').attr('value','');
+        $('#idCuentaDelClienteDescuentos').val('');
+        
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#tercerContenedorReporteDeDescuentos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
+        fn_RegistroDescuentos(fechaHoy,fechaHoy);
+        $('#fechaDesdeCuentaDelClienteDescuentos').val(fechaHoy);
+        $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
+    });
+
+    function fn_RegistroDescuentos(fechaDesdeTraerDescuentos,fechaHastaTraerDescuentos) {
+        $.ajax({
+            url: '/fn_consulta_RegistroDescuentos',
+            method: 'GET',
+            data:{
+                fechaDesdeTraerDescuentos:fechaDesdeTraerDescuentos,
+                fechaHastaTraerDescuentos:fechaHastaTraerDescuentos,
+            },
+            success: function (response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let tbodyCuentaDelClienteDescuentos = $('#bodyCuentaDelClienteDescuentos');
+                    tbodyCuentaDelClienteDescuentos.empty();
+                    let nuevaFila = ""
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function (obj) {
+                        // Crear una nueva fila
+                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idDescuento));
+
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(obj.pesoDesc).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(obj.precioDesc).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroDesc));
+                        
+                        // Agregar la nueva fila al tbody
+                        tbodyCuentaDelClienteDescuentos.append(nuevaFila);
+                    });
+
+                    if (nuevaFila == ""){
+                        tbodyCuentaDelClienteDescuentos.append(
+                            '<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>'
+                        );
+                    }
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on("dblclick", "#bodyCuentaDelClienteDescuentos tr", function() {
+        let codigoDescuento = $(this).find('td:eq(0)').text();
+        fn_ConsultarEditarDescuento(codigoDescuento)
+    });
+
+    function fn_ConsultarEditarDescuento(codigoDescuento){
+        $.ajax({
+            url: '/fn_consulta_EditarDescuentos',
+            method: 'GET',
+            data: {
+                codigoDescuento:codigoDescuento,
+            },
+            success: function(response) {
+                response.forEach(function(obj){
+                    //console.log(obj)
+                    let pesoDesc = parseFloat(obj.pesoDesc)*-1
+                    $('#idEditarNombreDeClienteDescuento').attr("value",obj.codigoCli)
+                    $('#valorEditarDescuentoCliente').attr("value",obj.idDescuento);
+                    $('#idEditarNombreDescuentoCliente').val(obj.nombreCompleto);
+                    $('#editarPresentacionDescuentoCliente').val(obj.especieDesc);
+                    $('#fechaPagoEditarDescuento').val(obj.fechaRegistroDesc);
+                    $("#valorClienteEditarDescuento").val(pesoDesc.toFixed(2));
+                    $('#valorPrecioEditarDescuento').val(parseFloat(obj.precioDesc).toFixed(2));
+                    
+                    $('#ModalEditarDescuentoClienteEditar').addClass('flex');
+                    $('#ModalEditarDescuentoClienteEditar').removeClass('hidden');
+
+                });
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function declarar_especies_descuentos(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#editarPresentacionDescuentoCliente');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#btnEditarDescuentoClienteEditar').on('click', function () {
+        let idDescuento = $('#valorEditarDescuentoCliente').attr("value");
+        let nombreClienteEditar = $('#idEditarNombreDeClienteDescuento').attr('value');
+        let fechaRegistroDesc = $('#fechaPagoEditarDescuento').val();
+        let nombreEspecie = $('#editarPresentacionDescuentoCliente').val();
+        let pesoDesc = $('#valorClienteEditarDescuento').val();
+        pesoDesc = parseFloat(pesoDesc)*-1;
+        let precioDescuento = $('#valorPrecioEditarDescuento').val();
+        fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc,precioDescuento);
+    });
+
+    function fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc,precioDescuento){
+        $.ajax({
+            url: '/fn_consulta_EditarDescuentoCliente',
+            method: 'GET',
+            data: {
+                idDescuento:idDescuento,
+                nombreClienteEditar: nombreClienteEditar,
+                fechaRegistroDesc: fechaRegistroDesc,
+                nombreEspecie: nombreEspecie,
+                pesoDesc: pesoDesc,
+                precioDescuento:precioDescuento,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el descuento correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#btnBuscarCuentaDelClienteDescuentos').trigger('click');
+                    $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+                    $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '#bodyCuentaDelClienteDescuentos tr', function (e) {
+        e.preventDefault();
+        let codigoDescuento = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el pago!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarDescuento(codigoDescuento);
+            }
+        })
+    });
+
+    function fn_EliminarDescuento(codigoDescuento){
+        $.ajax({
+            url: '/fn_consulta_EliminarDescuento',
+            method: 'GET',
+            data: {
+                codigoDescuento: codigoDescuento,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el pago correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#btnBuscarCuentaDelClienteDescuentos').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('.cerrarModalEditarDescuento, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+            $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
+        }
+    });
+
+    // ===================================================================
+
+    $('.cerrarModalCambiarPrecioPesada, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalCambiarPrecioPesada').addClass('hidden');
+            $('#ModalCambiarPrecioPesada').removeClass('flex');
+        }
+    });
+
+    $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
+        $('#ModalCambiarPrecioPesada').addClass('flex');
+        $('#ModalCambiarPrecioPesada').removeClass('hidden');
+        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#fechaCambiarPrecioPesada').val(fechaHoy);
+        $('#especiesCambioPrecioPesadas').val(0);
+        $('#nuevoPrecioCambiarPesadas').val("");
+        $('#idCambiarPrecioPesadaCliente').val("");
+        $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+    });
+
+    $('#idCambiarPrecioPesadaCliente').on('input', function () {
+        let inputCambiarPrecioCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
+        contenedorClientes.empty();
+
+        if (inputCambiarPrecioCliente.length > 1 || inputCambiarPrecioCliente != "") {
+            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
+
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
+            method: 'GET',
+            data: {
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    function fn_declararEspeciesCambiarPrecios(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#especiesCambioPrecioPesadas');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#btnCambiarPrecioPesada').on('click', function () {
+        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
+        let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
+        let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
+
+        let contadorErrores = 0
+
+        if (codigoCliente == 0 || codigoCliente == ""){
+            contadorErrores++;
+            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
+            contadorErrores++;
+            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if(nuevoPrecio == 0 || nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (contadorErrores <= 0){
+            Swal.fire({
+                title: '¿Desea cambiar los registros?',
+                text: "¡Estas seguro de cambiar el precio de las pesadas!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si, cambiar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
+                }
+            })
+        }else{
+            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
+        }
+
+    });
+
+    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
+        $.ajax({
+            url: '/fn_consulta_CambiarPrecioPesadas',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                fechaCambioPrecio : fechaCambioPrecio,
+                especieCambioPrecio: especieCambioPrecio,
+                nuevoPrecio: nuevoPrecio,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se cambio los precios correctamente.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#fechaCambiarPrecioPesada').val(fechaHoy);
+                    $('#especiesCambioPrecioPesadas').val(0);
+                    $('#nuevoPrecioCambiarPesadas').val("");
+                    $('#idCambiarPrecioPesadaCliente').val("");
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                } 
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
     }
 
 })
