@@ -10,7 +10,7 @@ class ActualizarPrecioPesadas extends Model
     use HasFactory;
     protected $table = 'tb_pesadas'; // Nombre de tu tabla
     protected $primaryKey = 'idPesada'; // Clave primaria
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idPesada',
