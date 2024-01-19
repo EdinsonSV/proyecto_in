@@ -12,6 +12,9 @@ use App\Models\AgregarPagoCliente\AgregarPagoCliente;
 use App\Models\AgregarPagoCliente\EliminarPagoCliente;
 use App\Models\AgregarPagoCliente\ActualizarPagoCliente;
 use App\Models\AgregarPagoCliente\AgregarDescuentoCliente;
+use App\Models\AgregarPagoCliente\ActualizarDescuentoCliente;
+use App\Models\AgregarPagoCliente\EliminarDescuentoCliente;
+use App\Models\AgregarPagoCliente\ActualizarPrecioPesadas;
 
 class ReporteDePagosController extends Controller
 {
@@ -459,6 +462,147 @@ class ReporteDePagosController extends Controller
             return response()->json(['success' => true], 200);
         }
 
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_RegistroDescuentos(Request $request) {
+        $fechaDesde = $request->input('fechaDesdeTraerDescuentos');
+        $fechaHasta = $request->input('fechaHastaTraerDescuentos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_descuentos.idDescuento,
+                tb_descuentos.fechaRegistroDesc,
+                tb_especies_venta.nombreEspecie,
+                tb_descuentos.pesoDesc,
+                tb_descuentos.precioDesc,
+                tb_descuentos.cantidadDesc,
+                tb_descuentos.horaRegistroDesc,
+                tb_descuentos.fechaRegistroDescuento,
+                tb_descuentos.estadoDescuento,
+                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_descuentos
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_descuentos.codigoCli
+                INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_descuentos.especieDesc
+                WHERE tb_descuentos.estadoDescuento = 1 and fechaRegistroDescuento BETWEEN ? AND ?
+                ORDER BY tb_descuentos.idDescuento ASC', [$fechaDesde, $fechaHasta]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerPresentacionEspecies (){
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT idEspecie, nombreEspecie
+                FROM tb_especies_venta');
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EditarDescuentoCliente(Request $request)
+    {
+        $idDescuento = $request->input('idDescuento');
+        $nombreClienteEditar = $request->input('nombreClienteEditar');
+        $fechaRegistroDesc = $request->input('fechaRegistroDesc');
+        $nombreEspecie = $request->input('nombreEspecie');
+        $pesoDesc = $request->input('pesoDesc');
+        $precioDescuento = $request->input('precioDescuento');
+
+        if (Auth::check()) {
+            $ActualizarDescuentoCliente = new ActualizarDescuentoCliente;
+            $ActualizarDescuentoCliente->where('idDescuento', $idDescuento)
+                ->update([
+                    'codigoCli' => $nombreClienteEditar,
+                    'fechaRegistroDesc' => $fechaRegistroDesc,
+                    'especieDesc' => $nombreEspecie,
+                    'pesoDesc' => $pesoDesc,
+                    'precioDesc' => $precioDescuento,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EditarDescuentos(Request $request) {
+
+        $codigoDescuento = $request->input('codigoDescuento');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_descuentos.idDescuento,
+            tb_descuentos.fechaRegistroDesc,
+            tb_descuentos.pesoDesc,
+            tb_descuentos.precioDesc,
+            tb_descuentos.cantidadDesc,
+            tb_descuentos.horaRegistroDesc,
+            tb_descuentos.fechaRegistroDescuento,
+            tb_descuentos.codigoCli,
+            tb_descuentos.especieDesc,
+            IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_descuentos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_descuentos.codigoCli WHERE idDescuento = ?', [$codigoDescuento]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarDescuento(Request $request)
+    {
+        $codigoDescuento = $request->input('codigoDescuento');
+
+        if (Auth::check()) {
+            $EliminarDescuentoCliente = new EliminarDescuentoCliente;
+            $EliminarDescuentoCliente->where('idDescuento', $codigoDescuento)
+                ->update([
+                    'estadoDescuento' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_CambiarPrecioPesadas(Request $request)
+    {
+        $codigoCliente = $request->input('codigoCliente');
+        $fechaCambioPrecio = $request->input('fechaCambioPrecio');
+        $especieCambioPrecio = $request->input('especieCambioPrecio');
+        $nuevoPrecio = $request->input('nuevoPrecio');
+
+        if (Auth::check()) {
+            $ActualizarDescuentoCliente = new ActualizarPrecioPesadas;
+            $ActualizarDescuentoCliente->where('codigoCli', $codigoCliente)
+                ->where('fechaRegistroPes', $fechaCambioPrecio)
+                ->where('idEspecie', $especieCambioPrecio)
+                ->update([
+                    'precioPes' => $nuevoPrecio,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
