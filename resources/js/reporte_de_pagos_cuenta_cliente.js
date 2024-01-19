@@ -341,8 +341,13 @@ jQuery(function ($) {
             let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)
             totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
         });
-
-        tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
+        if (bodyCuentaDelCliente != ""){
+            tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
+        }else{
+            tbodyCuentaDelCliente.html(`
+            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>
+            `);
+        }
     }
 
     function construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos) {
