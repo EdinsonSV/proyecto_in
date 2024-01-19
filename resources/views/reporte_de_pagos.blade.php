@@ -83,7 +83,9 @@
                                 <!-- Aquí se mostrarán las sugerencias -->
                             </div>
                         </div>
-                        <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnCambiarPrecioPesadas"><i class='bx bx-dollar'></i> Cambiar Precios</button>
+                        @if (auth()->user()->tipoUsu == 'Administrador')
+                            <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnCambiarPrecioPesadas"><i class='bx bx-dollar'></i> Cambiar Precios</button>
+                        @endif
                     </div>
                     <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
                         <div class="flex flex-col justify-center">
