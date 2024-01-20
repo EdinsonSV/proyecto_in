@@ -250,6 +250,7 @@ jQuery(function($) {
                         // Agregar la nueva fila al tbody
                         tbodyPrecios.append(nuevaFila);
                     });
+                    fn_pintarPreciosMinimos();
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
