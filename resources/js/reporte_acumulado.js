@@ -14,6 +14,7 @@ jQuery(function($) {
     fn_TraerReporteAcumulado(fechaHoy,fechaHoy);
 
     fn_declarar_especies();
+    var timerInterval;
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -252,12 +253,20 @@ jQuery(function($) {
 
     $(document).on("dblclick", "#tablaReporteAcumulado tbody tr.consultarReporteAcumulado", function() {
         let fecha = $(this).find('td:eq(0)').text();
-
         fn_TraerReporteAcumuladoDetalle(fecha);
-        $('#primerContenedorReporteAcumulado').toggle('flex hidden');
-        $('#segundoContenedorReporteAcumulado').toggle('flex hidden');
-        $('#btnRetrocesoReporteAcumulado').toggle('hidden');
-        $('#diaReporteAcumulado').text(fecha);
+
+        Swal.fire({
+            title: '¡Consultando Datos!',
+            html: 'Espere mientras se están consultando los datos.',
+            timer: 999999999, // Establece un valor grande para que parezca indefinido
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        })
     });
 
     $('#btnRetrocesoReporteAcumulado').on('click', function () {
@@ -316,7 +325,7 @@ jQuery(function($) {
                     transformedData.push(transformedItem);
                 });
     
-                fn_construirFilasReporteAcumuladoDetalle(transformedData);
+                fn_construirFilasReporteAcumuladoDetalle(transformedData,fecha);
             },
             error: function (error) {
                 console.error("ERROR", error);
@@ -324,7 +333,7 @@ jQuery(function($) {
         });
     }    
     
-    function fn_construirFilasReporteAcumuladoDetalle(combinedDataArray){
+    function fn_construirFilasReporteAcumuladoDetalle(combinedDataArray,fecha){
         let bodyReporteAcumuladoDetalle="";
         let tbodyReporteAcumulado = $('#bodyReporteAcumuladoDetalle');
         tbodyReporteAcumulado.empty();
@@ -337,6 +346,12 @@ jQuery(function($) {
             bodyReporteAcumuladoDetalle += construirFilasTotales(item);
         });
         tbodyReporteAcumulado.html(bodyReporteAcumuladoDetalle);
+        clearInterval(timerInterval);
+        Swal.close();
+        $('#primerContenedorReporteAcumulado').toggle('flex hidden');
+        $('#segundoContenedorReporteAcumulado').toggle('flex hidden');
+        $('#btnRetrocesoReporteAcumulado').toggle('hidden');
+        $('#diaReporteAcumulado').text(fecha);
     }
 
     function construirPrimeraFila(item) {
