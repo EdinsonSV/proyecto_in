@@ -387,7 +387,14 @@ jQuery(function ($) {
                 let promedio = 0
                 if (totalPeso !== 0 && totalCantidad !== 0) {
                     promedio = (totalPeso / totalCantidad).toFixed(2);
-                }          
+                }
+                
+                let totalPesoFormateado = totalPeso.toLocaleString('es-ES', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true,
+                });
+                
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="text-center py-1 px-2 hidden"></td>
@@ -395,7 +402,7 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL ${nombreEspecie.replace("POLLO", "").trim()}:</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
                     </tr>
                 `;
@@ -421,7 +428,12 @@ jQuery(function ($) {
                 let promedio = 0
                 if (totalPeso !== 0 && totalCantidad !== 0) {
                     promedio = (totalPeso / totalCantidad).toFixed(2);
-                }    
+                }
+                let totalPesoFormateado = totalPeso.toLocaleString('es-ES', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true,
+                });    
                 return `
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="text-center py-1 px-2 hidden"></td>
@@ -429,7 +441,7 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
                     </tr>
                 `;
@@ -453,7 +465,13 @@ jQuery(function ($) {
         let promedioNeto = 0
         if (ventaPesoTotalNeto !== 0 && ventaCantidadTotal !== 0) {
             promedioNeto = (ventaPesoTotalNeto / ventaCantidadTotal).toFixed(2);
-        }   
+        }
+        
+        let ventaPesoTotalNetoFormateado = ventaPesoTotalNeto.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        }); 
 
         filas.push(`
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -462,7 +480,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL NETO:</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNeto.toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNetoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${promedioNeto}</td>
             </tr>
         `);
@@ -472,6 +490,12 @@ jQuery(function ($) {
             promedioVivo = (ventaPesoTotalVivo / ventaCantidadTotal).toFixed(2);
         } 
 
+        let ventaPesoTotalVivoFormateado = ventaPesoTotalVivo.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        }); 
+
         filas.push(`
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="text-center py-1 px-2 hidden"></td>
@@ -479,7 +503,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO:</td>
             <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalVivo.toFixed(2)} Kg.</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalVivoFormateado} Kg.</td>
             <td class="text-center py-1 px-2 whitespace-nowrap">${promedioVivo}</td>
         </tr>
         `);

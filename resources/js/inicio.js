@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 5000);
+    setInterval(fn_traerDatosEnTiempoReal, 30000);
 
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
@@ -195,17 +195,22 @@ jQuery(function($) {
                             promedioCompraTotal = 0
                         }
         
-        
-                        $('#tblCantidadCompra').text(parseInt(cantidadCompraTotal));
-                        $('#tblPesoCompra').text(pesoCompraTotal);
+                        let cantidadCompraTotalFormateado = parseFloat(cantidadCompraTotal).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                        let pesoCompraTotalFormateado = parseFloat(pesoCompraTotal).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
+                        $('#tblCantidadCompra').text(cantidadCompraTotalFormateado);
+                        $('#tblPesoCompra').text(pesoCompraTotalFormateado);
                         $('#tblPromedioCompra').text((promedioCompraTotal).toFixed(2));
         
                         cantidadMermaTotal = cantidadCompraTotal-cantidadVentaTotal;
                         pesoMermaTotal = pesoCompraTotal-pesoVentaTotal;
                         promedioMermaTotal = promedioCompraTotal-promedioVentaTotal;
+
+                        let cantidadMermaTotalFormateado = parseFloat(cantidadMermaTotal).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                        let pesoMermaTotalFormateado = parseFloat(pesoMermaTotal).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
         
-                        $('#tblCantidadMerma').text(cantidadMermaTotal);
-                        $('#tblPesoMerma').text(pesoMermaTotal.toFixed(2));
+                        $('#tblCantidadMerma').text(cantidadMermaTotalFormateado);
+                        $('#tblPesoMerma').text(pesoMermaTotalFormateado);
                         $('#tblPromedioMerma').text(promedioMermaTotal.toFixed(2));
         
                         if (cantidadVentaTotal != 0 && cantidadCompraTotal != 0) {
@@ -229,34 +234,60 @@ jQuery(function($) {
                         console.error("ERROR",error);
                     }
                 });
+                let cantidadPrimerEspecieFormateado = cantidadPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadSegundaEspecieFormateado = cantidadSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadTerceraEspecieFormateado = cantidadTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadCuartaEspecieFormateado = cantidadCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadTotalesEspecieFormateado = cantidadTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                
+                let pesoBeneficiadoPrimerEspecieFormateado = pesoBeneficiadoPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoSegundaEspecieFormateado = pesoBeneficiadoSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoTerceraEspecieFormateado = pesoBeneficiadoTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoCuartaEspecieFormateado = pesoBeneficiadoCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoTotalesEspecieFormateado = pesoBeneficiadoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                
+                let pesoPolloVivoPrimerEspecieFormateado = pesoPolloVivoPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoSegundaEspecieFormateado = pesoPolloVivoSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoTerceraEspecieFormateado = pesoPolloVivoTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoCuartaEspecieFormateado = pesoPolloVivoCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoTotalesEspecieFormateado = pesoPolloVivoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                
+                let pesoTotalPrimerEspecieFormateado = pesoTotalPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalSegundaEspecieFormateado = pesoTotalSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalTerceraEspecieFormateado = pesoTotalTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalCuartaEspecieFormateado = pesoTotalCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalesEspecieFormateado = pesoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
 
-                $('#totalUnidadesPrimerEspecie').text(cantidadPrimerEspecie + " " + (cantidadPrimerEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoPrimerEspecie').text(pesoBeneficiadoPrimerEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoPrimerEspecie').text(pesoPolloVivoPrimerEspecie.toFixed(2) + " Kg");
-                $('#totalKgPrimerEspecie').text(pesoTotalPrimerEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesPrimerEspecie').text(cantidadPrimerEspecieFormateado + " " + (cantidadPrimerEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoPrimerEspecie').text(pesoBeneficiadoPrimerEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoPrimerEspecie').text(pesoPolloVivoPrimerEspecieFormateado + " Kg");
+                $('#totalKgPrimerEspecie').text(pesoTotalPrimerEspecieFormateado + " Kg");
 
-                $('#totalUnidadesSegundaEspecie').text(cantidadSegundaEspecie + " " + (cantidadSegundaEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoSegundaEspecie').text(pesoBeneficiadoSegundaEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoSegundaEspecie').text(pesoPolloVivoSegundaEspecie.toFixed(2) + " Kg");
-                $('#totalKgSegundaEspecie').text(pesoTotalSegundaEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesSegundaEspecie').text(cantidadSegundaEspecieFormateado + " " + (cantidadSegundaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoSegundaEspecie').text(pesoBeneficiadoSegundaEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoSegundaEspecie').text(pesoPolloVivoSegundaEspecieFormateado + " Kg");
+                $('#totalKgSegundaEspecie').text(pesoTotalSegundaEspecieFormateado + " Kg");
 
-                $('#totalUnidadesTerceraEspecie').text(cantidadTerceraEspecie + " " + (cantidadTerceraEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoTerceraEspecie').text(pesoBeneficiadoTerceraEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoTerceraEspecie').text(pesoPolloVivoTerceraEspecie.toFixed(2) + " Kg");
-                $('#totalKgTerceraEspecie').text(pesoTotalTerceraEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesTerceraEspecie').text(cantidadTerceraEspecieFormateado + " " + (cantidadTerceraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoTerceraEspecie').text(pesoBeneficiadoTerceraEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoTerceraEspecie').text(pesoPolloVivoTerceraEspecieFormateado + " Kg");
+                $('#totalKgTerceraEspecie').text(pesoTotalTerceraEspecieFormateado + " Kg");
 
-                $('#totalUnidadesCuartaEspecie').text(cantidadCuartaEspecie + " " + (cantidadCuartaEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoCuartaEspecie').text(pesoBeneficiadoCuartaEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoCuartaEspecie').text(pesoPolloVivoCuartaEspecie.toFixed(2) + " Kg");
-                $('#totalKgCuartaEspecie').text(pesoTotalCuartaEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesCuartaEspecie').text(cantidadCuartaEspecieFormateado + " " + (cantidadCuartaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoCuartaEspecie').text(pesoBeneficiadoCuartaEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoCuartaEspecie').text(pesoPolloVivoCuartaEspecieFormateado + " Kg");
+                $('#totalKgCuartaEspecie').text(pesoTotalCuartaEspecieFormateado + " Kg");
 
-                $('#totalUnidadesEspecies').text(cantidadTotalesEspecie + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoEspecies').text(pesoBeneficiadoTotalesEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoEspecies').text(pesoPolloVivoTotalesEspecie.toFixed(2) + " Kg");
-                $('#totalKgEspecies').text(pesoTotalesEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesEspecies').text(cantidadTotalesEspecieFormateado + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoEspecies').text(pesoBeneficiadoTotalesEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoEspecies').text(pesoPolloVivoTotalesEspecieFormateado + " Kg");
+                $('#totalKgEspecies').text(pesoTotalesEspecieFormateado + " Kg");
 
-                $('#tblCantidadVenta').text(cantidadVentaTotal);
-                $('#tblPesoVenta').text(pesoVentaTotal.toFixed(2));
+                let cantidadVentaTotalFormateado = parseFloat(cantidadVentaTotal).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let pesoVentaTotalFormateado = parseFloat(pesoVentaTotal).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
+                $('#tblCantidadVenta').text(cantidadVentaTotalFormateado);
+                $('#tblPesoVenta').text(pesoVentaTotalFormateado);
                 $('#tblPromedioVenta').text(promedioVentaTotal.toFixed(2));
                 
             },
@@ -410,18 +441,23 @@ jQuery(function($) {
                         }else{
                             promedioCompraTotalAnterior = 0
                         }
+                        
+                        let cantidadCompraTotalAnteriorFormateado = parseFloat(cantidadCompraTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                        let pesoCompraTotalAnteriorFormateado = parseFloat(pesoCompraTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
         
-        
-                        $('#tblCantidadCompraAnterior').text(parseInt(cantidadCompraTotalAnterior));
-                        $('#tblPesoCompraAnterior').text(pesoCompraTotalAnterior);
+                        $('#tblCantidadCompraAnterior').text(cantidadCompraTotalAnteriorFormateado);
+                        $('#tblPesoCompraAnterior').text(pesoCompraTotalAnteriorFormateado);
                         $('#tblPromedioCompraAnterior').text((promedioCompraTotalAnterior).toFixed(2));
         
                         cantidadMermaTotalAnterior = cantidadCompraTotalAnterior-cantidadVentaTotalAnterior;
                         pesoMermaTotalAnterior = pesoCompraTotalAnterior-pesoVentaTotalAnterior;
                         promedioMermaTotalAnterior = promedioCompraTotalAnterior-promedioVentaTotalAnterior;
+
+                        let cantidadMermaTotalAnteriorFormateado = parseFloat(cantidadMermaTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                        let pesoMermaTotalAnteriorFormateado = parseFloat(pesoMermaTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
         
-                        $('#tblCantidadMermaAnterior').text(cantidadMermaTotalAnterior);
-                        $('#tblPesoMermaAnterior').text(pesoMermaTotalAnterior.toFixed(2));
+                        $('#tblCantidadMermaAnterior').text(cantidadMermaTotalAnteriorFormateado);
+                        $('#tblPesoMermaAnterior').text(pesoMermaTotalAnteriorFormateado);
                         $('#tblPromedioMermaAnterior').text(promedioMermaTotalAnterior.toFixed(2));
         
                         if (cantidadVentaTotalAnterior != 0 && cantidadCompraTotalAnterior != 0) {
@@ -446,33 +482,60 @@ jQuery(function($) {
                     }
                 });
 
-                $('#totalUnidadesPrimerEspecieAnterior').text(cantidadPrimerEspecie + " " + (cantidadPrimerEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoPrimerEspecieAnterior').text(pesoBeneficiadoPrimerEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoPrimerEspecieAnterior').text(pesoPolloVivoPrimerEspecie.toFixed(2) + " Kg");
-                $('#totalKgPrimerEspecieAnterior').text(pesoTotalPrimerEspecie.toFixed(2) + " Kg");
+                let cantidadPrimerEspecieFormateado = cantidadPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadSegundaEspecieFormateado = cantidadSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadTerceraEspecieFormateado = cantidadTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadCuartaEspecieFormateado = cantidadCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let cantidadTotalesEspecieFormateado = cantidadTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                
+                let pesoBeneficiadoPrimerEspecieFormateado = pesoBeneficiadoPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoSegundaEspecieFormateado = pesoBeneficiadoSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoTerceraEspecieFormateado = pesoBeneficiadoTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoCuartaEspecieFormateado = pesoBeneficiadoCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoBeneficiadoTotalesEspecieFormateado = pesoBeneficiadoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                
+                let pesoPolloVivoPrimerEspecieFormateado = pesoPolloVivoPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoSegundaEspecieFormateado = pesoPolloVivoSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoTerceraEspecieFormateado = pesoPolloVivoTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoCuartaEspecieFormateado = pesoPolloVivoCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoPolloVivoTotalesEspecieFormateado = pesoPolloVivoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                
+                let pesoTotalPrimerEspecieFormateado = pesoTotalPrimerEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalSegundaEspecieFormateado = pesoTotalSegundaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalTerceraEspecieFormateado = pesoTotalTerceraEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalCuartaEspecieFormateado = pesoTotalCuartaEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+                let pesoTotalesEspecieFormateado = pesoTotalesEspecie.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
 
-                $('#totalUnidadesSegundaEspecieAnterior').text(cantidadSegundaEspecie + " " + (cantidadSegundaEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoSegundaEspecieAnterior').text(pesoBeneficiadoSegundaEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoSegundaEspecieAnterior').text(pesoPolloVivoSegundaEspecie.toFixed(2) + " Kg");
-                $('#totalKgSegundaEspecieAnterior').text(pesoTotalSegundaEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesPrimerEspecieAnterior').text(cantidadPrimerEspecieFormateado + " " + (cantidadPrimerEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoPrimerEspecieAnterior').text(pesoBeneficiadoPrimerEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoPrimerEspecieAnterior').text(pesoPolloVivoPrimerEspecieFormateado + " Kg");
+                $('#totalKgPrimerEspecieAnterior').text(pesoTotalPrimerEspecieFormateado + " Kg");
 
-                $('#totalUnidadesTerceraEspecieAnterior').text(cantidadTerceraEspecie + " " + (cantidadTerceraEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoTerceraEspecieAnterior').text(pesoBeneficiadoTerceraEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoTerceraEspecieAnterior').text(pesoPolloVivoTerceraEspecie.toFixed(2) + " Kg");
-                $('#totalKgTerceraEspecieAnterior').text(pesoTotalTerceraEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesSegundaEspecieAnterior').text(cantidadSegundaEspecieFormateado + " " + (cantidadSegundaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoSegundaEspecieAnterior').text(pesoBeneficiadoSegundaEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoSegundaEspecieAnterior').text(pesoPolloVivoSegundaEspecieFormateado + " Kg");
+                $('#totalKgSegundaEspecieAnterior').text(pesoTotalSegundaEspecieFormateado + " Kg");
 
-                $('#totalUnidadesCuartaEspecieAnterior').text(cantidadCuartaEspecie + " " + (cantidadCuartaEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoCuartaEspecieAnterior').text(pesoBeneficiadoCuartaEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoCuartaEspecieAnterior').text(pesoPolloVivoCuartaEspecie.toFixed(2) + " Kg");
-                $('#totalKgCuartaEspecieAnterior').text(pesoTotalCuartaEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesTerceraEspecieAnterior').text(cantidadTerceraEspecieFormateado + " " + (cantidadTerceraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoTerceraEspecieAnterior').text(pesoBeneficiadoTerceraEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoTerceraEspecieAnterior').text(pesoPolloVivoTerceraEspecieFormateado + " Kg");
+                $('#totalKgTerceraEspecieAnterior').text(pesoTotalTerceraEspecieFormateado + " Kg");
 
-                $('#totalUnidadesEspeciesAnterior').text(cantidadTotalesEspecie + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
-                $('#totalKgBeneficiadoEspeciesAnterior').text(pesoBeneficiadoTotalesEspecie.toFixed(2) + " Kg");
-                $('#totalKgPolloVivoEspeciesAnterior').text(pesoPolloVivoTotalesEspecie.toFixed(2) + " Kg");
-                $('#totalKgEspeciesAnterior').text(pesoTotalesEspecie.toFixed(2) + " Kg");
+                $('#totalUnidadesCuartaEspecieAnterior').text(cantidadCuartaEspecieFormateado + " " + (cantidadCuartaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoCuartaEspecieAnterior').text(pesoBeneficiadoCuartaEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoCuartaEspecieAnterior').text(pesoPolloVivoCuartaEspecieFormateado + " Kg");
+                $('#totalKgCuartaEspecieAnterior').text(pesoTotalCuartaEspecieFormateado + " Kg");
 
-                $('#tblCantidadVentaAnterior').text(cantidadVentaTotalAnterior);
-                $('#tblPesoVentaAnterior').text(pesoVentaTotalAnterior.toFixed(2));
+                $('#totalUnidadesEspeciesAnterior').text(cantidadTotalesEspecieFormateado + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgBeneficiadoEspeciesAnterior').text(pesoBeneficiadoTotalesEspecieFormateado + " Kg");
+                $('#totalKgPolloVivoEspeciesAnterior').text(pesoPolloVivoTotalesEspecieFormateado + " Kg");
+                $('#totalKgEspeciesAnterior').text(pesoTotalesEspecieFormateado + " Kg");
+
+                let cantidadVentaTotalAnteriorFormateado = parseFloat(cantidadVentaTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+                let pesoVentaTotalAnteriorFormateado = parseFloat(pesoVentaTotalAnterior).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
+                $('#tblCantidadVentaAnterior').text(cantidadVentaTotalAnteriorFormateado);
+                $('#tblPesoVentaAnterior').text(pesoVentaTotalAnteriorFormateado);
                 $('#tblPromedioVentaAnterior').text(promedioVentaTotalAnterior.toFixed(2));
                 
             },

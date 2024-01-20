@@ -65,26 +65,28 @@
         <div id="segundoContenedorReporteDePagos" class="hidden">
             <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
                 <div class="flex flex-col gap-5">
-                    <div class="flex justify-between items-center relative w-full flex-wrap gap-4">
-                        <div class="flex flex-col max-w-xs w-full">
-                            <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
-                            <div class="flex max-w-xs w-full">
-                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                    <i class='bx bxs-user-circle text-xl'></i>
-                                </span>
-                                <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idCuentaDelCliente" autocomplete="off" id="idCuentaDelCliente" placeholder="Ingrese Nombre de Cliente">
-                            </div>
-        
-                            <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                            <label id="selectedCodigoCliCuentaDelCliente" class="hidden" val=""></label>
-        
-                            <!-- Contenedor para las sugerencias -->
-                            <div id="contenedorClientesCuentaDelCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
-                                <!-- Aquí se mostrarán las sugerencias -->
+                    <div class="flex justify-between items-center w-full flex-wrap gap-4">
+                        <div class="flex justify-between items-center relative md:max-w-xs w-full gap-4">
+                            <div class="flex flex-col max-w-xs w-full">
+                                <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
+                                <div class="flex max-w-xs w-full">
+                                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                        <i class='bx bxs-user-circle text-xl'></i>
+                                    </span>
+                                    <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idCuentaDelCliente" autocomplete="off" id="idCuentaDelCliente" placeholder="Ingrese Nombre de Cliente">
+                                </div>
+            
+                                <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
+                                <label id="selectedCodigoCliCuentaDelCliente" class="hidden" val=""></label>
+            
+                                <!-- Contenedor para las sugerencias -->
+                                <div id="contenedorClientesCuentaDelCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
+                                    <!-- Aquí se mostrarán las sugerencias -->
+                                </div>
                             </div>
                         </div>
                         @if (auth()->user()->tipoUsu == 'Administrador')
-                            <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnCambiarPrecioPesadas"><i class='bx bx-dollar'></i> Cambiar Precios</button>
+                            <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto" id="btnCambiarPrecioPesadas"><i class='bx bx-dollar'></i> Cambiar Precios</button>
                         @endif
                     </div>
                     <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
@@ -467,7 +469,7 @@
                         </select> 
                         <div class="flex max-w-xs w-full">
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                <i class='bx bx-dollar text-xl'></i>
+                                <b>S/</b>
                             </span>
                             <input class="validarSoloNumerosDosDecimales max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nuevoPrecioCambiarPesadas" autocomplete="off" id="nuevoPrecioCambiarPesadas" placeholder="Ingrese Nuevo Precio">
                         </div>

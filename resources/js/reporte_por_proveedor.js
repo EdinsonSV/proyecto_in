@@ -555,6 +555,12 @@ jQuery(function($) {
             },
             success: function (response) {
                 response.forEach(function (obj) {
+
+                    let diferencia = parseFloat(obj.sumaGuias) - (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos));
+
+                    if (diferencia < 0){
+                        diferencia = diferencia*-1;
+                    }
     
                     // Formatear números con separador de miles y dos decimales
                     const compraTotalFormatted = parseFloat(obj.sumaGuias).toLocaleString(undefined, {
@@ -567,13 +573,10 @@ jQuery(function($) {
                         maximumFractionDigits: 2
                     });
     
-                    const diferenciaTotalFormatted = (
-                        parseFloat(obj.sumaGuias) - (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos))
-                    ).toLocaleString(undefined, {
+                    const diferenciaTotalFormatted = (diferencia).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
-    
                     $('#compraTotalFecha').text(compraTotalFormatted);
                     $('#ventaTotalFecha').text(ventaTotalFormatted);
                     $('#diferenciaTotalFecha').text(diferenciaTotalFormatted);

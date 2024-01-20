@@ -22,13 +22,19 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         let total = parseFloat(obj.deudaTotal) - parseFloat(obj.cantidadPagos) + parseFloat(obj.ventaDescuentos);
+                        let totalFormateado = total.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
                         // Crear una nueva fila
                         let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text((total).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">').text(total));
 
                         // Agregar la nueva fila al tbody
                         tbodyAgregarSaldo.append(nuevaFila);
@@ -101,5 +107,22 @@ jQuery(function($) {
             }
         });
     }
+
+    $('#filtrarClienteAgregarSaldo').on('input', function() {
+        let nombreFiltrar = $('#filtrarClienteAgregarSaldo').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+
+        // Mostrar todas las filas
+        $('#tablaAgregarSaldo tbody tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaAgregarSaldo tbody tr').each(function() {
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    });
 
 });

@@ -679,6 +679,12 @@ jQuery(function ($) {
                     if (response.length == 0) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
+                        let totalPagoFormateado = totalPago.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        });
+
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                         nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
@@ -686,7 +692,7 @@ jQuery(function ($) {
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("TOTAL:"));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPagoFormateado));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -1055,7 +1061,12 @@ jQuery(function ($) {
         });
 
         // Actualizar el valor en la fila "TOTAL"
-        $('#bodyReporteDePagos tr:last td:eq(1)').text('S/. ' + total.toFixed(2));
+        let totalFormateado = total.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        $('#bodyReporteDePagos tr:last td:eq(1)').text('S/. ' + totalFormateado);
     }
 
     $('#btnRetrocesoCuentaDelClienteDescuento').on('click', function () {

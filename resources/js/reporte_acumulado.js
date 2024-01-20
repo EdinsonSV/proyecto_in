@@ -149,18 +149,66 @@ jQuery(function($) {
                             }
                         });
 
+                        let diaPesoPrimerEspecieFormateado = diaPesoPrimerEspecie.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
+
+                        let diaPesoSegundaEspecieFormateado = diaPesoSegundaEspecie.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
+
+                        let diaPesoTerceraEspecieFormateado = diaPesoTerceraEspecie.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
+
+                        let diaPesoCuartaEspecieFormateado = diaPesoCuartaEspecie.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
+
                         nuevaFila = $('<tr class="consultarReporteAcumulado bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(item.fechaRegistroPes));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoPrimerEspecie).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoSegundaEspecie).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoTerceraEspecie).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoCuartaEspecie).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(diaPesoPrimerEspecieFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(diaPesoSegundaEspecieFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(diaPesoTerceraEspecieFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(diaPesoCuartaEspecieFormateado));
                         
                         // Agregar la nueva fila al tbody
                         tbodyReporteAcumulado.append(nuevaFila);
                     });
+
+                    let totalPesoPrimerEspecieFormateado = totalPesoPrimerEspecie.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                        useGrouping: true,
+                    }); 
+
+                    let totalPesoSegundaEspecieFormateado = totalPesoSegundaEspecie.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                        useGrouping: true,
+                    }); 
+
+                    let totalPesoTerceraEspecieFormateado = totalPesoTerceraEspecie.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                        useGrouping: true,
+                    }); 
+
+                    let totalPesoCuartaEspecieFormateado = totalPesoCuartaEspecie.toLocaleString('es-ES', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                        useGrouping: true,
+                    }); 
 
                     nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5">');
                     nuevaFila.append($('<td class="dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
@@ -168,10 +216,10 @@ jQuery(function($) {
                     tbodyReporteAcumulado.append(nuevaFila);
                     nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text("Totales :"));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoPrimerEspecie).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoSegundaEspecie).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoTerceraEspecie).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoCuartaEspecie).toFixed(2)));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text(totalPesoPrimerEspecieFormateado));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text(totalPesoSegundaEspecieFormateado));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text(totalPesoTerceraEspecieFormateado));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text(totalPesoCuartaEspecieFormateado));
                     tbodyReporteAcumulado.append(nuevaFila);
                         
                     if (response.length == 0) {
@@ -317,15 +365,18 @@ jQuery(function($) {
             totalPrecioVenta = 0;
         }
 
+        let totalPesoFormateado = totalPeso.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaFormateado = totalVenta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap">${item.codigoCli}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">POLLO YUGO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -357,15 +408,18 @@ jQuery(function($) {
             totalPrecioVenta = 0;
         }
 
+        let totalPesoFormateado = totalPeso.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaFormateado = totalVenta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">POLLO PERLA</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -397,15 +451,18 @@ jQuery(function($) {
             totalPrecioVenta = 0;
         }
 
+        let totalPesoFormateado = totalPeso.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaFormateado = totalVenta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">POLLO CHIMU</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -437,15 +494,18 @@ jQuery(function($) {
             totalPrecioVenta = 0;
         }
 
+        let totalPesoFormateado = totalPeso.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaFormateado = totalVenta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">POLLO XX</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -473,15 +533,18 @@ jQuery(function($) {
             totalPrecioVenta = 0;
         }
 
+        let totalPesoFormateado = totalPeso.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaFormateado = totalVenta.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">DESCUENTOS</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoFormateado} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
             </tr>
         `;
@@ -516,6 +579,12 @@ jQuery(function($) {
 
         let saldoActual = saldoDelDia - parseFloat(item.pagos);
 
+        let ventaTotalFormateado = ventaTotal.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let totalVentaAnteriorFormateado = totalVentaAnterior.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let saldoDelDiaFormateado = saldoDelDia.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let pagosFormateado = parseFloat(item.pagos).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+        let saldoActualFormateado = saldoActual.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+
         return `
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="5"></td>
@@ -529,7 +598,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(ventaTotal).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${ventaTotalFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -539,7 +608,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalVentaAnterior).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaAnteriorFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -554,7 +623,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(saldoDelDia).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${saldoDelDiaFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -564,7 +633,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">PAGOS</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(item.pagos).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${pagosFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -579,7 +648,7 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(saldoActual).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${saldoActualFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `;

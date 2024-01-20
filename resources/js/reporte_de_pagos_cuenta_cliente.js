@@ -360,13 +360,44 @@ jQuery(function ($) {
         let totalVentaDelDiaSaldoAnterior = totalVentaDelDia + parseFloat(totalSaldoAnteriorV)
         let saldoActual = totalVentaDelDiaSaldoAnterior - parseFloat(item.pagos)
 
+        
+        let saldoActualFormateado = saldoActual.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaDelDiaSaldoAnteriorFormateado = totalVentaDelDiaSaldoAnterior.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaDelDiaFormateado = totalVentaDelDia.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalSaldoAnteriorVFormateado = totalSaldoAnteriorV.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let pagosFormateado = parseFloat(item.pagos).toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaFormateado}</h5></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -374,7 +405,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalSaldoAnteriorVFormateado}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -386,7 +417,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDelDiaSaldoAnterior).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaSaldoAnteriorFormateado}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -394,7 +425,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">PAGOS</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(item.pagos).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${pagosFormateado}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         <tr class="bg-white dark:bg-gray-800 h-0.5">
@@ -406,7 +437,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(saldoActual).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${saldoActualFormateado}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
         </tr>
         `;
@@ -471,46 +502,105 @@ jQuery(function ($) {
         let totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie);
         let totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie);
 
+        let totalVentaPrimerEspecieFormateado = totalVentaPrimerEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaSegundaEspecieFormateado = totalVentaSegundaEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaTerceraEspecieFormateado = totalVentaTerceraEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaCuartaEspecieFormateado = totalVentaCuartaEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalPesoPrimerEspecieFormateado = totalPesoPrimerEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalPesoSegundaEspecieFormateado = totalPesoSegundaEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalPesoTerceraEspecieFormateado = totalPesoTerceraEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalPesoCuartaEspecieFormateado = totalPesoCuartaEspecie.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalVentaDescuentoFormateado = totalVentaDescuento.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let totalPesoDescuentoFormateado = totalPesoDescuento.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombrePrimerEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoPrimerEspecieFormateado} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaPrimerEspecieFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoSegundaEspecieFormateado} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaSegundaEspecieFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoTerceraEspecieFormateado} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaTerceraEspecieFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoCuartaEspecieFormateado} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaCuartaEspecieFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">DESCUENTO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalPesoDescuentoFormateado} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDescuentoFormateado}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
             </tr>
             <tr class="bg-white dark:bg-gray-800 h-0.5">

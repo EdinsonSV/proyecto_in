@@ -71,10 +71,29 @@ jQuery(function($) {
         let idClienteActualizarPrecioXPresentacion = $('#idClientePrecioXPresentacion').attr("value");
         let valorActualizarPrecioXPresentacion = $('#nuevoValorPrecioXPresentacion').val();
         let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
+
+        if (valorActualizarPrecioXPresentacion != ""){
+            Swal.fire({
+                title: '¿Desea cambiar el precio?',
+                text: "¡Estas seguro de cambiar el precio!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si, cambiar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
+                    $('#ModalPreciosXPresentacion').addClass('hidden');
+                    $('#ModalPreciosXPresentacion').removeClass('flex');
+                }
+            })
+
+        }else{
+            alertify.notify('El campo esta vacio.', 'error', 2);
+        }
         
-        fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
-        $('#ModalPreciosXPresentacion').addClass('hidden');
-        $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
     $('#btnGuardarNuevoPrecioPollo').on('click', function () {
