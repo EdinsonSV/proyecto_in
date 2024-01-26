@@ -116,7 +116,7 @@ jQuery(function ($) {
         let contenedorClientes = $('#contenedorClientes');
         contenedorClientes.empty();
 
-        if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
+        if (inputReportePorCliente.length > 0 && inputReportePorCliente != "") {
             fn_TraerClientesReportePorCliente(inputReportePorCliente)
         } else {
             contenedorClientes.empty();
@@ -151,7 +151,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -511,22 +511,18 @@ jQuery(function ($) {
         return filas.join('');
     }
 
-    $('.cerrarModalCantidadReportePorCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalCantidadReportePorCliente').addClass('hidden');
-            $('#ModalCantidadReportePorCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
-        }
+    $('.cerrarModalCantidadReportePorCliente, #ModalCantidadReportePorCliente .opacity-75').on('click', function (e) {
+        $('#ModalCantidadReportePorCliente').addClass('hidden');
+        $('#ModalCantidadReportePorCliente').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
-    $('.cerrarModalPesoReportePorCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPesoReportePorCliente').addClass('hidden');
-            $('#ModalPesoReportePorCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800')
-        }
+    $('.cerrarModalPesoReportePorCliente, #ModalPesoReportePorCliente .opacity-75').on('click', function (e) {
+        $('#ModalPesoReportePorCliente').addClass('hidden');
+        $('#ModalPesoReportePorCliente').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
     $(document).on('input', '#nuevoCantidadReportePorCliente', function () {

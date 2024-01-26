@@ -315,11 +315,9 @@ jQuery(function($) {
         }
     });
 
-    $('.cerrarModalRegistrarGuias, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalRegistrarGuias').addClass('hidden');
-            $('#ModalRegistrarGuias').removeClass('flex');
-        }
+    $('.cerrarModalRegistrarGuias, #ModalRegistrarGuias .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarGuias').addClass('hidden');
+        $('#ModalRegistrarGuias').removeClass('flex');
     });
 
     $('#btnAgregarGuiasReportePorProveedor').on('click', function () {
@@ -500,13 +498,11 @@ jQuery(function($) {
         fn_EditarGuia(codigoGuia);
     });
 
-    $('.cerrarModalRegistrarGuiasEditar, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalRegistrarGuiasEditar').addClass('hidden');
-            $('#ModalRegistrarGuiasEditar').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
-        }
+    $('.cerrarModalRegistrarGuiasEditar, #ModalRegistrarGuiasEditar .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarGuiasEditar').addClass('hidden');
+        $('#ModalRegistrarGuiasEditar').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
     function fn_EditarGuia(codigoGuia){

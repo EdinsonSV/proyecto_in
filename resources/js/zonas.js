@@ -42,11 +42,9 @@ jQuery(function($) {
         });
     }
 
-    $('.cerrarModalZonas').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalZonas').addClass('hidden');
-            $('#ModalZonas').removeClass('flex');
-        }
+    $('.cerrarModalZonas, #ModalZonas .opacity-75').on('click', function (e) {
+        $('#ModalZonas').addClass('hidden');
+        $('#ModalZonas').removeClass('flex');
     });
 
     $('#registrar_agregarZona').on('click', function () {
@@ -108,11 +106,9 @@ jQuery(function($) {
         $(this).val(valorCampo);
     });
 
-    $('.cerrarModalZonasEditar').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalZonasEditar').addClass('hidden');
-            $('#ModalZonasEditar').removeClass('flex');
-        }
+    $('.cerrarModalZonasEditar, #ModalZonasEditar .opacity-75').on('click', function (e) {
+        $('#ModalZonasEditar').addClass('hidden');
+        $('#ModalZonasEditar').removeClass('flex');
     });
     
     $(document).on("dblclick", "#tablaConsultarZonas tbody tr", function() {

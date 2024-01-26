@@ -113,18 +113,31 @@
 
     foreach ($menusAgrupados as $menu) {
         foreach ($menu['submenus'] as $submenu) {
-            $hrefSubMenus[] = $submenu['hrefSubMenu'];
+            // Normaliza las rutas antes de almacenarlas
+            $hrefSubMenus[] = rtrim(strtolower($submenu['hrefSubMenu']), '/');
         }
     }
     ?>
+
     <script>
         let hrefSubMenus = <?php echo json_encode($hrefSubMenus); ?>;
-        let rutaActual = window.location.pathname;
+        let rutaActual = window.location.pathname.toLowerCase();
 
-        if (hrefSubMenus.indexOf(rutaActual) === -1) {
-            window.location.href = '/home';
+        // Normaliza la ruta actual antes de comparar
+        rutaActual = rutaActual.endsWith('/') ? rutaActual.slice(0, -1) : rutaActual;
+
+        // Verifica si hrefSubMenus[0] está definido y es una cadena no vacía
+        if (hrefSubMenus.length > 0 && hrefSubMenus[0] && typeof hrefSubMenus[0] === 'string') {
+            // Redirige a la primera ruta en el array si la ruta actual no está presente
+            if (hrefSubMenus.indexOf(rutaActual) === -1) {
+                window.location.href = hrefSubMenus[0];
+            }
+        } else {
+            // Si hrefSubMenus[0] no está definido o es una cadena vacía, cierra la sesión
+            window.location.href = '/logout'; // Ajusta la ruta de logout según tu configuración
         }
     </script>
+
 </body>
 
 </html>

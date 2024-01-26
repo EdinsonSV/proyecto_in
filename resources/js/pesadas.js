@@ -173,6 +173,7 @@ jQuery(function($) {
                             if (tipoUsuario == 'Administrador'){
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.valorConversion));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numBalanzaPes));
                             }
                             nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
                         }else{
@@ -195,6 +196,7 @@ jQuery(function($) {
                                 if (tipoUsuario == 'Administrador'){
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.valorConversion));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numBalanzaPes));
                                 }
                                 nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
                             }
@@ -220,11 +222,9 @@ jQuery(function($) {
 
     };
 
-    $('.cerrarModalCambiarPesada, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalCambiarPesada').addClass('hidden');
-            $('#ModalCambiarPesada').removeClass('flex');
-        }
+    $('.cerrarModalCambiarPesada, #ModalCambiarPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPesada').addClass('hidden');
+        $('#ModalCambiarPesada').removeClass('flex');
     });
 
     $('#idCambiarPesadaCliente').on('input', function () {
@@ -233,7 +233,7 @@ jQuery(function($) {
         let fechaCambioDePesada = $('#fechaCambioDePesadaActual').val();
         contenedorClientes.empty();
 
-        if (inputCambiarPesadaCliente.length > 1 || inputCambiarPesadaCliente != "") {
+        if (inputCambiarPesadaCliente.length > 0 && inputCambiarPesadaCliente != "") {
             fn_TraerClientesCambiarPesadaCliente(inputCambiarPesadaCliente,fechaCambioDePesada);
         } else {
             contenedorClientes.empty();
@@ -283,7 +283,7 @@ jQuery(function($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');

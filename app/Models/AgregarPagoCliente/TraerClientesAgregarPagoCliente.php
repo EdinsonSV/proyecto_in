@@ -10,7 +10,7 @@ class TraerClientesAgregarPagoCliente extends Model
     use HasFactory;
     protected $table = 'tb_clientes'; // Nombre de tu tabla
     protected $primaryKey = 'idCliente'; // Clave primaria
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idCliente',

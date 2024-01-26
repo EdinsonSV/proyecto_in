@@ -45,13 +45,11 @@ jQuery(function ($) {
         $('#divCodTrans').removeClass('flex').addClass('hidden');
     });
 
-    $('.cerrarModalAgregarPagoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarPagoCliente').addClass('hidden');
-            $('#ModalAgregarPagoCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
-        }
+    $('.cerrarModalAgregarPagoCliente, #ModalAgregarPagoCliente .opacity-75').on('click', function (e) {
+        $('#ModalAgregarPagoCliente').addClass('hidden');
+        $('#ModalAgregarPagoCliente').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
     // Eventos para abrir y cerrar modal de Agregar Descuento por Kilo
@@ -68,13 +66,11 @@ jQuery(function ($) {
         $('#valorAgregarDescuentoCliente').val('');
     });
 
-    $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarDescuentoCliente').addClass('hidden');
-            $('#ModalAgregarDescuentoCliente').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
-        }
+    $('.cerrarModalAgregarDescuentoCliente, #ModalAgregarDescuentoCliente .opacity-75').on('click', function (e) {
+        $('#ModalAgregarDescuentoCliente').addClass('hidden');
+        $('#ModalAgregarDescuentoCliente').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
     // Eventos para mostrar y ocultar interfaz de Cuenta del Cliente
@@ -218,7 +214,7 @@ jQuery(function ($) {
         let contenedorClientes = $('#contenedorClientesAgregarPagoCliente');
         contenedorClientes.empty();
 
-        if (inputAgregarPagoCliente.length > 1 || inputAgregarPagoCliente != "") {
+        if (inputAgregarPagoCliente.length > 0 && inputAgregarPagoCliente != "") {
             fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente);
         } else {
             contenedorClientes.empty();
@@ -233,7 +229,7 @@ jQuery(function ($) {
         let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
         contenedorClientes.empty();
 
-        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
+        if (inputAgregarDescuentoCliente.length > 0 && inputAgregarDescuentoCliente != "") {
             fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
         } else {
             contenedorClientes.empty();
@@ -336,7 +332,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -425,7 +421,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -725,13 +721,11 @@ jQuery(function ($) {
         }
     });
 
-    $('.cerrarModalAgregarPagoClienteEditar, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarPagoClienteEditar').addClass('hidden');
-            $('#ModalAgregarPagoClienteEditar').removeClass('flex');
-            $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
-            $('table tbody tr').addClass('bg-white dark:bg-gray-800');
-        }
+    $('.cerrarModalAgregarPagoClienteEditar, #ModalAgregarPagoClienteEditar .opacity-75').on('click', function (e) {
+        $('#ModalAgregarPagoClienteEditar').addClass('hidden');
+        $('#ModalAgregarPagoClienteEditar').removeClass('flex');
+        $('table tbody tr').removeClass('bg-gray-300 dark:bg-gray-600');
+        $('table tbody tr').addClass('bg-white dark:bg-gray-800');
     });
 
     $(document).on("dblclick", "#bodyReporteDePagos tr.pagoEditarOEliminar", function() {
@@ -1315,20 +1309,16 @@ jQuery(function ($) {
         });
     }
 
-    $('.cerrarModalEditarDescuento, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
-            $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
-        }
+    $('.cerrarModalEditarDescuento, #ModalEditarDescuentoClienteEditar .opacity-75').on('click', function (e) {
+        $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+        $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
     });
 
     // ===================================================================
 
-    $('.cerrarModalCambiarPrecioPesada, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalCambiarPrecioPesada').addClass('hidden');
-            $('#ModalCambiarPrecioPesada').removeClass('flex');
-        }
+    $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPrecioPesada').addClass('hidden');
+        $('#ModalCambiarPrecioPesada').removeClass('flex');
     });
 
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
@@ -1349,7 +1339,7 @@ jQuery(function ($) {
         let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
         contenedorClientes.empty();
 
-        if (inputCambiarPrecioCliente.length > 1 || inputCambiarPrecioCliente != "") {
+        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
             fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
         } else {
             contenedorClientes.empty();
@@ -1371,7 +1361,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -1465,7 +1455,7 @@ jQuery(function ($) {
         }else{
             $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         }
-        if(nuevoPrecio == 0 || nuevoPrecio == ""){
+        if(nuevoPrecio == ""){
             contadorErrores++;
             $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
         }else{

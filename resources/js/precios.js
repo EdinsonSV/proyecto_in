@@ -52,18 +52,14 @@ jQuery(function($) {
         fn_ActualizarPrecioMinimo(idEspecie, precio);
     });    
 
-    $('.cerrarModalPreciosXPresentacion, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPreciosXPresentacion').addClass('hidden');
-            $('#ModalPreciosXPresentacion').removeClass('flex');
-        }
+    $('.cerrarModalPreciosXPresentacion, #ModalPreciosXPresentacion .opacity-75').on('click', function (e) {
+        $('#ModalPreciosXPresentacion').addClass('hidden');
+        $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
-    $('.cerrarModalPreciosMinimos').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPreciosMinimos').addClass('hidden');
-            $('#ModalPreciosMinimos').removeClass('flex');
-        }
+    $('.cerrarModalPreciosMinimos, #ModalPreciosMinimos .opacity-75').on('click', function (e) {
+        $('#ModalPreciosMinimos').addClass('hidden');
+        $('#ModalPreciosMinimos').removeClass('flex');
     });
 
     $('#btnActualizarPreciosXPresentacion').on('click', function () {

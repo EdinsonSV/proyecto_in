@@ -118,11 +118,16 @@
 
 {{-- Modal Opciones de Clientes --}}
 
-<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDatosdeCliente p-4" 
-    id="ModalEditarDatosdeCliente">
-    <div class="modal-content max-w-[700px] w-full h-full md:h-auto overflow-auto aside_scrollED">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
-            <div class="px-4 pt-4">
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalEditarDatosdeCliente">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute max-w-[700px] w-full rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all">
+            <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Cliente</h3>
@@ -221,8 +226,7 @@
                         id="btnEliminarCliente">Eliminar Cliente</button>
                     <div class="flex flex-col gap-2 sm:flex-row">
                         <button type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto cerrarModalEditarDatosdeCliente"
-                            id="btnCerrarModalEditarDatosdeCliente">Cancelar</button>
+                            class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto cerrarModalEditarDatosdeCliente">Cancelar</button>
                         <button type="button"
                             class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto"
                             id="btnEditarDatosdeCliente">Actualizar</button>

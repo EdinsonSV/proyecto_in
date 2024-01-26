@@ -4,8 +4,8 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    fn_TraerValorConversion()
-    DataTableED('#tablaValorDeConversion')
+    fn_TraerValorConversion();
+    DataTableED('#tablaValorDeConversion');
 
     /* ============ Eventos ============ */
 
@@ -28,11 +28,9 @@ jQuery(function($) {
         $('#nuevoValorDeConversion').focus();
     });
 
-    $('.cerrarModalValorDeConversion, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalValorDeConversion').addClass('hidden');
-            $('#ModalValorDeConversion').removeClass('flex');
-        }
+    $('.cerrarModalValorDeConversion, #ModalValorDeConversion .opacity-75').on('click', function (e) {
+        $('#ModalValorDeConversion').addClass('hidden');
+        $('#ModalValorDeConversion').removeClass('flex');
     });
 
     $('#btnActualizarValorDeConversion').on('click', function () {

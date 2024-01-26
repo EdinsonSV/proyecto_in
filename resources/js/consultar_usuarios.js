@@ -48,11 +48,9 @@ jQuery(function($) {
         });
     }
 
-    $('.cerrarModalEditarDatosdeUsuario, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalEditarDatosdeUsuario').addClass('hidden');
-            $('#ModalEditarDatosdeUsuario').removeClass('flex');
-        }
+    $('.cerrarModalEditarDatosdeUsuario, #ModalEditarDatosdeUsuario .opacity-75').on('click', function (e) {
+        $('#ModalEditarDatosdeUsuario').addClass('hidden');
+        $('#ModalEditarDatosdeUsuario').removeClass('flex');
     });
 
     $(document).on("dblclick", "#tablaConsultarUsuarios tbody tr", function() {
@@ -122,14 +120,7 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
 
-                        if (parseInt(obj.idSubMenu) == 1){
-
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
-                            <input disabled checked id="${obj.idSubMenu}" data-idRol="${obj.idRol}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
-                            </div>`);
-
-                        }else if (obj.estadoRol == "si"){
+                        if (obj.estadoRol == "si"){
                             nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
                             <input checked id="${obj.idSubMenu}" data-idRol="${obj.idRol}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
