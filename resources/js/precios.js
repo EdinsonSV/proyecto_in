@@ -94,22 +94,9 @@ jQuery(function($) {
         let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
 
         if (valorActualizarPrecioXPresentacion != ""){
-            Swal.fire({
-                title: '¿Desea cambiar el precio?',
-                text: "¡Estas seguro de cambiar el precio!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si, cambiar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
-                    $('#ModalPreciosXPresentacion').addClass('hidden');
-                    $('#ModalPreciosXPresentacion').removeClass('flex');
-                }
-            })
+            fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
+            $('#ModalPreciosXPresentacion').addClass('hidden');
+            $('#ModalPreciosXPresentacion').removeClass('flex');
 
         }else{
             alertify.notify('El campo esta vacio.', 'error', 2);
@@ -118,85 +105,99 @@ jQuery(function($) {
     });
 
     $('#btnGuardarNuevoPrecioPollo').on('click', function () {
-        let valorNuevoPrecioPolloYugo = parseFloat($('#precioPolloYugo').val());
-        let valorNuevoPrecioPolloPerla = parseFloat($('#precioPolloPerla').val());
-        let valorNuevoPrecioPolloChimu = parseFloat($('#precioPolloChimu').val());
-        let valorNuevoPrecioPolloxx = parseFloat($('#precioPolloxx').val());
-    
-        let totalConsultas = $('#tablaPreciosXPresentacion tbody tr').length;
-        let consultasCompletadas = 0;
-        let timerInterval;
-
         Swal.fire({
-            title: '¡Atención!',
-            html: 'Actualizando precios, no salga de la pagina.',
-            timer: 999999999, // Establece un valor grande para que parezca indefinido
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading();
-            },
-            willClose: () => {
-                clearInterval(timerInterval);
+            title: '¿Desea cambiar el precio?',
+            text: "¡Estas seguro de cambiar el precio!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si, cambiar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let valorNuevoPrecioPolloYugo = parseFloat($('#precioPolloYugo').val());
+                let valorNuevoPrecioPolloPerla = parseFloat($('#precioPolloPerla').val());
+                let valorNuevoPrecioPolloChimu = parseFloat($('#precioPolloChimu').val());
+                let valorNuevoPrecioPolloxx = parseFloat($('#precioPolloxx').val());
+            
+                let totalConsultas = $('#tablaPreciosXPresentacion tbody tr').length;
+                let consultasCompletadas = 0;
+                let timerInterval;
+
+                Swal.fire({
+                    title: '¡Atención!',
+                    html: 'Actualizando precios, no salga de la pagina.',
+                    timer: 999999999, // Establece un valor grande para que parezca indefinido
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                })
+            
+                $('#tablaPreciosXPresentacion tbody tr').each(function () {
+
+                    let idCodigoCliente = parseFloat($(this).find('td:eq(0)').text());
+                    let primerEspeciePolloYugo = parseFloat($(this).find('td:eq(2)').text());
+                    let segundaEspeciePolloPerla = parseFloat($(this).find('td:eq(3)').text());
+                    let terceraEspeciePolloChimu = parseFloat($(this).find('td:eq(4)').text());
+                    let cuartaEspeciePolloxx = parseFloat($(this).find('td:eq(5)').text());
+            
+                    let resultadoEspecieUno = primerEspeciePolloYugo + valorNuevoPrecioPolloYugo;
+                    let resultadoEspecieDos = segundaEspeciePolloPerla + valorNuevoPrecioPolloPerla;
+                    let resultadoEspecieTres = terceraEspeciePolloChimu + valorNuevoPrecioPolloChimu;
+                    let resultadoEspecieCuatro = cuartaEspeciePolloxx + valorNuevoPrecioPolloxx;
+            
+                    fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas);
+                });
+            
+                function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas) {
+                    $.ajax({
+                        url: '/fn_consulta_AgregarNuevoPrecioPollo',
+                        method: 'GET',
+                        data: {
+                            idCodigoCliente: idCodigoCliente,
+                            resultadoEspecieUno: resultadoEspecieUno,
+                            resultadoEspecieDos: resultadoEspecieDos,
+                            resultadoEspecieTres: resultadoEspecieTres,
+                            resultadoEspecieCuatro: resultadoEspecieCuatro,
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                consultasCompletadas++;
+                                if (consultasCompletadas === totalConsultas) {
+                                    clearInterval(timerInterval);
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Se actualizaron los precios correctamente',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    fn_TraerPreciosXPresentacion();
+                                    $('#precioPolloYugo').val("0.0");
+                                    $('#precioPolloPerla').val("0.0");
+                                    $('#precioPolloChimu').val("0.0");
+                                    $('#precioPolloxx').val("0.0");
+                                }
+                            }
+                        },
+                        error: function (error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error: Ocurrio un error inesperado durante la operacion',
+                            })
+                            console.error("ERROR", error);
+                        }
+                    });
+                }
             }
         })
-    
-        $('#tablaPreciosXPresentacion tbody tr').each(function () {
-
-            let idCodigoCliente = parseFloat($(this).find('td:eq(0)').text());
-            let primerEspeciePolloYugo = parseFloat($(this).find('td:eq(2)').text());
-            let segundaEspeciePolloPerla = parseFloat($(this).find('td:eq(3)').text());
-            let terceraEspeciePolloChimu = parseFloat($(this).find('td:eq(4)').text());
-            let cuartaEspeciePolloxx = parseFloat($(this).find('td:eq(5)').text());
-    
-            let resultadoEspecieUno = primerEspeciePolloYugo + valorNuevoPrecioPolloYugo;
-            let resultadoEspecieDos = segundaEspeciePolloPerla + valorNuevoPrecioPolloPerla;
-            let resultadoEspecieTres = terceraEspeciePolloChimu + valorNuevoPrecioPolloChimu;
-            let resultadoEspecieCuatro = cuartaEspeciePolloxx + valorNuevoPrecioPolloxx;
-    
-            fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas);
-        });
-    
-        function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, totalConsultas) {
-            $.ajax({
-                url: '/fn_consulta_AgregarNuevoPrecioPollo',
-                method: 'GET',
-                data: {
-                    idCodigoCliente: idCodigoCliente,
-                    resultadoEspecieUno: resultadoEspecieUno,
-                    resultadoEspecieDos: resultadoEspecieDos,
-                    resultadoEspecieTres: resultadoEspecieTres,
-                    resultadoEspecieCuatro: resultadoEspecieCuatro,
-                },
-                success: function (response) {
-                    if (response.success) {
-                        consultasCompletadas++;
-                        if (consultasCompletadas === totalConsultas) {
-                            clearInterval(timerInterval);
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Se actualizaron los precios correctamente',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            fn_TraerPreciosXPresentacion();
-                            $('#precioPolloYugo').val("0.0");
-                            $('#precioPolloPerla').val("0.0");
-                            $('#precioPolloChimu').val("0.0");
-                            $('#precioPolloxx').val("0.0");
-                        }
-                    }
-                },
-                error: function (error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Error: Ocurrio un error inesperado durante la operacion',
-                    })
-                    console.error("ERROR", error);
-                }
-            });
-        }
     });    
 
     /* ============ Funciones ============ */
