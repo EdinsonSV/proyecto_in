@@ -106,7 +106,7 @@ jQuery(function($) {
 
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let columna9 = $(this).find('td:eq(10)').text().trim();
+                let columna9 = $(this).find('td:eq(11)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }
