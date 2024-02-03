@@ -37,7 +37,8 @@
                 <div class="flex w-full justify-end">
                     <select class="mb-5 w-full md:w-56 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="filtroFormaDePago" id="filtroFormaDePago">
                         <option value="Todos">Todos</option>
-                        <option value="Efectivo">Efectivo</option>
+                        <option value="Efectivo Caja">Efectivo Caja</option>
+                        <option value="Efectivo Otros">Efectivo Otros</option>
                         <option value="Transferencia">Transferencia</option>
                         <option value="Saldo">Saldo</option>
                     </select>  
@@ -219,7 +220,8 @@
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">F. de Pago</h4>
                             </div>
                             <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="formaDePago" id="formaDePago">
-                                <option value="Efectivo">Efectivo</option>
+                                <option value="Efectivo Caja">Efectivo Caja</option>
+                                <option value="Efectivo Otros">Efectivo Otros</option>
                                 <option value="Transferencia">Transferencia</option>
                             </select>                          
                         </div>
@@ -299,7 +301,8 @@
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">F. de Pago</h4>
                             </div>
                             <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="formaDePagoEditar" id="formaDePagoEditar">
-                                <option value="Efectivo">Efectivo</option>
+                                <option value="Efectivo Caja">Efectivo Caja</option>
+                                <option value="Efectivo Otros">Efectivo Otros</option>
                                 <option value="Transferencia">Transferencia</option>
                             </select>                          
                         </div>

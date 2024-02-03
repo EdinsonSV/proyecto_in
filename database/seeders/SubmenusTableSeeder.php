@@ -29,6 +29,8 @@ class SubmenusTableSeeder extends Seeder
             ['idSubMenu' => 13, 'idMenu' => 4, 'nombreSubMenu' => 'Agregar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/registrar_usuarios', 'iconHtml' => 'bx bxs-user-badge', 'estadoSubMenu' => 1],
             ['idSubMenu' => 14, 'idMenu' => 4, 'nombreSubMenu' => 'Consultar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/consultar_usuarios', 'iconHtml' => 'bx bxs-user-account', 'estadoSubMenu' => 1],
             ['idSubMenu' => 15, 'idMenu' => 4, 'nombreSubMenu' => 'Configuraciones', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/configuraciones', 'iconHtml' => 'bx bx-cog', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 16, 'idMenu' => 1, 'nombreSubMenu' => 'Pedidos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/pedidos', 'iconHtml' => 'bx bx-stats', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 17, 'idMenu' => 1, 'nombreSubMenu' => 'Deuda Maxima', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/deuda_maxima', 'iconHtml' => 'bx bxs-hand', 'estadoSubMenu' => 1],
         ]);
     }
 }

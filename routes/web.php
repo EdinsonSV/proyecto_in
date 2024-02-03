@@ -18,6 +18,8 @@ use App\Http\Controllers\ReportePorProveedorController;
 use App\Http\Controllers\ReporteAcumuladoController;
 use App\Http\Controllers\AgregarSaldoController;
 use App\Http\Controllers\ConfiguracionesController;
+use App\Http\Controllers\DeudaMaximaController;
+use App\Http\Controllers\PedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,8 @@ Route::get('/reporte_por_proveedor',[ReportePorProveedorController::class,'show'
 Route::get('/reporte_acumulado',[ReporteAcumuladoController::class,'show']);
 Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
 Route::get('/configuraciones',[ConfiguracionesController::class,'show']);
+Route::get('/pedidos',[PedidosController::class,'show']);
+Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -149,3 +153,6 @@ Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoControll
 
 Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
 Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);
+
+Route::get('/fn_consulta_DeudaMaximaClientes',[DeudaMaximaController::class,'consulta_DeudaMaximaClientes']);
+Route::get('/fn_consulta_ActualizarDeudaMaxima',[DeudaMaximaController::class,'consulta_ActualizarDeudaMaxima']);

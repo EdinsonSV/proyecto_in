@@ -14,7 +14,7 @@
         </div>
         <div class="relative rounded-lg overflow-auto max-h-[500px] aside_scrollED md:m-5 mt-5">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaAgregarSaldo">
-                <thead id="headerAgregarSaldo" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
+                <thead id="headerAgregarSaldo" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase z-50">
                     <tr class="h-10">
                     <th class="hidden">Id</th>   
                     <th class="p-4" data-column="nombres">
@@ -67,5 +67,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    var rutaAdvertencia = "{{ asset('img/advertencia.png') }}";
+</script>
 
 @endsection

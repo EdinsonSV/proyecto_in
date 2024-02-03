@@ -120,8 +120,8 @@
     ?>
 
     <script>
-        let hrefSubMenus = <?php echo json_encode($hrefSubMenus); ?>;
-        let rutaActual = window.location.pathname.toLowerCase();
+        var hrefSubMenus = <?php echo json_encode($hrefSubMenus); ?>;
+        var rutaActual = window.location.pathname.toLowerCase();
 
         // Normaliza la ruta actual antes de comparar
         rutaActual = rutaActual.endsWith('/') ? rutaActual.slice(0, -1) : rutaActual;

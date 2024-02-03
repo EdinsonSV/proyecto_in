@@ -32,7 +32,7 @@
 {{-- Modal Opciones de Usuarios --}}
 
 <div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalEditarDatosdeUsuario">
-    <div class="flex justify-center items-center w-full min-h-screen py-4 px-4 text-center">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>

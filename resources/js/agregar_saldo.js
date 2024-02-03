@@ -21,21 +21,46 @@ jQuery(function($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
+                        let nuevaFila = '';
                         let total = parseFloat(obj.deudaTotal) - parseFloat(obj.cantidadPagos) + parseFloat(obj.ventaDescuentos);
                         let totalFormateado = total.toLocaleString('es-ES', {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                             useGrouping: true,
+                        });
+                        let limitEndeudamientoFormateado = parseFloat(obj.limitEndeudamiento).toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
                         }); 
-                        // Crear una nueva fila
-                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalFormateado));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">').text(total));
-
+                        if (total >= parseFloat(obj.limitEndeudamiento)) {
+                            nuevaFila = $('<tr class="bg-red-600 border-b dark:border-gray-700 cursor-pointer text-white font-bold">');
+                            // Agregar las celdas con la información
+                            nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                            nuevaFila.append($(`
+                                <td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">
+                                    <div class="flex gap-4 justify-between">
+                                        <div>
+                                            ${obj.nombreCompleto}
+                                        </div>
+                                        <div class="pulsoAdvertencia">
+                                            <img src="${rutaAdvertencia}" title="El cliente sobrepaso la deuda \n maxima : ${limitEndeudamientoFormateado}" alt="Advertencia" class="h-6 drop-shadow-[0_0_5px_rgba(255,255,255,0.80)]" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">${totalFormateado}</td>
+                                <td class="hidden">${total.toFixed(2)}</td>
+                            `));
+                        }
+                        else{
+                            nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                            // Agregar las celdas con la información
+                            nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalFormateado));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">').text(total));
+                        }
                         // Agregar la nueva fila al tbody
                         tbodyAgregarSaldo.append(nuevaFila);
                     });
@@ -64,6 +89,7 @@ jQuery(function($) {
         $('#nombreClienteAgregarSaldo').text(nombreCompleto);
         $('#ModalAgregarSaldo').removeClass('hidden');
         $('#ModalAgregarSaldo').addClass('flex');
+        $('#valorAgregarSaldo').focus();
     });
 
     $('#btnAgregarSaldo').on('click', function () {
