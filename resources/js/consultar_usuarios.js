@@ -5,6 +5,7 @@ jQuery(function($) {
 
     fn_ConsultarUsuarios();
     var tipoUsuario = $('#tipoUsuario').data('id');
+    var usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
 
     function fn_ConsultarUsuarios() {
         $.ajax({
@@ -242,8 +243,7 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-    
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol);
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli);
                     });
                     
                     fn_ConsultarUsuarios();
@@ -295,8 +295,7 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-    
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol);
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli);
                     });
                     
                     fn_ConsultarUsuarios();
@@ -356,7 +355,7 @@ jQuery(function($) {
         $(this).val(inputValue);
     });
 
-    function fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol){
+    function fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli){
         $.ajax({
             url: '/fn_consulta_RegistrarUsuarioRolesEditar',
             method: 'GET',
@@ -365,6 +364,7 @@ jQuery(function($) {
                 idMenu: idMenu,
                 idSubMenu: idSubMenu,
                 estadoRol: estadoRol,
+                usuarioRegistroCli: usuarioRegistroCli,
             },
             success: function(response) {
             },

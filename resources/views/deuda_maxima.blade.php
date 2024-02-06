@@ -6,12 +6,13 @@
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Deuda Maxima --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Deuda Maxima</h4>
-        <div class="flex w-full lg:max-w-xs md:px-5 mb-5">
+        <div class="flex w-full lg:max-w-xs md:px-5">
             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                 <i class='bx bxs-user-circle text-xl'></i>
             </span>
             <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarClienteDeudaMaxima" autocomplete="off" id="filtrarClienteDeudaMaxima" placeholder="Ingrese Nombre de Cliente">
         </div>
+        <p class="text-gray-900 font-semibold text-ml dark:text-gray-300 px-5 my-5">En este apartado podrá designar la deuda máxima que puede tener un cliente.</p>
         <div class="relative rounded-lg overflow-auto max-h-[500px] aside_scrollED md:mx-5 md:mb-5">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaDeudaMaxima">
                 <thead id="headerDeudaMaxima" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
@@ -41,15 +42,15 @@
     </div>
 </main>
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalDeudaMaxima">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalDeudaMaxima">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

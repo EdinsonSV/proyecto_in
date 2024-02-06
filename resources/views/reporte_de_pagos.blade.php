@@ -172,15 +172,15 @@
 
 {{-- Modal Agregar Pago --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalAgregarPagoCliente">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalAgregarPagoCliente">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -252,15 +252,15 @@
 
 {{-- Modal Editar Pago --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalAgregarPagoClienteEditar">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalAgregarPagoClienteEditar">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -333,15 +333,15 @@
 
 {{-- Modal Agregar Descuento --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalAgregarDescuentoCliente">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalAgregarDescuentoCliente">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -403,15 +403,15 @@
 {{-- Termina Modal Agregar Descuento --}}
 {{-- Modal Editar Descuento --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalEditarDescuentoClienteEditar">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalEditarDescuentoClienteEditar">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -468,15 +468,15 @@
 
 {{-- Termina Modal Editar Descuento --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalCambiarPrecioPesada">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalCambiarPrecioPesada">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

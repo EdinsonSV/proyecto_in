@@ -695,6 +695,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
+                        $("#filtroFormaDePago").val("Efectivo Caja").trigger("change");
                     }
 
                 } else {
