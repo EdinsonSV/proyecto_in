@@ -243,7 +243,8 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli);
+                        let codigoUsu = $("#valorEditarCodigoUsuario").val();
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, codigoUsu);
                     });
                     
                     fn_ConsultarUsuarios();
@@ -295,7 +296,8 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli);
+                        let codigoUsu = $("#valorEditarCodigoUsuario").val();
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, codigoUsu);
                     });
                     
                     fn_ConsultarUsuarios();

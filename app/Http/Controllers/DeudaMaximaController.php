@@ -24,7 +24,10 @@ class DeudaMaximaController extends Controller
             SELECT 
                 IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto, 
                 codigoCli,limitEndeudamiento 
-            FROM tb_clientes WHERE idEstadoCli = 1
+            FROM tb_clientes 
+            INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona  
+            WHERE idEstadoCli = 1 and estadoEliminadoCli = 1
+            ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC
             ');
     
             // Devuelve los datos en formato JSON

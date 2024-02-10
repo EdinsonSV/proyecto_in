@@ -20,6 +20,7 @@ use App\Http\Controllers\AgregarSaldoController;
 use App\Http\Controllers\ConfiguracionesController;
 use App\Http\Controllers\DeudaMaximaController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\SeguimientoPedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
 Route::get('/configuraciones',[ConfiguracionesController::class,'show']);
 Route::get('/pedidos',[PedidosController::class,'show']);
 Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
+Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -156,3 +158,10 @@ Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_
 
 Route::get('/fn_consulta_DeudaMaximaClientes',[DeudaMaximaController::class,'consulta_DeudaMaximaClientes']);
 Route::get('/fn_consulta_ActualizarDeudaMaxima',[DeudaMaximaController::class,'consulta_ActualizarDeudaMaxima']);
+
+Route::get('/fn_consulta_TraerPedidosClientes',[PedidosController::class,'consulta_TraerPedidosClientes']);
+Route::get('/fn_consulta_AgregarPedidoCliente',[PedidosController::class,'consulta_AgregarPedidoCliente']);
+Route::get('/fn_consulta_ActualizarPedidoCliente',[PedidosController::class,'consulta_ActualizarPedidoCliente']);
+Route::get('/fn_consulta_EliminarPedido',[PedidosController::class,'consulta_EliminarPedido']);
+
+Route::get('/fn_consulta_TraerPedidosSeguimientoClientes',[SeguimientoPedidosController::class,'consulta_TraerPedidosSeguimientoClientes']);

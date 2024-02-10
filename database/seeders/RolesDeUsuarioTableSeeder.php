@@ -31,6 +31,7 @@ class RolesDeUsuarioTableSeeder extends Seeder
             ['idRol' => 15, 'idUsuario' => 1, 'idMenu' => 4, 'idSubMenu' => 15, 'estadoRol' => "si"],
             ['idRol' => 16, 'idUsuario' => 1, 'idMenu' => 1, 'idSubMenu' => 16, 'estadoRol' => "si"],
             ['idRol' => 17, 'idUsuario' => 1, 'idMenu' => 1, 'idSubMenu' => 17, 'estadoRol' => "si"],
+            ['idRol' => 18, 'idUsuario' => 1, 'idMenu' => 2, 'idSubMenu' => 18, 'estadoRol' => "si"],
         ]);
     }
 }

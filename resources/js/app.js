@@ -100,6 +100,17 @@ jQuery(function($) {
         $(this).val(inputValue);
     });
 
+    $('.validarSoloNumeross').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+        
+        // Elimina todos los caracteres excepto los dígitos y un punto decimal
+        inputValue = inputValue.replace(/[^0-9]/g, '');
+        
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });
+
     /* ============ Eventos para validar campos entrada || Formato de Celular 999 999 999 ============ */
 
     $('.validarEntradasDeCelular').on('input', function () {

@@ -85,7 +85,7 @@
                     </div>
             </header>
             @yield('contenido')
-            <footer class="ml-auto bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700">
+            <footer class="ml-auto md:pl-[239px] bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700">
                 <div class="2xl:container mx-auto">
                     <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Industrias Balinsa.</b></h3></div>
                     <!-- <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Santos Vilchez Edinson P.</b></h3></div> -->

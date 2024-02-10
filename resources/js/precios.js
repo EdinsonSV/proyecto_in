@@ -367,7 +367,7 @@ jQuery(function($) {
     }
 
     $('#filtrarClientePrecios, #tipoPolloPrecios').on('input change', function() {
-        let nombreFiltrar = $('#filtrarClientePrecios').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+        let nombreFiltrar = $('#filtrarClientePrecios').val().toUpperCase(); // Obtiene el valor del campo de filtro
         let tipoPolloFiltrar = $('#tipoPolloPrecios').val(); // Obtiene el valor seleccionado del select
 
         // Mostrar todas las filas
