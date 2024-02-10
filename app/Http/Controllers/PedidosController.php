@@ -119,4 +119,49 @@ class PedidosController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_TraerPedidosAnteriores(Request $request ){
+
+        $fechaTraerPedido = $request->input('fechaTraerPedido');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT
+            IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto,
+            idPedido ,codigoCliPedido, cantidadPrimerEspecie, cantidadSegundaEspecie, cantidadTerceraEspecie,
+            cantidadCuartaEspecie, fechaRegistroPedido, comentarioPedido, estadoPedido
+            FROM tb_pedidos
+            INNER JOIN tb_clientes on tb_clientes.codigoCli = tb_pedidos.codigoCliPedido
+            INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona  
+            WHERE estadoPedido = 1 and fechaRegistroPedido = ?
+            ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC',[$fechaTraerPedido]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_VerificarPedido(Request $request) {
+        $selectedCodigoCliPedidos = $request->input('selectedCodigoCliPedidos');
+        $fechaAgregarPedido = $request->input('fechaAgregarPedido');
+    
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $pedidoExistente = DB::table('tb_pedidos')
+                ->where('codigoCliPedido', $selectedCodigoCliPedidos)
+                ->where('fechaRegistroPedido', $fechaAgregarPedido)
+                ->exists();
+    
+            // Devuelve true si el pedido existe, false de lo contrario
+            return response()->json(['existePedido' => $pedidoExistente]);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+    
 }

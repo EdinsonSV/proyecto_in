@@ -11,6 +11,7 @@ jQuery(function($) {
     $('#fechaBuscarPedidos').val(fechaHoy);
     var tipoUsuario = $('#tipoUsuario').data('id');
     fn_TraerPedidosSeguimientoClientes(fechaHoy);
+    DataTableED('#tablaPedidos');
 
     $('#filtrarPedidosFecha').on('click', function () {
         let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
@@ -50,9 +51,9 @@ jQuery(function($) {
                         let diferenciaTerceraEspecie = 0;
                         diferenciaTerceraEspecie = parseInt(obj.cantidadTerceraEspecie) - parseFloat(obj.sumaCantidadTerceraEspecie)
 
-                        let diferenciaCuartaEspecie = 0;
+                        /* let diferenciaCuartaEspecie = 0;
                         diferenciaCuartaEspecie = parseInt(obj.cantidadCuartaEspecie) - parseFloat(obj.sumaCantidadCuartaEspecie)
-
+ */
                         // Crear una nueva fila
                         nuevaFila = $('<tr class="bg-white text-gray-900 dark:text-white filaEditable dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         
@@ -68,9 +69,9 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(obj.cantidadTerceraEspecie));                        
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(obj.sumaCantidadTerceraEspecie));                        
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(diferenciaTerceraEspecie));                        
-                        nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(obj.cantidadCuartaEspecie));                    
+                        /* nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(obj.cantidadCuartaEspecie));                    
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(obj.sumaCantidadCuartaEspecie));                    
-                        nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(diferenciaCuartaEspecie));
+                        nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(diferenciaCuartaEspecie)); */
                                         
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(totalPedidos));
                         nuevaFila.append($('<td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">').text(totalPedidosPesados));                    
