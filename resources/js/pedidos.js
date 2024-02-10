@@ -704,6 +704,8 @@ jQuery(function($) {
                     if (consultasCompletadas === totalConsultas) {
                         clearInterval(timerInterval);
                         Swal.close();
+                        $('#ModalTraerPedido').addClass('hidden');
+                        $('#ModalTraerPedido').removeClass('flex');
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
