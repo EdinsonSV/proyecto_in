@@ -656,12 +656,24 @@ jQuery(function($) {
 
     var totalConsultas = 0;
     var consultasCompletadas = 0;
+    var timerInterval;
 
     $('#btnTraerPedido').on('click', function () {
         consultasCompletadas = 0;
         totalConsultas = arrayPedidosRevisar.length;
         if(arrayPedidosRevisar.length > 0) {
-
+            Swal.fire({
+                title: '¡Registrando Pedidos!',
+                html: 'Espere mientras se están registrando los pedidos.',
+                timer: 999999999, // Establece un valor grande para que parezca indefinido
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            })
             // Recorrer ArrayPedidosRevisar
             let fechaRegistrarPedidoADia = $('#fechaRegistrarPedidoADia').val();
             arrayPedidosRevisar.forEach(function(pedido) {
@@ -689,6 +701,8 @@ jQuery(function($) {
                 if (response.success) {
                     consultasCompletadas++;
                     if (consultasCompletadas === totalConsultas) {
+                        clearInterval(timerInterval);
+                        Swal.close();
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -705,7 +719,9 @@ jQuery(function($) {
                     icon: 'error',
                     title: 'Oops...',
                     text: `Error: se completaron solo ${consultasCompletadas === 1 ? `${consultasCompletadas} registro.` : `${consultasCompletadas} registros.`}`,
-                  })
+                })
+                clearInterval(timerInterval);
+                Swal.close();
                 console.error("ERROR",error);
             }
         });
