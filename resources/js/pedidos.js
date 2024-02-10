@@ -650,6 +650,7 @@ jQuery(function($) {
         if (contadorPedidosRegistrar > 0) {
             $('#cantidadRegistrosRegistrar').text(contadorPedidosRegistrar === 1 ? `${contadorPedidosRegistrar} pedido.` : `${contadorPedidosRegistrar} pedidos.`);
         }else{
+            $('#cantidadRegistrosRegistrar').text(contadorPedidosRegistrar === 1 ? `${contadorPedidosRegistrar} pedido.` : `${contadorPedidosRegistrar} pedidos.`);
             alertify.notify('No hay pedidos que registrar.', 'error', 3);
         }
     }      
