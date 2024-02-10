@@ -27,7 +27,7 @@
                         <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">POLLO YUGO</th>
                         <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">POLLO PERLA</th>
                         <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">POLLO CHIMU</th>
-                        {{-- <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">POLLO XX</th> --}}
+                        <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">POLLO XX</th>
                         <th class="p-4 text-center whitespace-nowrap border-2 border-x-[1px]" colspan="3">TOTAL</th>
                         <th class="p-4 text-center border-2 border-l-[1px]"></th>
                     </tr>
@@ -45,13 +45,13 @@
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-white text-gray-900 dark:text-white dark:bg-gray-800">Pedido</th>
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-green-500">Pesado</th>
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-yellow-400 text-gray-900">Falta</th>
-                        {{-- <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-white text-gray-900 dark:text-white dark:bg-gray-800">Pedido</th>
-                        <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-green-500">Pesado</th>
-                        <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-yellow-400 text-gray-900">Falta</th> --}}
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-white text-gray-900 dark:text-white dark:bg-gray-800">Pedido</th>
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-green-500">Pesado</th>
                         <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-yellow-400 text-gray-900">Falta</th>
-                        <th class="p-4 text-center border-b-[1px] border-r-2 border-l-[1px]">COMENTARIO</th>
+                        <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-white text-gray-900 dark:text-white dark:bg-gray-800">Pedido</th>
+                        <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-green-500">Pesado</th>
+                        <th class="p-4 text-center border-b-[1px] border-x-[1px] whitespace-nowrap bg-yellow-400 text-gray-900">Falta</th>
+                        <th class="p-4 text-center border-b-[1px] border-r-2 border-l-[1px] whitespace-nowrap">COMENTARIO</th>
                     </tr>
                 </thead>
                 <tbody id="bodyPedidos">

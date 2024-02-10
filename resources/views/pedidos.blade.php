@@ -30,13 +30,13 @@
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>
                         <th class="hidden">Id</th>
-                        <th class="p-4 text-center whitespace-nowrap">Nombre de Cliente</th>
-                        <th class="p-4 text-center whitespace-nowrap">POLLO YUGO</th>
-                        <th class="p-4 text-center whitespace-nowrap">POLLO PERLA</th>
-                        <th class="p-4 text-center whitespace-nowrap">POLLO CHIMU</th>
-                        <th class="p-4 hidden">POLLO XX</th>
-                        <th class="p-4 text-center whitespace-nowrap">TOTAL</th>
-                        <th class="p-4 text-center">COMENTARIO</th>
+                        <th class="px-2 py-4 text-center">Nombre de Cliente</th>
+                        <th class="px-2 py-4 text-center">POLLO YUGO</th>
+                        <th class="px-2 py-4 text-center">POLLO PERLA</th>
+                        <th class="px-2 py-4 text-center">POLLO CHIMU</th>
+                        <th class="px-2 py-4 text-center">POLLO XX</th>
+                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="px-2 py-4 text-center whitespace-nowrap">COMENTARIO</th>
                     </tr>
                 </thead>
                 <tbody id="bodyPedidos">
@@ -105,7 +105,7 @@
                                 <input class="validarSoloNumeross w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idRegistrarTerceraEspeciePedido" autocomplete="off" id="idRegistrarTerceraEspeciePedido" placeholder="Ingrese Cantidad">
                             </div>
                         </div>
-                        <div class="hidden justify-center items-center flex-col relative w-full h-full">
+                        <div class="flex justify-center items-center flex-col relative w-full h-full">
                             <div class="flex w-full">
                                 <span class="whitespace-nowrap w-40 justify-center inline-flex items-center text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-white dark:border-gray-600">
                                     POLLO XX
