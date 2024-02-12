@@ -11,6 +11,7 @@ jQuery(function($) {
     // Asignar la fecha actual a los inputs
     $('#fechaDesdePesadas').val(fechaHoy);
     $('#fechaHastaPesadas').val(fechaHoy);
+    var tipoUsuario = $('#tipoUsuario').data('id');
     
     fn_ConsultarPesadasDesdeHasta(fechaHoy,fechaHoy);
     DataTableED('#tablaConsultarPesadas');
@@ -242,30 +243,32 @@ jQuery(function($) {
     });
 
     $(document).on("dblclick", "#tablaConsultarPesadas tbody tr", function() {
-        let fila = $(this).closest('tr');
-        let codPesadaActual = fila.find('td:eq(0)').text();
-        let fechaCambioDePesadaActual = fila.find('td:eq(7)').text();
-        let especiePesadaActual = fila.find('td:eq(8)').text();
-
-        let nombreClienteCambiarPesada = fila.find('td:eq(1)').text();
-        let especieCambiarPesada = fila.find('td:eq(2)').text();
-        let cantidadCambiarPesada = fila.find('td:eq(3)').text();
-        let pesoCambiarPesada = fila.find('td:eq(4)').text();
-        
-        $('#ModalCambiarPesada').addClass('flex');
-        $('#ModalCambiarPesada').removeClass('hidden');
-
-        $('#nombreClienteCambiarPesada').text(nombreClienteCambiarPesada);
-        $('#especieCambiarPesada').text(especieCambiarPesada);
-        $('#pesoCambiarPesada').text(pesoCambiarPesada);
-        $('#cantidadCambiarPesada').text(cantidadCambiarPesada);
-
-        $('#codPesadaActual').attr('value',codPesadaActual);
-        $('#especiePesadaActual').attr('value',especiePesadaActual);
-        $('#fechaCambioDePesadaActual').attr('value',fechaCambioDePesadaActual);
-        $('#idCambiarPesadaCliente').val("");
-        $('#selectedCodigoCliCambiarPesada').attr("value", "");
-        $('#idCambiarPesadaCliente').focus();
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let codPesadaActual = fila.find('td:eq(0)').text();
+            let fechaCambioDePesadaActual = fila.find('td:eq(7)').text();
+            let especiePesadaActual = fila.find('td:eq(8)').text();
+    
+            let nombreClienteCambiarPesada = fila.find('td:eq(1)').text();
+            let especieCambiarPesada = fila.find('td:eq(2)').text();
+            let cantidadCambiarPesada = fila.find('td:eq(3)').text();
+            let pesoCambiarPesada = fila.find('td:eq(4)').text();
+            
+            $('#ModalCambiarPesada').addClass('flex');
+            $('#ModalCambiarPesada').removeClass('hidden');
+    
+            $('#nombreClienteCambiarPesada').text(nombreClienteCambiarPesada);
+            $('#especieCambiarPesada').text(especieCambiarPesada);
+            $('#pesoCambiarPesada').text(pesoCambiarPesada);
+            $('#cantidadCambiarPesada').text(cantidadCambiarPesada);
+    
+            $('#codPesadaActual').attr('value',codPesadaActual);
+            $('#especiePesadaActual').attr('value',especiePesadaActual);
+            $('#fechaCambioDePesadaActual').attr('value',fechaCambioDePesadaActual);
+            $('#idCambiarPesadaCliente').val("");
+            $('#selectedCodigoCliCambiarPesada').attr("value", "");
+            $('#idCambiarPesadaCliente').focus();
+        }
     });
 
     function fn_TraerClientesCambiarPesadaCliente(inputCambiarPesadaCliente,fechaCambioDePesada) {
