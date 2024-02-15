@@ -25,6 +25,9 @@
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrarPedidosFecha"><i class='bx bx-search-alt text-lg'></i></button>
             </div>
         </div>
+        <div class="flex justify-end items-center gap-4 flex-col md:flex-row flex-wrap md:mx-5 mt-0 mb-5">
+            <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="exportarExcelPedidos"><i class='fa-regular fa-file-excel text-lg'></i><h5 class="min-w-max">Exportar A Excel</h5></button>
+        </div>
         <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg md:mx-5 md:mb-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPedidos">
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
@@ -37,6 +40,8 @@
                         <th class="px-2 py-4 text-center">POLLO XX</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">COMENTARIO</th>
+                        <th class="hidden"></th>
+                        <th class="hidden"></th>
                     </tr>
                 </thead>
                 <tbody id="bodyPedidos">

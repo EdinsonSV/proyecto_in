@@ -16,6 +16,43 @@ jQuery(function($) {
     fn_TraerPedidosClientes(fechaHoy);
     DataTableED('#tablaPedidos');
     var tipoUsuario = $('#tipoUsuario').data('id');
+    
+    fn_declarar_especies();
+    var primerEspecieGlobal = 0
+    var segundaEspecieGlobal = 0
+    var terceraEspecieGlobal = 0
+    var cuartaEspecieGlobal = 0
+    var nombrePrimerEspecieGlobal = ""
+    var nombreSegundaEspecieGlobal = ""
+    var nombreTerceraEspecieGlobal = ""
+    var nombreCuartaEspecieGlobal = ""
+
+    function fn_declarar_especies(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    primerEspecieGlobal = parseInt(response[0].idEspecie);
+                    segundaEspecieGlobal  = parseInt(response[1].idEspecie);
+                    terceraEspecieGlobal = parseInt(response[2].idEspecie);
+                    cuartaEspecieGlobal = parseInt(response[3].idEspecie);
+
+                    nombrePrimerEspecieGlobal = response[0].nombreEspecie;
+                    nombreSegundaEspecieGlobal = response[1].nombreEspecie;
+                    nombreTerceraEspecieGlobal = response[2].nombreEspecie;
+                    nombreCuartaEspecieGlobal = response[3].nombreEspecie;
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     $('.cerrarModalAgregarPedido, #ModalAgregarPedido .opacity-75').on('click', function (e) {
         $('#ModalAgregarPedido').addClass('hidden');
@@ -125,12 +162,14 @@ jQuery(function($) {
                     TtotalesPedidos.append(`<tr>
                         <th class="hidden">Id</th>
                         <th class="px-2 py-4 text-left">Nombre de Cliente</th>
-                        <th class="px-2 py-4 text-center">POLLO YUGO</th>
-                        <th class="px-2 py-4 text-center">POLLO PERLA</th>
-                        <th class="px-2 py-4 text-center">POLLO CHIMU</th>
-                        <th class="px-2 py-4 text-center">POLLO XX</th>
-                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO YUGO</th>
+                        <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO PERLA</th>
+                        <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO CHIMU</th>
+                        <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO XX</th>
+                        <th class="px-2 py-4 text-center md:px-4 whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center">COMENTARIO</th>
+                        <th class="hidden"></th>
+                        <th class="hidden"></th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();
                     let nuevaFila = ""
@@ -180,8 +219,9 @@ jQuery(function($) {
                             useGrouping: true,
                         });
 
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">').text("TOTAL:"));
+                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila.append($('<td class="hidden">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-bold whitespace-nowrap">').text("TOTAL:"));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido1));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido2));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido3));
@@ -441,11 +481,11 @@ jQuery(function($) {
             useGrouping: true,
         });
 
-        $('#headerPedidos tr:last td:eq(1)').text(totalFormateado1);
-        $('#headerPedidos tr:last td:eq(2)').text(totalFormateado2);
-        $('#headerPedidos tr:last td:eq(3)').text(totalFormateado3);
-        $('#headerPedidos tr:last td:eq(4)').text(totalFormateado4);
-        $('#headerPedidos tr:last td:eq(5)').text(totalFormateado5);
+        $('#headerPedidos tr:last td:eq(2)').text(totalFormateado1);
+        $('#headerPedidos tr:last td:eq(3)').text(totalFormateado2);
+        $('#headerPedidos tr:last td:eq(4)').text(totalFormateado3);
+        $('#headerPedidos tr:last td:eq(5)').text(totalFormateado4);
+        $('#headerPedidos tr:last td:eq(6)').text(totalFormateado5);
     };
 
     $(document).on('dblclick', '#tablaPedidos tbody tr.filaEditable', function (e) {
@@ -729,4 +769,55 @@ jQuery(function($) {
             }
         });
     }
+
+    $("#exportarExcelPedidos").on("click", function () {
+        // Obtener los valores de los inputs
+        var fechaReportePedidos = $("#fechaBuscarPedidos").val();
+
+        // Obtener la tabla
+        var tabla = document.getElementById("tablaPedidos");
+
+        // Crear un nuevo libro de Excel
+        var workbook = XLSX.utils.book_new();
+
+        // Construir matriz de datos
+        var dataMatrix = [[""]];
+
+        // Obtener las filas de la tabla
+        var filas = tabla.rows;
+
+        // Recorrer las filas de la tabla y agregar a la matriz de datos
+        for (var i = 0; i < filas.length; i++) {
+            var celdas = filas[i].cells;
+            var row = [];
+            for (var j = 1; j < celdas.length - 2; j++) {
+                var cellText = celdas[j].textContent;
+                row.push(cellText);
+            }
+            dataMatrix.push(["", ...row]);
+        }
+
+        // Crear la hoja de cálculo
+        var sheet = XLSX.utils.aoa_to_sheet(dataMatrix);
+
+        // Ajustar el ancho de las columnas al contenido
+        var range = XLSX.utils.decode_range(sheet["!ref"]);
+        range.e.c = range.e.c - 2; // Restar 2 para excluir las dos últimas columnas
+        for (var col = 1; col <= range.e.c; col++) {
+            sheet["!cols"] = sheet["!cols"] || [];
+            sheet["!cols"][col] = { wch: 15 }; // Ajusta el ancho a un valor fijo, puedes ajustar según tus necesidades
+            if (sheet["!cols"][col].wch < 20) {
+                sheet["!cols"][col].wch = 20; // Establecer el ancho mínimo
+            }
+        }
+
+        // Agregar la hoja al libro
+        XLSX.utils.book_append_sheet(workbook, sheet, "ReporteDePedidos");
+
+        // Generar un archivo Excel y descargarlo
+        XLSX.writeFile(
+            workbook,
+            "Reporte_de_Pedidos_" + fechaReportePedidos + ".xlsx"
+        );
+    });
 });

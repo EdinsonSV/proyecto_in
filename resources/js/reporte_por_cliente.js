@@ -32,12 +32,6 @@ jQuery(function ($) {
     
         // Obtener la tabla
         var tabla = document.getElementById("tablaReportePorCliente");
-
-        // Obtener la primera celda
-        var celda = tabla.rows[0].cells[0];
-
-        // Cambiar el color de la celda
-        celda.style.backgroundColor = "red";
     
         // Crear un nuevo libro de Excel
         var workbook = XLSX.utils.book_new();
