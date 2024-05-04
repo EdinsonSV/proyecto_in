@@ -33,12 +33,12 @@
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>
                         <th class="hidden">Id</th>
+                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center">Nombre de Cliente</th>
                         <th class="px-2 py-4 text-center">POLLO YUGO</th>
                         <th class="px-2 py-4 text-center">POLLO PERLA</th>
                         <th class="px-2 py-4 text-center">POLLO CHIMU</th>
                         <th class="px-2 py-4 text-center">POLLO XX</th>
-                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">COMENTARIO</th>
                         <th class="hidden"></th>
                         <th class="hidden"></th>

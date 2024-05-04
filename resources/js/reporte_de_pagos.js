@@ -1525,4 +1525,58 @@ jQuery(function ($) {
         });
     }
 
+    $('#btnExportarExcelReporteDePagos').on('click', function () {
+        // Obtener los valores de los inputs
+        var cliente = $('#idCuentaDelCliente').val();
+        var fechaDesde = $('#fechaDesdeCuentaDelCliente').val();
+        var fechaHasta = $('#fechaHastaCuentaDelCliente').val();
+    
+        // Obtener la tabla
+        var tabla = document.getElementById("tablaCuentaDelCliente");
+    
+        // Crear un nuevo libro de Excel
+        var workbook = XLSX.utils.book_new();
+    
+        // Construir matriz de datos
+        var dataMatrix = [
+            [''],
+            ['', 'Cliente:', cliente],
+            ['', 'Fecha Desde:', fechaDesde, 'Fecha Hasta:', fechaHasta],
+            ['']
+        ];
+    
+        // Obtener las filas de la tabla
+        var filas = tabla.rows;
+    
+        // Recorrer las filas de la tabla y agregar a la matriz de datos
+        for (var i = 0; i < filas.length; i++) {
+            var celdas = filas[i].cells;
+            var row = [];
+            for (var j = 1; j < celdas.length; j++) {
+                var cellText = celdas[j].textContent;
+                row.push(cellText);
+            }
+            dataMatrix.push(['', ...row]);
+        }              
+    
+        // Crear la hoja de cálculo
+        var sheet = XLSX.utils.aoa_to_sheet(dataMatrix);
+    
+        // Ajustar el ancho de las columnas al contenido
+        var range = XLSX.utils.decode_range(sheet["!ref"]);
+        for (var col = 1; col <= range.e.c; col++) {
+            sheet["!cols"] = sheet["!cols"] || [];
+            sheet["!cols"][col] = { wch: 15 }; // Ajusta el ancho a un valor fijo, puedes ajustar según tus necesidades
+            if (sheet["!cols"][col].wch < 20) {
+                sheet["!cols"][col].wch = 20; // Establecer el ancho mínimo
+            }
+        }
+    
+        // Agregar la hoja al libro
+        XLSX.utils.book_append_sheet(workbook, sheet, "EstadoDeCuenta");
+    
+        // Generar un archivo Excel y descargarlo
+        XLSX.writeFile(workbook, "Estado_de_Cuenta_"+cliente+".xlsx");
+    });
+
 })

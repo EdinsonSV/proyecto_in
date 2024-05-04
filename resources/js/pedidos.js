@@ -161,12 +161,12 @@ jQuery(function($) {
                     TtotalesPedidos.empty();
                     TtotalesPedidos.append(`<tr>
                         <th class="hidden">Id</th>
+                        <th class="px-2 py-4 text-center md:px-4 whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-left">Nombre de Cliente</th>
                         <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO YUGO</th>
                         <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO PERLA</th>
                         <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO CHIMU</th>
                         <th class="px-2 py-4 text-center md:px-4 md:whitespace-nowrap">POLLO XX</th>
-                        <th class="px-2 py-4 text-center md:px-4 whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center">COMENTARIO</th>
                         <th class="hidden"></th>
                         <th class="hidden"></th>
@@ -184,14 +184,6 @@ jQuery(function($) {
                         // Crear una nueva fila
                         nuevaFila = $('<tr class="bg-white filaEditable border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPedido));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadPrimerEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadSegundaEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadTerceraEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadCuartaEspecie));
-                        
                         let totalPedidos = 0;
                         totalPedidos = parseInt(obj.cantidadPrimerEspecie) + parseInt(obj.cantidadSegundaEspecie) + parseInt(obj.cantidadTerceraEspecie) + parseInt(obj.cantidadCuartaEspecie);
                         totalPedidosFinal += totalPedidos;
@@ -200,7 +192,15 @@ jQuery(function($) {
                         totalPedido3 += parseInt(obj.cantidadTerceraEspecie);
                         totalPedido4 += parseInt(obj.cantidadCuartaEspecie);
 
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idPedido));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalPedidos));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadPrimerEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadSegundaEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadTerceraEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.cantidadCuartaEspecie));
+                        
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.comentarioPedido));                        
                         nuevaFila.append($('<td class="hidden">').text(obj.fechaRegistroPedido));
                         nuevaFila.append($('<td class="hidden">').text(obj.codigoCliPedido));
@@ -221,12 +221,15 @@ jQuery(function($) {
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         nuevaFila.append($('<td class="hidden">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-bold whitespace-nowrap">').text("TOTAL:"));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-bold whitespace-nowrap">').text("TOTAL:"));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(totalPedidoFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido1));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido2));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido3));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido4));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(totalPedidoFormateado));
+                        nuevaFila.append($('<td class="hidden">').text(""));
+                        nuevaFila.append($('<td class="hidden">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         TtotalesPedidos.append(nuevaFila);
@@ -421,7 +424,7 @@ jQuery(function($) {
 
         if (nombreFiltrar) {
             $('#tablaPedidos tbody tr').each(function() {
-                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(2)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
@@ -442,15 +445,15 @@ jQuery(function($) {
 
         // Sumar los montos de las filas visibles
         $('#bodyPedidos tr.filaEditable:visible').each(function () {
-            let monto1 = parseFloat($(this).find('td:eq(2)').text());
+            let monto1 = parseFloat($(this).find('td:eq(3)').text());
             total1 += isNaN(monto1) ? 0 : monto1;
-            let monto2 = parseFloat($(this).find('td:eq(3)').text());
+            let monto2 = parseFloat($(this).find('td:eq(4)').text());
             total2 += isNaN(monto2) ? 0 : monto2;
-            let monto3 = parseFloat($(this).find('td:eq(4)').text());
+            let monto3 = parseFloat($(this).find('td:eq(5)').text());
             total3 += isNaN(monto3) ? 0 : monto3;
-            let monto4 = parseFloat($(this).find('td:eq(5)').text());
+            let monto4 = parseFloat($(this).find('td:eq(6)').text());
             total4 += isNaN(monto4) ? 0 : monto4;
-            let monto5 = parseFloat($(this).find('td:eq(6)').text());
+            let monto5 = parseFloat($(this).find('td:eq(1)').text());
             total5 += isNaN(monto5) ? 0 : monto5;
         });
 
@@ -481,11 +484,11 @@ jQuery(function($) {
             useGrouping: true,
         });
 
-        $('#headerPedidos tr:last td:eq(2)').text(totalFormateado1);
-        $('#headerPedidos tr:last td:eq(3)').text(totalFormateado2);
-        $('#headerPedidos tr:last td:eq(4)').text(totalFormateado3);
-        $('#headerPedidos tr:last td:eq(5)').text(totalFormateado4);
-        $('#headerPedidos tr:last td:eq(6)').text(totalFormateado5);
+        $('#headerPedidos tr:last td:eq(3)').text(totalFormateado1);
+        $('#headerPedidos tr:last td:eq(4)').text(totalFormateado2);
+        $('#headerPedidos tr:last td:eq(5)').text(totalFormateado3);
+        $('#headerPedidos tr:last td:eq(6)').text(totalFormateado4);
+        $('#headerPedidos tr:last td:eq(1)').text(totalFormateado5);
     };
 
     $(document).on('dblclick', '#tablaPedidos tbody tr.filaEditable', function (e) {
@@ -493,11 +496,11 @@ jQuery(function($) {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
             let idPedido = fila.find('td:eq(0)').text();
-            let nombreCliente = fila.find('td:eq(1)').text();
-            let pedidoPrimerEspecie = fila.find('td:eq(2)').text();
-            let pedidoSegundaEspecie = fila.find('td:eq(3)').text();
-            let pedidoTerceraEspecie = fila.find('td:eq(4)').text();
-            let pedidoCuartaEspecie = fila.find('td:eq(5)').text();
+            let nombreCliente = fila.find('td:eq(2)').text();
+            let pedidoPrimerEspecie = fila.find('td:eq(3)').text();
+            let pedidoSegundaEspecie = fila.find('td:eq(4)').text();
+            let pedidoTerceraEspecie = fila.find('td:eq(5)').text();
+            let pedidoCuartaEspecie = fila.find('td:eq(6)').text();
             let comentarioPedido = fila.find('td:eq(7)').text();
             let fechaPedido = fila.find('td:eq(8)').text();
             let codigoCliente = fila.find('td:eq(9)').text();

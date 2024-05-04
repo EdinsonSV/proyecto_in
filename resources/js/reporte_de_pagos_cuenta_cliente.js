@@ -66,6 +66,8 @@ jQuery(function ($) {
                 let ventaAnterior = parseFloat(response.ventaAnterior || 0);
                 let pagoAnterior = parseFloat(response.pagoAnterior || 0);
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);
+                let respuestaPagosDetallados = response.pagosDetallados
+                respuestaPagosDetallados = respuestaPagosDetallados.original
     
                 // Crear un objeto para almacenar los datos combinados por fecha
                 var combinedData = {};
@@ -315,7 +317,7 @@ jQuery(function ($) {
                 });
     
                 // Ahora combinedData contiene los datos combinados por fecha
-                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData);
+                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData, respuestaPagosDetallados);
             },
             error: function (error) {
                 console.error("ERROR", error);
@@ -323,7 +325,7 @@ jQuery(function ($) {
         });
     }    
 
-    function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,totalVentaDescuentoAnterior,combinedData){
+    function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,totalVentaDescuentoAnterior,combinedData, respuestaPagosDetallados){
 
         let bodyCuentaDelCliente="";
         let tbodyCuentaDelCliente = $('#bodyCuentaDelCliente');
@@ -336,7 +338,7 @@ jQuery(function ($) {
             bodyCuentaDelCliente += construirFilaFecha(fecha);
             let item = combinedData[fecha]
             bodyCuentaDelCliente += construirFilaDatos(item);
-            bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos);
+            bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos, fecha, respuestaPagosDetallados);
             totalPagos += parseFloat(item.pagos);
             let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)
             totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
@@ -350,98 +352,155 @@ jQuery(function ($) {
         }
     }
 
-    function construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos) {
+    // Asigna un ID único para las filas de pagos detallados
+    let pagosDetalladosID = "pagosDetalles-uniqueID";
 
-        let ventasEspecies = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)
-        let descuentosVentasEspecies = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuento)
+    // Agrega un evento clic a la fila "verPagosDetalles" fuera de la función
+    $(document).on('click', '.verPagosDetalles', function () {
+        // Selecciona todas las filas de pagos detallados usando el ID único
+        let filasPagosDetallados = $("[id^=" + pagosDetalladosID + "]");
+
+        // Verifica el estado actual de todas las filas de pagos detallados y muestra u oculta según corresponda
+        if (filasPagosDetallados.is(":visible")) {
+            filasPagosDetallados.hide();
+        } else {
+            filasPagosDetallados.show();
+        }
+    });
+
+    function construirFilaDatosTotales(item, totalSaldoAnterior, totalPagos, fecha, respuestaPagosDetallados) {
+
+        let ventasEspecies = parseFloat(item.totalVentaPrimerEspecie) + parseFloat(item.totalVentaSegundaEspecie) + parseFloat(item.totalVentaTerceraEspecie) + parseFloat(item.totalVentaCuartaEspecie)
+        let descuentosVentasEspecies = parseFloat(item.totalVentaDescuentoPrimerEspecie) + parseFloat(item.totalVentaDescuentoSegundaEspecie) + parseFloat(item.totalVentaDescuentoTerceraEspecie) + parseFloat(item.totalVentaDescuentoCuartaEspecie) + parseFloat(item.totalVentaDescuento)
         let totalSaldoAnteriorV = totalSaldoAnterior - parseFloat(totalPagos)
-
-        let totalVentaDelDia = ventasEspecies+(descuentosVentasEspecies)
+    
+        let totalVentaDelDia = ventasEspecies + (descuentosVentasEspecies)
         let totalVentaDelDiaSaldoAnterior = totalVentaDelDia + parseFloat(totalSaldoAnteriorV)
         let saldoActual = totalVentaDelDiaSaldoAnterior - parseFloat(item.pagos)
-
-        
+    
+    
         let saldoActualFormateado = saldoActual.toLocaleString('es-ES', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
+    
         let totalVentaDelDiaSaldoAnteriorFormateado = totalVentaDelDiaSaldoAnterior.toLocaleString('es-ES', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
+    
         let totalVentaDelDiaFormateado = totalVentaDelDia.toLocaleString('es-ES', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
+    
         let totalSaldoAnteriorVFormateado = totalSaldoAnteriorV.toLocaleString('es-ES', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
+    
         let pagosFormateado = parseFloat(item.pagos).toLocaleString('es-ES', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
-        return `
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaFormateado}</h5></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalSaldoAnteriorVFormateado}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
-        <tr class="bg-white dark:bg-gray-800 h-0.5">
-            <td class="text-center" colspan="2"></td>
-            <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaSaldoAnteriorFormateado}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">PAGOS</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${pagosFormateado}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
-        <tr class="bg-white dark:bg-gray-800 h-0.5">
-            <td class="text-center" colspan="2"></td>
-            <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${saldoActualFormateado}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
+    
+        let pagosDetallados = "";
+        let masDeUnPago = 0;
+    
+        if (respuestaPagosDetallados.length > 0) {
+            pagosDetallados += ``;
+            respuestaPagosDetallados.forEach(function (obj) {
+                if (obj.fechaOperacionPag == fecha) {
+                    if (masDeUnPago == 0) {
+                        pagosDetallados += `
+                            <tr id="${pagosDetalladosID}-${masDeUnPago}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" style="display:none;">
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">DETALLE DE PAGOS</td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                            </tr>`;
+                        masDeUnPago += 1;
+                    } else {
+                        pagosDetallados += `
+                            <tr id="${pagosDetalladosID}-${masDeUnPago}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" style="display:none;">
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                            </tr>`;
+                        masDeUnPago += 1;
+                    }
+                }
+            });
+        }
+    
+        masDeUnPago = 0;
+    
+        let html = `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 verPagosDetalles">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VENTA</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaFormateado}</h5></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ANTERIOR</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalSaldoAnteriorVFormateado}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 h-0.5">
+                <td class="text-center" colspan="2"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">SALDO DEL DIA</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVentaDelDiaSaldoAnteriorFormateado}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 verPagosDetalles">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap flex justify-center items-center">PAGOS <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+              </svg></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${pagosFormateado}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
+            ${pagosDetallados}
+            <tr class="bg-white dark:bg-gray-800 h-0.5">
+                <td class="text-center" colspan="2"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${saldoActualFormateado}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
         `;
-    }
+    
+        return html;
+    }      
 
     function construirFilaFecha(fecha) {
         return `

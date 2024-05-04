@@ -103,6 +103,9 @@
                             <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarCuentaDelCliente"><i class='bx bx-search-alt'></i> Buscar</button>
                         </div>
                     </div>
+                    <div class="flex gap-2 justify-end w-full flex-col md:flex-row">
+                        <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg" id="btnExportarExcelReporteDePagos"><i class="fa-regular fa-file-excel"></i> Exportar a Excel</button>
+                    </div>
                     <div class="flex items-center justify-end py-1 rounded-xl px-1">
                         <input id="minimizarPrecios" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     </div>

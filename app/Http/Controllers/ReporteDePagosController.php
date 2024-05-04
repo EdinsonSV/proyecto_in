@@ -253,7 +253,24 @@ class ReporteDePagosController extends Controller
             ->get();
     
         return $consulta;
-    }     
+    }
+    
+    public function consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin) {
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT fechaOperacionPag,cantidadAbonoPag
+            FROM tb_pagos
+            WHERE codigoCli = ? AND estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ?', [$codigoCli, $fechaInicio, $fechaFin]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
     
     public function consulta_TraerCuentaDelCliente(Request $request) {
 
@@ -273,6 +290,7 @@ class ReporteDePagosController extends Controller
                 'ventaAnterior' => $this->consulta_VentaAnterior($codigoCli, $fechaInicio),
                 'pagoAnterior' => $this->consulta_PagoAnterior($codigoCli, $fechaInicio),
                 'totalVentaDescuentoAnterior' => $this->consulta_DescuentosAnteriores($codigoCli, $fechaInicio),
+                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin)
             ];
     
             // Devuelve los datos en formato JSON
