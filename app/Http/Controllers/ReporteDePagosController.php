@@ -260,7 +260,7 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-            SELECT fechaOperacionPag,cantidadAbonoPag
+            SELECT fechaOperacionPag,cantidadAbonoPag,fechaRegistroPag
             FROM tb_pagos
             WHERE codigoCli = ? AND estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ?', [$codigoCli, $fechaInicio, $fechaFin]);
             

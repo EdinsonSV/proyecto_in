@@ -424,7 +424,7 @@ jQuery(function ($) {
                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                 <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">DETALLE DE PAGOS</td>
                                 <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
-                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">${obj.fechaRegistroPag}</td>
                             </tr>`;
                         masDeUnPago += 1;
                     } else {
@@ -435,7 +435,7 @@ jQuery(function ($) {
                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                 <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
-                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                <td class="text-center py-1 px-2 whitespace-nowrap bg-red-600 text-white">${obj.fechaRegistroPag}</td>
                             </tr>`;
                         masDeUnPago += 1;
                     }
