@@ -173,15 +173,19 @@ class ReportePorProveedorController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-                SELECT
-                    COALESCE(SUM(DISTINCT COALESCE(pesoGuia, 0) * COALESCE(precioGuia, 0)), 0) AS sumaGuias,
-                    COALESCE(SUM(DISTINCT (COALESCE(pesoNetoPes, 0) * COALESCE(precioPes, 0)) / COALESCE(valorConversion, 0)), 0) AS sumaVentaDelDia,
-                    COALESCE(SUM(DISTINCT COALESCE(pesoDesc, 0) * COALESCE(precioDesc, 0)), 0) AS descuentos
-                FROM tb_pesadas
-                LEFT JOIN tb_guias ON tb_guias.fechaGuia = tb_pesadas.fechaRegistroPes
-                LEFT JOIN tb_descuentos ON tb_pesadas.fechaRegistroPes = tb_descuentos.fechaRegistroDesc
-                WHERE estadoGuia = 1 AND fechaGuia = ?
-            ', [$fechaTotales]);
+                SELECT 
+                    (SELECT SUM((pesoNetoPes * precioPes) / valorConversion) 
+                    FROM tb_pesadas 
+                    WHERE fechaRegistroPes = ? AND estadoPes = 1) AS sumaVentaDelDia,
+                    
+                    (SELECT SUM(pesoGuia * precioGuia) 
+                    FROM tb_guias 
+                    WHERE fechaGuia = ? AND estadoGuia = 1) AS sumaGuias,
+                    
+                    (SELECT SUM(pesoDesc * precioDesc) 
+                    FROM tb_descuentos 
+                    WHERE fechaRegistroDesc = ? AND estadoDescuento = 1) AS descuentos
+            ', [$fechaTotales, $fechaTotales, $fechaTotales]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -189,6 +193,6 @@ class ReportePorProveedorController extends Controller
     
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }    
+    }   
 
 }

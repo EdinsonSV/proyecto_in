@@ -46,7 +46,7 @@ jQuery(function ($) {
     $('#btnBuscarCuentaDelCliente').on('click', function () {
         let fechaDesde = $('#fechaDesdeCuentaDelCliente').val();
         let fechaHasta = $('#fechaHastaCuentaDelCliente').val();
-        let codigoCliente = $('#selectedCodigoCliCuentaDelCliente').attr("value");
+        let codigoCliente = $('#codigoClienteSeleccionado').val();
         fn_TraerCuentaDelCliente(fechaDesde,fechaHasta,codigoCliente);
     });
 

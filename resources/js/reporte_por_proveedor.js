@@ -552,27 +552,31 @@ jQuery(function($) {
             success: function (response) {
                 response.forEach(function (obj) {
 
-                    let diferencia = parseFloat(obj.sumaGuias) - (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos));
+                    let diferencia = parseFloat(obj.sumaGuias ? obj.sumaGuias : 0) - (parseFloat(obj.sumaVentaDelDia ? obj.sumaVentaDelDia : 0) + parseFloat(obj.descuentos ? obj.descuentos : 0));
 
                     if (diferencia < 0){
                         diferencia = diferencia*-1;
                     }
     
                     // Formatear números con separador de miles y dos decimales
-                    const compraTotalFormatted = parseFloat(obj.sumaGuias).toLocaleString(undefined, {
+                    const compraTotalFormatted = parseFloat(obj.sumaGuias ? obj.sumaGuias : 0).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
+                        maximumFractionDigits: 2,
+                        useGrouping : true,
                     });
     
-                    const ventaTotalFormatted = (parseFloat(obj.sumaVentaDelDia) + parseFloat(obj.descuentos)).toLocaleString(undefined, {
+                    const ventaTotalFormatted = (parseFloat(obj.sumaVentaDelDia ? obj.sumaVentaDelDia : 0) + parseFloat(obj.descuentos ? obj.descuentos : 0)).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
+                        maximumFractionDigits: 2,
+                        useGrouping : true,
                     });
     
                     const diferenciaTotalFormatted = (diferencia).toLocaleString(undefined, {
                         minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
+                        maximumFractionDigits: 2,
+                        useGrouping : true,
                     });
+                    
                     $('#compraTotalFecha').text(compraTotalFormatted);
                     $('#ventaTotalFecha').text(ventaTotalFormatted);
                     $('#diferenciaTotalFecha').text(diferenciaTotalFormatted);

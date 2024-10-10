@@ -32,17 +32,17 @@ jQuery(function($) {
     if (!localStorage.getItem('modoOscuro') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         // Aplicar el modo oscuro
         $('html').addClass('dark');
-        $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
+        $('.base_swith').addClass('bg-green-500').removeClass('bg-gray-700');
         $('.circulo_swith').addClass('prendido');
     } else if (localStorage.getItem('modoOscuro') === 'true') {
         // Si localStorage tiene el modo oscuro
         $('html').addClass('dark');
-        $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
+        $('.base_swith').addClass('bg-green-500').removeClass('bg-gray-700');
         $('.circulo_swith').addClass('prendido');
     } else {
         // Si no se cumple ninguna de las condiciones anteriores, aplicar el modo claro
         $('html').removeClass('dark');
-        $('.base_swith').removeClass('bg-green-500').addClass('bg-slate-700');
+        $('.base_swith').removeClass('bg-green-500').addClass('bg-gray-700');
         $('.circulo_swith').removeClass('prendido');
     }
 
@@ -51,12 +51,12 @@ jQuery(function($) {
         // Alternar entre el modo oscuro y claro
         if ($('html').hasClass('dark')) {
             $('html').removeClass('dark');
-            $('.base_swith').removeClass('bg-green-500').addClass('bg-slate-700');
+            $('.base_swith').removeClass('bg-green-500').addClass('bg-gray-700');
             $('.circulo_swith').removeClass('prendido');
             localStorage.setItem('modoOscuro', 'false');
         } else {
             $('html').addClass('dark');
-            $('.base_swith').addClass('bg-green-500').removeClass('bg-slate-700');
+            $('.base_swith').addClass('bg-green-500').removeClass('bg-gray-700');
             $('.circulo_swith').addClass('prendido');
             localStorage.setItem('modoOscuro', 'true');
         }

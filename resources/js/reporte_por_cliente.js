@@ -26,7 +26,7 @@ jQuery(function ($) {
 
     $('#btnExportarExcelReportePorCliente').on('click', function () {
         // Obtener los valores de los inputs
-        var cliente = $('#idClientePorReporte').val();
+        var cliente = $('#inputNombreClientes').val();
         var fechaDesde = $('#fechaDesdeReportePorCliente').val();
         var fechaHasta = $('#fechaHastaReportePorCliente').val();
     
@@ -104,80 +104,18 @@ jQuery(function ($) {
             }
         });
     }
-
-    $('#idClientePorReporte').on('input', function () {
-        let inputReportePorCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientes');
-        contenedorClientes.empty();
-
-        if (inputReportePorCliente.length > 0 && inputReportePorCliente != "") {
-            fn_TraerClientesReportePorCliente(inputReportePorCliente)
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
     
     $('#btnBuscarReportePorCliente').on('click', function () {
-        let inputReportePorCliente = $('#idClientePorReporte').val();
+        let inputReportePorCliente = $('#inputNombreClientes').val();
         if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
             let fechaDesde = $('#fechaDesdeReportePorCliente').val();
             let fechaHasta = $('#fechaHastaReportePorCliente').val();
-            let codigoCliente = $('#selectedCodigoCli').attr("value");
+            let codigoCliente = $('#codigoClienteSeleccionado').val();
             fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente)
         } else {
             alertify.notify('Debe seleccionar un cliente.', 'error', 2);
         }
     });
-
-    function fn_TraerClientesReportePorCliente(inputReportePorCliente) {
-
-        // Realiza la solicitud AJAX para obtener sugerencias
-        $.ajax({
-            url: '/fn_consulta_TraerClientesReportePorCliente',
-            method: 'GET',
-            data: {
-                idClientePorReporte: inputReportePorCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientes')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idClientePorReporte').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdCliente').attr("value", obj.idCliente);
-                            $('#selectedCodigoCli').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
 
     function fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente) {
         $.ajax({
@@ -729,5 +667,91 @@ jQuery(function ($) {
             }
         });
     }
+
+    // Primer filtro Nombre
+
+    let selectedIndex = -1;
+
+    $('#inputNombreClientes').on('input', function () {
+        $('#codigoClienteSeleccionado').val(0);
+        $("#clienteSeleccionadoCorrecto").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function updateSelection($options) {
+        $options.removeClass('bg-gray-200 dark:bg-gray-700');
+        if (selectedIndex >= 0) {
+            $options.eq(selectedIndex).addClass('bg-gray-200 dark:bg-gray-700');
+        }
+    }
+    
+    function displayClientes(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente(cliente) {
+        $('#inputNombreClientes').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado').val(cliente.codigoCli);
+        $('#contenedorDeClientes').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        selectedIndex = -1;
+    }
+
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('.relative').length) {
+            $('#contenedorDeClientes').addClass('hidden');
+            selectedIndex = -1;
+        }
+    });
 
 });

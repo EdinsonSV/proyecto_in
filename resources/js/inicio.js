@@ -626,8 +626,9 @@ jQuery(function($) {
                         Swal.fire({
                             icon: 'warning',
                             title: 'Deudas Excesivas',
-                            text: (contador === 1 ? 'Se encontró 1 deuda excesiva.' : 'Se encontrarón '+contador + ' deudas excesivas.'),
-                            footer: '<a href="/agregar_saldo">Ir a revisar</a>'
+                            text: (contador === 1 ? 'Se encontró 1 deuda excesiva.' : 'Se encontrarón '+ contador + ' deudas excesivas.'),
+                            footer: '<a href="/agregar_saldo">Ir a revisar</a>',
+                            confirmButtonColor: '#3B52D1'
                         });                        
                     }
                 } else {
@@ -637,49 +638,6 @@ jQuery(function($) {
             },
             error: function (error) {
                 console.error("ERROR", error);
-            }
-        });
-    }
-
-    function fn_TraerClientesAgregarSaldo(){
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarSaldo',
-            method: 'GET',
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Obtener el select
-                    let tbodyAgregarSaldo = $('#bodyAgregarSaldo');
-                    tbodyAgregarSaldo.empty();
-                    let contador = 0;
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let total = parseFloat(obj.deudaTotal) - parseFloat(obj.cantidadPagos) + parseFloat(obj.ventaDescuentos);
-                        
-                        if (total >= parseFloat(obj.limitEndeudamiento)) {
-                            contador++;
-                        }
-                    });
-                    if (contador > 0){
-                        var rutaDeseada = '/agregar_saldo';
-                        if ($.inArray(rutaDeseada, hrefSubMenus) !== -1) {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Deudas Excesivas',
-                                text: (contador === 1 ? 'Se encontró 1 deuda excesiva.' : 'Se encontrarón '+contador + ' deudas excesivas.'),
-                                footer: '<a href="/agregar_saldo">Ir a revisar</a>'
-                            });                        
-                        }
-                    }
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
-                console.error("ERROR",error);
             }
         });
     }

@@ -76,7 +76,7 @@
                         <span class="animacion_produccion_actual bg-gray-100"></span>
                     </div>
                 </div>
-                <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
+                <div class="bg-green-600 w-full rounded-lg py-5 flex flex-col items-center">
                     <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO CHIMU</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
@@ -194,7 +194,7 @@
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioCompra">0</td>
                             </tr>
                             <tr>
-                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-emerald-600 whitespace-nowrap">Venta</td>
+                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-green-600 whitespace-nowrap">Venta</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadVenta">0</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoVenta">0</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioVenta">0</td>
@@ -278,7 +278,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
+                <div class="bg-green-600 w-full rounded-lg py-5 flex flex-col items-center">
                     <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO CHIMU</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
@@ -387,7 +387,7 @@
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioCompraAnterior">0</td>
                             </tr>
                             <tr>
-                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-emerald-600 whitespace-nowrap">Venta</td>
+                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-green-600 whitespace-nowrap">Venta</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadVentaAnterior">0</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoVentaAnterior">0</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioVentaAnterior">0</td>
@@ -415,7 +415,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalProduccionAnterior" id="ModalProduccionAnterior">
     <div class="modal-content max-w-lg w-full mx-4">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-xl transition-all">
             <div class=" p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

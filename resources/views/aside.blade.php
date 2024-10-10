@@ -54,7 +54,7 @@
                         <span class="font-normal text-sm">Modo Oscuro</span>
                     </div>
                     <div id="swith_modo_oscuro" class="w-14 h-8 flex items-center justify-center cursor-pointer">
-                        <div class="base_swith w-9 h-5 rounded-full bg-slate-700 relative flex items-center">
+                        <div class="base_swith w-9 h-5 rounded-full bg-gray-700 relative flex items-center">
                             <div class="circulo_swith duration-300 w-4 h-4 rounded-full bg-gray-100 absolute left-0.5"></div>
                         </div>
                     </div>
@@ -107,6 +107,7 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <?php
     $hrefSubMenus = [];
@@ -136,6 +137,28 @@
             // Si hrefSubMenus[0] no está definido o es una cadena vacía, cierra la sesión
             window.location.href = '/logout'; // Ajusta la ruta de logout según tu configuración
         }
+
+        fn_TraerClientes();
+
+        var clientesArreglo = [];
+
+        function fn_TraerClientes() {
+
+            $.ajax({
+                url: '/fn_consulta_TraerClientesCuentaDelCliente',
+                method: 'GET',
+                success: function (response) {
+
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        clientesArreglo = response;
+                    }
+                },
+                error: function (error) {
+                    console.error("ERROR", error);
+                }
+            });
+        };
     </script>
 
 </body>
