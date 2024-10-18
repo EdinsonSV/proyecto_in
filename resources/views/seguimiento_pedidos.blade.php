@@ -23,12 +23,18 @@
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>
                         <th class="hidden">Id</th>
-                        <th class="p-4 text-center whitespace-nowrap border-y-2 border-l-2 border-r-[1px]">NOMBRE CLIENTE</th>
+                        <th rowspan="2" class="p-4 text-center whitespace-nowrap border-y-2 border-l-2 border-r-[1px]">NOMBRE CLIENTE</th>
                         <th class="p-4 text-center whitespace-nowrap border-y-2 border-x-[1px]">VARIEDAD</th>
                         <th class="p-4 text-center whitespace-nowrap border-y-2 border-x-[1px]">PEDIDO</th>
                         <th class="p-4 text-center whitespace-nowrap border-y-2 border-x-[1px]">PESADO</th>
                         <th class="p-4 text-center whitespace-nowrap border-y-2 border-x-[1px]">FALTA</th>
-                        <th class="p-4 text-center border-y-2 border-l-[1px] border-r-2">COMENTARIO</th>
+                        <th rowspan="2" class="p-4 text-center border-y-2 border-l-[1px] border-r-2">COMENTARIO</th>
+                    </tr>
+                    <tr class="bg-red-600">
+                        <th class="p-4 text-center whitespace-nowrap border-b-2 border-x-[1px]">Totales</th>
+                        <th class="p-4 text-center whitespace-nowrap border-b-2 border-x-[1px]" id="totalPedidoTotales">0</th>
+                        <th class="p-4 text-center whitespace-nowrap border-b-2 border-x-[1px]" id="totalPesadoTotales">0</th>
+                        <th class="p-4 text-center whitespace-nowrap border-b-2 border-x-[1px]" id="totalFalatantesTotales">0</th>
                     </tr>
                 </thead>
                 <tbody id="bodyPedidos">

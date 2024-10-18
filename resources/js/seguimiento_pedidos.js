@@ -70,6 +70,10 @@ jQuery(function($) {
                     tbodyPedidoDelCliente.empty();
                     let nuevaFila = "";
 
+                    let totalPedidoTotales = 0
+                    let totalPesadoTotales = 0
+                    let totalFalatantesTotales = 0
+
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         let totalPedidos = 0;
@@ -90,6 +94,10 @@ jQuery(function($) {
 
                         let diferenciaCuartaEspecie = 0;
                         diferenciaCuartaEspecie = parseInt(obj.cantidadCuartaEspecie) - parseFloat(obj.sumaCantidadCuartaEspecie)
+
+                        totalPedidoTotales += totalPedidos
+                        totalPesadoTotales += totalPedidosPesados
+                        totalFalatantesTotales += totalCantidadPedidosFila
 
                         nuevaFila = (`
                         <tr class="bg-white text-gray-900 dark:text-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
@@ -152,6 +160,10 @@ jQuery(function($) {
                             '<tr class="rounded-lg"><td colspan="17" class="text-center border-2">No hay datos</td></tr>'
                         );
                     }
+
+                    $('#totalPedidoTotales').text(totalPedidoTotales);
+                    $('#totalPesadoTotales').text(totalPesadoTotales);
+                    $('#totalFalatantesTotales').text(totalFalatantesTotales);
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
